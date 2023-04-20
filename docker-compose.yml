@@ -1,0 +1,17 @@
+version: '3'
+services:
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - '3300:3300'
+    command: npm run dev
+    volumes:
+      - ./server:/app
+  db:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./server/data:/app/data
