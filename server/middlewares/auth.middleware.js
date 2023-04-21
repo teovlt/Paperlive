@@ -1,17 +1,18 @@
 const jwt = require('jsonwebtoken');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 module.exports.verifyToken = (req, res, next) => {
-  // Récupérer le token depuis le cookie ou le header Authorizaiton
+  // Get the token from the cookie or Authorization header
   const token = req.cookies.jwt || req.headers.authorization?.split(' ')[1];
 
-  // Si le token n'existe pas
+  // If the token doesn't exist
   if (!token) return res.status(401).json({ message: 'Auhtentification requise' });
 
-  // Vérifier la validité du token
+  // Verify the validity of the token
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) return res.status(401).json({ message: 'Token invalide' });
 
-    // Stocker les informations du token dans la requête pour une utilisation ultérieure
+    // Store the token information in the request for later use
     req.session = decoded;
     next();
   });
