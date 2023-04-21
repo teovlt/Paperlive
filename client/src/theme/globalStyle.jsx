@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
     --accent: #3788a1;
     --black: #222222;
     --white: #ffffff;
+    --white-50: #ffffff80
   }
 
   *, ::before, ::after {
