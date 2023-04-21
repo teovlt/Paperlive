@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Main, NavPage, SideBar, GridWrapper, Container } from '../../theme/appElements';
+import { Main, NavPage, SideBar, GridWrapper, Container, Button } from '../../theme/appElements';
+import { TableContribution } from './homeElements';
+import CardContribution from '../../components/CardContribution';
 
 const Home = () => {
   return (
@@ -16,7 +18,7 @@ const Home = () => {
           <img src='/vite.svg' alt='' />
           <h2>Erods</h2>
           <h4>Computer sciences</h4>
-          <button>Edit team profil</button>
+          <Button>Edit team profil</Button>
           <span>11 members</span>
           <span>8 contributions</span>
           <br />
@@ -31,12 +33,12 @@ const Home = () => {
             tempora autem consectetur placeat iste explicabo similique?
           </p>
           <h2>RECENT ACTIVITY</h2>
-          <div className='tableContribution'>
-            <p className='tab1'>cc</p>
-            <p className='2'>ccc</p>
-            <p className='3'>cccc</p>
-            <p className='4'>ccccc</p>
-          </div>
+          <TableContribution>
+            <CardContribution />
+            <CardContribution />
+            <CardContribution />
+            <CardContribution />
+          </TableContribution>
         </Main>
       </GridWrapper>
     </Container>
