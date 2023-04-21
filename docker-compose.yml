@@ -5,13 +5,14 @@ services:
       context: ./server
       dockerfile: Dockerfile
     ports:
-      - '3300:3300'
+      - '3000:3000'
     command: npm run dev
     volumes:
       - ./server:/app
+      - /app/node_modules
   db:
     image: mongo:latest
     ports:
       - '27017:27017'
     volumes:
-      - ./server/data:/app/data
+      - ./server/data:/data/db
