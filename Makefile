@@ -1,5 +1,5 @@
 build:
-	docker compose --build -d
+	docker compose build
 up:
 	docker compose up -d
 start:
@@ -9,5 +9,9 @@ down:
 stop:
 	docker compose stop
 restart:
-	docker compose stop
-	docker compose up
+	docker compose down
+	docker compose up -d
+ps:
+	docker compose ps
+logs:
+	docker compose logs -f api
