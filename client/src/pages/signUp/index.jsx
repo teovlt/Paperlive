@@ -14,13 +14,13 @@ const SignUp = () => {
         </div>
 
         <p>
-          Already have an account? <Link to='/register'>Log in</Link>
+          Already have an account? <Link to='/login'>Log in</Link>
         </p>
       </WrapperCo>
       <p>
-        By creating an account, you agree to the <Link to='/login'>Terms of Service</Link>. For more
-        information <br /> about PaperLive’s privacy practices, see the
-        <Link to='/login'> PaperLive Privacy Statement</Link>.
+        By creating an account, you agree to the <Link to='/register'>Terms of Service</Link>. For
+        more information <br /> about PaperLive’s privacy practices, see the
+        <Link to='/register'> PaperLive Privacy Statement</Link>.
       </p>
     </Container>
   );
