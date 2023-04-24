@@ -1,19 +1,20 @@
 import React from 'react';
 import { NavContainer, ShearchBar, Actions } from './navbarElements';
+import { MagnifyingGlassIcon, PlusIcon, UserGroupIcon } from '@heroicons/react/20/solid';
 
 const NavBar = () => {
   return (
     <NavContainer>
       <ShearchBar>
         <input type='text' placeholder='Shearch'></input>
-        <p>loupe</p>
+        <MagnifyingGlassIcon />
       </ShearchBar>
 
       <h1>PaperLive</h1>
 
       <Actions>
-        <p>plus</p>
-        <p>equipe</p>
+        <PlusIcon />
+        <UserGroupIcon />
       </Actions>
     </NavContainer>
   );

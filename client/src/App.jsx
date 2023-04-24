@@ -4,6 +4,7 @@ import GlobalStyle from './theme/globalStyle';
 
 // Import pages
 import Home from './pages/home';
+import SignIn from './pages/signIn';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/login' element={<SignIn />} />
         </Routes>
       </BrowserRouter>
     </Fragment>

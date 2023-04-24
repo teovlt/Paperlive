@@ -10,19 +10,23 @@ export const NavContainer = styled(cont)`
   padding-block: 5px;
   padding-inline: 32px;
   align-items: center;
+
+  svg {
+    width: 4%;
+  }
 `;
 
 export const ShearchBar = styled.div`
   display: flex;
-  flex-direction: row;
-  border: 1px solid var(--white-50);
+  justify-content: left;
+
+  border: 1px solid grey;
   padding-inline: 12px;
   padding-block: 4px;
   border-radius: 4px;
 
   input {
     color: var(--white);
-    border-right: 1px solid grey;
 
     &::placeholder {
       opacity: 1;
@@ -34,6 +38,8 @@ export const ShearchBar = styled.div`
 export const Actions = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: right;
   column-gap: 32px;
 `;
+
+

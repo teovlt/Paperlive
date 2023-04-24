@@ -4,7 +4,7 @@ const Input = () => {
   return (
     <div>
       <label htmlFor=''></label>
-      <input type='text' />
+      <Input type='text' />
     </div>
   );
 };

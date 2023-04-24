@@ -23,6 +23,7 @@ export const Button = styled.button`
   display: inline-block;
   padding: 1.2rem 1.6rem;
   text-align: center;
+  border-radius: 2px;
 
   font-weight: 500;
   font-size: 1.6rem;
@@ -59,4 +60,32 @@ export const Main = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+`;
+
+export const WrapperCo = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+  align-items: center;
+  text-align: center;
+  width: 330px;
+
+  button {
+    width: 100%;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    width: 100%;
+  }
+`;
+
+export const Link = styled(NavLink)`
+  color: var(--accent);
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
