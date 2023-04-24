@@ -42,6 +42,12 @@ export const SideBar = styled.div`
   flex-direction: column;
   padding-block: 32px;
   row-gap: 16px;
+
+  span {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+  }
 `;
 
 export const NavPage = styled.div`
@@ -60,6 +66,8 @@ export const Main = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+
+  
 `;
 
 export const WrapperCo = styled.div`
@@ -74,15 +82,13 @@ export const WrapperCo = styled.div`
     width: 100%;
   }
 
-  div {
-    display: flex;
-    flex-direction: column;
-    row-gap: 16px;
-    width: 100%;
-  }
+
 `;
 
 export const Link = styled(NavLink)`
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
   color: var(--accent);
 
   &:hover {

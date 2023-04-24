@@ -10,10 +10,6 @@ export const NavContainer = styled(cont)`
   padding-block: 5px;
   padding-inline: 32px;
   align-items: center;
-
-  svg {
-    width: 4%;
-  }
 `;
 
 export const ShearchBar = styled.div`
@@ -41,5 +37,3 @@ export const Actions = styled.div`
   justify-content: right;
   column-gap: 32px;
 `;
-
-
