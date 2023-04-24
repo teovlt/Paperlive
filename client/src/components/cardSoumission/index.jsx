@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, CardText, CardBottom } from './cardSoumissionElements';
+import { Container, CardText, CardBottom, Etat } from './cardSoumissionElements';
 
 const CardContribution = () => {
   return (
@@ -13,10 +13,13 @@ const CardContribution = () => {
         </p>
       </CardText>
       <CardBottom>
-        <span>
+        <Etat>
           <p>icon</p> etat
+        </Etat>
+        <span>
+          <p>icon</p>
+          Expand
         </span>
-        <button>See more</button>
       </CardBottom>
     </Container>
   );
