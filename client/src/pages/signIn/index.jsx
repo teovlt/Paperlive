@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container } from './signInElements';
 import { WrapperCo, Button, Link } from '../../theme/appElements';
+import Input from '../../components/input';
 
 const SignIn = () => {
+
+
+
   return (
     <Container>
       <h1>PaperLive</h1>
       <WrapperCo>
         <h2>Welcome back</h2>
         <div>
-          <input type='text' placeholder='TeamName' />
+          <Input type={'text'} placeholder={'TeamName'} />
           <Button>Continue</Button>
         </div>
 

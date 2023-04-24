@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from './signUpElements';
 import { WrapperCo, Button, Link } from '../../theme/appElements';
+import Input from '../../components/input';
 
 const SignUp = () => {
   return (
@@ -9,7 +10,7 @@ const SignUp = () => {
       <WrapperCo>
         <h2>Create your account</h2>
         <div>
-          <input type='text' placeholder='TeamName' />
+          <Input type={'text'} placeholder={'TeamName'} />
           <Button>Continue</Button>
         </div>
 

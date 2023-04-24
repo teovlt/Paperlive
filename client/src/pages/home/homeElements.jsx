@@ -27,3 +27,36 @@ export const MainTab = styled.div`
   flex-direction: column;
   row-gap: 16px;
 `;
+
+export const DivInfos = styled.div`
+display: flex;
+flex-direction: column;
+  row-gap: 16px;
+
+  input{
+    width: 100%;
+  }
+`;
+export const DivCheck = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 24px;
+
+  input{
+    height: 50px;
+    width: 20px;
+  }
+`;
+
+export const DivBtns = styled.div`
+  display: flex;
+  flex-direction: row;
+  column-gap: 16px;
+  width: 50%;
+
+  button{
+    width: 100%;
+  }
+  
+`;

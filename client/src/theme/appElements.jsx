@@ -57,6 +57,9 @@ export const NavPage = styled.div`
   column-gap: 32px;
   padding-inline: 32px;
   align-items: center;
+
+
+  
 `;
 
 export const Main = styled.div`
@@ -66,7 +69,6 @@ export const Main = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 24px;
-
   
 `;
 
@@ -82,13 +84,15 @@ export const WrapperCo = styled.div`
     width: 100%;
   }
 
-
+  div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    width: 100%;
+  }
 `;
 
 export const Link = styled(NavLink)`
-  display: flex;
-  flex-direction: row;
-  column-gap: 5px;
   color: var(--accent);
 
   &:hover {

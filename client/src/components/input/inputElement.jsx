@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 
-export const Input = styled.input`
-  display: inline-block;
-  padding-inline: 16px;
-  padding-block: 18px;
-  border: 1px solid #b4b2b2;
+export const InputType = styled.input`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 18px 16px;
+  gap: 8px;
+  width: 330px;
+  height: 52px;
+
+  /* White */
+  background: var(--white);
+
+  /* Black 15% */
+  border: 1px solid rgba(34, 34, 34, 0.15);
   border-radius: 2px;
-  font-weight: 500;
-  font-size: 1.6rem;
-  line-height: 1.6rem;
-  width: 100%;
-  column-gap: 8px;
 `;

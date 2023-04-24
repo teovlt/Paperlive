@@ -1,10 +1,11 @@
 import React from 'react';
+import { InputType } from './inputElement';
 
-const Input = () => {
+const Input = ({ placeholder, type}) => {
   return (
     <div>
       <label htmlFor=''></label>
-      <Input type='text' />
+      <InputType type={type} placeholder={placeholder} />
     </div>
   );
 };
