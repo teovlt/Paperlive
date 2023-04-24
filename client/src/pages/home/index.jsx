@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Main, NavPage, SideBar, GridWrapper, Container, Button } from '../../theme/appElements';
 import { TableContribution } from './homeElements';
-import CardContribution from '../../components/CardContribution';
+import CardContribution from '../../components/cardContribution';
 import NavBar from '../../components/navbar';
 
 const Home = () => {

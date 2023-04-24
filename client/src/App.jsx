@@ -6,6 +6,7 @@ import GlobalStyle from './theme/globalStyle';
 import Home from './pages/home';
 import SignIn from './pages/signIn';
 import SignUp from './pages/signUp';
+import Popup from './components/popup';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<SignIn />} />
           <Route path='/register' element={<SignUp />} />
+          <Route path='/popup' element={<Popup />} />
         </Routes>
       </BrowserRouter>
     </Fragment>
