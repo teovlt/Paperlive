@@ -1,4 +1,4 @@
-const Team = require('../models/team.model');
+const Team = require('../models/teamModel');
 const jwt = require('jsonwebtoken');
 
 const maxAge = 24 * 60 * 60 * 1000;
@@ -48,7 +48,7 @@ module.exports.signIn = async (req, res) => {
     return res.status(200).json({ message: 'Signed in successfully' }); // Send a success response with a message
   } catch (error) {
     // Error handling
-    return res.status(200).json(error.message);
+    return res.status(200).json({ error: error.message });
   }
 };
 
@@ -64,3 +64,5 @@ module.exports.signOut = async (req, res) => {
     return res.status(500).json(error.message);
   }
 };
+
+module.exports.createToken = createToken;

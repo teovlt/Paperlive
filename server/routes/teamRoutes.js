@@ -1,5 +1,5 @@
-const teamController = require('../controllers/team.controller');
-const { verifyToken } = require('../middlewares/auth.middleware');
+const teamController = require('../../controllers/teamController');
+const { verifyToken } = require('../middlewares/authenticationMiddleware');
 const Router = require('express').Router();
 
 Router.get('/', teamController.listTeams);

@@ -81,4 +81,5 @@ teamSchema.pre('save', async function (next) {
   }
 });
 
-module.exports = new mongoose.model('team', teamSchema);
+const team = new mongoose.model('team', teamSchema);
+module.exports = team;

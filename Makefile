@@ -15,3 +15,7 @@ ps:
 	docker compose ps
 logs:
 	docker compose logs -f api
+test:
+	docker exec -it paperlive-api-1 npm run test
+coverage:
+	docker exec -it paperlive-api-1 npm run coverage
