@@ -17,7 +17,6 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<SignIn />} />
           <Route path='/register' element={<SignUp />} />
-          <Route path='/popup' element={<Popup />} />
         </Routes>
       </BrowserRouter>
     </Fragment>

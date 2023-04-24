@@ -1,10 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Main, NavPage, SideBar, GridWrapper, Container, Button } from '../../theme/appElements';
-import { TableContribution } from './homeElements';
+import { Main, NavPage, SideBar, GridWrapper, Button, Link } from '../../theme/appElements';
+import { TableContribution, Container } from './homeElements';
 import CardContribution from '../../components/cardContribution';
 import NavBar from '../../components/navbar';
-import Popup from '../../components/popup';
 
 const Home = () => {
   return (
@@ -13,9 +12,9 @@ const Home = () => {
       <Container>
         <GridWrapper>
           <NavPage>
-            <NavLink>overview</NavLink>
-            <NavLink>contributions</NavLink>
-            <NavLink>statistics</NavLink>
+            <Link>overview</Link>
+            <Link>contributions</Link>
+            <Link>statistics</Link>
           </NavPage>
 
           <SideBar>

@@ -11,8 +11,8 @@ const Popup = ({ title, desc }) => {
         </PopupText>
 
         <PopupBtn>
-          <button>btn1</button>
-          <button>btn2</button>
+          <button>Yes</button>
+          <button>No</button>
         </PopupBtn>
       </Container>
     </Flou>

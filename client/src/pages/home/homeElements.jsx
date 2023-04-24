@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Container as cont } from '../signIn/signInElements';
 
 export const TableContribution = styled.div`
   display: grid;
@@ -7,3 +8,5 @@ export const TableContribution = styled.div`
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 `;
+
+export const Container = styled(cont)``;
