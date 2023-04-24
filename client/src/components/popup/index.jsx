@@ -1,19 +1,21 @@
 import React from 'react';
-import { Container, PopupText, PopupBtn } from './popupElements';
+import { Container, PopupText, PopupBtn, Flou } from './popupElements';
 
-const Popup = () => {
+const Popup = ({ title, desc }) => {
   return (
-    <Container>
-      <PopupText>
-        <h1>Titre du popup</h1>
-        <p>Description du popup</p>
-      </PopupText>
+    <Flou>
+      <Container>
+        <PopupText>
+          <h1>{title}</h1>
+          <p>{desc}</p>
+        </PopupText>
 
-      <PopupBtn>
-        <button>btn1</button>
-        <button>btn2</button>
-      </PopupBtn>
-    </Container>
+        <PopupBtn>
+          <button>btn1</button>
+          <button>btn2</button>
+        </PopupBtn>
+      </Container>
+    </Flou>
   );
 };
 

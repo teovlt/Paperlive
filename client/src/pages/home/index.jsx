@@ -4,6 +4,7 @@ import { Main, NavPage, SideBar, GridWrapper, Container, Button } from '../../th
 import { TableContribution } from './homeElements';
 import CardContribution from '../../components/cardContribution';
 import NavBar from '../../components/navbar';
+import Popup from '../../components/popup';
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
             <NavLink>contributions</NavLink>
             <NavLink>statistics</NavLink>
           </NavPage>
+
           <SideBar>
             <img src='/vite.svg' alt='' />
             <h2>Erods</h2>
