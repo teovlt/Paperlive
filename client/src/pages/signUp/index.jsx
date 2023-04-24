@@ -1,0 +1,29 @@
+import React from 'react';
+import { Container } from './signUpElements';
+import { WrapperCo, Button, Link } from '../../theme/appElements';
+
+const SignUp = () => {
+  return (
+    <Container>
+      <h1>PaperLive</h1>
+      <WrapperCo>
+        <h2>Create your account</h2>
+        <div>
+          <input type='text' placeholder='TeamName' />
+          <Button>Continue</Button>
+        </div>
+
+        <p>
+          Already have an account? <Link to='/register'>Log in</Link>
+        </p>
+      </WrapperCo>
+      <p>
+        By creating an account, you agree to the <Link to='/login'>Terms of Service</Link>. For more
+        information <br /> about PaperLive’s privacy practices, see the
+        <Link to='/login'> PaperLive Privacy Statement</Link>.
+      </p>
+    </Container>
+  );
+};
+
+export default SignUp;
