@@ -65,5 +65,5 @@ export const BtnSave = styled(btn)`
 
 export const Img = styled.img`
   border-radius: 80%;
-  border: 2px solid var(--black);
+  border: 2px solid var(--black-quaternary);
 `;

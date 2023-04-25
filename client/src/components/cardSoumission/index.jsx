@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, CardText, CardBottom, Etat } from './cardSoumissionElements';
+import { Container, CardText, CardBottom, Etat, DivExpand } from './cardSoumissionElements';
+import { Button } from '../../theme/appElements';
 
 const CardContribution = () => {
   return (
@@ -16,10 +17,10 @@ const CardContribution = () => {
         <Etat>
           <p>icon</p> etat
         </Etat>
-        <span>
-          <p>icon</p>
-          Expand
-        </span>
+        <DivExpand>
+          <p className='p1'>icon</p>
+          <Button className='p2'>Expand</Button>
+        </DivExpand>
       </CardBottom>
     </Container>
   );

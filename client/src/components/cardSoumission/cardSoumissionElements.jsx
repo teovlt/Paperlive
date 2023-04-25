@@ -14,6 +14,14 @@ export const Container = styled(cont)`
   &:hover {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
     cursor: pointer;
+
+    .p2 {
+      display: block;
+    }
+
+    .p1 {
+      display: none;
+    }
   }
 `;
 
@@ -33,7 +41,6 @@ export const CardBottom = styled.div`
     column-gap: 12px;
     align-items: center;
   }
-
 `;
 
 export const Etat = styled.span`
@@ -47,3 +54,11 @@ export const Etat = styled.span`
   align-items: center;
 `;
 
+export const DivExpand = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  .p2 {
+    display: none;
+  }
+`;
