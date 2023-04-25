@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container as cont } from '../signIn/signInElements';
+import { Container as cont } from '../../theme/appElements';
 
 export const TableContribution = styled.div`
   display: grid;

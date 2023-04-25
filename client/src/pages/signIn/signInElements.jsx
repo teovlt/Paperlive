@@ -1,16 +1,21 @@
 import styled from 'styled-components';
-import { Container as cont } from '../../theme/appElements';
+import { Container as AppContainer } from '../../theme/appElements';
 
-export const Container = styled(cont)`
+export const Container = styled(AppContainer)`
+  min-height: 100vh;
+  padding-block: 3.2rem;
+
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  height: 100vh;
-  padding: 16px;
+  justify-content: space-between;
+`;
 
-  p {
-    font-size: 15px;
-    text-align: center;
-  }
+export const Form = styled.form`
+  width: 330px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 16px;
 `;

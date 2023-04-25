@@ -17,6 +17,9 @@ export const GridWrapper = styled.div`
 `;
 
 export const Button = styled.button`
+  flex: 1;
+  width: 100%;
+
   user-select: none;
   cursor: pointer;
 
@@ -66,29 +69,34 @@ export const Main = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 24px;
-
-  
 `;
 
-export const WrapperCo = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 32px;
-  align-items: center;
-  text-align: center;
-  width: 330px;
+export const Heading1 = styled.h1`
+  font-weight: 500;
+  font-size: 2.4rem;
+  line-height: 3.6rem;
 
-  button {
-    width: 100%;
-  }
+  color: var(--black);
+`;
 
+export const Heading2 = styled.h2`
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 3rem;
 
+  color: var(--black);
+`;
+
+export const Small = styled.small`
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+
+  color: var(--black);
 `;
 
 export const Link = styled(NavLink)`
-  display: flex;
-  flex-direction: row;
-  column-gap: 5px;
+  font-size: inherit;
   color: var(--accent);
 
   &:hover {

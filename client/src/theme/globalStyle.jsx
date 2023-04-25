@@ -8,7 +8,19 @@ const GlobalStyle = createGlobalStyle`
 
     /* Variables */
     --accent: #3788a1;
+
+    --positive: #52B788;
+    --positive-vibrant: #52b78833;
+    --notice: #FF9500;
+    --notice-vibrant: #FF950033;
+    --destructive: #FF001F;
+    --destructive-vibrant: #FF001F33;
+
     --black: #222222;
+    --black-secondary: rgba(34, 34, 34, 0.75);
+    --black-tertiary: #2222227f;
+    --black-quaternary: #2222221e; 
+    
     --white: #ffffff;
     --white-50: #ffffff80
   }
@@ -28,6 +40,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-size: 1.6rem;
+    font-smooth: auto;
     font-family: 'Poppins', 'Helvetica', 'Arial';
   }
 `;

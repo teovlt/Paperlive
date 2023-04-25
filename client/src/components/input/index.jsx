@@ -1,11 +1,26 @@
 import React from 'react';
+import {
+  Container,
+  InputContainer,
+  InputField,
+  InputLabel,
+  ErrorContainer,
+  ErrorLabel,
+} from './inputElement';
 
-const Input = () => {
+const Input = (props) => {
   return (
-    <div>
-      <label htmlFor=''></label>
-      <Input type='text' />
-    </div>
+    <Container>
+      <InputContainer>
+        <InputField {...props} placeholder=' ' />
+        <InputLabel for={props.id}>{props.label}</InputLabel>
+      </InputContainer>
+      {props.error && (
+        <ErrorContainer>
+          <ErrorLabel>{props.error}</ErrorLabel>
+        </ErrorContainer>
+      )}
+    </Container>
   );
 };
 

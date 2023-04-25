@@ -1,27 +1,24 @@
 import React from 'react';
-import { Container } from './signInElements';
-import { WrapperCo, Button, Link } from '../../theme/appElements';
+import { Container, Form } from './signInElements';
+import { Button, Heading1, Heading2, Link, Small } from '../../theme/appElements';
+import Input from '../../components/Input';
 
 const SignIn = () => {
+  function handleSubmit() {}
+
   return (
     <Container>
-      <h1>PaperLive</h1>
-      <WrapperCo>
-        <h2>Welcome back</h2>
-        <div>
-          <input type='text' placeholder='TeamName' />
-          <Button>Continue</Button>
-        </div>
-
-        <p>
-          New to PaperLive? <Link to='/register'>Sign Up</Link>
-        </p>
-      </WrapperCo>
-      <p>
-        By creating an account, you agree to the <Link to='/login'>Terms of Service</Link>. For more
-        information <br /> about PaperLive’s privacy practices, see the
-        <Link to='/login'> PaperLive Privacy Statement</Link>.
-      </p>
+      <Heading1>PaperLive</Heading1>
+      <Form onSubmit={handleSubmit}>
+        <Heading2>Welcome back</Heading2>
+        <Input id='name' label='Team name' />
+        <Button>Continue</Button>
+      </Form>
+      <Small>
+        By creating an account, you agree to the <Link to=''>Terms of Service</Link>. For more
+        information about PaperLive’s privacy practices, see the{' '}
+        <Link>PaperLive Privacy Statement</Link>.
+      </Small>
     </Container>
   );
 };
