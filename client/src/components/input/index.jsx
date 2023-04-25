@@ -13,7 +13,7 @@ const Input = (props) => {
     <Container>
       <InputContainer>
         <InputField {...props} placeholder=' ' />
-        <InputLabel for={props.id}>{props.label}</InputLabel>
+        <InputLabel htmlFor={props.id}>{props.label}</InputLabel>
       </InputContainer>
       {props.error && (
         <ErrorContainer>

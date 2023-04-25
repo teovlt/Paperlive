@@ -87,6 +87,14 @@ export const Heading2 = styled.h2`
   color: var(--black);
 `;
 
+export const Caption = styled.p`
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+
+  color: var(--black);
+`;
+
 export const Small = styled.small`
   font-weight: 400;
   font-size: 1.2rem;

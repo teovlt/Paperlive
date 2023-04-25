@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import GlobalStyle from './theme/globalStyle';
+import PrivateRoutes from './components/PrivateRoutes';
 
 // Import pages
 import Home from './pages/Home';
-import SignIn from './pages/SignIn';
-import PrivatePage from './pages/privatePage';
-import PrivateRoutes from './components/PrivateRoutes';
+import SignIn from './pages/Authentication/SignIn';
+import SignUp from './pages/Authentication/SignUp';
 
 // Import components
 
@@ -17,10 +17,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<SignIn />} />
+        <Route path='/register' element={<SignUp />} />
 
-        <Route element={<PrivateRoutes />}>
-          <Route path='/private' element={<PrivatePage />} />
-        </Route>
+        <Route element={<PrivateRoutes />}></Route>
       </Routes>
     </Fragment>
   );

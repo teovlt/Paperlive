@@ -20,7 +20,7 @@ export const InputField = styled.input`
   width: 100%;
   padding: 1.6rem;
   /* TODO: padding-right: 48px if password */
-  border-radius: 0.4rem;
+  border-radius: 0.2rem;
 
   outline: 1px solid ${({ error }) => (error ? 'var(--destructive)' : 'var(--black-quaternary)')};
   outline-offset: -1px;
