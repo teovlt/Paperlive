@@ -38,7 +38,7 @@ module.exports.signUp = async (req, res) => {
 
 /**
  * Handle signing in a team member.
- * @route /api/login
+ * @route /api/auth/login
  * @access Public
  */
 module.exports.signIn = async (req, res) => {
@@ -55,6 +55,12 @@ module.exports.signIn = async (req, res) => {
   }
 };
 
+
+/**
+ * Handle signOut a team
+ * @route /api/auth/logout
+ * @access /Public 
+ */
 module.exports.signOut = async (req, res) => {
   try {
     // Clear the JWT cookie
@@ -64,7 +70,7 @@ module.exports.signOut = async (req, res) => {
     res.status(200).json({ message: 'Signed out successfully' });
   } catch (error) {
     // Error handling
-    return res.status(500).json(error.message);
+    return res.status(500).json({error : error.message});
   }
 };
 
