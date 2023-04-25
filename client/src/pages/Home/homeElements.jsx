@@ -62,3 +62,8 @@ export const BtnCancel = styled(btn)`
 export const BtnSave = styled(btn)`
   background-color: var(--positive);
 `;
+
+export const Img = styled.img`
+  border-radius: 80%;
+  border: 2px solid var(--black);
+`;
