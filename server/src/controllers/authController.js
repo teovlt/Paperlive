@@ -28,7 +28,7 @@ module.exports.signUp = async (req, res) => {
     return res.status(200).json({ message: 'Signed up successfully' }); // Send a success response with a message
   } catch (error) {
     // Error handling
-    if (error.code === 11000) error.message = 'team validation failed: name: already used';
+    if (error.code === 11000) error.message = 'team validation failed: name: already taken';
     return res.status(500).json({ error: error.message });
   }
 };
