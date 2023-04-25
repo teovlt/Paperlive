@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container as cont } from '../../theme/appElements';
+import { Container as cont, Button as btn } from '../../theme/appElements';
 
 export const TableContribution = styled.div`
   display: grid;
@@ -29,11 +29,11 @@ export const MainTab = styled.div`
 `;
 
 export const DivInfos = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
   row-gap: 16px;
 
-  input{
+  input {
     width: 100%;
   }
 `;
@@ -41,22 +41,24 @@ export const DivCheck = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  column-gap: 24px;
-
-  input{
-    height: 50px;
-    width: 20px;
-  }
+  column-gap: 12px;
 `;
 
-export const DivBtns = styled.div`
+export const DivBtnsEdit = styled.div`
   display: flex;
   flex-direction: row;
   column-gap: 16px;
-  width: 50%;
+  width: 100%;
 
-  button{
+  button {
     width: 100%;
   }
-  
+`;
+
+export const BtnCancel = styled(btn)`
+  background-color: var(--destructive);
+`;
+
+export const BtnSave = styled(btn)`
+  background-color: var(--positive);
 `;

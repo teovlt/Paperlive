@@ -17,7 +17,6 @@ export const GridWrapper = styled.div`
 `;
 
 export const Button = styled.button`
-  flex: 1;
   width: 100%;
 
   user-select: none;
@@ -110,4 +109,19 @@ export const Link = styled(NavLink)`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+export const Select = styled.select`
+  background-color: var(--black-quaternary);
+  border-radius: 8px;
+  padding-inline: 10px;
+  padding-block: 4px;
+`;
+
+export const DivTop = styled.div`
+  border-bottom: 1px solid var(--black-quaternary);
+  position: absolute;
+  width: 100%;
+  height: 56px;
+  z-index: -1;
 `;
