@@ -1,9 +1,18 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Main, NavPage, SideBar, GridWrapper, Button, Link } from '../../theme/appElements';
-import { TableContribution, Container, MainText, MainTab } from './homeElements';
+import {
+  TableContribution,
+  Container,
+  MainText,
+  MainTab,
+  DivInfos,
+  DivCheck,
+  DivBtns,
+} from './homeElements';
 import CardContribution from '../../components/cardSoumission';
 import NavBar from '../../components/navbar';
+import Input from '../../components/input';
 
 const Home = () => {
   return (
@@ -12,15 +21,9 @@ const Home = () => {
       <Container>
         <GridWrapper>
           <NavPage>
-            <Link>
-              <p>icon</p>overview
-            </Link>
-            <Link>
-              <p>icon</p>contributions
-            </Link>
-            <Link>
-              <p>icon</p>statistics
-            </Link>
+            <Link>overview</Link>
+            <Link>contributions</Link>
+            <Link>statistics</Link>
           </NavPage>
 
           <SideBar>
@@ -69,3 +72,32 @@ const Home = () => {
 };
 
 export default Home;
+
+// a mettre dans main si editProfil
+/*
+
+                  <DivCheck>
+              <h2>PUBLIC PROFIL </h2>
+              <input type='checkbox' name='public' />
+            </DivCheck>
+            <DivInfos>
+              <h2>NAME OF THE TEAM</h2>
+              <Input placeholder={'ERODS'} type={'text'} />
+            </DivInfos>
+            <DivInfos>
+              <h2>ABOUT US</h2>
+              <Input placeholder={'WE ARE THE BEST TEAM OF THE LIG'} type={'text'} />
+            </DivInfos>
+            <DivInfos>
+              <h2>LOCATION</h2>
+              <Input placeholder={'PARIS'} type={'text'} />
+            </DivInfos>
+            <DivInfos>
+              <h2>WEBSITE URL</h2>
+              <Input placeholder={'www.teamWeb.com'} type={'text'} />
+            </DivInfos>
+            <DivBtns>
+              <Button>Cancel</Button>
+              <Button>Save</Button>
+            </DivBtns>
+*/
