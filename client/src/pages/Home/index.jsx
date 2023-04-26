@@ -29,7 +29,14 @@ import NavBar from '../../components/navbar';
 import Input from '../../components/Input';
 import Popup from '../../components/popup';
 import { useState } from 'react';
-import { ChartPieIcon, CircleStackIcon, NewspaperIcon } from '@heroicons/react/20/solid';
+import {
+  UilChart,
+  UilBook,
+  UilNewspaper,
+  UilLinkAlt,
+  UilLocationPoint,
+  UilBooks,
+} from '@iconscout/react-unicons';
 
 const Home = () => {
   const [showEditAccount, setshowEditAccount] = useState(true);
@@ -109,13 +116,13 @@ const Home = () => {
         <GridWrapper>
           <NavPage>
             <LinkIcon>
-              <CircleStackIcon /> <p>Overview</p>
+              <UilBook /> Overview
             </LinkIcon>
             <LinkIcon>
-              <NewspaperIcon /> Contributions
+              <UilNewspaper /> Contributions
             </LinkIcon>
             <LinkIcon>
-              <ChartPieIcon /> Statistics
+              <UilChart /> Statistics
             </LinkIcon>
           </NavPage>
 
@@ -126,18 +133,14 @@ const Home = () => {
               <Caption>Computer sciences</Caption>
               <Button onClick={handleEditAccount}>Edit team profil</Button>
               <span>
-                <p>icon</p>11 members
-              </span>
-              <span>
-                <p>icon</p>8 contributions
+                <UilBooks />8 contributions
               </span>
               <br />
               <span>
-                <p>icon</p>
-                {teamLoc}
+                <UilLocationPoint /> {teamLoc}
               </span>
               <span>
-                <p>icon</p>
+                <UilLinkAlt />
                 <Link to='https://www.amazon.com'>{teamWebSite}</Link>
               </span>
             </SideBar>

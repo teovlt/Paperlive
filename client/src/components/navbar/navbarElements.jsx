@@ -14,8 +14,7 @@ export const NavContainer = styled(cont)`
 
 export const ShearchBar = styled.div`
   display: flex;
-  justify-content: left;
-
+  justify-content: space-between;
   border: 1px solid grey;
   padding-inline: 12px;
   padding-block: 4px;
@@ -36,6 +35,7 @@ export const Actions = styled.div`
   flex-direction: row;
   justify-content: right;
   column-gap: 32px;
+
 `;
 
 export const H1 = styled(titre)`

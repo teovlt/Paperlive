@@ -130,12 +130,8 @@ export const DivTop = styled.div`
 `;
 
 export const LinkIcon = styled(NavLink)`
-  svg {
-    width: 14%;
-  }
-
+ 
   display: flex;
-  max-width: 131px;
   justify-content: center;
   flex-direction: row;
   align-items: center;
