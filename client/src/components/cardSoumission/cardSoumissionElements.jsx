@@ -3,24 +3,32 @@ import { Container as cont } from '../../theme/appElements';
 
 export const Container = styled(cont)`
   width: 372px;
-  height: 220px;
   border: 1px solid grey;
   border-radius: 8px;
   padding: 12px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  row-gap: 24px;
 
   &:hover {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
     cursor: pointer;
+
+    .p2 {
+      display: block;
+    }
+
+    .p1 {
+      display: none;
+    }
   }
 `;
 
 export const CardText = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 8px;
+  row-gap: 12px;
 `;
 
 export const CardBottom = styled.div`
@@ -33,7 +41,6 @@ export const CardBottom = styled.div`
     column-gap: 12px;
     align-items: center;
   }
-
 `;
 
 export const Etat = styled.span`
@@ -47,3 +54,11 @@ export const Etat = styled.span`
   align-items: center;
 `;
 
+export const DivExpand = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  .p2 {
+    display: none;
+  }
+`;

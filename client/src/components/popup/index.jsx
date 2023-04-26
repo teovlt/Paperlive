@@ -1,18 +1,19 @@
 import React from 'react';
 import { Container, PopupText, PopupBtn, Flou } from './popupElements';
+import { Button, Heading1 } from '../../theme/appElements';
 
-const Popup = ({ title, desc }) => {
+const Popup = ({ title, desc, cancel, confirm }) => {
   return (
     <Flou>
       <Container>
         <PopupText>
-          <h1>{title}</h1>
+          <Heading1>{title}</Heading1>
           <p>{desc}</p>
         </PopupText>
 
         <PopupBtn>
-          <button>Yes</button>
-          <button>No</button>
+          <Button onClick={confirm}>Yes</Button>
+          <Button onClick={cancel}>No</Button>
         </PopupBtn>
       </Container>
     </Flou>

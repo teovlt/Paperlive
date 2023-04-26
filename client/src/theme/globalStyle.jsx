@@ -11,9 +11,9 @@ const GlobalStyle = createGlobalStyle`
 
     --positive: #52B788;
     --positive-vibrant: #52b78833;
-    --notice: #FF9500;
+    --notice: #FF950099;
     --notice-vibrant: #FF950033;
-    --destructive: #FF001F;
+    --destructive: #ff001f99;
     --destructive-vibrant: #FF001F33;
 
     --black: #222222;

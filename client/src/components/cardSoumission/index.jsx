@@ -1,11 +1,13 @@
 import React from 'react';
-import { Container, CardText, CardBottom, Etat } from './cardSoumissionElements';
+import { Container, CardText, CardBottom, Etat, DivExpand } from './cardSoumissionElements';
+import { Button, Heading1 } from '../../theme/appElements';
+import { UilClock, UilAngleRightB } from '@iconscout/react-unicons';
 
 const CardContribution = () => {
   return (
     <Container>
       <CardText>
-        <h2>title</h2>
+        <Heading1>title</Heading1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sunt vel voluptatum
           nostrum, veritatis a, neque veniam dolores nulla harum officiis quas ipsam dolorem fugiat
@@ -14,12 +16,12 @@ const CardContribution = () => {
       </CardText>
       <CardBottom>
         <Etat>
-          <p>icon</p> etat
+          <UilClock /> etat
         </Etat>
-        <span>
-          <p>icon</p>
-          Expand
-        </span>
+        <DivExpand>
+          <UilAngleRightB className='p1'></UilAngleRightB>
+          <Button className='p2'>Expand</Button>
+        </DivExpand>
       </CardBottom>
     </Container>
   );

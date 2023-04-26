@@ -17,7 +17,6 @@ export const GridWrapper = styled.div`
 `;
 
 export const Button = styled.button`
-  flex: 1;
   width: 100%;
 
   user-select: none;
@@ -56,10 +55,13 @@ export const SideBar = styled.div`
 export const NavPage = styled.div`
   grid-area: 1 / 2 / 2 / 3;
   display: flex;
-  justify-content: left;
-  column-gap: 32px;
-  padding-inline: 32px;
+  flex-direction: row;
   align-items: center;
+  justify-content: left;
+  width: 100%;
+
+  padding: 0px 32px;
+  gap: 32px;
 `;
 
 export const Main = styled.div`
@@ -109,5 +111,36 @@ export const Link = styled(NavLink)`
 
   &:hover {
     text-decoration: underline;
+  }
+`;
+
+export const Select = styled.select`
+  background-color: var(--black-quaternary);
+  border-radius: 8px;
+  padding-inline: 10px;
+  padding-block: 4px;
+`;
+
+export const DivTop = styled.div`
+  border-bottom: 1px solid var(--black-quaternary);
+  position: absolute;
+  width: 100%;
+  height: 56px;
+  z-index: -1;
+`;
+
+export const LinkIcon = styled(NavLink)`
+ 
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+
+  column-gap: 6px;
+  color: var(--black);
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--accent);
   }
 `;

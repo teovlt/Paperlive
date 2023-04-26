@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container as cont } from '../../theme/appElements';
+import { Container as cont, Heading1 as titre } from '../../theme/appElements';
 
 export const NavContainer = styled(cont)`
   background-color: var(--black);
@@ -14,8 +14,7 @@ export const NavContainer = styled(cont)`
 
 export const ShearchBar = styled.div`
   display: flex;
-  justify-content: left;
-
+  justify-content: space-between;
   border: 1px solid grey;
   padding-inline: 12px;
   padding-block: 4px;
@@ -36,4 +35,9 @@ export const Actions = styled.div`
   flex-direction: row;
   justify-content: right;
   column-gap: 32px;
+
+`;
+
+export const H1 = styled(titre)`
+  color: var(--white);
 `;
