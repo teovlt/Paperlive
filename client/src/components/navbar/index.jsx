@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavContainer, ShearchBar, Actions } from './navbarElements';
+import { NavContainer, ShearchBar, Actions, H1 } from './navbarElements';
+import { Heading1 } from '../../theme/appElements';
 //import { MagnifyingGlassIcon, PlusIcon, UserGroupIcon } from '@heroicons/react/20/solid';
 
 const NavBar = () => {
@@ -10,7 +11,7 @@ const NavBar = () => {
         <p>icon</p>
       </ShearchBar>
 
-      <h1>PaperLive</h1>
+      <H1>PaperLive</H1>
 
       <Actions>
         <p>icon</p>

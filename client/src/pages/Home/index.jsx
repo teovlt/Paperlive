@@ -50,12 +50,20 @@ const Home = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     if (dernierBoutonClique === 'btnCancel') {
+      //nombreux problemes
+      if (teamName != e.target.name.value) {
+        console.log('ta changé le nom !!!!');
+        setShowPopup(true);
+      } else {
+        handleEditAccount();
+
+        console.log('tu na rien changé du tt');
+      }
+
       //verif modif ou non
       /*
       if (e.target.name.value == '') {
-        handleEditAccount();
       } else {
-        setShowPopup(true);
       }
       */
     } else if (dernierBoutonClique === 'btnSave') {
