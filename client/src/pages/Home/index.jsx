@@ -11,6 +11,7 @@ import {
   Select,
   DivTop,
   LinkIcon,
+  Heading1,
 } from '../../theme/appElements';
 import {
   TableContribution,
@@ -63,6 +64,7 @@ const Home = () => {
       if (teamName != e.target.name.value) {
         console.log('ta changé le nom !!!!');
         setShowPopup(true);
+        handleEditAccount();
       } else {
         handleEditAccount();
 
@@ -129,13 +131,14 @@ const Home = () => {
           {showEditAccount ? (
             <SideBar>
               <Img src='/userGroupe.jpg' alt='' />
-              <Heading2>{teamName}</Heading2>
-              <Caption>Computer sciences</Caption>
+              <div>
+                <Heading1>{teamName}</Heading1>
+                <Caption>Computer sciences</Caption>
+              </div>
               <Button onClick={handleEditAccount}>Edit team profil</Button>
               <span>
                 <UilBooks />8 contributions
               </span>
-              <br />
               <span>
                 <UilLocationPoint /> {teamLoc}
               </span>
@@ -158,16 +161,11 @@ const Home = () => {
 
                 <Input label='Name of the team' id='name' type='text' defaultValue={teamName} />
 
-                <Input
-                  label='About us'
-                  id='about'
-                  type='text'
-                  defaultValue='Lorem ipsum tt ca tt ca tta vu ctes al s;ofnensfnoqsfinisbf'
-                />
+                <Input label='About us' id='about' type='text' defaultValue={teamDesc} />
 
-                <Input label='Location' id='location' type='text' defaultValue='GRENOBLE' />
+                <Input label='Location' id='location' type='text' defaultValue={teamLoc} />
 
-                <Input label='WebSite' id='webSite' type='text' defaultValue='www.erods.com' />
+                <Input label='WebSite' id='webSite' type='text' defaultValue={teamWebSite} />
 
                 <DivBtnsEdit>
                   <BtnCancel onClick={() => handleClick('btnCancel')} id='btnCancel' type='submit'>
