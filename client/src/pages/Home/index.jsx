@@ -32,8 +32,10 @@ import { useState } from 'react';
 const Home = () => {
   const [showEditAccount, setshowEditAccount] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
-  // let nameOfTeam = document.querySelector('#name');
-  //let nameOfTeamForm = document.querySelector('#nomEquipe');
+  const [teamName, setTeamName] = useState('Mon équipe');
+  const [teamDesc, setteamDesc] = useState('Notre description');
+  const [teamLoc, setTeamLoc] = useState('Ma ville');
+  const [teamWebSite, setTeamWebSite] = useState('Mon website');
 
   const handleEditAccount = () => {
     setshowEditAccount(!showEditAccount);
@@ -48,21 +50,27 @@ const Home = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     if (dernierBoutonClique === 'btnCancel') {
+      //verif modif ou non
+      /*
       if (e.target.name.value == '') {
         handleEditAccount();
       } else {
         setShowPopup(true);
       }
-      //handleEditAccount();
+      */
     } else if (dernierBoutonClique === 'btnSave') {
-      //pr l'instant
-      handleSave();
+      handleSave(e);
       handleEditAccount();
     }
   }
 
-  function handleSave() {
+  function handleSave(e) {
     console.log('Changements sauvegardés !');
+    setTeamName(() => e.target.name.value);
+    setteamDesc(() => e.target.about.value);
+    setTeamLoc(() => e.target.location.value);
+    setTeamWebSite(() => e.target.webSite.value);
+
     //sauvegarde
 
     setShowPopup(false);
@@ -98,7 +106,7 @@ const Home = () => {
           {showEditAccount ? (
             <SideBar>
               <Img src='/userGroupe.jpg' alt='' />
-              <Heading2 id='nomEquipe'>Erods</Heading2>
+              <Heading2>{teamName}</Heading2>
               <Caption>Computer sciences</Caption>
               <Button onClick={handleEditAccount}>Edit team profil</Button>
               <span>
@@ -109,11 +117,12 @@ const Home = () => {
               </span>
               <br />
               <span>
-                <p>icon</p>grenoble,france
+                <p>icon</p>
+                {teamLoc}
               </span>
               <span>
                 <p>icon</p>
-                <Link to='https://www.amazon.com'>www.amazon.com</Link>
+                <Link to='https://www.amazon.com'>{teamWebSite}</Link>
               </span>
             </SideBar>
           ) : (
@@ -128,7 +137,7 @@ const Home = () => {
                   </Select>
                 </DivCheck>
 
-                <Input label='Name of the team' id='name' type='text' defaultValue='Erods' />
+                <Input label='Name of the team' id='name' type='text' defaultValue={teamName} />
 
                 <Input
                   label='About us'
@@ -155,11 +164,7 @@ const Home = () => {
           <Main>
             <MainText>
               <Heading2>About us</Heading2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim vero tempore
-                reprehenderit quibusdam. Totam maiores expedita ea ut et tempore necessitatibus,
-                voluptas, aspernatur tempora autem consectetur placeat iste explicabo similique?
-              </p>
+              <p>{teamDesc}</p>
             </MainText>
             <MainTab>
               <Heading2>Recent activity</Heading2>
