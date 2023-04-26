@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import {
   Container,
   InputContainer,
@@ -8,20 +8,15 @@ import {
   ErrorLabel,
 } from './inputElement';
 
-const Input = (props) => {
+const Input = forwardRef((props, ref) => {
   return (
     <Container>
       <InputContainer>
-        <InputField {...props} placeholder=' ' />
+        <InputField {...props} ref={ref} placeholder=' ' />
         <InputLabel htmlFor={props.id}>{props.label}</InputLabel>
       </InputContainer>
-      {props.error && (
-        <ErrorContainer>
-          <ErrorLabel>{props.error}</ErrorLabel>
-        </ErrorContainer>
-      )}
     </Container>
   );
-};
+});
 
 export default Input;

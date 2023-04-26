@@ -22,7 +22,7 @@ export const InputField = styled.input`
   /* TODO: padding-right: 48px if password */
   border-radius: 0.2rem;
 
-  outline: 1px solid ${({ error }) => (error ? 'var(--destructive)' : 'var(--black-quaternary)')};
+  outline: 1px solid var(--black-quaternary);
   outline-offset: -1px;
 
   font-size: 1.6rem;
@@ -33,15 +33,15 @@ export const InputField = styled.input`
   }
 
   &:focus {
-    outline: 1px solid ${({ error }) => (error ? 'var(--destructive)' : 'var(--accent)')};
+    outline: 1px solid var(--accent);
   }
 
   &:focus ~ label {
-    color: ${({ error }) => (error ? 'var(--destructive)' : 'var(--accent)')};
+    color: var(--accent);
   }
 
   &:not(:focus):not(:placeholder-shown) ~ label {
-    color: ${({ error }) => (error ? 'var(--destructive)' : 'var(--black-tertiary)')};
+    color: var(--black-tertiary);
   }
 `;
 
@@ -57,7 +57,7 @@ export const InputLabel = styled.label`
 
   user-select: none;
   cursor: text;
-  color: ${({ error }) => (error ? 'var(--destructive)' : 'var(--black-tertiary)')};
+  color: var(--black-tertiary);
 
   transition: all 0.15s;
 
