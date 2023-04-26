@@ -67,3 +67,11 @@ export const Img = styled.img`
   border-radius: 80%;
   border: 2px solid var(--black-quaternary);
 `;
+
+
+export const Form = styled.form`
+display : flex;
+flex-direction: column;
+row-gap: 24px;
+width: 100%;
+`
