@@ -10,6 +10,7 @@ import {
   Caption,
   Select,
   DivTop,
+  LinkIcon,
 } from '../../theme/appElements';
 import {
   TableContribution,
@@ -28,6 +29,7 @@ import NavBar from '../../components/navbar';
 import Input from '../../components/Input';
 import Popup from '../../components/popup';
 import { useState } from 'react';
+import { ChartPieIcon, CircleStackIcon, NewspaperIcon } from '@heroicons/react/20/solid';
 
 const Home = () => {
   const [showEditAccount, setshowEditAccount] = useState(true);
@@ -106,9 +108,15 @@ const Home = () => {
       <Container>
         <GridWrapper>
           <NavPage>
-            <Link>overview</Link>
-            <Link>contributions</Link>
-            <Link>statistics</Link>
+            <LinkIcon>
+              <CircleStackIcon /> <p>Overview</p>
+            </LinkIcon>
+            <LinkIcon>
+              <NewspaperIcon /> Contributions
+            </LinkIcon>
+            <LinkIcon>
+              <ChartPieIcon /> Statistics
+            </LinkIcon>
           </NavPage>
 
           {showEditAccount ? (
