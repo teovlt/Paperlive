@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ContainerDropDown, DivActions, DivSignedAs } from './dropDownElements';
 import { Caption } from '../../theme/appElements';
 
@@ -9,25 +9,28 @@ const DropDown = ({ options, teamName }) => {
 
   const [showSignedAs, setShowSignedAs] = useState(true);
 
-  if ((teamName = '')) {
-    setShowSignedAs(!showSignedAs);
-    console.log('Il ny a pas de teamname dans ce dropdown');
-  }
+  useEffect(() => {
+    if (teamName) {
+      setShowSignedAs(true);
+    } else {
+      setShowSignedAs(false);
+    }
+  }, [teamName]);
 
   return (
     <ContainerDropDown>
       <DivSignedAs>
         {showSignedAs ? (
           <Caption>
-            Signed as <strong>{teamName}</strong>{' '}
+            Signed as <strong>{teamName}</strong>
           </Caption>
         ) : (
-          <p>cc</p>
+          <Caption>Actions Menu</Caption>
         )}
       </DivSignedAs>
       <DivActions>
         {options.map((option) => (
-          <Caption>{option.label}</Caption>
+          <Caption key={option.value}>{option.label}</Caption>
         ))}
       </DivActions>
     </ContainerDropDown>

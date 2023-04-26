@@ -12,7 +12,7 @@ const NavBar = () => {
     { label: 'SignOut', value: 'param5' },
   ];
   const options2 = [
-    { label: 'a', value: 'param1' },
+    { label: 'New contribution', value: 'param1' },
     { label: 'aa', value: 'param2' },
     { label: 'aaa', value: 'param3' },
     { label: 'aaaa', value: 'param4' },
