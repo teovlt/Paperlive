@@ -25,10 +25,10 @@ import {
   Img,
   Form,
 } from './homeElements';
-import CardContribution from '../../components/cardSoumission';
-import NavBar from '../../components/navbar';
+import CardContribution from '../../components/CardSoumission';
+import NavBar from '../../components/Navbar';
 import Input from '../../components/Input';
-import Popup from '../../components/popup';
+import Popup from '../../components/Popup';
 import { useState } from 'react';
 import {
   UilChart,
