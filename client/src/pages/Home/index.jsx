@@ -46,6 +46,7 @@ const Home = () => {
   const [teamDesc, setteamDesc] = useState('Notre description');
   const [teamLoc, setTeamLoc] = useState('Ma ville');
   const [teamWebSite, setTeamWebSite] = useState('Mon website');
+  const [teamVisibility, setTeamVisibility] = useState('Private');
 
   const handleEditAccount = () => {
     setshowEditAccount(!showEditAccount);
@@ -67,16 +68,8 @@ const Home = () => {
         handleEditAccount();
       } else {
         handleEditAccount();
-
         console.log('tu na rien changé du tt');
       }
-
-      //verif modif ou non
-      /*
-      if (e.target.name.value == '') {
-      } else {
-      }
-      */
     } else if (dernierBoutonClique === 'btnSave') {
       handleSave(e);
       handleEditAccount();
@@ -89,6 +82,10 @@ const Home = () => {
     setteamDesc(() => e.target.about.value);
     setTeamLoc(() => e.target.location.value);
     setTeamWebSite(() => e.target.webSite.value);
+    const selectElement = e.target.elements.visibility; // récupère l'élément select
+    const selectedIndex = selectElement.selectedIndex; // récupère l'index de l'option sélectionnée
+    const selectedOptionText = selectElement.options[selectedIndex].text;
+    setTeamVisibility(() => selectedOptionText);
 
     //sauvegarde
 
@@ -133,7 +130,7 @@ const Home = () => {
               <Img src='/userGroupe.jpg' alt='' />
               <div>
                 <Heading1>{teamName}</Heading1>
-                <Caption>Computer sciences</Caption>
+                <Caption>Visibility: {teamVisibility}</Caption>
               </div>
               <Button onClick={handleEditAccount}>Edit team profil</Button>
               <span>
@@ -153,7 +150,7 @@ const Home = () => {
               <Form onSubmit={handleSubmit}>
                 <DivCheck>
                   <p>Visibility:</p>
-                  <Select>
+                  <Select id='visibility' defaultValue={teamVisibility}>
                     <option value='option1'>Private</option>
                     <option value='option2'>Public</option>
                   </Select>
