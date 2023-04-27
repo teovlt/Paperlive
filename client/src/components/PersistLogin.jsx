@@ -2,11 +2,14 @@ import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import useRefreshToken from '../hooks/useRefreshToken';
 import useAuth from '../hooks/useAuth';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
 
 const PersistLogin = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const refresh = useRefreshToken();
-  const { auth } = useAuth();
+  const { auth, setAuth } = useAuth();
+  const axiosPrivate = useAxiosPrivate();
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;

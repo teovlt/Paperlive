@@ -2,8 +2,9 @@ const teamController = require('../controllers/teamController');
 const { authenticateAccessToken } = require('../middlewares/authenticationMiddleware');
 const Router = require('express').Router();
 
-Router.get('/', teamController.listTeams);
-Router.get('/:teamId', teamController.readTeam);
+Router.get('/', authenticateAccessToken, teamController.listTeams);
+Router.get('/me', authenticateAccessToken, teamController.me);
+Router.get('/:teamId', authenticateAccessToken, teamController.readTeam);
 Router.put('/:teamId', authenticateAccessToken, teamController.updateTeam);
 Router.delete('/:teamId', authenticateAccessToken, teamController.deleteTeam);
 

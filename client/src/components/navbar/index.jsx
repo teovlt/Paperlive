@@ -3,7 +3,18 @@ import { NavContainer, ShearchBar, Actions, H1 } from './navbarElements';
 import { UilSearch, UilPlus, UilUsersAlt } from '@iconscout/react-unicons';
 import DropDown from '../DropDown';
 import { useState } from 'react';
+import useLogout from '../../hooks/useLogout';
+import { useNavigate } from 'react-router-dom';
+
 const NavBar = () => {
+  const navigate = useNavigate();
+  const logout = useLogout();
+
+  const signOut = async () => {
+    await logout();
+    navigate('/login');
+  };
+
   const options = [
     { label: 'Profile', value: 'param1' },
     { label: 'Contributions', value: 'param2' },
@@ -48,6 +59,7 @@ const NavBar = () => {
         <div onClick={handleDropDown}>
           <UilUsersAlt />
         </div>
+        <button onClick={() => signOut()}>signOut</button>
         {showDropDown && <DropDown options={options} teamName={'ERODS'} />}
       </Actions>
     </NavContainer>
