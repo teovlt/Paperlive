@@ -7,4 +7,5 @@ COPY package*.json .
 RUN npm install
 
 ENV PORT=3000
-ENV JWT_SECRET=change_me
+ENV ACCESS_TOKEN_SECRET=change_me
+ENV REFRESH_TOKEN_SECRET=change_me!

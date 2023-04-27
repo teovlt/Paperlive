@@ -1,6 +1,7 @@
 // Import required modules
 const Express = require('express');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 // Create the new Express app
 const app = Express();
@@ -15,21 +16,14 @@ app.use(Express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Set the CORS header
-app.use('/', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header(
-    'Access-Control-ALlow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  );
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  credentials: true,
+  methods: 'GET, POST, PUT, PATCH, DELETE',
+  preflightContinue: true,
+};
 
-  // Handle preflight requests for all routes
-  if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-    return res.status(200).json({});
-  }
-
-  next();
-});
+app.use(cors(corsOptions));
 
 /**
  * Healthcheck
@@ -50,6 +44,12 @@ app.get('/api/ping', (req, res) => {
  */
 app.use('/api/teams', teamRoutes);
 
+/**
+ * Handle the requests to /api/auth
+ * @route /api/auth
+ * @desc Route to handle authentication related requests
+ * @access Public
+ */
 app.use('/api/auth', authRoutes);
 
 /**

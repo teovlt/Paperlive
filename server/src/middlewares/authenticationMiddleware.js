@@ -1,18 +1,27 @@
 const jwt = require('jsonwebtoken');
 
-module.exports.verifyToken = (req, res, next) => {
-  // Get the token from the cookie or Authorization header
-  const token = req.cookies.jwt || req.headers.authorization?.split(' ')[1];
+module.exports.authenticateAccessToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
 
-  // If the token doesn't exist
-  if (!token) return res.status(401).json({ message: 'Authentication required' });
+  if (token == null) return res.status(401).json({ error: 'Access token not found' });
 
-  // Verify the validity of the token
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) return res.status(401).json({ message: 'Invalid token' });
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+    if (err) return res.status(401).json({ error: 'Invalid access token' });
+    req.teamId = decoded.id;
+    next();
+  });
+};
 
-    // Store the token information in the request for later use
-    req.session = decoded;
+module.exports.authenticateRefreshToken = (req, res, next) => {
+  const token = req.cookies['__refresh__token'];
+
+  if (token == null) return res.status(401).json({ error: 'Refresh token not found' });
+
+  jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
+    if (err) return res.status(401).json({ error: 'Invalid refresh token' });
+    req.refreshToken = token;
+    req.teamId = decoded.id;
     next();
   });
 };
