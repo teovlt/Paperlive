@@ -1,10 +1,10 @@
 const teamController = require('../controllers/teamController');
-const { verifyToken } = require('../middlewares/authenticationMiddleware');
+const { authenticateAccessToken } = require('../middlewares/authenticationMiddleware');
 const Router = require('express').Router();
 
 Router.get('/', teamController.listTeams);
 Router.get('/:teamId', teamController.readTeam);
-Router.put('/:teamId', verifyToken, teamController.updateTeam);
-Router.delete('/:teamId', verifyToken, teamController.deleteTeam);
+Router.put('/:teamId', authenticateAccessToken, teamController.updateTeam);
+Router.delete('/:teamId', authenticateAccessToken, teamController.deleteTeam);
 
 module.exports = Router;

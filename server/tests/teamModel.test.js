@@ -1,26 +1,51 @@
-const assert = require('assert');
 const Team = require('../src/models/teamModel');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
-describe('Team', function () {
-  describe('#comparePassword()', function () {
-    it('should return true with correct password', async function () {
-      const team = new Team({
-        name: 'My Team',
-        password: 'password',
-      });
-      await team.save();
-      const isMatch = await team.comparePassword('password');
-      assert.equal(isMatch, true);
-    });
+beforeAll(async () => {
+  await mongoose.connect('mongodb://db:27017/paperlive_test', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+});
 
-    it('should return false with incorrect password', async function () {
-      const team = new Team({
-        name: 'My Team',
-        password: 'password',
-      });
-      await team.save();
-      const isMatch = await team.comparePassword('wrongpassword');
-      assert.equal(isMatch, false);
-    });
+afterAll(async () => {
+  await mongoose.disconnect();
+});
+
+describe('teamSchema pre hooks', () => {
+  let team;
+
+  afterEach(async () => {
+    await team.deleteOne();
+  });
+
+  it('should set name to lowercase and hash password on save', async () => {
+    team = await new Team({ name: 'TestTeam', password: 'password' }).save();
+
+    expect(team.name).toEqual('testteam');
+    expect(team.password).not.toEqual('password');
+  });
+});
+
+describe('teamSchema comparePassword method', () => {
+  let team;
+
+  beforeEach(async () => {
+    team = await Team.create({ name: 'TestTeam', password: 'password' });
+  });
+
+  afterEach(async () => {
+    await team.deleteOne();
+  });
+
+  it('should return true when the password is correct', async () => {
+    const isMatch = await team.comparePassword('password');
+    expect(isMatch).toBe(true);
+  });
+
+  it('should return false when the password is incorrect', async () => {
+    const isMatch = await team.comparePassword('wrongpassword');
+    expect(isMatch).toBe(false);
   });
 });

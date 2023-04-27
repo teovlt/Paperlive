@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const app = require('../src/app');
 const Team = require('../src/models/teamModel');
-const { createToken } = require('../src/controllers/authController');
+const { generateAccessToken } = require('../src/controllers/authenticationController');
 
 beforeAll(async () => {
   await mongoose.connect('mongodb://db:27017/paperlive_test', {
@@ -47,7 +47,7 @@ describe('GET /api/teams', () => {
 
   it('should handle errors properly', async () => {
     // mock the team.find() method to throw an error
-    const error = new Error('Database Error');
+    const error = new Error('Test error');
     jest.spyOn(Team, 'find').mockImplementationOnce(() => {
       throw error;
     });
@@ -99,7 +99,7 @@ describe('GET /api/teams/:teamId', () => {
 
   it('should handle errors properly', async () => {
     // mock the team.findOne() method to throw an error
-    const error = new Error('Database Error');
+    const error = new Error('Test error');
     jest.spyOn(Team, 'findOne').mockImplementationOnce(() => {
       throw error;
     });
@@ -129,7 +129,7 @@ describe('PUT /api/teams/:teamId', () => {
 
     const res = await request(app)
       .put(`/api/teams/${team._id}`)
-      .set('Authorization', `Bearer ${createToken({ id: team._id })}`)
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`)
       .send(newValues);
 
     expect(res.status).toBe(200);
@@ -147,7 +147,7 @@ describe('PUT /api/teams/:teamId', () => {
 
     const res = await request(app)
       .put(`/api/teams/${unknownId}`)
-      .set('Authorization', `Bearer ${createToken({ id: unknownId })}`);
+      .set('Authorization', `Bearer ${generateAccessToken(unknownId)}`);
 
     expect(res.status).toBe(404);
     expect(res.body).toEqual({ message: 'Team not found' });
@@ -157,21 +157,21 @@ describe('PUT /api/teams/:teamId', () => {
     const invalidId = 'invalid-id';
     const res = await request(app)
       .put(`/api/teams/${invalidId}`)
-      .set('Authorization', `Bearer ${createToken({ id: invalidId })}`);
+      .set('Authorization', `Bearer ${generateAccessToken(invalidId)}`);
 
     expect(res.status).toBe(500);
     expect(res.body).toEqual({ message: `Invalid ID: ${invalidId}` });
   });
 
   it('should handle errors properly', async () => {
-    const error = new Error('Database Error');
+    const error = new Error('Test error');
     jest.spyOn(Team, 'updateOne').mockImplementationOnce(() => {
       throw error;
     });
 
     const res = await request(app)
       .put(`/api/teams/${team._id}`)
-      .set('Authorization', `Bearer ${createToken({ id: team._id })}`);
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
     expect(res.status).toBe(500);
     expect(res.body).toEqual({ message: error.message });
@@ -194,7 +194,7 @@ describe('DELETE /api/teams/:teamId', () => {
   it('should delete a team and return 200 OK reponse with a success message', async () => {
     const res = await request(app)
       .delete(`/api/teams/${team._id}`)
-      .set('Authorization', `Bearer ${createToken({ id: team._id })}`);
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual({ message: 'Successfully deleted' });
@@ -208,7 +208,7 @@ describe('DELETE /api/teams/:teamId', () => {
     const unknownId = new mongoose.Types.ObjectId();
     const res = await request(app)
       .delete(`/api/teams/${unknownId}`)
-      .set('Authorization', `Bearer ${createToken({ id: unknownId })}`);
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
     expect(res.status).toBe(404);
     expect(res.body).toEqual({ message: 'Team not found' });
@@ -218,21 +218,21 @@ describe('DELETE /api/teams/:teamId', () => {
     const invalidId = 'invalid-id';
     const res = await request(app)
       .delete(`/api/teams/${invalidId}`)
-      .set('Authorization', `Bearer ${createToken({ id: invalidId })}`);
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
     expect(res.status).toBe(500);
     expect(res.body).toEqual({ message: `Invalid ID: ${invalidId}` });
   });
 
   it('should handle errors properly', async () => {
-    const error = new Error('Database Error');
+    const error = new Error('Test error');
     jest.spyOn(Team, 'deleteOne').mockImplementationOnce(() => {
       throw error;
     });
 
     const res = await request(app)
       .delete(`/api/teams/${team._id}`)
-      .set('Authorization', `Bearer ${createToken({ id: team._id })}`);
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
     expect(res.status).toBe(500);
     expect(res.body).toEqual({ message: error.message });
