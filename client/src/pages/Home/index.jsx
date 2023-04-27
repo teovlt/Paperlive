@@ -4,7 +4,6 @@ import {
   NavPage,
   SideBar,
   GridWrapper,
-  Button,
   Link,
   Heading2,
   Caption,
@@ -24,6 +23,9 @@ import {
   BtnSave,
   Img,
   Form,
+  ButtonEdit,
+  CaptionWarning,
+  DivEditProfil,
 } from './homeElements';
 import CardContribution from '../../components/cardSoumission';
 import NavBar from '../../components/navbar';
@@ -37,11 +39,13 @@ import {
   UilLinkAlt,
   UilLocationPoint,
   UilBooks,
+  UilExclamationTriangle,
 } from '@iconscout/react-unicons';
 
 const Home = () => {
   const [showEditAccount, setshowEditAccount] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
+  const [showEditWarning, setShowEditWarning] = useState(true);
   const [teamName, setTeamName] = useState('Mon équipe');
   const [teamDesc, setteamDesc] = useState('Notre description');
   const [teamLoc, setTeamLoc] = useState('Ma ville');
@@ -99,6 +103,10 @@ const Home = () => {
     setShowPopup(false);
   }
 
+  function handleEditWarning() {
+    setShowEditWarning(!showEditWarning);
+  }
+
   return (
     <>
       <NavBar />
@@ -127,12 +135,19 @@ const Home = () => {
 
           {showEditAccount ? (
             <SideBar>
-              <Img src='/userGroupe.jpg' alt='' />
+              <Img src='/userGroupe.jpg' alt='ProfileImage' onClick={handleEditWarning} />
               <div>
                 <Heading1>{teamName}</Heading1>
                 <Caption>Visibility: {teamVisibility}</Caption>
               </div>
-              <Button onClick={handleEditAccount}>Edit team profil</Button>
+              <DivEditProfil>
+                {showEditWarning && (
+                  <CaptionWarning>
+                    Configure your profile <UilExclamationTriangle />
+                  </CaptionWarning>
+                )}
+                <ButtonEdit onClick={handleEditAccount}>Edit team profil</ButtonEdit>
+              </DivEditProfil>
               <span>
                 <UilBooks />8 contributions
               </span>

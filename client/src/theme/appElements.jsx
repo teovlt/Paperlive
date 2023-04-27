@@ -85,8 +85,7 @@ export const Heading2 = styled.h2`
   font-weight: 500;
   font-size: 2rem;
   line-height: 3rem;
-
-  color: var(--black);
+  color: var(--accent);
 `;
 
 export const Caption = styled.p`
@@ -130,7 +129,6 @@ export const DivTop = styled.div`
 `;
 
 export const LinkIcon = styled(NavLink)`
- 
   display: flex;
   justify-content: center;
   flex-direction: row;

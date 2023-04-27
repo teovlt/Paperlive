@@ -17,8 +17,8 @@ const DropDown = ({ options, teamName }) => {
     }
   }, [teamName]);
 
-  const handleActions = () => {
-    console.log('JE FAIS UNE ACTION DU DROPDOWN : ');
+  const handleActions = (action) => {
+    console.log(action);  
   };
 
   return (
@@ -34,7 +34,7 @@ const DropDown = ({ options, teamName }) => {
       </DivSignedAs>
       <DivActions>
         {options.map((option) => (
-          <button key={option.value} onClick={handleActions}>
+          <button key={option.value} onClick={handleActions(option.action)}>
             {option.label}
           </button>
         ))}

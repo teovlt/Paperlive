@@ -9,7 +9,7 @@ const NavBar = () => {
     { label: 'Contributions', value: 'param2' },
     { label: 'Statistics', value: 'param3' },
     { label: 'Settings', value: 'param4' },
-    { label: 'SignOut', value: 'param5' },
+    { label: 'SignOut', value: 'param5', action: '/login' },
   ];
   const options2 = [
     { label: 'New contribution', value: 'param1' },

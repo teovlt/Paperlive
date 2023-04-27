@@ -28,15 +28,6 @@ export const MainTab = styled.div`
   row-gap: 16px;
 `;
 
-export const DivInfos = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 16px;
-
-  input {
-    width: 100%;
-  }
-`;
 export const DivCheck = styled.div`
   display: flex;
   flex-direction: row;
@@ -61,6 +52,32 @@ export const BtnCancel = styled(btn)`
 
 export const BtnSave = styled(btn)`
   background-color: var(--positive);
+`;
+
+export const CaptionWarning = styled.span`
+  background-color: var(--destructive-vibrant);
+  border-radius: 5px;
+  padding: 0.5rem 1.6rem;
+  border: 1px solid var(--destructive-vibrant);
+  justify-content: center;
+`;
+
+export const ButtonEdit = styled(btn)`
+  background-color: var(--black-quaternary);
+  border-radius: 5px;
+  padding: 0.5rem 1.6rem;
+  color: black;
+  border: 1px solid var(--black-quaternary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const DivEditProfil = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  width: 100%;
 `;
 
 export const Img = styled.img`
