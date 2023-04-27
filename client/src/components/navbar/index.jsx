@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavContainer, ShearchBar, Actions, H1 } from './navbarElements';
 import { UilSearch, UilPlus, UilUsersAlt } from '@iconscout/react-unicons';
 import DropDown from '../DropDown';
-import { useState } from 'react';
+
 const NavBar = () => {
   const options = [
     { label: 'Profile', value: 'param1' },
@@ -21,13 +21,34 @@ const NavBar = () => {
 
   const [showDropDown, setShowDropDown] = useState(false);
   const [showDropDown2, setShowDropDown2] = useState(false);
+  const ref = useRef(null);
+
+  const handleClose = () => {
+    setShowDropDown(false);
+    setShowDropDown2(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        handleClose();
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [ref, handleClose]);
 
   const handleDropDown = () => {
     setShowDropDown(!showDropDown);
+    setShowDropDown2(false);
   };
 
   const handleDropDown2 = () => {
     setShowDropDown2(!showDropDown2);
+    setShowDropDown(false);
   };
 
   return (
@@ -39,7 +60,7 @@ const NavBar = () => {
 
       <H1>PaperLive</H1>
 
-      <Actions>
+      <Actions ref={ref}>
         <div onClick={handleDropDown2}>
           <UilPlus />
         </div>
