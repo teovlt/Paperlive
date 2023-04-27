@@ -14,7 +14,6 @@ import {
   Heading1,
 } from '../../theme/appElements';
 import {
-  TableContribution,
   Container,
   MainText,
   MainTab,
@@ -25,10 +24,9 @@ import {
   Img,
   Form,
 } from './homeElements';
-import CardContribution from '../../components/CardSoumission';
 import NavBar from '../../components/Navbar';
 import Input from '../../components/Input';
-import Popup from '../../components/Popup';
+import Popup from '../../components/popup';
 import { useState } from 'react';
 import {
   UilChart,
@@ -38,15 +36,18 @@ import {
   UilLocationPoint,
   UilBooks,
 } from '@iconscout/react-unicons';
+import useAuth from '../../hooks/useAuth';
+import { axiosPrivate } from '../../api/axios';
 
 const Home = () => {
+  const { setAuth } = useAuth();
+
   const [showEditAccount, setshowEditAccount] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const [teamName, setTeamName] = useState('Mon équipe');
   const [teamDesc, setteamDesc] = useState('Notre description');
   const [teamLoc, setTeamLoc] = useState('Ma ville');
   const [teamWebSite, setTeamWebSite] = useState('Mon website');
-  const [teamVisibility, setTeamVisibility] = useState('Private');
 
   const handleEditAccount = () => {
     setshowEditAccount(!showEditAccount);
@@ -68,6 +69,7 @@ const Home = () => {
         handleEditAccount();
       } else {
         handleEditAccount();
+
         console.log('tu na rien changé du tt');
       }
     } else if (dernierBoutonClique === 'btnSave') {
@@ -82,10 +84,6 @@ const Home = () => {
     setteamDesc(() => e.target.about.value);
     setTeamLoc(() => e.target.location.value);
     setTeamWebSite(() => e.target.webSite.value);
-    const selectElement = e.target.elements.visibility; // récupère l'élément select
-    const selectedIndex = selectElement.selectedIndex; // récupère l'index de l'option sélectionnée
-    const selectedOptionText = selectElement.options[selectedIndex].text;
-    setTeamVisibility(() => selectedOptionText);
 
     //sauvegarde
 
@@ -102,7 +100,7 @@ const Home = () => {
   return (
     <>
       <NavBar />
-      <DivTop></DivTop>
+      <DivTop />
       {showPopup && (
         <Popup
           title='Unsaved changements !'
@@ -130,7 +128,7 @@ const Home = () => {
               <Img src='/userGroupe.jpg' alt='' />
               <div>
                 <Heading1>{teamName}</Heading1>
-                <Caption>Visibility: {teamVisibility}</Caption>
+                <Caption>Computer sciences</Caption>
               </div>
               <Button onClick={handleEditAccount}>Edit team profil</Button>
               <span>
@@ -150,7 +148,7 @@ const Home = () => {
               <Form onSubmit={handleSubmit}>
                 <DivCheck>
                   <p>Visibility:</p>
-                  <Select id='visibility' defaultValue={teamVisibility}>
+                  <Select>
                     <option value='option1'>Private</option>
                     <option value='option2'>Public</option>
                   </Select>
@@ -182,12 +180,12 @@ const Home = () => {
             </MainText>
             <MainTab>
               <Heading2>Recent activity</Heading2>
-              <TableContribution>
+              {/* <TableContribution>
                 <CardContribution />
                 <CardContribution />
                 <CardContribution />
                 <CardContribution />
-              </TableContribution>
+              </TableContribution> */}
             </MainTab>
           </Main>
         </GridWrapper>
