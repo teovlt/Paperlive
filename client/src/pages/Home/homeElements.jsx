@@ -60,6 +60,7 @@ export const CaptionWarning = styled.span`
   padding: 0.5rem 1.6rem;
   border: 1px solid var(--destructive-vibrant);
   justify-content: center;
+  width: 100%;
 `;
 
 export const ButtonEdit = styled(btn)`

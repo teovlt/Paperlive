@@ -3,6 +3,8 @@ import { Outlet } from 'react-router-dom';
 import useRefreshToken from '../hooks/useRefreshToken';
 import useAuth from '../hooks/useAuth';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import { Loading } from '../theme/appElements';
+import { UilSpinnerAlt } from '@iconscout/react-unicons';
 
 const PersistLogin = () => {
   const refresh = useRefreshToken();
@@ -29,7 +31,17 @@ const PersistLogin = () => {
     return () => (isMounted = false);
   }, []);
 
-  return <>{isLoading ? <p>Loading...</p> : <Outlet />}</>;
+  return (
+    <>
+      {isLoading ? (
+        <Loading>
+          <UilSpinnerAlt />
+        </Loading>
+      ) : (
+        <Outlet />
+      )}
+    </>
+  );
 };
 
 export default PersistLogin;

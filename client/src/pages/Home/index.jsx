@@ -23,14 +23,14 @@ import {
   BtnSave,
   Img,
   Form,
-  ButtonEdit,
-  CaptionWarning,
   DivEditProfil,
+  CaptionWarning,
+  ButtonEdit,
 } from './homeElements';
-import CardContribution from '../../components/cardSoumission';
-import NavBar from '../../components/navbar';
+import CardContribution from '../../components/CardSoumission';
+import NavBar from '../../components/Navbar';
 import Input from '../../components/Input';
-import Popup from '../../components/popup';
+import Popup from '../../components/Popup';
 import { useState } from 'react';
 import {
   UilChart,
@@ -41,11 +41,11 @@ import {
   UilBooks,
   UilExclamationTriangle,
 } from '@iconscout/react-unicons';
+import TextArea from '../../components/TextArea';
 
 const Home = () => {
   const [showEditAccount, setshowEditAccount] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
-  const [showEditWarning, setShowEditWarning] = useState(true);
   const [teamName, setTeamName] = useState('Mon équipe');
   const [teamDesc, setteamDesc] = useState('Notre description');
   const [teamLoc, setTeamLoc] = useState('Ma ville');
@@ -103,13 +103,10 @@ const Home = () => {
     setShowPopup(false);
   }
 
-  function handleEditWarning() {
-    setShowEditWarning(!showEditWarning);
-  }
-
   return (
     <>
       <NavBar />
+
       <DivTop></DivTop>
       {showPopup && (
         <Popup
@@ -135,19 +132,17 @@ const Home = () => {
 
           {showEditAccount ? (
             <SideBar>
-              <Img src='/userGroupe.jpg' alt='ProfileImage' onClick={handleEditWarning} />
+              <Img src='/userGroupe.jpg' alt='' />
               <div>
                 <Heading1>{teamName}</Heading1>
                 <Caption>Visibility: {teamVisibility}</Caption>
               </div>
-              <DivEditProfil>
-                {showEditWarning && (
-                  <CaptionWarning>
-                    Configure your profile <UilExclamationTriangle />
-                  </CaptionWarning>
-                )}
-                <ButtonEdit onClick={handleEditAccount}>Edit team profil</ButtonEdit>
-              </DivEditProfil>
+              <DivBtnsEdit>
+                <CaptionWarning>
+                  Configure your profil <UilExclamationTriangle />{' '}
+                </CaptionWarning>
+              </DivBtnsEdit>
+              <ButtonEdit onClick={handleEditAccount}>Edit team profil</ButtonEdit>
               <span>
                 <UilBooks />8 contributions
               </span>
@@ -158,6 +153,7 @@ const Home = () => {
                 <UilLinkAlt />
                 <Link to='https://www.amazon.com'>{teamWebSite}</Link>
               </span>
+              <TextArea maxLength='300' label='About us' id='about' type='text' value={''} />
             </SideBar>
           ) : (
             <SideBar>
@@ -173,7 +169,7 @@ const Home = () => {
 
                 <Input label='Name of the team' id='name' type='text' defaultValue={teamName} />
 
-                <Input label='About us' id='about' type='text' defaultValue={teamDesc} />
+                <TextArea maxLength='300' error='ptn' label='About us' id='about' type='text' />
 
                 <Input label='Location' id='location' type='text' defaultValue={teamLoc} />
 

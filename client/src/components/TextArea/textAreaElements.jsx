@@ -7,19 +7,45 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   row-gap: 5px;
 `;
 
-export const InputContainer = styled.div`
+export const Wrapper = styled.div`
   width: 100%;
   position: relative;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
+
+  svg {
+    fill: var(--text-base-secondary);
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    padding: 5px;
+    transition: all 0.2s;
+    border-radius: 50px;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    &:active,
+    &:focus {
+      background: rgba(0, 0, 0, 0.25);
+    }
+  }
 `;
 
-export const InputField = styled.input`
+export const Area = styled.textarea`
   width: 100%;
   padding: 1.6rem;
-  /* TODO: password */
+  resize: none;
+
   border-radius: 0.2rem;
 
   outline: 1px solid var(--black-quaternary);
@@ -45,11 +71,11 @@ export const InputField = styled.input`
   }
 `;
 
-export const InputLabel = styled.label`
+export const Label = styled.label`
   position: absolute;
   transform: translateY(-50%);
 
-  top: 50%;
+  top: 2.4rem;
   left: 1.6rem;
 
   font-size: 1.6rem;
@@ -61,8 +87,8 @@ export const InputLabel = styled.label`
 
   transition: all 0.15s;
 
-  input:not(:placeholder-shown) + &,
-  input:focus + & {
+  textarea:not(:placeholder-shown) + &,
+  textarea:focus + & {
     padding-inline: 0.4rem;
 
     top: 0;
@@ -75,6 +101,8 @@ export const InputLabel = styled.label`
   }
 `;
 
-export const ErrorContainer = styled.div``;
-
-export const ErrorLabel = styled.span``;
+export const CharacterCounter = styled.span`
+  font-size: 14px;
+  color: var(--black-tertiary);
+  align-self: flex-end;
+`;
