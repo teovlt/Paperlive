@@ -17,15 +17,18 @@ export const DivSignedAs = styled.div`
 `;
 
 export const DivActions = styled.div`
+  display: flex;
+  flex-direction: column;
   &:hover {
-    cursor: pointer;
-    p:hover {
+    button:hover {
       background-color: var(--accent);
       color: var(--white);
     }
   }
-  p {
+  button {
     padding-inline: 14px;
     padding-block: 10px;
-  }
+    text-align: left;
+    cursor: pointer;
+    }
 `;
