@@ -14,8 +14,11 @@ import {
 } from 'react-icons/hi2';
 import Avatar from '../Avatar';
 import Input from '../Input';
+import { useTranslation } from 'react-i18next';
 
 const Sidebar = () => {
+  const { t } = useTranslation();
+
   const { auth, setAuth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
   const [isEditing, setIsEditing] = useState(false);
@@ -46,12 +49,13 @@ const Sidebar = () => {
           <Avatar />
           <Heading1>{auth.name?.toUpperCase()}</Heading1>
           <Button secondary onClick={() => setIsEditing(true)}>
-            Edit profil
+            {t('sideBar.edit')}
           </Button>
           <Group>
             <IconLabel>
               {auth.visibility ? <HiOutlineLockOpen /> : <HiOutlineLockClosed />}
-              Visibility <span>{auth.visibility ? 'public' : 'private'}</span>
+              {t('sideBar.visibility')}
+              <span>{auth.visibility ? 'public' : 'private'}</span>
             </IconLabel>
             <IconLabel>
               <HiOutlineNewspaper /> <span>0</span> contribution(s)
@@ -97,7 +101,7 @@ const Sidebar = () => {
             <HiOutlineLink />
             <Input
               id='website'
-              label='Website'
+              label={t('sideBar.webSite')}
               autoComplete='off'
               value={profilData.website}
               onChange={(e) => setProfilData((prev) => ({ ...prev, website: e.target.value }))}
@@ -105,10 +109,10 @@ const Sidebar = () => {
           </IconLabel>
           <Group inline>
             <Button secondary onClick={handleCancelChanges}>
-              Cancel
+              {t('sideBar.cancel')}
             </Button>
             <Button secondary onClick={handleSaveChanges}>
-              Save
+              {t('sideBar.save')}
             </Button>
           </Group>
         </>

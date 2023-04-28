@@ -5,7 +5,7 @@ export const UploadAvatarLabel = styled.label`
   user-select: none;
 
   &:hover::before {
-    content: 'Change your avatar';
+    content: ${(props) => `"${props.label}"`};
     position: absolute;
     top: 0;
     left: 0;

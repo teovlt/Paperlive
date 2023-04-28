@@ -19,33 +19,35 @@ i18n
     resources: {
       en: {
         translation: {
-          greeting: {
-            accueil: 'ENGLISH LANGUAGE',
+          navbar: {
             search: 'Search',
           },
-        },
-      },
-      de: {
-        translation: {
-          greeting: {
-            accueil: 'GERMAN LANGUAGE',
-            search: 'Searchen',
+          sideBar: {
+            edit: 'Edit Profile',
+            visibility: 'Visibility',
+            cancel: 'cancel',
+            save: 'save',
+            webSite: 'webSite',
           },
-        },
-      },
-      es: {
-        translation: {
-          greeting: {
-            accueil: 'ESPAGNOL LANGUAGE',
-            search: 'Searchada',
+          avatar: {
+            hover: 'Change your profile picture',
           },
         },
       },
       fr: {
         translation: {
-          greeting: {
-            accueil: 'FRENCH LANGUAGE',
+          navbar: {
             search: 'Rechercher',
+          },
+          sideBar: {
+            edit: 'Modifier votre profil',
+            visibility: 'Visibilité',
+            cancel: 'Annuler',
+            save: 'Enregistrer',
+            webSite: 'Site internet',
+          },
+          avatar: {
+            hover: 'Changer votre photo de profil',
           },
         },
       },

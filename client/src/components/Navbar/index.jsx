@@ -71,18 +71,15 @@ const NavBar = () => {
 
   const lngs = {
     en: { nativeName: 'English' },
-    de: { nativeName: 'Deutsch' },
-    es: { nativeName: 'Spanish' },
     fr: { nativeName: 'French' },
   };
-
 
   const { t } = useTranslation();
 
   return (
     <NavContainer>
       <ShearchBar>
-        <input type='text' placeholder={t('greeting.search')}></input>
+        <input type='text' placeholder={t('navbar.search')}></input>
 
         <HiOutlineSearch />
       </ShearchBar>
