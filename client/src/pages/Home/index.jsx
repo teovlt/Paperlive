@@ -6,6 +6,7 @@ import { DashboardNav } from '../../theme/appElements';
 import { Container } from './homeElements';
 import NavBar from '../../components/Navbar';
 import Sidebar from '../../components/Sidebar';
+import Footer from '../../components/Footer';
 
 const Home = () => {
   const { auth, setAuth } = useAuth();
@@ -32,6 +33,7 @@ const Home = () => {
         <DashboardNav></DashboardNav>
         <Sidebar />
       </Container>
+      <Footer/>
     </>
   );
 };
