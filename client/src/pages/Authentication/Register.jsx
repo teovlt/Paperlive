@@ -7,8 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import axios from '../../api/axios';
 import useAuth from '../../hooks/useAuth';
 const REGISTER_URL = '/auth/register';
+import { useTranslation } from 'react-i18next';
 
 const Register = () => {
+  const { t } = useTranslation();
+  
   const { setAuth } = useAuth();
   const navigate = useNavigate();
 

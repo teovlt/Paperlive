@@ -21,16 +21,28 @@ i18n
         translation: {
           navbar: {
             search: 'Search',
+            english: 'English',
+            french: 'French',
           },
           sideBar: {
             edit: 'Edit Profile',
             visibility: 'Visibility',
-            cancel: 'cancel',
-            save: 'save',
-            webSite: 'webSite',
+            cancel: 'Cancel',
+            save: 'Save',
+            webSite: 'Website',
           },
           avatar: {
             hover: 'Change your profile picture',
+          },
+          login: {
+            welcome: 'Welcome',
+            teamName: 'TeamName',
+            password: 'Password',
+            signIn: 'Sign In',
+            signUp: 'Sign Up',
+            textSignUp: 'New to PaperLive ?',
+            bottom:
+              'By creating an account, you agree to the terms of service. For more information about PaperLive’s privacy practices, see the privacy Statement.',
           },
         },
       },
@@ -38,6 +50,8 @@ i18n
         translation: {
           navbar: {
             search: 'Rechercher',
+            english: 'Anglais',
+            french: 'Français',
           },
           sideBar: {
             edit: 'Modifier votre profil',
@@ -48,6 +62,16 @@ i18n
           },
           avatar: {
             hover: 'Changer votre photo de profil',
+          },
+          login: {
+            welcome: 'Bienvenue',
+            teamName: "Nom de l'équipe",
+            password: 'Mot de passe',
+            signIn: 'Se connecter',
+            signUp: "S'enregistrer",
+            textSignUp: 'Nouveau sur PaperLive ?',
+            bottom:
+              "En créant un compte, vous acceptez les conditions d'utilisation. Pour plus d'informations sur les pratiques de confidentialité de PaperLive, consultez la déclaration de confidentialité.",
           },
         },
       },
