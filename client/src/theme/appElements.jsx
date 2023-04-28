@@ -23,36 +23,21 @@ export const Button = styled.button`
   cursor: pointer;
 
   display: inline-block;
-  padding: 1.2rem 1.6rem;
+  padding: ${(props) => (props.secondary ? '0.5rem 1.6rem' : '1.2rem 1.6rem')};
+  border: ${(props) => (props.secondary ? '1px solid var(--black-quaternary)' : null)};
   text-align: center;
   border-radius: 2px;
 
   font-weight: 500;
-  font-size: 1.6rem;
+  font-size: ${(props) => (props.secondary ? '1.4rem' : '1.6rem')};
   line-height: 1.6rem;
   text-decoration: none;
 
-  color: var(--white);
-  background-color: var(--accent);
-  /* TODO: Secondary, Positive, Notice, Destructive */
-  /* background-color: ${(props) => props.secondary && '...'} */
+  color: ${(props) => (props.secondary ? 'var(--black)' : 'var(--white)')};
+  background-color: ${(props) => (props.secondary ? 'var(--black-quaternary)' : 'var(--accent)')};
 `;
 
-export const SideBar = styled.div`
-  grid-area: 1 / 1 / 4 / 2;
-  display: flex;
-  flex-direction: column;
-  padding-block: 32px;
-  row-gap: 16px;
-
-  span {
-    display: flex;
-    flex-direction: row;
-    column-gap: 5px;
-  }
-`;
-
-export const NavPage = styled.div`
+export const DashboardNav = styled.div`
   grid-area: 1 / 2 / 2 / 3;
   display: flex;
   flex-direction: row;
@@ -105,6 +90,15 @@ export const Small = styled.small`
 `;
 
 export const Link = styled(NavLink)`
+  font-size: inherit;
+  color: var(--accent);
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export const WebLink = styled.a`
   font-size: inherit;
   color: var(--accent);
 
