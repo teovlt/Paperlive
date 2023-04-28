@@ -19,6 +19,7 @@ export const ShearchBar = styled.div`
   padding-inline: 12px;
   padding-block: 4px;
   border-radius: 4px;
+  user-select: none;
 
   input {
     color: var(--white);
@@ -35,9 +36,10 @@ export const Actions = styled.div`
   flex-direction: row;
   justify-content: right;
   column-gap: 32px;
-
-`;
+  user-select: none;
+  `;
 
 export const H1 = styled(titre)`
   color: var(--white);
+  user-select: none;
 `;
