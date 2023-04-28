@@ -70,8 +70,7 @@ export const Heading2 = styled.h2`
   font-weight: 500;
   font-size: 2rem;
   line-height: 3rem;
-
-  color: var(--black);
+  color: var(--accent);
 `;
 
 export const Caption = styled.p`
@@ -135,5 +134,24 @@ export const LinkIcon = styled(NavLink)`
   &:hover {
     text-decoration: underline;
     color: var(--accent);
+  }
+`;
+
+export const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50vh;
+  font-size: 32px;
+
+  svg {
+    color: var(--accent);
+    width: 80px;
+    height: 80px;
   }
 `;

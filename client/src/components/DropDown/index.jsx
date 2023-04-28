@@ -17,6 +17,10 @@ const DropDown = ({ options, teamName }) => {
     }
   }, [teamName]);
 
+  const handleActions = (action) => {
+    console.log(action);  
+  };
+
   return (
     <ContainerDropDown>
       <DivSignedAs>
@@ -30,7 +34,9 @@ const DropDown = ({ options, teamName }) => {
       </DivSignedAs>
       <DivActions>
         {options.map((option) => (
-          <Caption key={option.value}>{option.label}</Caption>
+          <button key={option.value} onClick={handleActions(option.action)}>
+            {option.label}
+          </button>
         ))}
       </DivActions>
     </ContainerDropDown>
