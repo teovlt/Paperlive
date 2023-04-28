@@ -3,6 +3,8 @@ import { NavContainer, ShearchBar, Actions, H1 } from './navbarElements';
 import { HiGlobeAlt, HiOutlinePlus, HiUserGroup } from 'react-icons/hi2';
 import { HiOutlineSearch } from 'react-icons/hi';
 import DropDown from '../DropDown';
+import i18n from '../../translations/i18n';
+import { useTranslation } from 'react-i18next';
 
 const NavBar = () => {
   const options = [
@@ -67,10 +69,21 @@ const NavBar = () => {
     setShowDropDown(false);
   };
 
+  const lngs = {
+    en: { nativeName: 'English' },
+    de: { nativeName: 'Deutsch' },
+    es: { nativeName: 'Spanish' },
+    fr: { nativeName: 'French' },
+  };
+
+
+  const { t } = useTranslation();
+
   return (
     <NavContainer>
       <ShearchBar>
-        <input type='text' placeholder='Shearch'></input>
+        <input type='text' placeholder={t('greeting.search')}></input>
+
         <HiOutlineSearch />
       </ShearchBar>
 
@@ -90,6 +103,21 @@ const NavBar = () => {
           <HiUserGroup />
         </div>
         {showDropDown && <DropDown options={options} teamName={'ERODS'} />}
+
+        <div>
+          {Object.keys(lngs).map((lng) => (
+            <button
+              key={lng}
+              style={{
+                fontWeight: i18n.resolvedLanguage === lng ? 'bold' : 'normal',
+                color: 'white',
+              }}
+              type='submit'
+              onClick={() => i18n.changeLanguage(lng)}>
+              {lngs[lng].nativeName}
+            </button>
+          ))}
+        </div>
       </Actions>
     </NavContainer>
   );

@@ -7,6 +7,8 @@ import { Container } from './homeElements';
 import NavBar from '../../components/Navbar';
 import Sidebar from '../../components/Sidebar';
 
+import { useTranslation } from 'react-i18next';
+
 const Home = () => {
   const { auth, setAuth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
@@ -25,11 +27,16 @@ const Home = () => {
     fetchUser();
   }, [auth.accessToken]);
 
+
+  const { t } = useTranslation();
+
   return (
     <>
       <NavBar />
       <Container>
         <DashboardNav></DashboardNav>
+
+        <p>{t('greeting.accueil')}</p>
         <Sidebar />
       </Container>
     </>
