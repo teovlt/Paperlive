@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Container, Form } from './authenticationElements';
+import { Container, Form, DivLanguageIcon } from './authenticationElements';
 import { Button, Caption, Heading1, Heading2, Link, Small } from '../../theme/appElements';
 import Input from '../../components/Input';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import axios from '../../api/axios';
 import useAuth from '../../hooks/useAuth';
 const REGISTER_URL = '/auth/register';
 import { useTranslation } from 'react-i18next';
+import { HiOutlineGlobeAlt } from 'react-icons/hi2';
 
 const Register = () => {
   const { t } = useTranslation();
@@ -56,6 +57,9 @@ const Register = () => {
 
   return (
     <Container>
+      <DivLanguageIcon>
+        <HiOutlineGlobeAlt />
+      </DivLanguageIcon>
       <Heading1>PaperLive</Heading1>
       <Form onSubmit={handleSubmit} autocomplete='off'>
         <Heading2>{t('register.welcome')}</Heading2>
