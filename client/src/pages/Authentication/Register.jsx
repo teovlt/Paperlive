@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 const Register = () => {
   const { t } = useTranslation();
-  
+
   const { setAuth } = useAuth();
   const navigate = useNavigate();
 
@@ -58,12 +58,12 @@ const Register = () => {
     <Container>
       <Heading1>PaperLive</Heading1>
       <Form onSubmit={handleSubmit} autocomplete='off'>
-        <Heading2>Create your account</Heading2>
+        <Heading2>{t('register.welcome')}</Heading2>
         <Input
           type='text'
           ref={nameRef}
           id='name'
-          label='Team name'
+          label={t('register.teamName')}
           autoComplete='off'
           onChange={(e) => setName(e.target.value)}
           value={name}
@@ -72,7 +72,7 @@ const Register = () => {
         <Input
           type='password'
           id='password'
-          label='Password'
+          label={t('register.password')}
           autoComplete='off'
           onChange={(e) => setPassword(e.target.value)}
           value={password}
@@ -81,22 +81,19 @@ const Register = () => {
         <Input
           type='password'
           id='passwordconf'
-          label='Confirm Password'
+          label={t('register.password2')}
           autoComplete='off'
           onChange={(e) => setPaswordConf(e.target.value)}
           value={passwordConf}
           required
         />
-        <Button type='submit'>Sign up</Button>
+        <Button type='submit'>{t('register.signUp')}</Button>
         <Caption>
-          Already have an account? <Link to='/login'>Sign in</Link>
+          {t('register.textSignIn')}
+          <Link to='/login'>{t('register.signIn')}</Link>
         </Caption>
       </Form>
-      <Small>
-        By creating an account, you agree to the <Link to=''>Terms of Service</Link>. For more
-        information about PaperLive’s privacy practices, see the{' '}
-        <Link>PaperLive Privacy Statement</Link>.
-      </Small>
+      <Small>{t('register.bottom')}</Small>
     </Container>
   );
 };

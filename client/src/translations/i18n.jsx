@@ -44,6 +44,17 @@ i18n
             bottom:
               'By creating an account, you agree to the terms of service. For more information about PaperLive’s privacy practices, see the privacy Statement.',
           },
+          register: {
+            welcome: 'Create your profile',
+            teamName: 'TeamName',
+            password: 'Password',
+            password2: 'Confirm your password',
+            signIn: 'Sign In',
+            signUp: 'Sign Up',
+            textSignIn: 'Already have an account? ',
+            bottom:
+              'By creating an account, you agree to the terms of service. For more information about PaperLive’s privacy practices, see the privacy Statement.',
+          },
         },
       },
       fr: {
@@ -70,6 +81,17 @@ i18n
             signIn: 'Se connecter',
             signUp: "S'enregistrer",
             textSignUp: 'Nouveau sur PaperLive ?',
+            bottom:
+              "En créant un compte, vous acceptez les conditions d'utilisation. Pour plus d'informations sur les pratiques de confidentialité de PaperLive, consultez la déclaration de confidentialité.",
+          },
+          register: {
+            welcome: 'Créer votre compte',
+            teamName: "Nom de l'équipe",
+            password: 'Mot de passe',
+            password2: 'Confirmer votre mot de passe',
+            signIn: 'Se connecter',
+            signUp: "S'inscrire",
+            textSignIn: 'Vous possèdez déja un compte? ',
             bottom:
               "En créant un compte, vous acceptez les conditions d'utilisation. Pour plus d'informations sur les pratiques de confidentialité de PaperLive, consultez la déclaration de confidentialité.",
           },
