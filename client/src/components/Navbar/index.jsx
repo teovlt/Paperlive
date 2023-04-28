@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavContainer, ShearchBar, Actions, H1 } from './navbarElements';
-import { UilSearch, UilPlus, UilUsersAlt } from '@iconscout/react-unicons';
+import { HiGlobeAlt, HiOutlinePlus, HiUserGroup } from 'react-icons/hi2';
+import { HiOutlineSearch } from 'react-icons/hi';
 import DropDown from '../DropDown';
 
 const NavBar = () => {
@@ -19,13 +20,20 @@ const NavBar = () => {
     { label: 'aaaaa', value: 'param5' },
   ];
 
+  const options3 = [
+    { label: 'English', value: 'param1' },
+    { label: 'French', value: 'param2' },
+  ];
+
   const [showDropDown, setShowDropDown] = useState(false);
   const [showDropDown2, setShowDropDown2] = useState(false);
+  const [showDropDown3, setShowDropDown3] = useState(false);
   const ref = useRef(null);
 
   const handleClose = () => {
     setShowDropDown(false);
     setShowDropDown2(false);
+    setShowDropDown3(false);
   };
 
   useEffect(() => {
@@ -44,10 +52,18 @@ const NavBar = () => {
   const handleDropDown = () => {
     setShowDropDown(!showDropDown);
     setShowDropDown2(false);
+    setShowDropDown3(false);
   };
 
   const handleDropDown2 = () => {
     setShowDropDown2(!showDropDown2);
+    setShowDropDown(false);
+    setShowDropDown3(false);
+  };
+
+  const handleDropDown3 = () => {
+    setShowDropDown3(!showDropDown3);
+    setShowDropDown2(false);
     setShowDropDown(false);
   };
 
@@ -55,19 +71,23 @@ const NavBar = () => {
     <NavContainer>
       <ShearchBar>
         <input type='text' placeholder='Shearch'></input>
-        <UilSearch />
+        <HiOutlineSearch />
       </ShearchBar>
 
       <H1>PaperLive</H1>
 
       <Actions ref={ref}>
+        <div onClick={handleDropDown3}>
+          <HiGlobeAlt />
+        </div>
+        {showDropDown3 && <DropDown options={options3} />}
         <div onClick={handleDropDown2}>
-          <UilPlus />
+          <HiOutlinePlus />
         </div>
         {showDropDown2 && <DropDown options={options2} />}
 
         <div onClick={handleDropDown}>
-          <UilUsersAlt />
+          <HiUserGroup />
         </div>
         {showDropDown && <DropDown options={options} teamName={'ERODS'} />}
       </Actions>
