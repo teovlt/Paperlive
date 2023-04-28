@@ -175,3 +175,14 @@ export const DivTop = styled.div`
   height: 56px;
   z-index: -1;
 `;
+
+export const DivLanguageIcon = styled.div`
+  position: absolute;
+  top: 3.2rem;
+  right: 3.2rem;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+`;
