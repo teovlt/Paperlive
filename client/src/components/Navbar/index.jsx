@@ -68,13 +68,11 @@ const NavBar = () => {
     setShowDropDown2(false);
     setShowDropDown(false);
   };
-
-  const lngs = {
-    en: { nativeName: 'English' },
-    fr: { nativeName: 'French' },
-  };
-
   const { t } = useTranslation();
+  const lngs = {
+    en: { nativeName: `${t('navbar.english')}` },
+    fr: { nativeName: `${t('navbar.french')}` },
+  };
 
   return (
     <NavContainer>

@@ -4,11 +4,12 @@ import { Button, Caption, Heading1, Heading2, Link, Small } from '../../theme/ap
 import Input from '../../components/Input';
 import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import { useTranslation } from 'react-i18next';
 import axios from '../../api/axios';
 const LOGIN_URL = '/auth/login';
 
 const Login = () => {
+  const { t } = useTranslation();
   const { setAuth } = useAuth();
 
   const navigate = useNavigate();
@@ -58,12 +59,12 @@ const Login = () => {
     <Container>
       <Heading1>PaperLive</Heading1>
       <Form onSubmit={handleSubmit}>
-        <Heading2>Welcome back</Heading2>
+        <Heading2>{t('login.welcome')}</Heading2>
         <Input
           type='text'
           ref={nameRef}
           id='name'
-          label='Team name'
+          label={t('login.teamName')}
           autoComplete='off'
           onChange={(e) => setName(e.target.value)}
           value={name}
@@ -72,22 +73,18 @@ const Login = () => {
         <Input
           type='password'
           id='password'
-          label='Password'
+          label={t('login.password')}
           autoComplete='off'
           onChange={(e) => setPassword(e.target.value)}
           value={password}
           required
         />
-        <Button type='submit'>Sign in</Button>
+        <Button type='submit'>{t('login.signIn')}</Button>
         <Caption>
-          New on PaperLive? <Link to='/register'>Sign up</Link>
+          {t('login.textSignUp')} <Link to='/register'>{t('login.signUp')}</Link>
         </Caption>
       </Form>
-      <Small style={{ textAlign: 'center' }}>
-        By creating an account, you agree to the <Link to=''>Terms of Service</Link>. For more
-        information about PaperLive’s privacy practices, see the{' '}
-        <Link>PaperLive Privacy Statement</Link>.
-      </Small>
+      <Small style={{ textAlign: 'center' }}>{t('login.bottom')}</Small>
     </Container>
   );
 };
