@@ -1,5 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { Area, CharacterCounter, Container, Label, Wrapper } from './textAreaElements';
+import {
+  TextAreaField,
+  CharacterCounter,
+  Container,
+  TextAreaLabel,
+  TextAreaContainer,
+} from './textAreaElements';
 
 const TextArea = (props) => {
   const textareaRef = useRef(null);
@@ -15,22 +21,13 @@ const TextArea = (props) => {
 
   return (
     <Container>
-      <Wrapper>
-        <Area
-          id={props.id}
-          placeholder=' '
-          value={props.value}
-          error={props.error}
-          onChange={props.onChange}
-          ref={textareaRef}
-          onInput={updateHeight}
-          maxLength={props.maxLength}
-        />
-        <Label htmlFor={props.id}>{props.label}</Label>
+      <TextAreaContainer>
+        <TextAreaField {...props} placeholder=' ' ref={textareaRef} onInput={updateHeight} />
+        <TextAreaLabel htmlFor={props.id}>{props.label}</TextAreaLabel>
         <CharacterCounter>
           {props.value ? props.value.length : 0}/{props.maxLength}
         </CharacterCounter>
-      </Wrapper>
+      </TextAreaContainer>
     </Container>
   );
 };

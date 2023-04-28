@@ -7,12 +7,12 @@ const GlobalStyle = createGlobalStyle`
     /* Variables */
     --accent: #3788a1;
 
-    --positive: #52B788;
-    --positive-vibrant: #52b78833;
-    --notice: #FF950099;
-    --notice-vibrant: #FF950033;
-    --destructive: #ff001f99;
-    --destructive-vibrant: #FF001F33;
+    --positive: #42b983;
+    --positive-vibrant: #42b98333;
+    --notice: #ff9800;
+    --notice-vibrant: #ff980033;
+    --negative: #f44336;
+    --negative-vibrant: #f4433633;
 
     --black: #222222;
     --black-secondary: rgba(34, 34, 34, 0.75);

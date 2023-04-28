@@ -11,7 +11,7 @@ export const Container = styled.div`
   row-gap: 5px;
 `;
 
-export const Wrapper = styled.div`
+export const TextAreaContainer = styled.div`
   width: 100%;
   position: relative;
 
@@ -41,7 +41,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Area = styled.textarea`
+export const TextAreaField = styled.textarea`
   width: 100%;
   padding: 1.6rem;
   resize: none;
@@ -71,7 +71,7 @@ export const Area = styled.textarea`
   }
 `;
 
-export const Label = styled.label`
+export const TextAreaLabel = styled.label`
   position: absolute;
   transform: translateY(-50%);
 
@@ -102,7 +102,10 @@ export const Label = styled.label`
 `;
 
 export const CharacterCounter = styled.span`
-  font-size: 14px;
+  font-size: 10px;
   color: var(--black-tertiary);
-  align-self: flex-end;
+
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
 `;

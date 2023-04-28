@@ -4,7 +4,7 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 import { Container, Group, IconLabel } from './sidebarElements';
-import { Button, Heading1, Link, WebLink } from '../../theme/appElements';
+import { Button, Heading1, Link } from '../../theme/appElements';
 import {
   HiOutlineLink,
   HiOutlineLockClosed,
@@ -14,6 +14,7 @@ import {
 } from 'react-icons/hi2';
 import Avatar from '../Avatar';
 import Input from '../Input';
+import TextArea from '../TextArea';
 import { useTranslation } from 'react-i18next';
 
 const Sidebar = () => {
@@ -21,6 +22,7 @@ const Sidebar = () => {
 
   const { auth, setAuth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
+
   const [isEditing, setIsEditing] = useState(false);
 
   const [profilData, setProfilData] = useState();
@@ -30,14 +32,12 @@ const Sidebar = () => {
   }, [auth]);
 
   async function handleSaveChanges() {
-    // TODO: Popup
     setIsEditing(false);
     await axiosPrivate.put('/teams/update', { ...profilData });
     setAuth((prev) => ({ ...prev, ...profilData }));
   }
 
   function handleCancelChanges() {
-    // TODO: Popup
     setIsEditing(false);
     setProfilData(auth);
   }
@@ -80,9 +80,10 @@ const Sidebar = () => {
       ) : (
         <>
           <Avatar />
-          <Input
+          <TextArea
             id='description'
             label='Description'
+            maxLength='240'
             autoComplete='off'
             value={profilData.description}
             onChange={(e) => setProfilData((prev) => ({ ...prev, description: e.target.value }))}
