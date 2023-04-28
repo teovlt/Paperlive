@@ -46,7 +46,7 @@ const Sidebar = () => {
           <Avatar />
           <Heading1>{auth.name?.toUpperCase()}</Heading1>
           <Button secondary onClick={() => setIsEditing(true)}>
-            Edit profil
+            Edit profile
           </Button>
           <Group>
             <IconLabel>
