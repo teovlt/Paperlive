@@ -1,22 +1,37 @@
-import React from 'react';
-import { Container, PopupText, PopupBtn, Flou } from './popupElements';
-import { Button, Heading1 } from '../../theme/appElements';
+import React, { useState } from 'react';
+import { Backdrop, Caption, Container, Title, ActionsContainer } from './popupElements';
+import { Button } from '../../theme/appElements';
 
-const Popup = ({ title, desc, cancel, confirm }) => {
+const Popup = ({ template }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  // if (!isOpen) return null;
+
+  const handleConfirm = () => {
+    setIsOpen(false);
+    template.onConfirm();
+  };
+
+  const handleCancel = () => {
+    setIsOpen(false);
+    template.onCancel();
+  };
+
   return (
-    <Flou>
+    <Backdrop>
       <Container>
-        <PopupText>
-          <Heading1>{title}</Heading1>
-          <p>{desc}</p>
-        </PopupText>
-
-        <PopupBtn>
-          <Button onClick={confirm}>Yes</Button>
-          <Button onClick={cancel}>No</Button>
-        </PopupBtn>
+        <>
+          <Title>{template.title}</Title>
+          <Caption>{template.caption}</Caption>
+        </>
+        <ActionsContainer>
+          <Button onClick={handleCancel}>{template.cancelLabel}</Button>
+          <Button onClick={handleConfirm} type='negative'>
+            {template.confirmLabel}
+          </Button>
+        </ActionsContainer>
       </Container>
-    </Flou>
+    </Backdrop>
   );
 };
 
