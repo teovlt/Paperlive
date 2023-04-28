@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
+export const UploadForm = styled.form`
+  display: flex;
+`;
+
 export const UploadAvatarLabel = styled.label`
   position: relative;
   user-select: none;
+  border-radius: 100%;
 
   &:hover::before {
     content: ${(props) => `"${props.label}"`};

@@ -9,6 +9,7 @@ const app = Express();
 // Import the routes
 const teamRoutes = require('./routes/teamRoutes');
 const authRoutes = require('./routes/authenticationRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
 
 // Set up middleware to parse JSON, URL-encoded bodies and cookies
 app.use(Express.json());
@@ -51,6 +52,14 @@ app.use('/api/teams', teamRoutes);
  * @access Public
  */
 app.use('/api/auth', authRoutes);
+
+/**
+ * Handle the requests to /api/upload
+ * @route /api/upload
+ * @desc Route to handle upload related requests
+ * @access Public
+ */
+app.use('/api/upload', uploadRoutes);
 
 /**
  * Handle errors
