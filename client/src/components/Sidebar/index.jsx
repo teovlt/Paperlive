@@ -55,7 +55,7 @@ const Sidebar = () => {
             <IconLabel>
               {auth.visibility ? <HiOutlineLockOpen /> : <HiOutlineLockClosed />}
               {t('sideBar.visibility')}
-              <span>{auth.visibility ? 'public' : 'private'}</span>
+              <span>{auth.visibility ? `${t('sideBar.public')}` : `${t('sideBar.private')}`}</span>
             </IconLabel>
             <IconLabel>
               <HiOutlineNewspaper /> <span>0</span> contribution(s)

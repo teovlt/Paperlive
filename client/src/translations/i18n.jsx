@@ -30,6 +30,8 @@ i18n
             cancel: 'Cancel',
             save: 'Save',
             webSite: 'Website',
+            public: 'public',
+            private: 'private',
           },
           avatar: {
             hover: 'Change your profile picture',
@@ -70,6 +72,8 @@ i18n
             cancel: 'Annuler',
             save: 'Enregistrer',
             webSite: 'Site internet',
+            public: 'public',
+            private: 'privé',
           },
           avatar: {
             hover: 'Changer votre photo de profil',
