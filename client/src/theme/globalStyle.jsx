@@ -41,6 +41,10 @@ const GlobalStyle = createGlobalStyle`
     font-smooth: auto;
     font-family: 'Poppins', 'Helvetica', 'Arial';
   }
+
+  svg {
+    font-size: 2rem;
+  }
 `;
 
 export default GlobalStyle;

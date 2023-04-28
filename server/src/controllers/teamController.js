@@ -73,18 +73,12 @@ module.exports.me = async (req, res) => {
 module.exports.updateTeam = async (req, res) => {
   try {
     // Extract the request body fields
-    const { name, description, picture, visibility, location, website } = req.body;
-
-    // Get the team ID from the request parameters
-    const { teamId } = req.params;
-    // Check if the ID is a valid MongoDB ObjectId
-    if (!ObjectId.isValid(teamId))
-      return res.status(500).json({ message: `Invalid ID: ${teamId}` });
+    const { description, visibility, location, website } = req.body;
 
     // Find the team with the given ID and update it in the database
     const result = await Team.updateOne(
-      { _id: teamId },
-      { $set: { name, description, picture, visibility, location, website } }
+      { _id: req.teamId },
+      { $set: { description, visibility, location, website } }
     );
 
     // If the update was successful, return a 200 OK response with a success message
