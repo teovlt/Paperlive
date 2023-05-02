@@ -66,7 +66,7 @@ module.exports.me = async (req, res) => {
 
 /**
  * Update a team by ID.
- * @route PUT /api/teams/:teamId
+ * @route PUT /api/teams/update
  * @group Teams - Operation about teams
  * @access Private
  */

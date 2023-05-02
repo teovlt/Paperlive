@@ -5,7 +5,7 @@ const app = require('../src/app');
 
 describe('authenticateAccessToken middleware', () => {
   it('should return a 401 Unauthorized response if no token is provided', async () => {
-    const res = await request(app).put(`/api/teams/team-id`);
+    const res = await request(app).get(`/api/teams/me`);
 
     expect(res.status).toBe(401);
     expect(res.body).toEqual({ error: 'Access token not found' });
@@ -14,7 +14,7 @@ describe('authenticateAccessToken middleware', () => {
   it('should return a 401 Unauthorized response if an invalid token is provided', async () => {
     const token = jwt.sign({ id: '123' }, 'invalid-secret');
     const res = await request(app)
-      .put(`/api/teams/team-id`)
+      .get(`/api/teams/me`)
       .set('Authorization', `Bearer ${token}`);
 
     expect(res.status).toBe(401);

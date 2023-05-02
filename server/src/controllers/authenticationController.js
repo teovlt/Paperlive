@@ -90,7 +90,7 @@ module.exports.signOut = async (req, res) => {
 
 /**
  * Refreshes the access token
- * @route POST /api/auth/refresh-token
+ * @route GET /api/auth/refresh-token
  * @desc Refreshes the access token by generating a new one and setting a new httpOnly cookie with the refresh token
  * @access Private
  */
@@ -109,3 +109,4 @@ module.exports.refreshToken = async (req, res) => {
 };
 
 module.exports.generateAccessToken = generateAccessToken;
+module.exports.generateRefreshToken = generateRefreshToken;

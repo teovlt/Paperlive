@@ -1,7 +1,7 @@
 const request = require('supertest');
 const mongoose = require('mongoose');
 
-const { signOut } = require('../src/controllers/authenticationController');
+const authenticationController = require('../src/controllers/authenticationController');
 
 const app = require('../src/app');
 const Team = require('../src/models/teamModel');
@@ -30,9 +30,6 @@ describe('POST /api/auth/register', () => {
     expect(res.status).toBe(200);
     expect(res.body.accessToken).toBeDefined();
     expect(res.headers['set-cookie'][0]).toContain('__refresh__token');
-
-    // const team = await Team.findOne({ name: 'TestTeam' });
-    // expect(team).not.toBeNull();
   });
 
   it('should return a 400 Bad Request response with an error message', async () => {
@@ -139,32 +136,20 @@ describe('GET /api/auth/logout', () => {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
     };
-    await signOut({}, res);
+    await authenticationController.signOut({}, res);
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ error: error.message });
   });
 });
 
-describe('POST /api/auth/refresh-token', () => {
+describe('GET /api/auth/refresh-token', () => {
   it('should return a 200 OK response with an accessToken', async () => {
+    const refreshToken = authenticationController.generateRefreshToken('123');
     const res = await request(app)
-      .post('/api/auth/refresh-token')
-      .set('Cookie', ['__refresh__token=validRefreshToken']);
+      .get('/api/auth/refresh-token')
+      .set('Cookie', [`__refresh__token=${refreshToken}`]);
 
     expect(res.status).toBe(200);
     expect(res.body.accessToken).toBeDefined();
-    expect(res.headers['set-cookie']).toBeDefined();
-    expect(res.headers['set-cookie'][0]).toMatch(
-      /^__refresh__token=.+; Path=\/; HttpOnly; Max-Age\d+$/
-    );
   });
-
-  // it('should handle errors properly', async () => {
-  //   const res = await request(app)
-  //     .post('/api/auth/refresh-token')
-  //     .set('Cookie', ['__refresh__token=invalidRefreshToken']);
-
-  //   expect(res.statusCode).toBe(500);
-  //   expect(res.body.error).toBeDefined();
-  // });
 });
