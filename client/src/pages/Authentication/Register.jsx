@@ -32,20 +32,38 @@ const Register = () => {
     setErrMsg('');
   }, [name, password, passwordConf]);
 
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z\d\s:])(?!.*\s).{8,}$/;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(REGISTER_URL, JSON.stringify({ name, password }), {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-      });
-      const accessToken = res?.data?.accessToken;
-      setAuth({ accessToken });
-      setName('');
-      setPassword('');
-      setPaswordConf('');
-      navigate('/', { replace: true });
+      if (passwordRegex.test(password) && password === passwordConf) {
+        const res = await axios.post(REGISTER_URL, JSON.stringify({ name, password }), {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        });
+        const accessToken = res?.data?.accessToken;
+        setAuth({ accessToken });
+        setName('');
+        setPassword('');
+        setPaswordConf('');
+        navigate('/', { replace: true });
+        console.log('oui');
+      } else {
+        if (!passwordRegex.test(password)) {
+          console.log(
+            'Votre mot de passe doit contenir au moins 8 caractères, dont une majuscule une minuscule 1 chiffre et 1 caractère spécial'
+          );
+        }
+        if (password !== passwordConf) {
+          console.log('Vos mots de passe ne sont pas les mêmes');
+        }
+        //vérif nom de team déja pris
+
+        console.log(password);
+        console.log(passwordConf);
+      }
     } catch (error) {
       if (!error?.response) {
         setErrMsg('No Server Response');
