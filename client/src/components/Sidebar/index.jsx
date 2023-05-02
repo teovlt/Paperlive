@@ -33,8 +33,13 @@ const Sidebar = () => {
 
   async function handleSaveChanges() {
     setIsEditing(false);
-    await axiosPrivate.put('/teams/update', { ...profilData });
-    setAuth((prev) => ({ ...prev, ...profilData }));
+
+    const modifiedProfilData = { ...profilData };
+    modifiedProfilData.website &&
+      (modifiedProfilData.website = modifiedProfilData.website.replace(/^https?:\/\//i, ''));
+
+    await axiosPrivate.put('/teams/update', { ...modifiedProfilData });
+    setAuth((prev) => ({ ...prev, ...modifiedProfilData }));
   }
 
   function handleCancelChanges() {
@@ -117,7 +122,12 @@ const Sidebar = () => {
               autoComplete='off'
               small
               value={profilData.website}
-              onChange={(e) => setProfilData((prev) => ({ ...prev, website: e.target.value }))}
+              onChange={(e) =>
+                setProfilData((prev) => ({
+                  ...prev,
+                  website: e.target.value,
+                }))
+              }
             />
           </IconLabel>
           <Group inline>
