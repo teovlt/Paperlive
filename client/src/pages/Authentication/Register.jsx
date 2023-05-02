@@ -3,12 +3,13 @@ import { Container, Form, OptionsContainer } from './authenticationElements';
 import { Button, Caption, Heading1, Heading2, Link, Small } from '../../theme/appElements';
 import Input from '../../components/Input';
 import useAuth from '../../hooks/useAuth';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from '../../api/axios';
 import DropdownMenu from '../../components/DropdownMenu';
 import { HiGlobeAlt } from 'react-icons/hi2';
 import i18n from '../../translations/i18n';
+import { ErrorLabel } from './authenticationElements';
 const REGISTER_URL = '/auth/register';
 
 const Register = () => {
@@ -25,6 +26,13 @@ const Register = () => {
   const [passwordConf, setPaswordConf] = useState('');
   const [errMsg, setErrMsg] = useState('');
 
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z\d\s:])(?!.*\s).{8,}$/;
+
+  const lngs = {
+    en: { nativeName: `${t('navbar.english')}`, flag: '🇬🇧' },
+    fr: { nativeName: `${t('navbar.french')}`, flag: '🇫🇷' },
+  };
+
   useEffect(() => {
     nameRef.current.focus();
   }, []);
@@ -33,7 +41,11 @@ const Register = () => {
     setErrMsg('');
   }, [name, password, passwordConf]);
 
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z\d\s:])(?!.*\s).{8,}$/;
+  useEffect(() => {
+    if (password !== passwordConf) {
+      setErrMsg(`${t('navbar.errorPasswordConf')}`);
+    }
+  }, [passwordConf, lngs]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,33 +62,18 @@ const Register = () => {
         setPassword('');
         setPaswordConf('');
         navigate('/', { replace: true });
-        console.log('oui');
       } else {
         if (!passwordRegex.test(password)) {
-          console.log(
-            'Votre mot de passe doit contenir au moins 8 caractères, dont une majuscule une minuscule 1 chiffre et 1 caractère spécial'
-          );
+          setErrMsg(`${t('navbar.regex')}`);
         }
-        if (password !== passwordConf) {
-          console.log('Vos mots de passe ne sont pas les mêmes');
-        }
-        //vérif nom de team déja pris
-
-        console.log(password);
-        console.log(passwordConf);
       }
     } catch (error) {
       if (!error?.response) {
-        setErrMsg('No Server Response');
+        setErrMsg(`${t('navbar.servorError')}`);
       } else {
-        setErrMsg('Register Failed');
+        setErrMsg(`${t('navbar.registerError')}`);
       }
     }
-  };
-
-  const lngs = {
-    en: { nativeName: `${t('navbar.english')}`, flag: '🇬🇧' },
-    fr: { nativeName: `${t('navbar.french')}`, flag: '🇫🇷' },
   };
 
   const languagesDropdownTemplate = {
@@ -132,6 +129,7 @@ const Register = () => {
             value={passwordConf}
             required
           />
+          {errMsg && <ErrorLabel>{errMsg}</ErrorLabel>}
           <Button type='submit'>{t('register.signUp')}</Button>
           <Caption>
             {t('register.textSignIn')}

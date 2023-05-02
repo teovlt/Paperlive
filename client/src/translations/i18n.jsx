@@ -23,6 +23,11 @@ i18n
             language: 'Current language',
             english: 'English',
             french: 'French',
+            regex:
+              'The password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, one digit, and one special character. Please try again.',
+            errorPasswordConf: 'The passwords do not match. Please try again.',
+            servorError: 'No Server Response',
+            registerError: 'Register Failed',
           },
           sideBar: {
             edit: 'Edit Profile',
@@ -69,6 +74,11 @@ i18n
             language: 'Langue actuelle',
             english: 'Anglais',
             french: 'Français',
+            regex:
+              'Le mot de passe doit avoir au moins 8 caractères, contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial. Veuillez réessayer.',
+            errorPasswordConf: 'Les mots de passe ne correspondent pas. Veuillez réessayer.',
+            servorError: 'Le serveur ne répond pas',
+            registerError: "Erreur lors de l'enregistrement",
           },
           sideBar: {
             edit: 'Modifier votre profil',
