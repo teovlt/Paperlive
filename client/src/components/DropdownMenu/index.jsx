@@ -42,6 +42,11 @@ const DropdownMenu = ({ template }) => {
     }
   }, [isOpen]);
 
+  const handleAction = (action) => {
+    action();
+    setIsOpen(false);
+  };
+
   return (
     <DropdownContainer>
       <DropdownToggle ref={menuToggleRef} onClick={() => setIsOpen(!isOpen)}>
@@ -60,7 +65,7 @@ const DropdownMenu = ({ template }) => {
               )}
               {group.actions &&
                 group.actions.map((action, index) => (
-                  <MenuButton key={index} onClick={action.onClick}>
+                  <MenuButton key={index} onClick={() => handleAction(action.onClick)}>
                     {action.label}
                   </MenuButton>
                 ))}
