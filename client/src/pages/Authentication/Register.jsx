@@ -29,8 +29,8 @@ const Register = () => {
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z\d\s:])(?!.*\s).{8,}$/;
 
   const lngs = {
-    en: { nativeName: `${t('navbar.english')}`, flag: '🇬🇧' },
-    fr: { nativeName: `${t('navbar.french')}`, flag: '🇫🇷' },
+    en: { nativeName: `${t('language.english')}`, flag: '🇬🇧' },
+    fr: { nativeName: `${t('language.french')}`, flag: '🇫🇷' },
   };
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const Register = () => {
 
   useEffect(() => {
     if (password !== passwordConf) {
-      setErrMsg(`${t('navbar.errorPasswordConf')}`);
+      setErrMsg(`${t('register.errorPasswordConf')}`);
     }
   }, [passwordConf, lngs]);
 
@@ -64,14 +64,14 @@ const Register = () => {
         navigate('/', { replace: true });
       } else {
         if (!passwordRegex.test(password)) {
-          setErrMsg(`${t('navbar.regex')}`);
+          setErrMsg(`${t('register.regex')}`);
         }
       }
     } catch (error) {
       if (!error?.response) {
-        setErrMsg(`${t('navbar.servorError')}`);
+        setErrMsg(`${t('authentification.servorError')}`);
       } else {
-        setErrMsg(`${t('navbar.registerError')}`);
+        setErrMsg(`${t('register.registerError')}`);
       }
     }
   };
@@ -80,7 +80,7 @@ const Register = () => {
     toggle: <HiGlobeAlt />,
     groups: [
       {
-        label: `${t('navbar.language')}`,
+        label: `${t('language.current')}`,
         value: lngs[i18n.resolvedLanguage].nativeName,
       },
       {
@@ -105,7 +105,7 @@ const Register = () => {
             type='text'
             ref={nameRef}
             id='name'
-            label={t('register.teamName')}
+            label={t('authentification.teamName')}
             autoComplete='off'
             onChange={(e) => setName(e.target.value)}
             value={name}
@@ -114,7 +114,7 @@ const Register = () => {
           <Input
             type='password'
             id='password'
-            label={t('register.password')}
+            label={t('authentification.password')}
             autoComplete='off'
             onChange={(e) => setPassword(e.target.value)}
             value={password}
@@ -136,7 +136,7 @@ const Register = () => {
             <Link to='/login'>{t('register.signIn')}</Link>
           </Caption>
         </Form>
-        <Small>{t('register.bottom')}</Small>
+        <Small>{t('authentification.bottom')}</Small>
       </Container>
     </>
   );

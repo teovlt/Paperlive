@@ -11,8 +11,8 @@ import { useNavigate } from 'react-router-dom';
 const NavBar = () => {
   const { t } = useTranslation();
   const lngs = {
-    en: { nativeName: `${t('navbar.english')}`, flag: '🇬🇧' },
-    fr: { nativeName: `${t('navbar.french')}`, flag: '🇫🇷' },
+    en: { nativeName: `${t('language.english')}`, flag: '🇬🇧' },
+    fr: { nativeName: `${t('language.french')}`, flag: '🇫🇷' },
   };
 
   const logout = useLogout();
@@ -27,7 +27,7 @@ const NavBar = () => {
     toggle: <HiGlobeAlt />,
     groups: [
       {
-        label: `${t('navbar.language')}`,
+        label: `${t('language.current')}`,
         value: lngs[i18n.resolvedLanguage].nativeName,
       },
       {

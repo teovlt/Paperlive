@@ -49,25 +49,25 @@ const Login = () => {
       navigate(from, { replace: true });
     } catch (error) {
       if (!error?.response) {
-        setErrMsg('No Server Response');
+        setErrMsg(`${t('authentification.servorError')}`);
       } else if (error.response?.status === 400) {
-        setErrMsg('Invalid credentials');
+        setErrMsg(`${t('login.invalidLogin')}`);
       } else {
-        setErrMsg('Login Failed');
+        setErrMsg(`${t('login.loginError')}`);
       }
     }
   };
 
   const lngs = {
-    en: { nativeName: `${t('navbar.english')}`, flag: '🇬🇧' },
-    fr: { nativeName: `${t('navbar.french')}`, flag: '🇫🇷' },
+    en: { nativeName: `${t('language.english')}`, flag: '🇬🇧' },
+    fr: { nativeName: `${t('language.french')}`, flag: '🇫🇷' },
   };
 
   const languagesDropdownTemplate = {
     toggle: <HiGlobeAlt />,
     groups: [
       {
-        label: `${t('navbar.language')}`,
+        label: `${t('language.current')}`,
         value: lngs[i18n.resolvedLanguage].nativeName,
       },
       {
@@ -92,7 +92,7 @@ const Login = () => {
             type='text'
             ref={nameRef}
             id='name'
-            label={t('login.teamName')}
+            label={t('authentification.teamName')}
             autoComplete='off'
             onChange={(e) => setName(e.target.value)}
             value={name}
@@ -101,7 +101,7 @@ const Login = () => {
           <Input
             type='password'
             id='password'
-            label={t('login.password')}
+            label={t('authentification.password')}
             autoComplete='off'
             onChange={(e) => setPassword(e.target.value)}
             value={password}
@@ -113,7 +113,7 @@ const Login = () => {
             {t('login.textSignUp')} <Link to='/register'>{t('login.signUp')}</Link>
           </Caption>
         </Form>
-        <Small style={{ textAlign: 'center' }}>{t('login.bottom')}</Small>
+        <Small style={{ textAlign: 'center' }}>{t('authentification.bottom')}</Small>
       </Container>
     </>
   );
