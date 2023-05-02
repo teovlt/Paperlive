@@ -27,3 +27,19 @@ export const IconLabel = styled.span`
     color: var(--black);
   }
 `;
+
+export const SelectContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 1.4rem;
+  color: var(--black-tertiary);
+`;
+
+export const Select = styled.select`
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--black-quaternary);
+  border-radius: 4px;
+`;

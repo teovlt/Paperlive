@@ -3,7 +3,7 @@ import useAuth from '../../hooks/useAuth';
 
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
-import { Container, Group, IconLabel } from './sidebarElements';
+import { Container, Group, IconLabel, Select, SelectContainer } from './sidebarElements';
 import { Button, Heading1, Link } from '../../theme/appElements';
 import {
   HiOutlineLink,
@@ -80,6 +80,15 @@ const Sidebar = () => {
       ) : (
         <>
           <Avatar />
+          <SelectContainer>
+            {t('sideBar.visibility')}
+            <Select
+              value={profilData.visibility}
+              onChange={(e) => setProfilData((prev) => ({ ...prev, visibility: e.target.value }))}>
+              <option value={true}>{t('sideBar.public')}</option>
+              <option value={false}>{t('sideBar.private')}</option>
+            </Select>
+          </SelectContainer>
           <TextArea
             id='description'
             label='Description'
