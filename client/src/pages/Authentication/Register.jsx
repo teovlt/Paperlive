@@ -42,16 +42,18 @@ const Register = () => {
   }, [name, password, passwordConf]);
 
   useEffect(() => {
-    if (password !== passwordConf) {
+    if (passwordConf && password !== passwordConf) {
       setErrMsg(`${t('register.errorPasswordConf')}`);
     }
-  }, [passwordConf, i18n.resolvedLanguage]);
+    if (password && !passwordRegex.test(password)) {
+      setErrMsg(`${t('register.errorPasswordFormat')}`);
+    }
+  }, [password, passwordConf, i18n.resolvedLanguage]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      if (passwordRegex.test(password) && password === passwordConf) {
+      if (!errMsg) {
         const res = await axios.post(REGISTER_URL, JSON.stringify({ name, password }), {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
@@ -62,14 +64,10 @@ const Register = () => {
         setPassword('');
         setPaswordConf('');
         navigate('/', { replace: true });
-      } else {
-        if (!passwordRegex.test(password)) {
-          setErrMsg(`${t('register.regex')}`);
-        }
       }
     } catch (error) {
       if (!error?.response) {
-        setErrMsg(`${t('authentification.servorError')}`);
+        setErrMsg(`${t('authentication.servorError')}`);
       } else {
         setErrMsg(`${t('register.registerError')}`);
       }
@@ -105,7 +103,7 @@ const Register = () => {
             type='text'
             ref={nameRef}
             id='name'
-            label={t('authentification.teamName')}
+            label={t('authentication.teamName')}
             autoComplete='off'
             onChange={(e) => setName(e.target.value)}
             value={name}
@@ -114,7 +112,7 @@ const Register = () => {
           <Input
             type='password'
             id='password'
-            label={t('authentification.password')}
+            label={t('authentication.password')}
             autoComplete='off'
             onChange={(e) => setPassword(e.target.value)}
             value={password}
@@ -136,7 +134,7 @@ const Register = () => {
             <Link to='/login'>{t('register.signIn')}</Link>
           </Caption>
         </Form>
-        <Small>{t('authentification.bottom')}</Small>
+        <Small>{t('authentication.bottom')}</Small>
       </Container>
     </>
   );

@@ -29,8 +29,12 @@ module.exports.uploadProfile = (req, res) => {
       { _id: req.teamId },
       { $set: { picture: req.file?.filename } }
     );
-    return res
-      .status(200)
-      .json({ message: 'File uploaded successfully', filename: req.file.filename });
+
+    // If the update was successful, return a 200 OK response with a success message
+    if (result.matchedCount > 0) {
+      return res
+        .status(200)
+        .json({ message: 'File uploaded successfully', filename: req.file.filename });
+    }
   });
 };

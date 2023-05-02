@@ -10,7 +10,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 module.exports.listTeams = async (req, res) => {
   try {
     // Find all the teams and exclude the password field from the result
-    const teams = await Team.find().select('-password');
+    const teams = await Team.find().select('name description picture visibility');
 
     // Return a 200 OK response with the list of teams
     return res.status(200).json(teams);
@@ -96,20 +96,14 @@ module.exports.updateTeam = async (req, res) => {
 
 /**
  * Delete a team by ID.
- * @route DELETE /api/teams/:teamId
+ * @route DELETE /api/teams/delete
  * @group Teams
  * @access Private
  */
 module.exports.deleteTeam = async (req, res) => {
   try {
-    // Get the team ID from the request parameters
-    const { teamId } = req.params;
-    // Check if the ID is a valid MongoDB ObjectId
-    if (!ObjectId.isValid(teamId))
-      return res.status(500).json({ message: `Invalid ID: ${teamId}` });
-
     // Find the team with the givent ID and delete it in the database
-    const result = await Team.deleteOne({ _id: teamId });
+    const result = await Team.deleteOne({ _id: req.teamId });
 
     // If the deletion was successful, return a 200 OK response with a success message
     if (result.deletedCount > 0) {
