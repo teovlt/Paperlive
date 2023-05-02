@@ -43,12 +43,19 @@ const Avatar = () => {
     }
   }
 
+  const handleImgError = () => {
+    setPicture((prev) => ({
+      url: 'http://localhost:3000/api/upload/profile/default.gif',
+      _v: prev._v + 1,
+    }));
+  };
+
   if (!auth.picture) return null;
 
   return (
     <UploadForm onChange={handleSubmit}>
       <UploadAvatarLabel label={t('avatar.hover')}>
-        <Picture src={`${picture.url}?${picture._v}`} alt='avatar' />
+        <Picture src={`${picture.url}?${picture._v}`} onError={handleImgError} alt='avatar' />
         <FileInput type='file' name='file' id='file' accept='.jpg,.jpeg,.png,.gif' />
       </UploadAvatarLabel>
     </UploadForm>

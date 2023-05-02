@@ -51,7 +51,7 @@ export const TextAreaField = styled.textarea`
   outline: 1px solid var(--black-quaternary);
   outline-offset: -1px;
 
-  font-size: 1.6rem;
+  font-size: ${(props) => (props.small ? '1.4rem' : '1.6rem')};
   line-height: 2rem;
 
   &::placeholder {
@@ -78,7 +78,7 @@ export const TextAreaLabel = styled.label`
   top: 2.4rem;
   left: 1.6rem;
 
-  font-size: 1.6rem;
+  font-size: ${(props) => (props.small ? '1.4rem' : '1.6rem')};
   line-height: 1.6rem;
 
   user-select: none;

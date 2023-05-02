@@ -30,4 +30,5 @@ data
 server/coverage
 
 # uploads
-server/uploads
+/server/uploads/profile/*
+!/server/uploads/profile/default.gif

@@ -23,7 +23,9 @@ const TextArea = (props) => {
     <Container>
       <TextAreaContainer>
         <TextAreaField {...props} placeholder=' ' ref={textareaRef} onInput={updateHeight} />
-        <TextAreaLabel htmlFor={props.id}>{props.label}</TextAreaLabel>
+        <TextAreaLabel htmlFor={props.id} small={props.small}>
+          {props.label}
+        </TextAreaLabel>
         <CharacterCounter>
           {props.value ? props.value.length : 0}/{props.maxLength}
         </CharacterCounter>
