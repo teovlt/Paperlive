@@ -37,17 +37,21 @@ const Login = () => {
 
   useEffect(() => {
     setErrMsg('');
-  }, [name, password]);
+  }, [name, password, t]);
 
-  const updateErrMsg = (error) => {
-    if (!error?.response) {
-      setErrMsg(`${t('authentification.servorError')}`);
-    } else if (error.response?.status === 400) {
-      setErrMsg(`${t('login.invalidLogin')}`);
-    } else {
-      setErrMsg(`${t('login.loginError')}`);
-    }
-  };
+  useEffect(() => {
+    const errorMessages = {
+      serverError: t('authentification.servorError'),
+      invalidLogin: t('login.invalidLogin'),
+      loginError: t('login.loginError'),
+    };
+
+    Object.entries(errorMessages).forEach(([key, value]) => {
+      if (errMsg && errMsg === value) {
+        setErrMsg(errorMessages[key]);
+      }
+    });
+  }, [t]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,21 +67,15 @@ const Login = () => {
       setPassword('');
       navigate(from, { replace: true });
     } catch (error) {
-      updateErrMsg(error);
+      if (!error?.response) {
+        setErrMsg(`${t('authentification.servorError')}`);
+      } else if (error.response?.status === 400) {
+        setErrMsg(`${t('login.invalidLogin')}`);
+      } else {
+        setErrMsg(`${t('login.loginError')}`);
+      }
     }
   };
-
-  useEffect(() => {
-    // mettre à jour le message d'erreur lorsque la langue change
-    i18n.on('languageChanged', () => {
-      updateErrMsg();
-    });
-    return () => {
-      i18n.off('languageChanged', () => {
-        updateErrMsg();
-      });
-    };
-  }, [i18n, t]);
 
   const languagesDropdownTemplate = {
     toggle: <HiGlobeAlt />,
