@@ -175,21 +175,3 @@ export const DivTop = styled.div`
   z-index: -1;
 `;
 
-export const Loading = styled.div`
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  align-items: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
-  height: 50vh;
-  font-size: 32px;
-
-  svg {
-    color: var(--accent);
-    width: 80px;
-    height: 80px;
-  }
-`;

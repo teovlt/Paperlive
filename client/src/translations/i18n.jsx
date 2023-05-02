@@ -11,7 +11,6 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    debug: true,
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
@@ -58,6 +57,9 @@ i18n
             bottom:
               'By creating an account, you agree to the terms of service. For more information about PaperLive’s privacy practices, see the privacy Statement.',
           },
+          footer: {
+            label: 'Copyright © 2023 PaperLive. All rights reserved.',
+          },
         },
       },
       fr: {
@@ -100,6 +102,9 @@ i18n
             textSignIn: 'Vous possèdez déja un compte? ',
             bottom:
               "En créant un compte, vous acceptez les conditions d'utilisation. Pour plus d'informations sur les pratiques de confidentialité de PaperLive, consultez la déclaration de confidentialité.",
+          },
+          footer: {
+            label: 'Copyright © 2023 PaperLive. Tout droits réservés.',
           },
         },
       },

@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Container, Form } from './authenticationElements';
+import { Container, Form, DivLanguageIcon } from './authenticationElements';
 import { Button, Caption, Heading1, Heading2, Link, Small } from '../../theme/appElements';
 import Input from '../../components/Input';
 import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from '../../api/axios';
+import { HiOutlineGlobeAlt } from 'react-icons/hi2';
 const LOGIN_URL = '/auth/login';
 
 const Login = () => {
@@ -57,6 +58,9 @@ const Login = () => {
 
   return (
     <Container>
+      <DivLanguageIcon>
+        <HiOutlineGlobeAlt />
+      </DivLanguageIcon>
       <Heading1>PaperLive</Heading1>
       <Form onSubmit={handleSubmit}>
         <Heading2>{t('login.welcome')}</Heading2>

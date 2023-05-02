@@ -19,3 +19,14 @@ export const Form = styled.form`
   align-items: center;
   row-gap: 16px;
 `;
+
+export const DivLanguageIcon = styled.div`
+  position: absolute;
+  top: 3.2rem;
+  right: 3.2rem;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+`;
