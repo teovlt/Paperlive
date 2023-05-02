@@ -8,7 +8,7 @@ import {
   MenuLabel,
 } from './dropdownMenuElements';
 
-const DropdownMenu = ({ template }) => {
+const DropdownMenu = ({ template, gap = 48 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ left: 0 });
 
@@ -53,7 +53,7 @@ const DropdownMenu = ({ template }) => {
         {template.toggle}
       </DropdownToggle>
       {isOpen && (
-        <Dropdown style={menuPosition} ref={menuRef}>
+        <Dropdown style={menuPosition} gap={gap} ref={menuRef}>
           {template.groups.map((group, index) => (
             <MenuGroup key={index}>
               {group.label && (

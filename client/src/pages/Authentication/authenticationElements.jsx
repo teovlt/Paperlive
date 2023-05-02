@@ -30,3 +30,15 @@ export const DivLanguageIcon = styled.div`
     height: 30px;
   }
 `;
+
+export const OptionsContainer = styled.div`
+  position: absolute;
+  top: calc(32px + 18px);
+  right: calc(32px + 18px);
+  transform: translateY(-50%);
+`;
+
+export const ErrorLabel = styled.span`
+  font-size: 14px;
+  color: var(--negative);
+`;

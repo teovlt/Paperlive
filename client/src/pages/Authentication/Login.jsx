@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Container, Form, DivLanguageIcon } from './authenticationElements';
+import { Container, ErrorLabel, Form, OptionsContainer } from './authenticationElements';
 import { Button, Caption, Heading1, Heading2, Link, Small } from '../../theme/appElements';
 import Input from '../../components/Input';
 import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from '../../api/axios';
-import { HiOutlineGlobeAlt } from 'react-icons/hi2';
+import DropdownMenu from '../../components/DropdownMenu';
+import { HiGlobeAlt } from 'react-icons/hi2';
+import i18n from '../../translations/i18n';
 const LOGIN_URL = '/auth/login';
 
 const Login = () => {
@@ -49,47 +51,71 @@ const Login = () => {
       if (!error?.response) {
         setErrMsg('No Server Response');
       } else if (error.response?.status === 400) {
-        setErrMsg('Missing Username or Password');
+        setErrMsg('Invalid credentials');
       } else {
         setErrMsg('Login Failed');
       }
     }
   };
 
+  const lngs = {
+    en: { nativeName: `${t('navbar.english')}`, flag: '🇬🇧' },
+    fr: { nativeName: `${t('navbar.french')}`, flag: '🇫🇷' },
+  };
+
+  const languagesDropdownTemplate = {
+    toggle: <HiGlobeAlt />,
+    groups: [
+      {
+        label: `${t('navbar.language')}`,
+        value: lngs[i18n.resolvedLanguage].nativeName,
+      },
+      {
+        actions: Object.keys(lngs).map((lng) => ({
+          label: `${lngs[lng].flag} ${lngs[lng].nativeName}`,
+          onClick: () => i18n.changeLanguage(lng),
+        })),
+      },
+    ],
+  };
+
   return (
-    <Container>
-      <DivLanguageIcon>
-        <HiOutlineGlobeAlt />
-      </DivLanguageIcon>
-      <Heading1>PaperLive</Heading1>
-      <Form onSubmit={handleSubmit}>
-        <Heading2>{t('login.welcome')}</Heading2>
-        <Input
-          type='text'
-          ref={nameRef}
-          id='name'
-          label={t('login.teamName')}
-          autoComplete='off'
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-          required
-        />
-        <Input
-          type='password'
-          id='password'
-          label={t('login.password')}
-          autoComplete='off'
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          required
-        />
-        <Button type='submit'>{t('login.signIn')}</Button>
-        <Caption>
-          {t('login.textSignUp')} <Link to='/register'>{t('login.signUp')}</Link>
-        </Caption>
-      </Form>
-      <Small style={{ textAlign: 'center' }}>{t('login.bottom')}</Small>
-    </Container>
+    <>
+      <OptionsContainer>
+        <DropdownMenu template={languagesDropdownTemplate} gap={27} />
+      </OptionsContainer>
+      <Container>
+        <Heading1>PaperLive</Heading1>
+        <Form onSubmit={handleSubmit}>
+          <Heading2>{t('login.welcome')}</Heading2>
+          <Input
+            type='text'
+            ref={nameRef}
+            id='name'
+            label={t('login.teamName')}
+            autoComplete='off'
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            required
+          />
+          <Input
+            type='password'
+            id='password'
+            label={t('login.password')}
+            autoComplete='off'
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            required
+          />
+          {errMsg && <ErrorLabel>{errMsg}</ErrorLabel>}
+          <Button type='submit'>{t('login.signIn')}</Button>
+          <Caption>
+            {t('login.textSignUp')} <Link to='/register'>{t('login.signUp')}</Link>
+          </Caption>
+        </Form>
+        <Small style={{ textAlign: 'center' }}>{t('login.bottom')}</Small>
+      </Container>
+    </>
   );
 };
 
