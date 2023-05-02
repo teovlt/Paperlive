@@ -91,7 +91,7 @@ const Sidebar = () => {
           </SelectContainer>
           <TextArea
             id='description'
-            label='Description'
+            label={t('sideBar.description')}
             maxLength='240'
             autoComplete='off'
             small
@@ -102,7 +102,7 @@ const Sidebar = () => {
             <HiOutlineMapPin />
             <Input
               id='location'
-              label='Location'
+              label={t('sideBar.location')}
               autoComplete='off'
               small
               value={profilData.location}

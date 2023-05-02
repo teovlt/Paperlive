@@ -26,6 +26,8 @@ i18n
             visibility: 'Visibility',
             cancel: 'Cancel',
             save: 'Save',
+            description: 'Description',
+            location: 'Location',
             webSite: 'Website',
             public: 'public',
             private: 'private',
@@ -51,7 +53,7 @@ i18n
             signUp: 'Sign Up',
             textSignIn: 'Already have an account? ',
 
-            regex:
+            errorPasswordFormat:
               'The password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, one digit, and one special character. Please try again.',
             errorPasswordConf: 'The passwords do not match. Please try again.',
             registerError: 'Register Failed',
@@ -83,6 +85,8 @@ i18n
             visibility: 'Visibilité',
             cancel: 'Annuler',
             save: 'Enregistrer',
+            description: 'Description',
+            location: 'Localisation',
             webSite: 'Site internet',
             public: 'public',
             private: 'privé',
@@ -105,7 +109,7 @@ i18n
             signIn: 'Se connecter',
             signUp: "S'inscrire",
             textSignIn: 'Vous possèdez déja un compte? ',
-            regex:
+            errorPasswordFormat:
               'Le mot de passe doit avoir au moins 8 caractères, contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial. Veuillez réessayer.',
             errorPasswordConf: 'Les mots de passe ne correspondent pas. Veuillez réessayer.',
             registerError: "Erreur lors de l'enregistrement",
