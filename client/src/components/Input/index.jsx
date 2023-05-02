@@ -28,7 +28,9 @@ const Input = forwardRef((props, ref) => {
           type={props.type === 'password' ? (pwdVisible ? 'text' : 'password') : props.type}
           defaultType={props.type}
         />
-        <InputLabel htmlFor={props.id}>{props.label}</InputLabel>
+        <InputLabel htmlFor={props.id} small={props.small}>
+          {props.label}
+        </InputLabel>
         {props.type === 'password' &&
           (pwdVisible ? (
             <HiEye

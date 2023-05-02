@@ -85,6 +85,7 @@ const Sidebar = () => {
             label='Description'
             maxLength='240'
             autoComplete='off'
+            small
             value={profilData.description}
             onChange={(e) => setProfilData((prev) => ({ ...prev, description: e.target.value }))}
           />
@@ -94,6 +95,7 @@ const Sidebar = () => {
               id='location'
               label='Location'
               autoComplete='off'
+              small
               value={profilData.location}
               onChange={(e) => setProfilData((prev) => ({ ...prev, location: e.target.value }))}
             />
@@ -104,6 +106,7 @@ const Sidebar = () => {
               id='website'
               label={t('sideBar.webSite')}
               autoComplete='off'
+              small
               value={profilData.website}
               onChange={(e) => setProfilData((prev) => ({ ...prev, website: e.target.value }))}
             />
