@@ -30,4 +30,4 @@ data
 server/coverage
 
 # uploads
-server/uploads
+uploads
