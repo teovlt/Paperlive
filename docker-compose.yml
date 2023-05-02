@@ -1,5 +1,21 @@
 version: '3'
 services:
+  app:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    depends_on:
+      - api
+    ports:
+      - '5173:5173'
+    command: npm run dev
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URI=http://api:3000
+    networks:
+      - paperlive-network
   api:
     build:
       context: ./server
@@ -12,9 +28,16 @@ services:
     volumes:
       - ./server:/app
       - /app/node_modules
+    networks:
+      - paperlive-network
   db:
     image: mongo:latest
     ports:
       - '27017:27017'
     volumes:
       - ./server/data:/data/db
+    networks:
+      - paperlive-network
+
+networks:
+  paperlive-network:

@@ -13,8 +13,12 @@ restart:
 	docker compose up -d
 ps:
 	docker compose ps
-logs:
+logs-app:
+	docker compose logs -f app
+logs-api:
 	docker compose logs -f api
+logs-db:
+	docker compose logs -f db
 test:
 	docker exec -it paperlive-api-1 npm run test
 coverage:

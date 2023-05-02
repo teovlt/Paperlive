@@ -37,13 +37,17 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    font-family: 'Poppins', 'Helvetica', 'Arial';
     font-size: 1.6rem;
     font-smooth: auto;
-    font-family: 'Poppins', 'Helvetica', 'Arial';
   }
 
   svg {
     font-size: 2rem;
+  }
+
+  button, textarea, input {
+    font-family: 'Poppins';
   }
 `;
 

@@ -52,7 +52,6 @@ export const Button = styled.button`
   text-align: center;
   border-radius: 2px;
 
-  font-weight: 500;
   font-size: ${(props) => (props.secondary ? '1.4rem' : '1.6rem')};
   line-height: 1.6rem;
   text-decoration: none;

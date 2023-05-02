@@ -3,7 +3,7 @@ import { Container as AppContainer, Button as btn } from '../../theme/appElement
 
 export const Container = styled(AppContainer)`
   display: grid;
-  grid-template-columns: 25% 1fr;
+  grid-template-columns: 256px 1fr;
   grid-template-rows: 56px 1fr;
 `;
 

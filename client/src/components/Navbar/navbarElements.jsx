@@ -32,12 +32,10 @@ export const ShearchBar = styled.div`
 `;
 
 export const Actions = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-  column-gap: 32px;
   user-select: none;
-  `;
+  display: flex;
+  column-gap: 32px;
+`;
 
 export const H1 = styled(titre)`
   color: var(--white);

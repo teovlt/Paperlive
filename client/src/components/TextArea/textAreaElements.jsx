@@ -52,7 +52,7 @@ export const TextAreaField = styled.textarea`
   outline-offset: -1px;
 
   font-size: 1.6rem;
-  line-height: 1.6rem;
+  line-height: 2rem;
 
   &::placeholder {
     user-select: none;

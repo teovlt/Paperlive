@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import useRefreshToken from '../hooks/useRefreshToken';
 import useAuth from '../hooks/useAuth';
-import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import { Loading } from '../theme/appElements';
 import { UilSpinnerAlt } from '@iconscout/react-unicons';
 
 const PersistLogin = () => {
   const refresh = useRefreshToken();
   const { auth, setAuth } = useAuth();
-  const axiosPrivate = useAxiosPrivate();
 
   const [isLoading, setIsLoading] = useState(true);
 

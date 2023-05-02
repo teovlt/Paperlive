@@ -21,6 +21,7 @@ i18n
         translation: {
           navbar: {
             search: 'Search',
+            language: 'Current language',
             english: 'English',
             french: 'French',
           },
@@ -63,6 +64,7 @@ i18n
         translation: {
           navbar: {
             search: 'Rechercher',
+            language: 'Langue actuelle',
             english: 'Anglais',
             french: 'Français',
           },
