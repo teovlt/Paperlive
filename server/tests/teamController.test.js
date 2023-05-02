@@ -167,7 +167,7 @@ describe('PUT /api/teams', () => {
   });
 });
 
-describe('DELETE /api/teams/:teamId', () => {
+describe('DELETE /api/teams/delete', () => {
   let team;
 
   beforeEach(async () => {
@@ -182,7 +182,7 @@ describe('DELETE /api/teams/:teamId', () => {
 
   it('should delete a team and return 200 OK reponse with a success message', async () => {
     const res = await request(app)
-      .delete(`/api/teams/${team._id}`)
+      .delete(`/api/teams/delete`)
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
     expect(res.status).toBe(200);
@@ -196,21 +196,11 @@ describe('DELETE /api/teams/:teamId', () => {
   it('should return a 404 Not Found response with an error message if the team does not exist', async () => {
     const unknownId = new mongoose.Types.ObjectId();
     const res = await request(app)
-      .delete(`/api/teams/${unknownId}`)
-      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
+      .delete(`/api/teams/delete`)
+      .set('Authorization', `Bearer ${generateAccessToken(unknownId)}`);
 
     expect(res.status).toBe(404);
     expect(res.body).toEqual({ message: 'Team not found' });
-  });
-
-  it('should return a 500 Internal Server Error response with an error message if an invalid team ID is provided', async () => {
-    const invalidId = 'invalid-id';
-    const res = await request(app)
-      .delete(`/api/teams/${invalidId}`)
-      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
-
-    expect(res.status).toBe(500);
-    expect(res.body).toEqual({ message: `Invalid ID: ${invalidId}` });
   });
 
   it('should handle errors properly', async () => {
@@ -220,7 +210,7 @@ describe('DELETE /api/teams/:teamId', () => {
     });
 
     const res = await request(app)
-      .delete(`/api/teams/${team._id}`)
+      .delete(`/api/teams/delete`)
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
     expect(res.status).toBe(500);

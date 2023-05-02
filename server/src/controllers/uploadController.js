@@ -16,8 +16,9 @@ const profileStorage = multer.diskStorage({
 module.exports.getProfile = (req, res) => {
   const filePath = path.join(__dirname, '../../uploads/profile/', req.params.fileName);
   fs.exists(filePath, (exists) => {
-    if (exists) res.sendFile(filePath);
-    else res.status(404).json({ error: 'File not found' });
+    if (exists) 
+    res.sendFile(filePath);
+    else return res.status(404).json({ error: 'File not found' });
   });
 };
 
