@@ -5,7 +5,7 @@ export const DropdownContainer = styled.div`
 `;
 
 export const DropdownToggle = styled.button`
-  color: var(--white);
+  color: inherit;
   display: flex;
   align-items: center;
   position: relative;
@@ -19,7 +19,7 @@ export const DropdownToggle = styled.button`
     transform: translateY(-50%) rotate(90deg);
 
     font-size: 0.6rem;
-    color: var(--white);
+    color: inherit;
   }
 `;
 
@@ -27,7 +27,8 @@ export const Dropdown = styled.div`
   min-width: 200px;
 
   position: absolute;
-  top: 48px;
+  top: ${(props) => `${props.gap}px`};
+  z-index: 9999;
 
   transform: translateX(-50%);
 

@@ -38,7 +38,7 @@ i18n
           },
           login: {
             welcome: 'Welcome',
-            teamName: 'TeamName',
+            teamName: 'Team name',
             password: 'Password',
             signIn: 'Sign In',
             signUp: 'Sign Up',

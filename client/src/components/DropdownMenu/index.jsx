@@ -8,7 +8,7 @@ import {
   MenuLabel,
 } from './dropdownMenuElements';
 
-const DropdownMenu = ({ template }) => {
+const DropdownMenu = ({ template, gap = 48 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ left: 0 });
 
@@ -42,13 +42,18 @@ const DropdownMenu = ({ template }) => {
     }
   }, [isOpen]);
 
+  const handleAction = (action) => {
+    action();
+    setIsOpen(false);
+  };
+
   return (
     <DropdownContainer>
       <DropdownToggle ref={menuToggleRef} onClick={() => setIsOpen(!isOpen)}>
         {template.toggle}
       </DropdownToggle>
       {isOpen && (
-        <Dropdown style={menuPosition} ref={menuRef}>
+        <Dropdown style={menuPosition} gap={gap} ref={menuRef}>
           {template.groups.map((group, index) => (
             <MenuGroup key={index}>
               {group.label && (
@@ -60,7 +65,7 @@ const DropdownMenu = ({ template }) => {
               )}
               {group.actions &&
                 group.actions.map((action, index) => (
-                  <MenuButton key={index} onClick={action.onClick}>
+                  <MenuButton key={index} onClick={() => handleAction(action.onClick)}>
                     {action.label}
                   </MenuButton>
                 ))}
