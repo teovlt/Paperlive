@@ -3,12 +3,13 @@ import { Container, Form, OptionsContainer } from './authenticationElements';
 import { Button, Caption, Heading1, Heading2, Link, Small } from '../../theme/appElements';
 import Input from '../../components/Input';
 import useAuth from '../../hooks/useAuth';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from '../../api/axios';
 import DropdownMenu from '../../components/DropdownMenu';
 import { HiGlobeAlt } from 'react-icons/hi2';
 import i18n from '../../translations/i18n';
+import { ErrorLabel } from './authenticationElements';
 const REGISTER_URL = '/auth/register';
 
 const Register = () => {
@@ -25,6 +26,13 @@ const Register = () => {
   const [passwordConf, setPaswordConf] = useState('');
   const [errMsg, setErrMsg] = useState('');
 
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z\d\s:])(?!.*\s).{8,}$/;
+
+  const lngs = {
+    en: { nativeName: `${t('language.english')}`, flag: '🇬🇧' },
+    fr: { nativeName: `${t('language.french')}`, flag: '🇫🇷' },
+  };
+
   useEffect(() => {
     nameRef.current.focus();
   }, []);
@@ -33,39 +41,46 @@ const Register = () => {
     setErrMsg('');
   }, [name, password, passwordConf]);
 
+  useEffect(() => {
+    if (password !== passwordConf) {
+      setErrMsg(`${t('register.errorPasswordConf')}`);
+    }
+  }, [passwordConf, lngs]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(REGISTER_URL, JSON.stringify({ name, password }), {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-      });
-      const accessToken = res?.data?.accessToken;
-      setAuth({ accessToken });
-      setName('');
-      setPassword('');
-      setPaswordConf('');
-      navigate('/', { replace: true });
+      if (passwordRegex.test(password) && password === passwordConf) {
+        const res = await axios.post(REGISTER_URL, JSON.stringify({ name, password }), {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        });
+        const accessToken = res?.data?.accessToken;
+        setAuth({ accessToken });
+        setName('');
+        setPassword('');
+        setPaswordConf('');
+        navigate('/', { replace: true });
+      } else {
+        if (!passwordRegex.test(password)) {
+          setErrMsg(`${t('register.regex')}`);
+        }
+      }
     } catch (error) {
       if (!error?.response) {
-        setErrMsg('No Server Response');
+        setErrMsg(`${t('authentification.servorError')}`);
       } else {
-        setErrMsg('Register Failed');
+        setErrMsg(`${t('register.registerError')}`);
       }
     }
-  };
-
-  const lngs = {
-    en: { nativeName: `${t('navbar.english')}`, flag: '🇬🇧' },
-    fr: { nativeName: `${t('navbar.french')}`, flag: '🇫🇷' },
   };
 
   const languagesDropdownTemplate = {
     toggle: <HiGlobeAlt />,
     groups: [
       {
-        label: `${t('navbar.language')}`,
+        label: `${t('language.current')}`,
         value: lngs[i18n.resolvedLanguage].nativeName,
       },
       {
@@ -90,7 +105,7 @@ const Register = () => {
             type='text'
             ref={nameRef}
             id='name'
-            label={t('register.teamName')}
+            label={t('authentification.teamName')}
             autoComplete='off'
             onChange={(e) => setName(e.target.value)}
             value={name}
@@ -99,7 +114,7 @@ const Register = () => {
           <Input
             type='password'
             id='password'
-            label={t('register.password')}
+            label={t('authentification.password')}
             autoComplete='off'
             onChange={(e) => setPassword(e.target.value)}
             value={password}
@@ -114,13 +129,14 @@ const Register = () => {
             value={passwordConf}
             required
           />
+          {errMsg && <ErrorLabel>{errMsg}</ErrorLabel>}
           <Button type='submit'>{t('register.signUp')}</Button>
           <Caption>
             {t('register.textSignIn')}
             <Link to='/login'>{t('register.signIn')}</Link>
           </Caption>
         </Form>
-        <Small>{t('register.bottom')}</Small>
+        <Small>{t('authentification.bottom')}</Small>
       </Container>
     </>
   );

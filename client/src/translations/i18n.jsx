@@ -20,9 +20,6 @@ i18n
         translation: {
           navbar: {
             search: 'Search',
-            language: 'Current language',
-            english: 'English',
-            french: 'French',
           },
           sideBar: {
             edit: 'Edit Profile',
@@ -38,27 +35,41 @@ i18n
           },
           login: {
             welcome: 'Welcome',
-            teamName: 'Team name',
-            password: 'Password',
+
             signIn: 'Sign In',
             signUp: 'Sign Up',
             textSignUp: 'New to PaperLive ?',
-            bottom:
-              'By creating an account, you agree to the terms of service. For more information about PaperLive’s privacy practices, see the privacy Statement.',
+
+            loginError: 'Login Failed',
+            invalidLogin: 'Invalid Credentials',
           },
           register: {
             welcome: 'Create your profile',
-            teamName: 'TeamName',
-            password: 'Password',
+
             password2: 'Confirm your password',
             signIn: 'Sign In',
             signUp: 'Sign Up',
             textSignIn: 'Already have an account? ',
+
+            regex:
+              'The password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, one digit, and one special character. Please try again.',
+            errorPasswordConf: 'The passwords do not match. Please try again.',
+            registerError: 'Register Failed',
+          },
+          authentification: {
+            servorError: 'No Server Response',
             bottom:
               'By creating an account, you agree to the terms of service. For more information about PaperLive’s privacy practices, see the privacy Statement.',
+            teamName: 'Team name',
+            password: 'Password',
           },
           footer: {
             label: 'Copyright © 2023 PaperLive. All rights reserved.',
+          },
+          language: {
+            current: 'Current language',
+            english: 'English',
+            french: 'French',
           },
         },
       },
@@ -66,9 +77,6 @@ i18n
         translation: {
           navbar: {
             search: 'Rechercher',
-            language: 'Langue actuelle',
-            english: 'Anglais',
-            french: 'Français',
           },
           sideBar: {
             edit: 'Modifier votre profil',
@@ -84,27 +92,38 @@ i18n
           },
           login: {
             welcome: 'Bienvenue',
-            teamName: "Nom de l'équipe",
-            password: 'Mot de passe',
+
             signIn: 'Se connecter',
             signUp: "S'enregistrer",
             textSignUp: 'Nouveau sur PaperLive ?',
-            bottom:
-              "En créant un compte, vous acceptez les conditions d'utilisation. Pour plus d'informations sur les pratiques de confidentialité de PaperLive, consultez la déclaration de confidentialité.",
+            loginError: 'Erreur lors de la connexion',
+            invalidLogin: 'Identifiants invalides',
           },
           register: {
             welcome: 'Créer votre compte',
-            teamName: "Nom de l'équipe",
-            password: 'Mot de passe',
             password2: 'Confirmer votre mot de passe',
             signIn: 'Se connecter',
             signUp: "S'inscrire",
             textSignIn: 'Vous possèdez déja un compte? ',
+            regex:
+              'Le mot de passe doit avoir au moins 8 caractères, contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial. Veuillez réessayer.',
+            errorPasswordConf: 'Les mots de passe ne correspondent pas. Veuillez réessayer.',
+            registerError: "Erreur lors de l'enregistrement",
+          },
+          authentification: {
+            servorError: 'Le serveur ne répond pas',
             bottom:
               "En créant un compte, vous acceptez les conditions d'utilisation. Pour plus d'informations sur les pratiques de confidentialité de PaperLive, consultez la déclaration de confidentialité.",
+            teamName: "Nom de l'équipe",
+            password: 'Mot de passe',
           },
           footer: {
             label: 'Copyright © 2023 PaperLive. Tout droits réservés.',
+          },
+          language: {
+            current: 'Langue actuelle',
+            english: 'Anglais',
+            french: 'Français',
           },
         },
       },
