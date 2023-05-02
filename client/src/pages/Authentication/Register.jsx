@@ -45,7 +45,7 @@ const Register = () => {
     if (password !== passwordConf) {
       setErrMsg(`${t('register.errorPasswordConf')}`);
     }
-  }, [passwordConf, lngs]);
+  }, [passwordConf, i18n.resolvedLanguage]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
