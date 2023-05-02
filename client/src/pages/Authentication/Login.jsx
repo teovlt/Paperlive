@@ -12,7 +12,7 @@ import i18n from '../../translations/i18n';
 const LOGIN_URL = '/auth/login';
 
 const Login = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { setAuth } = useAuth();
 
   const navigate = useNavigate();
@@ -26,6 +26,11 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
 
+  const lngs = {
+    en: { nativeName: `${t('language.english')}`, flag: '🇬🇧' },
+    fr: { nativeName: `${t('language.french')}`, flag: '🇫🇷' },
+  };
+
   useEffect(() => {
     nameRef.current.focus();
   }, []);
@@ -33,6 +38,16 @@ const Login = () => {
   useEffect(() => {
     setErrMsg('');
   }, [name, password]);
+
+  const updateErrMsg = (error) => {
+    if (!error?.response) {
+      setErrMsg(`${t('authentification.servorError')}`);
+    } else if (error.response?.status === 400) {
+      setErrMsg(`${t('login.invalidLogin')}`);
+    } else {
+      setErrMsg(`${t('login.loginError')}`);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,20 +63,21 @@ const Login = () => {
       setPassword('');
       navigate(from, { replace: true });
     } catch (error) {
-      if (!error?.response) {
-        setErrMsg(`${t('authentification.servorError')}`);
-      } else if (error.response?.status === 400) {
-        setErrMsg(`${t('login.invalidLogin')}`);
-      } else {
-        setErrMsg(`${t('login.loginError')}`);
-      }
+      updateErrMsg(error);
     }
   };
 
-  const lngs = {
-    en: { nativeName: `${t('language.english')}`, flag: '🇬🇧' },
-    fr: { nativeName: `${t('language.french')}`, flag: '🇫🇷' },
-  };
+  useEffect(() => {
+    // mettre à jour le message d'erreur lorsque la langue change
+    i18n.on('languageChanged', () => {
+      updateErrMsg();
+    });
+    return () => {
+      i18n.off('languageChanged', () => {
+        updateErrMsg();
+      });
+    };
+  }, [i18n, t]);
 
   const languagesDropdownTemplate = {
     toggle: <HiGlobeAlt />,
