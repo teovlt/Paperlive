@@ -19,7 +19,7 @@ export const InputContainer = styled.div`
 export const InputField = styled.input`
   width: 100%;
   padding: 1.6rem;
-  /* TODO: password */
+  padding-right: ${(props) => props.defaultType === 'password' && '48px'};
   border-radius: 0.2rem;
 
   outline: 1px solid var(--black-quaternary);
@@ -74,7 +74,3 @@ export const InputLabel = styled.label`
     background: var(--white);
   }
 `;
-
-export const ErrorContainer = styled.div``;
-
-export const ErrorLabel = styled.span``;
