@@ -34,6 +34,7 @@ const Input = forwardRef((props, ref) => {
             <HiEye
               onMouseDown={togglePwdVisibility}
               style={{
+                cursor: 'pointer',
                 color: 'var(--black-tertiary)',
                 position: 'absolute',
                 top: '50%',
@@ -45,6 +46,7 @@ const Input = forwardRef((props, ref) => {
             <HiEyeSlash
               onMouseDown={togglePwdVisibility}
               style={{
+                cursor: 'pointer',
                 color: 'var(--black-tertiary)',
                 position: 'absolute',
                 top: '50%',
