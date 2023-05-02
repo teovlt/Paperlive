@@ -12,7 +12,7 @@ import i18n from '../../translations/i18n';
 const LOGIN_URL = '/auth/login';
 
 const Login = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { setAuth } = useAuth();
 
   const navigate = useNavigate();
@@ -26,13 +26,32 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
 
+  const lngs = {
+    en: { nativeName: `${t('language.english')}`, flag: '🇬🇧' },
+    fr: { nativeName: `${t('language.french')}`, flag: '🇫🇷' },
+  };
+
   useEffect(() => {
     nameRef.current.focus();
   }, []);
 
   useEffect(() => {
     setErrMsg('');
-  }, [name, password]);
+  }, [name, password, t]);
+
+  useEffect(() => {
+    const errorMessages = {
+      serverError: t('authentification.servorError'),
+      invalidLogin: t('login.invalidLogin'),
+      loginError: t('login.loginError'),
+    };
+
+    Object.entries(errorMessages).forEach(([key, value]) => {
+      if (errMsg && errMsg === value) {
+        setErrMsg(errorMessages[key]);
+      }
+    });
+  }, [t]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,11 +75,6 @@ const Login = () => {
         setErrMsg(`${t('login.loginError')}`);
       }
     }
-  };
-
-  const lngs = {
-    en: { nativeName: `${t('language.english')}`, flag: '🇬🇧' },
-    fr: { nativeName: `${t('language.french')}`, flag: '🇫🇷' },
   };
 
   const languagesDropdownTemplate = {
