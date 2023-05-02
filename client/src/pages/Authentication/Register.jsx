@@ -67,7 +67,7 @@ const Register = () => {
       }
     } catch (error) {
       if (!error?.response) {
-        setErrMsg(`${t('authentification.servorError')}`);
+        setErrMsg(`${t('authentication.servorError')}`);
       } else {
         setErrMsg(`${t('register.registerError')}`);
       }
@@ -103,7 +103,7 @@ const Register = () => {
             type='text'
             ref={nameRef}
             id='name'
-            label={t('authentification.teamName')}
+            label={t('authentication.teamName')}
             autoComplete='off'
             onChange={(e) => setName(e.target.value)}
             value={name}
@@ -112,7 +112,7 @@ const Register = () => {
           <Input
             type='password'
             id='password'
-            label={t('authentification.password')}
+            label={t('authentication.password')}
             autoComplete='off'
             onChange={(e) => setPassword(e.target.value)}
             value={password}
@@ -134,7 +134,7 @@ const Register = () => {
             <Link to='/login'>{t('register.signIn')}</Link>
           </Caption>
         </Form>
-        <Small>{t('authentification.bottom')}</Small>
+        <Small>{t('authentication.bottom')}</Small>
       </Container>
     </>
   );

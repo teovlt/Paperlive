@@ -58,7 +58,7 @@ i18n
             errorPasswordConf: 'The passwords do not match. Please try again.',
             registerError: 'Register Failed',
           },
-          authentification: {
+          authentication: {
             servorError: 'No Server Response',
             bottom:
               'By creating an account, you agree to the terms of service. For more information about PaperLive’s privacy practices, see the privacy Statement.',
@@ -114,7 +114,7 @@ i18n
             errorPasswordConf: 'Les mots de passe ne correspondent pas. Veuillez réessayer.',
             registerError: "Erreur lors de l'enregistrement",
           },
-          authentification: {
+          authentication: {
             servorError: 'Le serveur ne répond pas',
             bottom:
               "En créant un compte, vous acceptez les conditions d'utilisation. Pour plus d'informations sur les pratiques de confidentialité de PaperLive, consultez la déclaration de confidentialité.",

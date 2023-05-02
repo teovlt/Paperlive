@@ -41,7 +41,7 @@ const Login = () => {
 
   useEffect(() => {
     const errorMessages = {
-      serverError: t('authentification.servorError'),
+      serverError: t('authentication.servorError'),
       invalidLogin: t('login.invalidLogin'),
       loginError: t('login.loginError'),
     };
@@ -68,7 +68,7 @@ const Login = () => {
       navigate(from, { replace: true });
     } catch (error) {
       if (!error?.response) {
-        setErrMsg(`${t('authentification.servorError')}`);
+        setErrMsg(`${t('authentication.servorError')}`);
       } else if (error.response?.status === 400) {
         setErrMsg(`${t('login.invalidLogin')}`);
       } else {
@@ -106,7 +106,7 @@ const Login = () => {
             type='text'
             ref={nameRef}
             id='name'
-            label={t('authentification.teamName')}
+            label={t('authentication.teamName')}
             autoComplete='off'
             onChange={(e) => setName(e.target.value)}
             value={name}
@@ -115,7 +115,7 @@ const Login = () => {
           <Input
             type='password'
             id='password'
-            label={t('authentification.password')}
+            label={t('authentication.password')}
             autoComplete='off'
             onChange={(e) => setPassword(e.target.value)}
             value={password}
@@ -127,7 +127,7 @@ const Login = () => {
             {t('login.textSignUp')} <Link to='/register'>{t('login.signUp')}</Link>
           </Caption>
         </Form>
-        <Small style={{ textAlign: 'center' }}>{t('authentification.bottom')}</Small>
+        <Small style={{ textAlign: 'center' }}>{t('authentication.bottom')}</Small>
       </Container>
     </>
   );
