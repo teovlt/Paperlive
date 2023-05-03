@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import { useTranslation } from 'react-i18next';
 
 import { DashboardNav, Heading2 } from '../../theme/appElements';
 import { Container, SectionMain } from './homeElements';
@@ -9,6 +10,7 @@ import Sidebar from '../../components/Sidebar';
 import LayoutMain from '../../components/LayoutMain';
 
 const Home = () => {
+  const { t } = useTranslation();
   const { auth, setAuth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
 
@@ -34,11 +36,11 @@ const Home = () => {
         <Sidebar />
         <LayoutMain>
           <SectionMain>
-            <Heading2>About us</Heading2>
+            <Heading2>{t('home.desc')}</Heading2>
             <p>{auth.description}</p>
           </SectionMain>
           <SectionMain>
-            <Heading2>Recent activity</Heading2>
+            <Heading2>{t('home.activity')}</Heading2>
             <p>Nothing here for the moment</p>
           </SectionMain>
         </LayoutMain>

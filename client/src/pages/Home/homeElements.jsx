@@ -16,24 +16,6 @@ export const CaptionWarning = styled.span`
   width: 100%;
 `;
 
-export const ButtonEdit = styled(btn)`
-  background-color: var(--black-quaternary);
-  border-radius: 5px;
-  padding: 0.5rem 1.6rem;
-  color: black;
-  border: 1px solid var(--black-quaternary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const DivEditProfil = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 16px;
-  width: 100%;
-`;
-
 export const SectionMain = styled.div`
   display: flex;
   flex-direction: column;

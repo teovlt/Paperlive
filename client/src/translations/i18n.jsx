@@ -83,6 +83,10 @@ i18n
             newCon: 'New contribution',
             newSou: 'New submission',
           },
+          home: {
+            desc: 'About us',
+            activity: 'Recent activity',
+          },
         },
       },
       fr: {
@@ -148,6 +152,10 @@ i18n
             settings: 'Paramètres',
             newCon: 'Nouvelle contribution',
             newSou: 'Nouvelle soumission',
+          },
+          home: {
+            desc: 'A propos de nous',
+            activity: 'Activité récente',
           },
         },
       },
