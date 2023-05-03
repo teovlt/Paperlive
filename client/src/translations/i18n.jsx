@@ -73,6 +73,13 @@ i18n
             english: 'English',
             french: 'French',
           },
+          dropDown: {
+            signedAs: 'Signed in as',
+            profile: 'Profile',
+            contributions: 'Contributions',
+            statistics: 'Statistics',
+            logout: 'Logout',
+          },
         },
       },
       fr: {
@@ -128,6 +135,13 @@ i18n
             current: 'Langue actuelle',
             english: 'Anglais',
             french: 'Français',
+          },
+          dropDown: {
+            signedAs: 'Connecté en tant que',
+            profile: 'Profil',
+            contributions: 'Contributions',
+            statistics: 'Statistiques',
+            logout: 'Deconnexion',
           },
         },
       },
