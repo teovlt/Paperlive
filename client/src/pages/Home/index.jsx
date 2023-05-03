@@ -3,7 +3,7 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useTranslation } from 'react-i18next';
 
-import { DashboardNav, Heading2 } from '../../theme/appElements';
+import { DashboardNav, Heading2, Paragraph } from '../../theme/appElements';
 import { Container, SectionMain } from './homeElements';
 import NavBar from '../../components/Navbar';
 import Sidebar from '../../components/Sidebar';
@@ -37,11 +37,15 @@ const Home = () => {
         <LayoutMain>
           <SectionMain>
             <Heading2>{t('home.desc')}</Heading2>
-            {auth.description ? <p>{auth.description}</p> : <p>{t('home.noDesc')}</p>}
+            {auth.description ? (
+              <Paragraph>{auth.description}</Paragraph>
+            ) : (
+              <Paragraph>{t('home.noDesc')}</Paragraph>
+            )}
           </SectionMain>
           <SectionMain>
             <Heading2>{t('home.activity')}</Heading2>
-            <p>Nothing here for the moment</p>
+            <Paragraph>Nothing here for the moment</Paragraph>
           </SectionMain>
         </LayoutMain>
       </Container>

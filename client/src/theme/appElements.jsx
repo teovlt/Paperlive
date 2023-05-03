@@ -111,6 +111,10 @@ export const Heading2 = styled.h2`
   color: var(--accent);
 `;
 
+export const Paragraph = styled.p`
+  color: var(--black-secondary);
+`;
+
 export const Caption = styled.p`
   font-weight: 400;
   font-size: 1.4rem;
@@ -165,4 +169,3 @@ export const DivTop = styled.div`
   height: 56px;
   z-index: -1;
 `;
-
