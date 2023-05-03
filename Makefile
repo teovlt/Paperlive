@@ -20,6 +20,6 @@ logs-api:
 logs-db:
 	docker compose logs -f db
 test:
-	docker exec -it paperlive-api-1 npm run test
+	docker exec -it paperlive-api-1 npm run test -- --runInBand
 coverage:
-	docker exec -it paperlive-api-1 npm run coverage
+	docker exec -it paperlive-api-1 npm run coverage -- --runInBand

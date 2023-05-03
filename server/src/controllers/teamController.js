@@ -5,11 +5,11 @@ const ObjectId = require('mongoose').Types.ObjectId;
  * Get a list of all teams.
  * @route GET /api/teams
  * @group Teams
- * @access Public
+ * @access Private
  */
 module.exports.listTeams = async (req, res) => {
   try {
-    // Find all the teams and exclude the password field from the result
+    // Find all the teams 
     const teams = await Team.find().select('name description picture visibility');
 
     // Return a 200 OK response with the list of teams
@@ -24,7 +24,7 @@ module.exports.listTeams = async (req, res) => {
  * Get a team by ID.
  * @route GET /api/teams/:teamId
  * @group Teams
- * @access Public
+ * @access Private
  */
 module.exports.readTeam = async (req, res) => {
   try {

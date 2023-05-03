@@ -13,6 +13,8 @@ module.exports.authenticateAccessToken = (req, res, next) => {
   });
 };
 
+
+
 module.exports.authenticateRefreshToken = (req, res, next) => {
   const token = req.cookies['__refresh__token'];
 

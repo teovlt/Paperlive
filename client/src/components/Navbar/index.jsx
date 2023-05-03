@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import useLogout from '../../hooks/useLogout';
 import DropdownMenu from '../DropdownMenu';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const NavBar = () => {
   const { t } = useTranslation();
@@ -15,6 +16,7 @@ const NavBar = () => {
     fr: { nativeName: `${t('language.french')}`, flag: '🇫🇷' },
   };
 
+  const { auth } = useAuth();
   const logout = useLogout();
   const navigate = useNavigate();
 
@@ -43,21 +45,21 @@ const NavBar = () => {
     toggle: <HiUserGroup />,
     groups: [
       {
-        label: `Signed in as`,
-        value: 'ERODS',
+        label: `${t('dropDown.signedAs')}`,
+        value: auth.name?.toUpperCase(),
       },
       {
         actions: [
           {
-            label: 'Profile',
+            label: `${t('dropDown.profile')}`,
             onClick: () => navigate('/'),
           },
           {
-            label: 'Contributions',
+            label: `${t('dropDown.contributions')}`,
             onClick: () => navigate('/contributions'),
           },
           {
-            label: 'Statistics',
+            label: `${t('dropDown.statistics')}`,
             onClick: () => navigate('/statistics'),
           },
         ],
@@ -65,7 +67,7 @@ const NavBar = () => {
       {
         actions: [
           {
-            label: 'Logout',
+            label: `${t('dropDown.logout')}`,
             onClick: signOut,
           },
         ],
