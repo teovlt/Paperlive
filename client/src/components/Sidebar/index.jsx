@@ -89,9 +89,11 @@ const Sidebar = () => {
             {t('sideBar.visibility')}
             <Select
               value={profilData.visibility}
-              onChange={(e) => setProfilData((prev) => ({ ...prev, visibility: e.target.value }))}>
-              <option value={true}>{t('sideBar.public')}</option>
+              onChange={(e) =>
+                setProfilData((prev) => ({ ...prev, visibility: JSON.parse(e.target.value) }))
+              }>
               <option value={false}>{t('sideBar.private')}</option>
+              <option value={true}>{t('sideBar.public')}</option>
             </Select>
           </SelectContainer>
           <TextArea
