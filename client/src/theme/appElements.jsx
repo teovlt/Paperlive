@@ -96,15 +96,6 @@ export const DashboardNav = styled.div`
   gap: 32px;
 `;
 
-export const Main = styled.div`
-  grid-area: 2 / 2 / 4 / 3;
-  margin-left: 72px;
-  padding-block: 32px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 24px;
-`;
-
 export const Heading1 = styled.h1`
   font-weight: 500;
   font-size: 2.4rem;
