@@ -9,6 +9,7 @@ const Avatar = () => {
   const { t } = useTranslation();
   const axiosPrivate = useAxiosPrivate();
 
+  const [file, setFile] = useState(null);
   const [picture, setPicture] = useState({
     url: `http://localhost:3000/api/upload/profile/default.gif`,
     _v: 0,
@@ -21,12 +22,15 @@ const Avatar = () => {
     }));
   }, [auth]);
 
+  useEffect(() => {
+    handleSubmit();
+  }, [file]);
+
   async function handleSubmit(e) {
-    e.preventDefault();
-    const file = e.target.files[0];
+    e?.preventDefault();
 
     const data = new FormData();
-    data.append('file', file);
+    data.append('file', file || e?.target.files[0]);
 
     try {
       const res = await axiosPrivate.post('/upload/profile', data, {
@@ -50,13 +54,22 @@ const Avatar = () => {
     }));
   };
 
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setFile(e.dataTransfer.files[0]);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
   if (!auth.picture) return null;
 
   return (
     <UploadForm onChange={handleSubmit}>
-      <UploadAvatarLabel label={t('avatar.hover')}>
+      <UploadAvatarLabel label={t('avatar.hover')} onDrop={handleDrop} onDragOver={handleDragOver}>
         <Picture src={`${picture.url}?${picture._v}`} onError={handleImgError} alt='avatar' />
-        <FileInput type='file' name='file' id='file' accept='.jpg,.jpeg,.png,.gif' />
+        <FileInput type='file' name='file' accept='.jpg,.jpeg,.png,.gif' />
       </UploadAvatarLabel>
     </UploadForm>
   );

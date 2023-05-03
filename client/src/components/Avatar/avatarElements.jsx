@@ -7,6 +7,7 @@ export const UploadForm = styled.form`
 export const UploadAvatarLabel = styled.label`
   position: relative;
   user-select: none;
+  cursor: pointer;
   border-radius: 100%;
 
   &:hover::before {
@@ -20,6 +21,7 @@ export const UploadAvatarLabel = styled.label`
     background: var(--black-secondary);
 
     font-size: 1.4rem;
+    text-decoration: underline;
     color: var(--white);
 
     display: grid;
