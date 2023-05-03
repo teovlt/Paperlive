@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container as AppContainer, Button as btn } from '../../theme/appElements';
+import { Container as AppContainer} from '../../theme/appElements';
 
 export const Container = styled(AppContainer)`
   display: grid;
@@ -20,4 +20,4 @@ export const SectionMain = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-`
+`;

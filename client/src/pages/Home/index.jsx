@@ -37,7 +37,7 @@ const Home = () => {
         <LayoutMain>
           <SectionMain>
             <Heading2>{t('home.desc')}</Heading2>
-            <p>{auth.description}</p>
+            {auth.description ? <p>{auth.description}</p> : <p>{t('home.noDesc')}</p>}
           </SectionMain>
           <SectionMain>
             <Heading2>{t('home.activity')}</Heading2>
