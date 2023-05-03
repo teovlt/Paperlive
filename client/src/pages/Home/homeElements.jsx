@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container as AppContainer, Button as btn } from '../../theme/appElements';
+import { Container as AppContainer} from '../../theme/appElements';
 
 export const Container = styled(AppContainer)`
   display: grid;
@@ -16,20 +16,8 @@ export const CaptionWarning = styled.span`
   width: 100%;
 `;
 
-export const ButtonEdit = styled(btn)`
-  background-color: var(--black-quaternary);
-  border-radius: 5px;
-  padding: 0.5rem 1.6rem;
-  color: black;
-  border: 1px solid var(--black-quaternary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const DivEditProfil = styled.div`
+export const SectionMain = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
-  width: 100%;
+  row-gap: 16px;
 `;

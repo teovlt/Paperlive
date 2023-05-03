@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, CardText, CardBottom, Etat, DivExpand } from './cardSoumissionElements';
+import { Container, CardText, CardBottom, Etat, DivExpand } from './cardSubmissionElements';
 import { Button, Heading1 } from '../../theme/appElements';
 import { UilClock, UilAngleRightB } from '@iconscout/react-unicons';
 

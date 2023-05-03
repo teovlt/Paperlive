@@ -79,6 +79,15 @@ i18n
             contributions: 'Contributions',
             statistics: 'Statistics',
             logout: 'Logout',
+            settings: 'Settings',
+            newCon: 'New contribution',
+            newSou: 'New submission',
+          },
+          home: {
+            desc: 'About us',
+            activity: 'Recent activity',
+            noDesc:
+              "You don't have a description yet, edit your profile to add one. This will allow other teams to better know what you do and what field you are in.",
           },
         },
       },
@@ -142,6 +151,15 @@ i18n
             contributions: 'Contributions',
             statistics: 'Statistiques',
             logout: 'Deconnexion',
+            settings: 'Paramètres',
+            newCon: 'Nouvelle contribution',
+            newSou: 'Nouvelle soumission',
+          },
+          home: {
+            desc: 'A propos de nous',
+            activity: 'Activité récente',
+            noDesc:
+              'Vous ne possédez pas encore de description, modifier votre profil pour en rajouter une. Cela permettra aux autres équipes de mieux savoir ce que vous faites et dans quel domaine êtes vous.',
           },
         },
       },
