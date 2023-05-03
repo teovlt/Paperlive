@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
-import { DashboardNav } from '../../theme/appElements';
-import { Container } from './homeElements';
+import { DashboardNav, Heading2 } from '../../theme/appElements';
+import { Container, SectionMain } from './homeElements';
 import NavBar from '../../components/Navbar';
 import Sidebar from '../../components/Sidebar';
 import LayoutMain from '../../components/LayoutMain';
@@ -33,8 +33,14 @@ const Home = () => {
         <DashboardNav></DashboardNav>
         <Sidebar />
         <LayoutMain>
-          <div>About us</div>
-          <div>Recent activity</div>
+          <SectionMain>
+            <Heading2>About us</Heading2>
+            <p>{auth.description}</p>
+          </SectionMain>
+          <SectionMain>
+            <Heading2>Recent activity</Heading2>
+            <p>Nothing here for the moment</p>
+          </SectionMain>
         </LayoutMain>
       </Container>
     </>

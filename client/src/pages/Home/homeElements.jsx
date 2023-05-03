@@ -30,6 +30,12 @@ export const ButtonEdit = styled(btn)`
 export const DivEditProfil = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
+  row-gap: 16px;
   width: 100%;
 `;
+
+export const SectionMain = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+`
