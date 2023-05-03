@@ -34,7 +34,7 @@ export const ShearchBar = styled.div`
 export const Actions = styled.div`
   user-select: none;
   display: flex;
-  column-gap: 32px;
+  column-gap: 40px;
 `;
 
 export const H1 = styled(titre)`
