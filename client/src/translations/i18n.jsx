@@ -81,7 +81,7 @@ i18n
             logout: 'Logout',
             settings: 'Settings',
             newCon: 'New contribution',
-            newSou: 'New soumission',
+            newSou: 'New submission',
           },
         },
       },
