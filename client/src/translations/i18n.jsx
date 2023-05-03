@@ -29,8 +29,8 @@ i18n
             description: 'Description',
             location: 'Location',
             webSite: 'Website',
-            public: 'public',
-            private: 'private',
+            public: 'Public',
+            private: 'Private',
           },
           avatar: {
             hover: 'Change your profile picture',
@@ -88,8 +88,8 @@ i18n
             description: 'Description',
             location: 'Localisation',
             webSite: 'Site internet',
-            public: 'public',
-            private: 'privé',
+            public: 'Public',
+            private: 'Privé',
           },
           avatar: {
             hover: 'Changer votre photo de profil',
