@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavContainer, ShearchBar, Actions, H1 } from './navbarElements';
-import { HiGlobeAlt, HiUserGroup } from 'react-icons/hi2';
+import { HiGlobeAlt, HiUserGroup, HiPlus } from 'react-icons/hi2';
 import { HiOutlineSearch } from 'react-icons/hi';
 import i18n from '../../translations/i18n';
 import { useTranslation } from 'react-i18next';
@@ -62,6 +62,10 @@ const NavBar = () => {
             label: `${t('dropDown.statistics')}`,
             onClick: () => navigate('/statistics'),
           },
+          {
+            label: `${t('dropDown.settings')}`,
+            onClick: () => navigate('/settings'),
+          },
         ],
       },
       {
@@ -69,6 +73,24 @@ const NavBar = () => {
           {
             label: `${t('dropDown.logout')}`,
             onClick: signOut,
+          },
+        ],
+      },
+    ],
+  };
+
+  const actionDropdownTemplate = {
+    toggle: <HiPlus />,
+    groups: [
+      {
+        actions: [
+          {
+            label: `${t('dropDown.newCon')}`,
+            onClick: () => navigate('/'),
+          },
+          {
+            label: `${t('dropDown.newSou')}`,
+            onClick: () => navigate('/'),
           },
         ],
       },
@@ -86,6 +108,7 @@ const NavBar = () => {
       <H1>PaperLive</H1>
 
       <Actions>
+        <DropdownMenu template={actionDropdownTemplate} />
         <DropdownMenu template={profileDropdownTemplate} />
         <DropdownMenu template={languagesDropdownTemplate} />
       </Actions>
