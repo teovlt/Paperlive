@@ -49,7 +49,10 @@ const DropdownMenu = ({ template, gap = 48 }) => {
 
   return (
     <DropdownContainer>
-      <DropdownToggle ref={menuToggleRef} onClick={() => setIsOpen(!isOpen)}>
+      <DropdownToggle
+        className={isOpen && 'open'}
+        ref={menuToggleRef}
+        onClick={() => setIsOpen(!isOpen)}>
         {template.toggle}
       </DropdownToggle>
       {isOpen && (

@@ -21,6 +21,10 @@ export const DropdownToggle = styled.button`
     font-size: 0.6rem;
     color: inherit;
   }
+
+  &.open::after {
+    transform: translateY(-50%) rotate(-90deg);
+  }
 `;
 
 export const Dropdown = styled.div`
