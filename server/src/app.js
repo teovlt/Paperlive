@@ -9,6 +9,7 @@ const app = Express();
 // Import the routes
 const teamRoutes = require('./routes/teamRoutes');
 const authRoutes = require('./routes/authenticationRoutes');
+const contributionRoutes = require('./routes/contributionRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 
 // Set up middleware to parse JSON, URL-encoded bodies and cookies
@@ -53,6 +54,8 @@ app.use('/api/teams', teamRoutes);
  */
 app.use('/api/auth', authRoutes);
 
+app.use('/api/contributions', contributionRoutes);
+
 /**
  * Handle the requests to /api/upload
  * @route /api/upload
@@ -69,7 +72,7 @@ app.use('/api/upload', uploadRoutes);
  * @returns {object} Returns a JSON object with an error property indicating the route was not found
  */
 app.use('/', (req, res) => {
-  return res.status(404).json({ message: `The requested route ${req.originalUrl} was not found` });
+  return res.status(404).json({ error: `The requested route ${req.originalUrl} was not found` });
 });
 
 module.exports = app;

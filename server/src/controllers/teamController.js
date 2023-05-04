@@ -9,14 +9,14 @@ const ObjectId = require('mongoose').Types.ObjectId;
  */
 module.exports.listTeams = async (req, res) => {
   try {
-    // Find all the teams 
+    // Find all the teams
     const teams = await Team.find().select('name description picture visibility');
 
     // Return a 200 OK response with the list of teams
     return res.status(200).json(teams);
   } catch (error) {
     // Error handling
-    return res.status(500).json({ message: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };
 
@@ -30,19 +30,18 @@ module.exports.readTeam = async (req, res) => {
   try {
     const { teamId } = req.params; // Extract the team ID from the request parameters
     // Check if the ID is a valid MongoDB ObjectId
-    if (!ObjectId.isValid(teamId))
-      return res.status(500).json({ message: `Invalid ID: ${teamId}` });
+    if (!ObjectId.isValid(teamId)) return res.status(500).json({ error: `Invalid ID: ${teamId}` });
 
     // Find a team with the given ID and exclude the password field from the result
     const team = await Team.findOne({ _id: teamId }).select('-password');
     // If the team is not found, return a 404 Not Found response with an error message
-    if (!team) return res.status(404).json({ message: 'Team not found' });
+    if (!team) return res.status(404).json({ error: 'Team not found' });
 
     // If the team is found, return a 200 OK response with the team object
     return res.status(200).json(team);
   } catch (error) {
     // Error handling
-    return res.status(500).json({ message: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };
 
@@ -65,9 +64,9 @@ module.exports.me = async (req, res) => {
 };
 
 /**
- * Update a team by ID.
+ * Update a team by ID
  * @route PUT /api/teams/update
- * @group Teams - Operation about teams
+ * @group Teams
  * @access Private
  */
 module.exports.updateTeam = async (req, res) => {
@@ -87,15 +86,15 @@ module.exports.updateTeam = async (req, res) => {
     }
 
     // If no documents were modified, return a 404 Not Found response with an error message
-    return res.status(404).json({ message: 'Team not found' });
+    return res.status(404).json({ error: 'Team not found' });
   } catch (error) {
     // Error handling
-    return res.status(500).json({ message: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };
 
 /**
- * Delete a team by ID.
+ * Delete a team by ID
  * @route DELETE /api/teams/delete
  * @group Teams
  * @access Private
@@ -111,9 +110,9 @@ module.exports.deleteTeam = async (req, res) => {
     }
 
     // If no documents were deleted, return a 404 Not Found response with an error message
-    return res.status(404).json({ message: 'Team not found' });
+    return res.status(404).json({ error: 'Team not found' });
   } catch (error) {
     // Error handling
-    return res.status(500).json({ message: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };

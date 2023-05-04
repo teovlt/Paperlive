@@ -28,7 +28,7 @@ const generateRefreshToken = (teamId) => {
 module.exports.signUp = async (req, res) => {
   try {
     const { name, password } = req.body; // Extract the name and the password from the request
-    const team = await new Team({ name, password }).save(); //
+    const team = await new Team({ name, password }).save();
     const accessToken = generateAccessToken(team._id);
     const refreshToken = generateRefreshToken(team._id);
 

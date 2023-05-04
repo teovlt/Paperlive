@@ -30,6 +30,12 @@ const teamSchema = new mongoose.Schema({
   website: {
     type: String,
   },
+  contributions: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: 'Contribution',
+    },
+  ],
 });
 
 teamSchema.methods.comparePassword = async function (password) {
