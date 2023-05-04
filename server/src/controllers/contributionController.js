@@ -10,10 +10,10 @@ const ObjectId = require('mongoose').Types.ObjectId;
  */
 module.exports.listContributions = async (req, res) => {
   try {
-    const contributions = await Team.findOne({ _id: req.teamId })
-      .select('-_id contributions')
-      .populate('contributions');
-    return res.status(200).json(contributions);
+    const team = await Team.findOne({ _id: req.teamId }).populate('contributions');
+    if (!team) return res.status(404).json({ error: 'Team not found' });
+
+    return res.status(200).json(team.contributions);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
