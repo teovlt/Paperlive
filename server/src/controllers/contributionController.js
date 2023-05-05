@@ -42,7 +42,9 @@ module.exports.readContribution = async (req, res) => {
     if (!contribution) return res.status(404).json({ error: 'Contribution not found' });
 
     return res.status(200).json(contribution);
-  } catch (error) {}
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 };
 
 /**
