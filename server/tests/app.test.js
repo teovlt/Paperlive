@@ -17,6 +17,6 @@ describe('Error handling middleware', () => {
     const res = await request(app).get(url);
 
     expect(res.status).toBe(404);
-    expect(res.body).toEqual({ message: `The requested route ${url} was not found` });
+    expect(res.body).toEqual({ error: `The requested route ${url} was not found` });
   });
 });

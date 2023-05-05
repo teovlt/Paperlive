@@ -1,5 +1,6 @@
 const Team = require('../models/teamModel');
 const Contribution = require('../models/contributionModel');
+const contribution = require('../models/contributionModel');
 const ObjectId = require('mongoose').Types.ObjectId;
 
 /**
@@ -32,17 +33,18 @@ module.exports.readContribution = async (req, res) => {
       return res.status(500).json({ error: `Invalid ID: ${contributionId}` });
 
     const team = await Team.findOne({ _id: req.teamId }).populate('contributions');
-
     if (!team) return res.status(404).json({ error: 'Team not found' });
 
     const contribution = team.contributions.find(
-      (c) => c._id.toString() === contributionId.toString()
+      (current) => current._id.toString() === contributionId.toString()
     );
 
     if (!contribution) return res.status(404).json({ error: 'Contribution not found' });
 
     return res.status(200).json(contribution);
-  } catch (error) {}
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 };
 
 /**

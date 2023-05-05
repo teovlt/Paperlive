@@ -26,7 +26,7 @@ const Register = () => {
   const [passwordConf, setPaswordConf] = useState('');
   const [errMsg, setErrMsg] = useState('');
 
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z\d\s:])(?!.*\s).{8,}$/;
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?/~\|])(?!.*\s).{8,}$/;
 
   const lngs = {
     en: { nativeName: `${t('language.english')}`, flag: '🇬🇧' },

@@ -6,7 +6,7 @@ const multer = require('multer');
 const { uploadProfile } = require('../src/controllers/uploadController');
 
 describe('getProfile', () => {
-  const filePath = 'test.gif';
+  const filePath = 'default.gif';
   const existingFile = path.join(__dirname, '../uploads/profile/', filePath);
 
   it('should return a 404 error if the file does not exist', async () => {
