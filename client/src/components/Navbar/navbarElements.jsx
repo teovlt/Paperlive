@@ -1,43 +1,29 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { Container as cont, Heading1 as titre } from '../../theme/appElements';
 
-export const NavContainer = styled(cont)`
-  background-color: var(--black);
+export const NavContainer = styled.div`
   width: 100%;
-  color: var(--white);
+  padding: 5px 32px;
+
   display: flex;
-  justify-content: space-between;
-  padding-block: 5px;
-  padding-inline: 32px;
   align-items: center;
-`;
-
-export const ShearchBar = styled.div`
-  display: flex;
   justify-content: space-between;
-  border: 1px solid grey;
-  padding-inline: 12px;
-  padding-block: 4px;
-  border-radius: 4px;
-  user-select: none;
 
-  input {
-    color: var(--white);
-
-    &::placeholder {
-      opacity: 1;
-      color: var(--white);
-    }
-  }
+  color: var(--white);
+  background-color: var(--black);
 `;
 
 export const Actions = styled.div`
-  user-select: none;
   display: flex;
-  column-gap: 40px;
+  column-gap: 48px;
+  user-select: none;
 `;
 
-export const H1 = styled(titre)`
-  color: var(--white);
+export const Logo = styled(NavLink)`
+  cursor: pointer;
   user-select: none;
+
+  color: var(--white);
+  font-size: 2rem;
+  font-weight: 500;
 `;

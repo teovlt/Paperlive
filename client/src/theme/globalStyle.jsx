@@ -46,7 +46,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 2rem;
   }
 
-  button, textarea, input {
+  button, textarea, input, select {
     font-family: 'Poppins';
   }
 `;

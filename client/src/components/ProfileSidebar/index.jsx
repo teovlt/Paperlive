@@ -3,8 +3,8 @@ import useAuth from '../../hooks/useAuth';
 
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
-import { Container, Group, IconLabel, Select, SelectContainer } from './sidebarElements';
-import { Button, Heading1, Link } from '../../theme/appElements';
+import { Container, Group, IconLabel, SelectContainer } from './sidebarElements';
+import { Button, Heading1, Link, Select } from '../../theme/appElements';
 import {
   HiOutlineLink,
   HiOutlineLockClosed,
@@ -17,7 +17,7 @@ import Input from '../Input';
 import TextArea from '../TextArea';
 import { useTranslation } from 'react-i18next';
 
-const Sidebar = () => {
+const ProfileSidebar = () => {
   const { t } = useTranslation();
 
   const { auth, setAuth } = useAuth();
@@ -63,7 +63,7 @@ const Sidebar = () => {
               <span>{auth.visibility ? `${t('sideBar.public')}` : `${t('sideBar.private')}`}</span>
             </IconLabel>
             <IconLabel>
-              <HiOutlineNewspaper /> <span>0</span> contribution(s)
+              <HiOutlineNewspaper /> <span>{auth.contributions?.length}</span> contribution(s)
             </IconLabel>
           </Group>
           <Group>
@@ -105,33 +105,27 @@ const Sidebar = () => {
             value={profilData.description}
             onChange={(e) => setProfilData((prev) => ({ ...prev, description: e.target.value }))}
           />
-          <IconLabel>
-            <HiOutlineMapPin />
-            <Input
-              id='location'
-              label={t('sideBar.location')}
-              autoComplete='off'
-              small
-              value={profilData.location}
-              onChange={(e) => setProfilData((prev) => ({ ...prev, location: e.target.value }))}
-            />
-          </IconLabel>
-          <IconLabel>
-            <HiOutlineLink />
-            <Input
-              id='website'
-              label={t('sideBar.webSite')}
-              autoComplete='off'
-              small
-              value={profilData.website}
-              onChange={(e) =>
-                setProfilData((prev) => ({
-                  ...prev,
-                  website: e.target.value,
-                }))
-              }
-            />
-          </IconLabel>
+          <Input
+            id='location'
+            label={t('sideBar.location')}
+            autoComplete='off'
+            small
+            value={profilData.location}
+            onChange={(e) => setProfilData((prev) => ({ ...prev, location: e.target.value }))}
+          />
+          <Input
+            id='website'
+            label={t('sideBar.webSite')}
+            autoComplete='off'
+            small
+            value={profilData.website}
+            onChange={(e) =>
+              setProfilData((prev) => ({
+                ...prev,
+                website: e.target.value,
+              }))
+            }
+          />
           <Group inline>
             <Button secondary onClick={handleCancelChanges}>
               {t('sideBar.cancel')}
@@ -146,4 +140,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default ProfileSidebar;

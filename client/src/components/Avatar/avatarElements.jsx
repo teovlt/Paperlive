@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const UploadForm = styled.form`
+  width: 100%;
   display: flex;
 `;
 

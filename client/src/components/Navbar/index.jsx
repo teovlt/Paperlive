@@ -1,11 +1,10 @@
 import React from 'react';
-import { NavContainer, ShearchBar, Actions, H1 } from './navbarElements';
+import { NavContainer, Actions, Logo } from './navbarElements';
 import { HiGlobeAlt, HiUserGroup, HiPlus } from 'react-icons/hi2';
-import { HiOutlineSearch } from 'react-icons/hi';
 import i18n from '../../translations/i18n';
 import { useTranslation } from 'react-i18next';
 import useLogout from '../../hooks/useLogout';
-import DropdownMenu from '../DropdownMenu';
+import DropdownMenu from '../Dropdown';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
@@ -62,14 +61,14 @@ const NavBar = () => {
             label: `${t('dropDown.statistics')}`,
             onClick: () => navigate('/statistics'),
           },
-          {
-            label: `${t('dropDown.settings')}`,
-            onClick: () => navigate('/settings'),
-          },
         ],
       },
       {
         actions: [
+          {
+            label: `${t('dropDown.settings')}`,
+            onClick: () => navigate('/settings'),
+          },
           {
             label: `${t('dropDown.logout')}`,
             onClick: signOut,
@@ -85,11 +84,11 @@ const NavBar = () => {
       {
         actions: [
           {
-            label: `${t('dropDown.newCon')}`,
-            onClick: () => navigate('/'),
+            label: `${t('dropDown.newContribution')}`,
+            onClick: () => navigate('/contributions/new'),
           },
           {
-            label: `${t('dropDown.newSou')}`,
+            label: `${t('dropDown.newSubmission')}`,
             onClick: () => navigate('/'),
           },
         ],
@@ -99,18 +98,12 @@ const NavBar = () => {
 
   return (
     <NavContainer>
-      <ShearchBar>
-        <input type='text' placeholder={t('navbar.search')}></input>
-
-        <HiOutlineSearch />
-      </ShearchBar>
-
-      <H1>PaperLive</H1>
+      <Logo to='/'>PaperLive</Logo>
 
       <Actions>
         <DropdownMenu template={actionDropdownTemplate} />
-        <DropdownMenu template={profileDropdownTemplate} />
         <DropdownMenu template={languagesDropdownTemplate} />
+        <DropdownMenu template={profileDropdownTemplate} />
       </Actions>
     </NavContainer>
   );

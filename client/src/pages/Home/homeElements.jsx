@@ -1,11 +1,4 @@
 import styled from 'styled-components';
-import { Container as AppContainer} from '../../theme/appElements';
-
-export const Container = styled(AppContainer)`
-  display: grid;
-  grid-template-columns: 296px 1fr;
-  grid-template-rows: 56px 1fr;
-`;
 
 export const CaptionWarning = styled.span`
   background-color: var(--destructive-vibrant);

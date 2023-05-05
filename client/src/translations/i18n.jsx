@@ -18,6 +18,11 @@ i18n
     resources: {
       en: {
         translation: {
+          layout: {
+            overview: 'Overview',
+            contributions: 'Contributions',
+            statistics: 'Statistics',
+          },
           navbar: {
             search: 'Search',
           },
@@ -80,8 +85,8 @@ i18n
             statistics: 'Statistics',
             logout: 'Logout',
             settings: 'Settings',
-            newCon: 'New contribution',
-            newSou: 'New submission',
+            newContribution: 'New contribution',
+            newSubmission: 'New submission',
           },
           home: {
             desc: 'About us',
@@ -93,6 +98,11 @@ i18n
       },
       fr: {
         translation: {
+          layout: {
+            overview: "Vue d'ensemble",
+            contributions: 'Contributions',
+            statistics: 'Statistiques',
+          },
           navbar: {
             search: 'Rechercher',
           },
@@ -152,8 +162,8 @@ i18n
             statistics: 'Statistiques',
             logout: 'Deconnexion',
             settings: 'Paramètres',
-            newCon: 'Nouvelle contribution',
-            newSou: 'Nouvelle soumission',
+            newContribution: 'Nouvelle contribution',
+            newSubmission: 'Nouvelle soumission',
           },
           home: {
             desc: 'A propos de nous',

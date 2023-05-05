@@ -6,7 +6,7 @@ import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from '../../api/axios';
-import DropdownMenu from '../../components/DropdownMenu';
+import DropdownMenu from '../../components/Dropdown';
 import { HiGlobeAlt } from 'react-icons/hi2';
 import i18n from '../../translations/i18n';
 import { ErrorLabel } from './authenticationElements';

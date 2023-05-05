@@ -30,8 +30,7 @@ const DropdownMenu = ({ template, gap = 48 }) => {
 
   useEffect(() => {
     if (menuRef.current) {
-      const { left, width } = menuRef.current.getBoundingClientRect();
-      const right = left + width;
+      const { right } = menuRef.current.getBoundingClientRect();
       const delta = right - window.innerWidth;
       if (delta > -16) {
         setMenuPosition((prev) => ({

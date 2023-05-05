@@ -36,10 +36,3 @@ export const SelectContainer = styled.div`
   font-size: 1.4rem;
   color: var(--black-tertiary);
 `;
-
-export const Select = styled.select`
-  flex: 1;
-  padding: 8px 12px;
-  border: 1px solid var(--black-quaternary);
-  border-radius: 4px;
-`;

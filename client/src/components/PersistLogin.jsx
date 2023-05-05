@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import useRefreshToken from '../hooks/useRefreshToken';
 import useAuth from '../hooks/useAuth';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import Loading from './Loading';
 
 const PersistLogin = () => {
   const refresh = useRefreshToken();
-  const { auth, setAuth } = useAuth();
+  const { auth } = useAuth();
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -17,7 +18,7 @@ const PersistLogin = () => {
       try {
         await refresh();
       } catch (error) {
-        // console.error(error);
+        console.error(error);
       } finally {
         isMounted && setIsLoading(false);
       }

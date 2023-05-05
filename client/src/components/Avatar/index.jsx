@@ -11,7 +11,7 @@ const Avatar = () => {
 
   const [file, setFile] = useState(null);
   const [picture, setPicture] = useState({
-    url: `http://localhost:3000/api/upload/profile/default.gif`,
+    url: auth.picture || `http://localhost:3000/api/upload/profile/default.gif`,
     _v: 0,
   });
 
@@ -68,7 +68,7 @@ const Avatar = () => {
   return (
     <UploadForm onChange={handleSubmit}>
       <UploadAvatarLabel label={t('avatar.hover')} onDrop={handleDrop} onDragOver={handleDragOver}>
-        <Picture src={`${picture.url}?${picture._v}`} onError={handleImgError} alt='avatar' />
+        <Picture src={`${picture.url}?${picture._v}`} alt='avatar' />
         <FileInput type='file' name='file' accept='.jpg,.jpeg,.png,.gif' />
       </UploadAvatarLabel>
     </UploadForm>

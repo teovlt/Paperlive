@@ -28,6 +28,10 @@ export const InputField = styled.input`
   font-size: ${(props) => (props.small ? '1.4rem' : '1.6rem')};
   line-height: 1.6rem;
 
+  &[type='Date'] {
+    padding: 1.5rem;
+  }
+
   &::placeholder {
     user-select: none;
   }

@@ -38,6 +38,8 @@ export const Dropdown = styled.div`
 
   border-radius: 4px;
   border: 1px solid var(--black-quaternary);
+  background: var(--white);
+  box-shadow: 0 0 10px var(--black-quaternary);
 
   user-select: none;
 `;
