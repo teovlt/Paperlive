@@ -10,6 +10,7 @@ import {
   Sidebar,
   StepCaption,
 } from './contributionsElements';
+import useTranslation from 'react-i18next';
 
 const NewContribution = () => {
   const [step, setStep] = useState(0);
@@ -60,6 +61,7 @@ const NewContribution = () => {
   const goTo = (index) => {
     if (index >= 0 && index < steps.length) setStep(index);
   };
+  const t = useTranslation();
 
   return (
     <>

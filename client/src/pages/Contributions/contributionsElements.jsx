@@ -108,7 +108,7 @@ export const SectionMain = styled.div`
 
   input {
     //barre de recherche à faire
-   
+    
   }
 `;
 
