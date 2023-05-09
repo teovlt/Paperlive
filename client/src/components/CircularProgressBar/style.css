@@ -1,0 +1,31 @@
+:root {
+  --fill-percentage: 0; /* remplacer 50% par le pourcentage désiré */
+}
+section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+svg {
+  width: 200px;
+  height: 200px;
+}
+
+svg circle {
+  fill: none;
+  stroke-width: 5px;
+  stroke-linecap: round;
+}
+
+svg circle.bg {
+  stroke: #4e4e4e;
+}
+
+svg circle.meter {
+  stroke: #ff7a59;
+  stroke-dashoffset: calc(300px - (var(--fill-percentage) / 100 * (2 * 3.14 * 40px)));
+  stroke-dasharray: 300px;
+}

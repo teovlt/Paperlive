@@ -112,6 +112,10 @@ i18n
           },
           contribution: {
             addContribution: 'Add a contribution',
+            titleTable: 'Title of the contribution',
+            date: 'Date',
+            state: 'State',
+            noContribution: "You don't have any contributions, add one!",
           },
         },
       },
@@ -208,6 +212,10 @@ i18n
           },
           contribution: {
             addContribution: 'Ajouter une contribution',
+            titleTable: 'Titre de la contribution',
+            date: 'Date',
+            state: 'Etat',
+            noContribution: 'Vous ne possédez aucune contribution, ajoutez en une!',
           },
         },
       },
