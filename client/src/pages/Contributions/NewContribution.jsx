@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
 import NavBar from '../../components/Navbar';
 import Input from '../../components/Input';
-import { Heading2, HorizontalDivider } from '../../theme/appElements';
+import { Button, Heading2, HorizontalDivider } from '../../theme/appElements';
 import {
   Container,
   FormNavigation,
+  LinearContainer,
   Main,
+  MainHeader,
   NavLink,
+  SideHeader,
   Sidebar,
   StepCaption,
 } from './contributionsElements';
-import useTranslation from 'react-i18next';
+import {useTranslation} from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import RadioGroup from '../../components/RadioGroup';
+import FileInput from '../../components/FileInput';
 
 const NewContribution = () => {
-  const [step, setStep] = useState(0);
+  const navigate = useNavigate();
+
+  const [step, setStep] = useState(1);
 
   const steps = [
     {
@@ -22,7 +30,26 @@ const NewContribution = () => {
         <>
           <Input small label='Title' id='title' autoComplete='off' />
           <Input small type='date' label='Start Date' id='date' autoComplete='off' />
-          <Input small label='Related Contribution' id='related' autoComplete='off' />
+          <RadioGroup
+            name='role'
+            template={{
+              label: 'Team Role',
+              radios: [
+                { label: 'Leader', value: 'leader' },
+                { label: 'Co-leader', value: 'co-leader' },
+                { label: 'Guest', value: 'guest' },
+              ],
+            }}
+          />
+          <Input small label='Related Contribution*' id='related' autoComplete='off' />
+          <LinearContainer>
+            <Button style={{ width: '160px' }} type='neutral' onClick={() => navigate('/')}>
+              Cancel
+            </Button>
+            <Button style={{ width: '160px' }} onClick={() => next()}>
+              Next
+            </Button>
+          </LinearContainer>
         </>
       ),
     },
@@ -30,7 +57,15 @@ const NewContribution = () => {
       title: 'Files',
       content: (
         <>
-          <p>Hello</p>
+          <FileInput />
+          <LinearContainer>
+            <Button style={{ width: '160px' }} type='neutral' onClick={() => previous()}>
+              Previous
+            </Button>
+            <Button style={{ width: '160px' }} onClick={() => next()}>
+              Next
+            </Button>
+          </LinearContainer>
         </>
       ),
     },
@@ -67,20 +102,25 @@ const NewContribution = () => {
     <>
       <NavBar />
       <Container>
-        <Sidebar>
+        <SideHeader>
           <Heading2>New Contribution</Heading2>
-          <HorizontalDivider />
+        </SideHeader>
+        <Sidebar>
           <FormNavigation>
             {steps.map((c, index) => (
-              <NavLink className={`${step === index && 'active'}`} onClick={() => goTo(index)}>
+              <NavLink
+                key={index}
+                className={`${step === index && 'active'}`}
+                onClick={() => goTo(index)}>
                 {c.title}
               </NavLink>
             ))}
           </FormNavigation>
         </Sidebar>
+        <MainHeader>
+          <Heading2>{steps[step].title}</Heading2>
+        </MainHeader>
         <Main>
-          <Heading2>Informations</Heading2>
-          <HorizontalDivider />
           <StepCaption>
             Step {step + 1}/{steps.length}
           </StepCaption>

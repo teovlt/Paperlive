@@ -67,7 +67,8 @@ export const InputLabel = styled.label`
 
   input:not(:placeholder-shown) + &,
   input:focus + & {
-    padding-inline: 0.4rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.4rem;
 
     top: 0;
     left: 1.2rem;

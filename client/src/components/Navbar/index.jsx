@@ -102,8 +102,8 @@ const NavBar = () => {
 
       <Actions>
         <DropdownMenu template={actionDropdownTemplate} />
-        <DropdownMenu template={languagesDropdownTemplate} />
         <DropdownMenu template={profileDropdownTemplate} />
+        <DropdownMenu template={languagesDropdownTemplate} />
       </Actions>
     </NavContainer>
   );

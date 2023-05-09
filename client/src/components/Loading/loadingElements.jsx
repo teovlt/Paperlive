@@ -21,3 +21,12 @@ export const Spinner = styled.div`
   border-radius: 50%;
   animation: ${spin} 1.3s ease infinite;
 `;
+
+export const SmallSpinner = styled.div`
+  height: 120px;
+  width: 120px;
+  border: 6px solid;
+  border-color: var(--accent) transparent;
+  border-radius: 50%;
+  animation: ${spin} 1.3s ease infinite;
+`;

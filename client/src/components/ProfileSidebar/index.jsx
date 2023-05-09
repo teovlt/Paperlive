@@ -16,6 +16,7 @@ import Avatar from '../Avatar';
 import Input from '../Input';
 import TextArea from '../TextArea';
 import { useTranslation } from 'react-i18next';
+import RadioGroup from '../RadioGroup';
 
 const ProfileSidebar = () => {
   const { t } = useTranslation();
@@ -34,12 +35,12 @@ const ProfileSidebar = () => {
   async function handleSaveChanges() {
     setIsEditing(false);
 
-    const modifiedProfilData = { ...profilData };
-    modifiedProfilData.website &&
-      (modifiedProfilData.website = modifiedProfilData.website.replace(/^https?:\/\//i, ''));
+    const updatedProfilData = { ...profilData };
+    updatedProfilData.website &&
+      (updatedProfilData.website = updatedProfilData.website.replace(/^https?:\/\//i, ''));
 
-    await axiosPrivate.put('/teams/update', { ...modifiedProfilData });
-    setAuth((prev) => ({ ...prev, ...modifiedProfilData }));
+    await axiosPrivate.put('/teams/update', { ...updatedProfilData });
+    setAuth((prev) => ({ ...prev, ...updatedProfilData }));
   }
 
   function handleCancelChanges() {
@@ -85,17 +86,17 @@ const ProfileSidebar = () => {
       ) : (
         <>
           <Avatar />
-          <SelectContainer>
-            {t('sideBar.visibility')}
-            <Select
-              value={profilData.visibility}
-              onChange={(e) =>
-                setProfilData((prev) => ({ ...prev, visibility: JSON.parse(e.target.value) }))
-              }>
-              <option value={false}>{t('sideBar.private')}</option>
-              <option value={true}>{t('sideBar.public')}</option>
-            </Select>
-          </SelectContainer>
+          <RadioGroup
+            name='visibility'
+            template={{
+              label: 'Visibility',
+              radios: [
+                { label: 'Private', value: false, defaultChecked: profilData.visibility === false },
+                { label: 'Public', value: true, defaultChecked: profilData.visibility === true },
+              ],
+            }}
+            onChange={setProfilData}
+          />
           <TextArea
             id='description'
             label={t('sideBar.description')}

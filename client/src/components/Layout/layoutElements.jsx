@@ -6,11 +6,24 @@ export const Container = styled(AppContainer)`
   display: grid;
   grid-template-columns: 296px 1fr;
   grid-template-rows: 56px 1fr;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 96px;
+    left: 0;
+
+    width: 100vw;
+    height: 1px;
+    border-radius: 2px 2px 0 0;
+
+    background: var(--black-quaternary);
+  }
 `;
 
 export const MainSection = styled.div`
   margin-left: 72px;
-  grid-area: 2 / 2 / 3 / 4;
+  grid-area: 2 / 2 / 3 / 3;
 
   display: flex;
   flex-direction: column;
@@ -25,19 +38,6 @@ export const Navigation = styled.nav`
   align-items: end;
   padding-inline: 32px;
   gap: 32px;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 96px;
-    left: 0;
-
-    width: 100vw;
-    height: 1px;
-    border-radius: 2px 2px 0 0;
-
-    background: var(--black-quaternary);
-  }
 `;
 
 export const NavLink = styled(RRNavLink)`
