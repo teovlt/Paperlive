@@ -10,7 +10,6 @@ const app = Express();
 const teamRoutes = require('./routes/teamRoutes');
 const authRoutes = require('./routes/authenticationRoutes');
 const contributionRoutes = require('./routes/contributionRoutes');
-const uploadRoutes = require('./routes/uploadRoutes');
 
 // Set up middleware to parse JSON, URL-encoded bodies and cookies
 app.use(Express.json());
@@ -54,15 +53,13 @@ app.use('/api/teams', teamRoutes);
  */
 app.use('/api/auth', authRoutes);
 
-app.use('/api/contributions', contributionRoutes);
-
 /**
- * Handle the requests to /api/upload
- * @route /api/upload
- * @desc Route to handle upload related requests
+ * Handle the requests to /api/contributions
+ * @route /api/contributions
+ * @desc Route to handle contributions related requests
  * @access Public
  */
-app.use('/api/upload', uploadRoutes);
+app.use('/api/contributions', contributionRoutes);
 
 /**
  * Handle errors

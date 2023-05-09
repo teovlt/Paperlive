@@ -5,16 +5,16 @@ const path = require('path');
 const Team = require('../models/teamModel');
 const Contribution = require('../models/contributionModel');
 
-const profileStorage = multer.diskStorage({
+const teamPictureStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/profile/');
+    cb(null, 'uploads/team/picture/');
   },
   filename: function (req, file, cb) {
-    cb(null, req.teamId + '.gif');
+    cb(null, 'team-picture-' + req.teamId + '.png');
   },
 });
 
-const contributionStorage = multer.diskStorage({
+const contributionAbstractStorage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/contribution/');
   },
@@ -23,16 +23,8 @@ const contributionStorage = multer.diskStorage({
   },
 });
 
-module.exports.getProfile = (req, res) => {
-  const filePath = path.join(__dirname, '../../uploads/profile/', req.params.fileName);
-  fs.exists(filePath, (exists) => {
-    if (exists) res.sendFile(filePath);
-    else return res.status(404).json({ error: 'File not found' });
-  });
-};
-
-module.exports.uploadProfile = (req, res) => {
-  const upload = multer({ storage: profileStorage });
+module.exports.uploadProfilePicture = (req, res) => {
+  const upload = multer({ storage: teamPictureStorage });
   upload.single('file')(req, res, async (err) => {
     if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
 
@@ -50,8 +42,8 @@ module.exports.uploadProfile = (req, res) => {
   });
 };
 
-module.exports.uploadContribution = (req, res) => {
-  const upload = multer({ storage: contributionStorage });
+module.exports.uploadContributionAbstract = (req, res) => {
+  const upload = multer({ storage: contributionAbstractStorage });
   upload.single('file')(req, res, async (err) => {
     if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
 
@@ -69,3 +61,7 @@ module.exports.uploadContribution = (req, res) => {
     return res.status(404).json({ error: 'Contribution not found' });
   });
 };
+
+// module.exports.uploadSubmissionZipFolder = (req, res) => {}
+// module.exports.uploadSubmissionCompiledPDF = (req, res) => {}
+// module.exports.uploadSubmissionDiffPDF = (req, res) => {}

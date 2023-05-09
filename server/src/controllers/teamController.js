@@ -1,5 +1,7 @@
 const Team = require('../models/teamModel');
 const ObjectId = require('mongoose').Types.ObjectId;
+const path = require('path');
+const fs = require('fs');
 
 /**
  * Get a list of all teams.
@@ -61,6 +63,15 @@ module.exports.me = async (req, res) => {
     // Error handling
     return res.status(500).json({ error: error.message });
   }
+};
+
+/**
+ *
+ */
+module.exports.getPicture = async (req, res) => {
+  const filePath = path.join(__dirname, '../../uploads/team/picture/', req.params.filename);
+  if (fs.existsSync(filePath)) res.sendFile(filePath);
+  else return res.status(404).json({ error: 'File not found' });
 };
 
 /**
