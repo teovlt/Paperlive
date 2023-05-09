@@ -11,13 +11,13 @@ const Avatar = () => {
 
   const [file, setFile] = useState(null);
   const [picture, setPicture] = useState({
-    url: auth.picture || `http://localhost:3000/api/upload/profile/default.gif`,
+    url: auth.picture || `http://localhost:3000/api/teams/picture/team-picture-default.png`,
     _v: 0,
   });
 
   useEffect(() => {
     setPicture((prev) => ({
-      url: `http://localhost:3000/api/upload/profile/${auth.picture}`,
+      url: `http://localhost:3000/api/teams/picture/${auth.picture}`,
       _v: prev._v + 1,
     }));
   }, [auth]);
@@ -33,13 +33,13 @@ const Avatar = () => {
     data.append('file', file || e?.target.files[0]);
 
     try {
-      const res = await axiosPrivate.post('/upload/profile', data, {
+      const res = await axiosPrivate.post('/teams/picture', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
       setPicture((prev) => ({
-        url: `http://localhost:3000/api/upload/profile/${res.data.filename}`,
+        url: `http://localhost:3000/api/teams/picture/${res.data.filename}`,
         _v: prev._v + 1,
       }));
     } catch (error) {
@@ -49,7 +49,7 @@ const Avatar = () => {
 
   const handleImgError = () => {
     setPicture((prev) => ({
-      url: 'http://localhost:3000/api/upload/profile/default.gif',
+      url: 'http://localhost:3000/api/teams/picture/team-picture-default.png',
       _v: prev._v + 1,
     }));
   };
