@@ -24,11 +24,11 @@ function Contributions() {
         <thead>
           <tr>
             <th className='title'>
-              Title of the contribution
+              {t('contribution.titleTable')}
               <HiChevronDown />
             </th>
             <th>
-              Date
+              {t('contribution.date')}
               <HiChevronDown />
             </th>
             <th>
@@ -36,14 +36,15 @@ function Contributions() {
               <HiChevronDown />
             </th>
             <th>
-              Etat <HiChevronDown />
+              {t('contribution.state')}
+              <HiChevronDown />
             </th>
           </tr>
         </thead>
         <tbody>
           {!auth.contributions?.length > 0 ? (
             <tr className='trNoContri'>
-              <td>Vous ne possédez pas de contributions, rajoutez en une !</td>
+              <td> {t('contribution.noContribution')}</td>
             </tr>
           ) : (
             auth.contributions.map((contribution) => (
