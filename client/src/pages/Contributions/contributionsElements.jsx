@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { Container as AppContainer, Caption } from '../../theme/appElements';
-import { NavLink as RRNavLink } from 'react-router-dom';
+import { Container as AppContainer, Caption, Button } from '../../theme/appElements';
 
 export const Container = styled(AppContainer)`
   display: grid;
@@ -116,4 +115,38 @@ export const NavLink = styled.a`
 
     background: var(--accent);
   }
+`;
+
+export const IconLabel = styled.span`
+  font-size: 1.4rem;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: var(--black-tertiary);
+
+  span {
+    color: var(--black);
+  }
+`;
+
+export const SectionMain = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+
+  input {
+    //barre de recherche à faire
+   
+  }
+`;
+
+export const Btn = styled(Button)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 5px;
+  width: auto;
 `;
