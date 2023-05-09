@@ -3,8 +3,8 @@ import useAuth from '../../hooks/useAuth';
 
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
-import { Container, Group, IconLabel, SelectContainer } from './sidebarElements';
-import { Button, Heading1, Link, Select } from '../../theme/appElements';
+import { Container, Group, IconLabel } from './sidebarElements';
+import { Button, Heading1, Link } from '../../theme/appElements';
 import {
   HiOutlineLink,
   HiOutlineLockClosed,
@@ -95,7 +95,9 @@ const ProfileSidebar = () => {
                 { label: 'Public', value: true, defaultChecked: profilData.visibility === true },
               ],
             }}
-            onChange={setProfilData}
+            onChange={(event) => {
+              setProfilData((prev) => ({ ...prev, visibility: JSON.parse(event.target.value) }));
+            }}
           />
           <TextArea
             id='description'

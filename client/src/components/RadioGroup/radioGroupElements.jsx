@@ -52,12 +52,12 @@ export const RadioButton = styled.label`
     border-right: 1px solid var(--black-quaternary);
     border-left: 0.5px solid var(--black-quaternary);
   }
+`;
 
-  input[type='radio'] {
-    display: none;
-  }
+export const RadioInput = styled.input`
+  display: none;
 
-  &:has(input[type='radio']:checked) {
+  &:checked + ${RadioButton} {
     background: rgba(55, 136, 161, 0.15);
     outline: 1px solid var(--accent);
     outline-offset: -1px;

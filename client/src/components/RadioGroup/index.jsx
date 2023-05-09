@@ -1,25 +1,27 @@
-import React from 'react';
-import { Container, Label, RadioButton } from './radioGroupElements';
+import React, { Fragment } from 'react';
+import { Container, Label, RadioButton, RadioInput } from './radioGroupElements';
 
-const RadioGroup = ({ name, onChange, template }) => {
+const RadioGroup = ({ name, onChange = () => {}, template }) => {
   const handleOnChange = (event) => {
-    onChange((prev) => ({ ...prev, [name]: JSON.parse(event.target.value) }));
+    onChange(event);
   };
 
   return (
     <Container>
       <Label>{template.label}</Label>
       {template.radios.map((radio, index) => (
-        <RadioButton key={index}>
-          {radio.label}
-          <input
+        <Fragment key={index}>
+          <RadioInput
             type='radio'
             name={name}
             value={radio.value}
+            id={`${name}${index}`}
             defaultChecked={radio.defaultChecked}
             onChange={onChange && handleOnChange}
           />
-        </RadioButton>
+
+          <RadioButton htmlFor={`${name}${index}`}>{radio.label}</RadioButton>
+        </Fragment>
       ))}
     </Container>
   );
