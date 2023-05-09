@@ -74,7 +74,14 @@ const NewContribution = () => {
       title: `${t('newContribution.recap')}`,
       content: (
         <>
-          <p>Hello</p>
+          <LinearContainer>
+            <Button style={{ width: '160px' }} type='neutral' onClick={() => previous()}>
+              {t('newContribution.previous')}
+            </Button>
+            <Button style={{ width: '160px' }} onClick={() => save()}>
+              {t('newContribution.save')}
+            </Button>
+          </LinearContainer>
         </>
       ),
     },
@@ -96,6 +103,10 @@ const NewContribution = () => {
 
   const goTo = (index) => {
     if (index >= 0 && index < steps.length) setStep(index);
+  };
+
+  const save = () => {
+    console.log('saved');
   };
 
   return (

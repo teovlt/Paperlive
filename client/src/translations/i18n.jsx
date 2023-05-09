@@ -108,6 +108,7 @@ i18n
             step: 'Step',
             files: 'Files',
             recap: 'Summary',
+            save: 'Save',
           },
           contribution: {
             addContribution: 'Add a contribution',
@@ -201,8 +202,9 @@ i18n
             previous: 'Précédent',
             teamRole: "Role de l'équipe",
             step: 'Etape',
-            files: 'Fichiers',
+            files: 'Documents',
             recap: 'Récapitulatif',
+            save: 'Sauvegarder',
           },
           contribution: {
             addContribution: 'Ajouter une contribution',
