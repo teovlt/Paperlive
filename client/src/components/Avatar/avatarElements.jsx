@@ -8,6 +8,10 @@ export const UploadForm = styled.form`
 export const UploadAvatarLabel = styled.label`
   position: relative;
   user-select: none;
+
+  min-width: 100%;
+  aspect-ratio: 1/1;
+
   cursor: pointer;
   border-radius: 100%;
 
@@ -33,9 +37,9 @@ export const UploadAvatarLabel = styled.label`
 
 export const Picture = styled.img`
   width: 100%;
+  height: 100%;
   border-radius: 100%;
 
-  aspect-ratio: 1/1;
   object-fit: cover;
   object-position: center;
 

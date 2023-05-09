@@ -6,6 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   padding-block: 32px;
   gap: 16px;
+  z-index: 99;
 `;
 
 export const Group = styled.div`

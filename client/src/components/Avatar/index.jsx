@@ -9,11 +9,14 @@ const Avatar = () => {
   const { t } = useTranslation();
   const axiosPrivate = useAxiosPrivate();
 
-  const [file, setFile] = useState(null);
   const [picture, setPicture] = useState({
-    url: auth.picture || `http://localhost:3000/api/teams/picture/team-picture-default.png`,
+    url: auth.picture,
     _v: 0,
   });
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
 
   useEffect(() => {
     setPicture((prev) => ({
@@ -22,15 +25,11 @@ const Avatar = () => {
     }));
   }, [auth]);
 
-  useEffect(() => {
-    handleSubmit();
-  }, [file]);
-
   async function handleSubmit(e) {
-    e?.preventDefault();
+    e.preventDefault();
 
     const data = new FormData();
-    data.append('file', file || e?.target.files[0]);
+    data.append('file', e.dataTransfer?.files[0] || e.target?.files[0]);
 
     try {
       const res = await axiosPrivate.post('/teams/picture', data, {
@@ -54,20 +53,12 @@ const Avatar = () => {
     }));
   };
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    setFile(e.dataTransfer.files[0]);
-  };
-
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
-
-  if (!auth.picture) return null;
-
   return (
     <UploadForm onChange={handleSubmit}>
-      <UploadAvatarLabel label={t('avatar.hover')} onDrop={handleDrop} onDragOver={handleDragOver}>
+      <UploadAvatarLabel
+        label={t('avatar.hover')}
+        onDrop={handleSubmit}
+        onDragOver={handleDragOver}>
         <Picture src={`${picture.url}?${picture._v}`} alt='avatar' onError={handleImgError} />
         <FileInput type='file' name='file' accept='.jpg,.jpeg,.png,.gif' />
       </UploadAvatarLabel>

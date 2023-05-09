@@ -1,29 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Input, InputLabel, LoadingBar } from './fileInputElements';
+import { Container, Input, InputLabel, ProgressBar } from './fileInputElements';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
-const FileInput = () => {
+const FileInput = ({ id }) => {
   const axiosPrivate = useAxiosPrivate();
 
-  const [file, setFile] = useState(null);
-  const [progress, setProgress] = useState(20);
-  const [isDragging, setIsDragging] = useState(false);
+  const [filename, setFilename] = useState(null);
+  const [progress, setProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
 
   const handleDragOver = (e) => {
     e.preventDefault();
   };
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-    setFile(e.dataTransfer.files[0]);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsUploading(true);
+
+    const data = new FormData();
+    data.append('file', e.dataTransfer?.files[0] || e.target?.files[0]);
+    setFilename(e.dataTransfer?.files[0]?.name || e.target?.files[0]?.name);
 
     try {
-      // const res = await axiosPrivate.post('/upload/contribution/:');
+      await axiosPrivate.post(`/contributions/abstract/${id}`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        onUploadProgress: (progressEvent) => {
+          const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+          setProgress(percentCompleted);
+        },
+      });
     } catch (error) {
       console.log(error);
     }
@@ -31,14 +38,20 @@ const FileInput = () => {
 
   return (
     <Container>
-      <InputLabel
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        onDragEnter={() => setIsDragging(true)}
-        onDragLeave={() => setIsDragging(false)}>
-        <Input type='file' accept='' onChange={(e) => setFile(e.target.files[0])} />
+      <InputLabel onDrop={handleSubmit} onDragOver={handleDragOver}>
+        <Input type='file' accept='.pdf' onChange={handleSubmit} />
+        {isUploading ? (
+          <>
+            {progress}%<p>{filename}</p>
+          </>
+        ) : (
+          <>
+            Drop your file here
+            <span>or</span>
+            <p>Browse files</p>
+          </>
+        )}
       </InputLabel>
-      <LoadingBar progress={progress} />
     </Container>
   );
 };
