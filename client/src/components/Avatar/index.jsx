@@ -68,7 +68,7 @@ const Avatar = () => {
   return (
     <UploadForm onChange={handleSubmit}>
       <UploadAvatarLabel label={t('avatar.hover')} onDrop={handleDrop} onDragOver={handleDragOver}>
-        <Picture src={`${picture.url}?${picture._v}`} alt='avatar' />
+        <Picture src={`${picture.url}?${picture._v}`} alt='avatar' onError={handleImgError} />
         <FileInput type='file' name='file' accept='.jpg,.jpeg,.png,.gif' />
       </UploadAvatarLabel>
     </UploadForm>

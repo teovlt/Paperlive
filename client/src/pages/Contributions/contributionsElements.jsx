@@ -6,10 +6,41 @@ export const Container = styled(AppContainer)`
   display: grid;
   grid-template-columns: 296px 1fr;
   grid-template-rows: 56px 1fr;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 96px;
+    left: 0;
+
+    width: 100vw;
+    height: 1px;
+    border-radius: 2px 2px 0 0;
+
+    background: var(--black-quaternary);
+  }
+`;
+
+export const SideHeader = styled.div`
+  grid-area: 1 / 1 / 2 / 2;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+`;
+
+export const MainHeader = styled.div`
+  grid-area: 1 / 2 / 2 / 2;
+  height: 100%;
+
+  margin-left: 32px;
+
+  display: flex;
+  align-items: center;
 `;
 
 export const Sidebar = styled.div`
-  grid-area: 1 / 1 / 3 / 2;
+  grid-area: 2 / 1 / 3 / 2;
   display: flex;
   flex-direction: column;
   padding-block: 32px;
@@ -17,7 +48,7 @@ export const Sidebar = styled.div`
 `;
 
 export const Main = styled.div`
-  grid-area: 1 / 2 / 3 / 3;
+  grid-area: 2 / 2 / 3 / 3;
   display: flex;
   flex-direction: column;
   padding-block: 32px;

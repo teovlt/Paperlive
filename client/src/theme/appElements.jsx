@@ -26,17 +26,6 @@ export const Button = styled.button`
         default:
           return '1px solid var(--black-quaternary)';
       }
-    } else {
-      switch (props.type) {
-        case 'positive':
-          return 'none';
-        case 'notice':
-          return 'none';
-        case 'negative':
-          return 'none';
-        default:
-          return 'none';
-      }
     }
   }};
   text-align: center;
@@ -46,7 +35,8 @@ export const Button = styled.button`
   line-height: 1.6rem;
   text-decoration: none;
 
-  color: ${(props) => (props.secondary ? 'var(--black)' : 'var(--white)')};
+  color: ${(props) =>
+    props.secondary || props.type === 'neutral' ? 'var(--black)' : 'var(--white)'};
   background-color: ${(props) => {
     if (props.secondary) {
       switch (props.type) {
@@ -67,6 +57,8 @@ export const Button = styled.button`
           return 'var(--notice)';
         case 'negative':
           return 'var(--negative)';
+        case 'neutral':
+          return 'var(--black-quaternary)';
         default:
           return 'var(--accent)';
       }
