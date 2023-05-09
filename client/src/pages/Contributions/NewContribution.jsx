@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import NavBar from '../../components/Navbar';
 import Input from '../../components/Input';
 import { Button, Heading2 } from '../../theme/appElements';
@@ -15,14 +15,17 @@ import {
 } from './contributionsElements';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
 
 const NewContribution = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const axiosPrivate = useAxiosPrivate();
 
   const [step, setStep] = useState(1);
+  // FIXME: Handle temporary files
 
   const steps = [
     {
@@ -58,7 +61,7 @@ const NewContribution = () => {
       title: `${t('newContribution.files')}`,
       content: (
         <>
-          <FileInput />
+          <FileInput id={/*FIXME:*/ 12} />
           <LinearContainer>
             <Button style={{ width: '160px' }} type='neutral' onClick={() => previous()}>
               {t('newContribution.previous')}
