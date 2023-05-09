@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import NavBar from '../../components/Navbar';
 import Input from '../../components/Input';
-import { Button, Heading2, HorizontalDivider } from '../../theme/appElements';
+import { Button, Heading2 } from '../../theme/appElements';
 import {
   Container,
   FormNavigation,
@@ -13,13 +13,14 @@ import {
   Sidebar,
   StepCaption,
 } from './contributionsElements';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
 
 const NewContribution = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [step, setStep] = useState(1);
 
@@ -28,49 +29,49 @@ const NewContribution = () => {
       title: 'Informations',
       content: (
         <>
-          <Input small label='Title' id='title' autoComplete='off' />
-          <Input small type='date' label='Start Date' id='date' autoComplete='off' />
+          <Input small label={t('newContribution.title')} id='title' autoComplete='off' />
+          <Input small type='date' label={t('newContribution.date')} id='date' autoComplete='off' />
           <RadioGroup
             name='role'
             template={{
-              label: 'Team Role',
+              label: `${t('newContribution.teamRole')}`,
               radios: [
-                { label: 'Leader', value: 'leader' },
-                { label: 'Co-leader', value: 'co-leader' },
-                { label: 'Guest', value: 'guest' },
+                { label: `${t('newContribution.leader')}`, value: 'leader' },
+                { label: `${t('newContribution.coleader')}`, value: 'co-leader' },
+                { label: `${t('newContribution.guest')}`, value: 'guest' },
               ],
             }}
           />
-          <Input small label='Related Contribution*' id='related' autoComplete='off' />
+          <Input small label={t('newContribution.related')} id='related' autoComplete='off' />
           <LinearContainer>
             <Button style={{ width: '160px' }} type='neutral' onClick={() => navigate('/')}>
-              Cancel
+              {t('newContribution.cancel')}
             </Button>
             <Button style={{ width: '160px' }} onClick={() => next()}>
-              Next
+              {t('newContribution.next')}
             </Button>
           </LinearContainer>
         </>
       ),
     },
     {
-      title: 'Files',
+      title: `${t('newContribution.files')}`,
       content: (
         <>
           <FileInput />
           <LinearContainer>
             <Button style={{ width: '160px' }} type='neutral' onClick={() => previous()}>
-              Previous
+              {t('newContribution.previous')}
             </Button>
             <Button style={{ width: '160px' }} onClick={() => next()}>
-              Next
+              {t('newContribution.next')}
             </Button>
           </LinearContainer>
         </>
       ),
     },
     {
-      title: 'Recap',
+      title: `${t('newContribution.recap')}`,
       content: (
         <>
           <p>Hello</p>
@@ -96,7 +97,6 @@ const NewContribution = () => {
   const goTo = (index) => {
     if (index >= 0 && index < steps.length) setStep(index);
   };
-  const t = useTranslation();
 
   return (
     <>
@@ -122,7 +122,7 @@ const NewContribution = () => {
         </MainHeader>
         <Main>
           <StepCaption>
-            Step {step + 1}/{steps.length}
+            {t('newContribution.step')} {step + 1}/{steps.length}
           </StepCaption>
           {steps[step].content}
         </Main>
