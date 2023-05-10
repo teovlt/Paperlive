@@ -55,7 +55,9 @@ module.exports.readTeam = async (req, res) => {
  */
 module.exports.me = async (req, res) => {
   try {
-    const team = await Team.findOne({ _id: req.teamId }).select('-password');
+    const team = await Team.findOne({ _id: req.teamId })
+      .select('-password')
+      .populate('contributions');
     if (!team) return res.status(404).json({ error: 'Team not found' });
 
     return res.status(200).json(team);

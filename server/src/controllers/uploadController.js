@@ -1,6 +1,4 @@
 const multer = require('multer');
-const fs = require('fs');
-const path = require('path');
 
 const Team = require('../models/teamModel');
 const Contribution = require('../models/contributionModel');
@@ -46,19 +44,6 @@ module.exports.uploadContributionAbstract = (req, res) => {
   const upload = multer({ storage: contributionAbstractStorage });
   upload.single('file')(req, res, async (err) => {
     if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
-
-    const result = await Contribution.updateOne(
-      { _id: req.params.contributionId },
-      { $set: { abstract: req.file?.filename } }
-    );
-
-    // If the update was successful, return a 200 OK response with a success message
-    if (result.matchedCount > 0) {
-      return res
-        .status(200)
-        .json({ message: 'File uploaded successfully', filename: req.file?.filename });
-    }
-    return res.status(404).json({ error: 'Contribution not found' });
   });
 };
 
