@@ -196,7 +196,6 @@ export const Btn = styled(Button)`
 export const Table = styled.table`
   display: flex;
   flex-direction: column;
-  row-gap: 24px;
   width: 100%;
   thead {
     background-color: var(--black-quaternary);
@@ -216,9 +215,6 @@ export const Table = styled.table`
     align-items: center;
     font-weight: 400;
     cursor: pointer;
-    &:hover {
-      background-color: var(--black-quaternary);
-    }
   }
 
   .trBody {

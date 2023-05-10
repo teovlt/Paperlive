@@ -103,35 +103,6 @@ function Contributions() {
     }
   }
 
-  function levenshteinDistance(str1, str2) {
-    // Initialisation d'une matrice vide pour stocker les distances
-    const distances = Array(str2.length + 1)
-      .fill(null)
-      .map(() => Array(str1.length + 1).fill(null));
-
-    // Initialisation de la première ligne et de la première colonne
-    for (let i = 0; i <= str1.length; i++) {
-      distances[0][i] = i;
-    }
-
-    for (let j = 0; j <= str2.length; j++) {
-      distances[j][0] = j;
-    }
-
-    // Calcul des distances
-    for (let j = 1; j <= str2.length; j++) {
-      for (let i = 1; i <= str1.length; i++) {
-        const deletion = distances[j][i - 1] + 1;
-        const insertion = distances[j - 1][i] + 1;
-        const substitution = distances[j - 1][i - 1] + (str1[i - 1] === str2[j - 1] ? 0 : 1);
-        distances[j][i] = Math.min(deletion, insertion, substitution);
-      }
-    }
-
-    // La distance d'édition est le dernier élément de la matrice
-    return distances[str2.length][str1.length];
-  }
-
   return (
     <>
       <h2>{auth.contributions?.length} contribution(s)</h2>
@@ -149,7 +120,6 @@ function Contributions() {
           <HiPlus />
         </Btn>{' '}
       </SectionMain>
-
       <Table>
         <thead>
           <tr>
