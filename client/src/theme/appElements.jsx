@@ -81,6 +81,14 @@ export const Heading2 = styled.h2`
   color: var(--accent);
 `;
 
+export const Heading3 = styled.h3`
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  color: var(--black);
+  text-transform: uppercase;
+`;
+
 export const Paragraph = styled.p`
   color: var(--black-secondary);
 `;
@@ -91,6 +99,20 @@ export const Caption = styled.p`
   line-height: 1.8rem;
 
   color: var(--black);
+`;
+
+export const Label = styled.p`
+  font-size: 1.4rem;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: var(--black-tertiary);
+
+  span {
+    color: var(--black);
+  }
 `;
 
 export const Small = styled.small`
