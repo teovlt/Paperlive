@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const states = ['in progress', 'approved', 'dropped'];
+const roles = ['leader', 'co-leader', 'guest'];
 
 const contributionSchema = new mongoose.Schema({
   title: {
@@ -19,6 +20,12 @@ const contributionSchema = new mongoose.Schema({
   teamRole: {
     type: String,
     required: true,
+    validate: {
+      validator: function (v) {
+        return roles.includes(v);
+      },
+      message: (props) => `${props.value} is not a valid role!`,
+    },
   },
   state: {
     type: String,

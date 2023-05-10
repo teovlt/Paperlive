@@ -14,10 +14,10 @@ const teamPictureStorage = multer.diskStorage({
 
 const contributionAbstractStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/contribution/');
+    cb(null, 'uploads/contribution/abstract/');
   },
   filename: function (req, file, cb) {
-    cb(null, req.params.contributionId + '.pdf');
+    cb(null, 'temp-contribution-abstract-' + req.teamId + '.pdf');
   },
 });
 

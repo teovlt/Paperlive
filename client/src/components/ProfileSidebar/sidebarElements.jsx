@@ -15,20 +15,6 @@ export const Group = styled.div`
   gap: ${(props) => (props.inline ? '8px' : '4px')};
 `;
 
-export const IconLabel = styled.span`
-  font-size: 1.4rem;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  color: var(--black-tertiary);
-
-  span {
-    color: var(--black);
-  }
-`;
-
 export const SelectContainer = styled.div`
   display: flex;
   align-items: center;

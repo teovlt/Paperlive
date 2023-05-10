@@ -128,17 +128,6 @@ module.exports.deleteContribution = async (req, res) => {
 };
 
 /**
- * Generate a new contribution ID
- * @route GET /api/contributions/generate-id
- * @group Contributions
- * @access Private
- */
-module.exports.generateId = async (req, res) => {
-  const newId = new ObjectId();
-  res.status(200).json({ id: newId });
-};
-
-/**
  *
  */
 module.exports.getAbstract = async (req, res) => {
@@ -149,17 +138,4 @@ module.exports.getAbstract = async (req, res) => {
   );
   if (fs.existsSync(filePath)) res.download(filePath);
   else return res.status(404).json({ error: 'File not found' });
-};
-
-/**
- *
- */
-module.exports.deleteAbstract = async (req, res) => {
-  const filePath = path.join(
-    __dirname,
-    '../../uploads/contribution/abstract/',
-    req.params.filename
-  );
-  if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
-  return res.sendStatus(204);
 };

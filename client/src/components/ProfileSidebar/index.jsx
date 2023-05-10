@@ -3,8 +3,8 @@ import useAuth from '../../hooks/useAuth';
 
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
-import { Container, Group, IconLabel } from './sidebarElements';
-import { Button, Heading1, Link } from '../../theme/appElements';
+import { Container, Group } from './sidebarElements';
+import { Button, Heading1, Link, Label } from '../../theme/appElements';
 import {
   HiOutlineLink,
   HiOutlineLockClosed,
@@ -58,28 +58,28 @@ const ProfileSidebar = () => {
             {t('sideBar.edit')}
           </Button>
           <Group>
-            <IconLabel>
+            <Label>
               {auth.visibility ? <HiOutlineLockOpen /> : <HiOutlineLockClosed />}
               {t('sideBar.visibility')}
               <span>{auth.visibility ? `${t('sideBar.public')}` : `${t('sideBar.private')}`}</span>
-            </IconLabel>
-            <IconLabel>
+            </Label>
+            <Label>
               <HiOutlineNewspaper /> <span>{auth.contributions?.length}</span> contribution(s)
-            </IconLabel>
+            </Label>
           </Group>
           <Group>
             {auth.location && (
-              <IconLabel>
+              <Label>
                 <HiOutlineMapPin /> {auth.location}
-              </IconLabel>
+              </Label>
             )}
             {auth.website && (
-              <IconLabel>
+              <Label>
                 <HiOutlineLink />{' '}
                 <Link to={`https://${auth.website}`} target='_blank'>
                   {auth.website}
                 </Link>
-              </IconLabel>
+              </Label>
             )}
           </Group>
         </>
@@ -114,7 +114,10 @@ const ProfileSidebar = () => {
             autoComplete='off'
             small
             value={profilData.description}
-            onChange={(e) => setProfilData((prev) => ({ ...prev, description: e.target.value }))}
+            onChange={(e) => {
+              const newProfilData = { ...profilData, description: e.target.value };
+              setProfilData(newProfilData);
+            }}
           />
           <Input
             id='location'
@@ -122,7 +125,10 @@ const ProfileSidebar = () => {
             autoComplete='off'
             small
             value={profilData.location}
-            onChange={(e) => setProfilData((prev) => ({ ...prev, location: e.target.value }))}
+            onChange={(e) => {
+              const newProfilData = { ...profilData, location: e.target.value };
+              setProfilData(newProfilData);
+            }}
           />
           <Input
             id='website'
@@ -130,12 +136,10 @@ const ProfileSidebar = () => {
             autoComplete='off'
             small
             value={profilData.website}
-            onChange={(e) =>
-              setProfilData((prev) => ({
-                ...prev,
-                website: e.target.value,
-              }))
-            }
+            onChange={(e) => {
+              const newProfilData = { ...profilData, website: e.target.value };
+              setProfilData(newProfilData);
+            }}
           />
           <Group inline>
             <Button secondary onClick={handleCancelChanges}>
