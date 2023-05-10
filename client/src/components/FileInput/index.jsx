@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
-import { Container, Input, InputLabel, ProgressBar } from './fileInputElements';
+import {
+  CaptionHeading,
+  Container,
+  Input,
+  InputCaption,
+  InputContainer,
+  Label,
+} from './fileInputElements';
+import CircularProgressBar from '../CircularProgressBar';
+import { IoMdCloudUpload } from 'react-icons/io';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
-const FileInput = ({ endpoint, file, onChange }) => {
+const FileInput = ({ name, file, endpoint, onChange }) => {
   const axiosPrivate = useAxiosPrivate();
 
   const [filename, setFilename] = useState(file);
@@ -42,20 +51,19 @@ const FileInput = ({ endpoint, file, onChange }) => {
 
   return (
     <Container>
-      <InputLabel onDrop={handleSubmit} onDragOver={handleDragOver}>
-        <Input type='file' accept='.pdf' onChange={handleSubmit} />
+      <InputContainer onDrop={handleSubmit} onDragOver={handleDragOver}>
+        <Input type='file' id={`${name}FileInput`} accept='.pdf' onChange={handleSubmit} />
         {isUploading || file ? (
-          <>
-            {file ? 100 : progress}%<p>{filename}</p>
-          </>
+          <CircularProgressBar progress={progress} />
         ) : (
-          <>
-            Drop your file here
-            <span>or</span>
-            <p>Browse files</p>
-          </>
+          <InputCaption>
+            <IoMdCloudUpload />
+            <CaptionHeading>Drag and drop your files here</CaptionHeading>
+            <span style={{ color: 'var(--black-secondary)' }}>or</span>
+            <Label htmlFor={`${name}FileInput`}>Browse files</Label>
+          </InputCaption>
         )}
-      </InputLabel>
+      </InputContainer>
     </Container>
   );
 };

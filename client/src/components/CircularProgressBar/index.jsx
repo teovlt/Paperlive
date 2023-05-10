@@ -3,16 +3,24 @@ import styled from 'styled-components';
 
 const StyledProgressBar = styled.div`
   section {
-    width: 100%;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: relative;
+
+    &::after {
+      content: ${(props) => `"${props.progress}"%`};
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 
   svg {
-    width: 200px;
-    height: 200px;
+    width: 175px;
+    height: 175px;
   }
 
   circle {
@@ -22,39 +30,24 @@ const StyledProgressBar = styled.div`
   }
 
   circle.bg {
-    stroke: #4e4e4e;
+    stroke: var(--black-quaternary);
   }
 
   circle.meter {
-    stroke: #ff7a59;
+    stroke: var(--accent);
     stroke-dashoffset: calc(300px - (${(props) => props.fillPercentage} / 100 * (2 * 3.14 * 40px)));
     stroke-dasharray: 300px;
   }
 `;
 
-const CircularProgressBar = () => {
-  const [fillPercentage, setFillPercentage] = useState(0);
-
-  const handleRangeChange = (e) => {
-    setFillPercentage(e.target.value);
-  };
-
+const CircularProgressBar = ({ progress }) => {
   return (
-    <StyledProgressBar fillPercentage={fillPercentage}>
+    <StyledProgressBar fillPercentage={progress}>
       <section>
         <svg viewBox='0 0 100 100'>
           <circle className='bg' cx='50' cy='50' r='40' />
           <circle className='meter' cx='50' cy='50' r='40' />
         </svg>
-        <input
-          type='range'
-          name=''
-          id='range'
-          min='0'
-          max='100'
-          value={fillPercentage}
-          onChange={handleRangeChange}
-        />
       </section>
     </StyledProgressBar>
   );

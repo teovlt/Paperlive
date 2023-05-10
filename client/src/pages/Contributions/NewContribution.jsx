@@ -160,7 +160,9 @@ const NewContribution = () => {
       title: `${t('newContribution.files')}`,
       content: (
         <>
+          <Heading3>Abstract</Heading3>
           <FileInput
+            name='abstract'
             file={contributionData.filename}
             endpoint='/contributions/abstract'
             onChange={(file) => setContributionData((prev) => ({ ...prev, filename: file?.name }))}
