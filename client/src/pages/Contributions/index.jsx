@@ -139,7 +139,7 @@ function Contributions() {
         <DivRecherche>
           <input
             type='text'
-            placeholder='Rechercher une contribution par titre'
+            placeholder={`${t('contribution.searchBar')}`}
             id='searchBar'
             onChange={handleSearch}
           />
