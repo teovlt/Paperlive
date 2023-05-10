@@ -56,7 +56,27 @@ module.exports.readContribution = async (req, res) => {
  */
 module.exports.createContribution = async (req, res) => {
   try {
-    const contribution = await new Contribution(req.body).save();
+    const { title, startDate, teamRole, relatedContribution } = req.body;
+
+    const _id = new ObjectId();
+    const abstractFileName = `contribution-abstract-${_id}.pdf`;
+
+    // Update file
+    fs.renameSync(
+      `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`,
+      `${__dirname}/../../uploads/contribution/abstract/contribution-abstract-${_id}.pdf`
+    );
+
+    // Save to database
+    const contribution = new Contribution({
+      _id,
+      title,
+      startDate,
+      teamRole,
+      relatedContribution,
+      abstract: abstractFileName,
+    });
+    await contribution.save();
 
     const result = await Team.updateOne(
       { _id: req.teamId },

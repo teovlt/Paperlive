@@ -78,6 +78,12 @@ export const FormNavigation = styled.nav`
   }
 `;
 
+export const MainWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+`;
+
 export const StepCaption = styled(Caption)`
   color: var(--black-secondary);
   align-self: flex-end;
@@ -90,7 +96,6 @@ export const LinearContainer = styled.div`
 `;
 
 export const NavLink = styled.a`
-  cursor: pointer;
   position: relative;
 
   font-size: 1.4rem;
@@ -117,18 +122,32 @@ export const NavLink = styled.a`
   }
 `;
 
-export const IconLabel = styled.span`
+export const Link = styled.p`
   font-size: 1.4rem;
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+`;
 
+export const ErrorLabel = styled.span`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.8rem;
 
-  color: var(--black-tertiary);
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.4rem;
 
-  span {
-    color: var(--black);
+  color: var(--black);
+  font-size: 1.4rem;
+
+  svg {
+    color: var(--negative);
   }
+
+  outline-offset: -2px;
+  outline: 2px solid var(--negative-vibrant);
+  background: var(--negative-vibrant);
 `;
 
 export const SectionMain = styled.div`
@@ -173,7 +192,7 @@ export const Table = styled.table`
     align-items: center;
     font-weight: 400;
     cursor: pointer;
-    &:hover{
+    &:hover {
       background-color: var(--black-quaternary);
     }
   }

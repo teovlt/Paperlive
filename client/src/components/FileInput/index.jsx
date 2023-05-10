@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Container, Input, InputLabel, ProgressBar } from './fileInputElements';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
-const FileInput = ({ id }) => {
+const FileInput = ({ endpoint, file, onChange }) => {
   const axiosPrivate = useAxiosPrivate();
 
-  const [filename, setFilename] = useState(null);
+  const [filename, setFilename] = useState(file);
   const [progress, setProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
 
@@ -15,24 +15,28 @@ const FileInput = ({ id }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsUploading(true);
 
-    const data = new FormData();
-    data.append('file', e.dataTransfer?.files[0] || e.target?.files[0]);
-    setFilename(e.dataTransfer?.files[0]?.name || e.target?.files[0]?.name);
+    if (e.dataTransfer?.files?.length > 0 || e.target?.files?.length > 0) {
+      setIsUploading(true);
+      onChange && onChange(e.dataTransfer?.files[0] || e.target?.files[0]);
+      setFilename(e.dataTransfer?.files[0]?.name || e.target?.files[0]?.name);
 
-    try {
-      await axiosPrivate.post(`/contributions/abstract/${id}`, data, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        onUploadProgress: (progressEvent) => {
-          const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-          setProgress(percentCompleted);
-        },
-      });
-    } catch (error) {
-      console.log(error);
+      const data = new FormData();
+      data.append('file', e.dataTransfer?.files[0] || e.target?.files[0]);
+
+      try {
+        await axiosPrivate.post(endpoint, data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          onUploadProgress: (progressEvent) => {
+            const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            setProgress(percentCompleted);
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -40,9 +44,9 @@ const FileInput = ({ id }) => {
     <Container>
       <InputLabel onDrop={handleSubmit} onDragOver={handleDragOver}>
         <Input type='file' accept='.pdf' onChange={handleSubmit} />
-        {isUploading ? (
+        {isUploading || file ? (
           <>
-            {progress}%<p>{filename}</p>
+            {file ? 100 : progress}%<p>{filename}</p>
           </>
         ) : (
           <>

@@ -96,7 +96,7 @@ i18n
           },
           newContribution: {
             title: 'Title',
-            date: 'Start Date',
+            date: 'Start date',
             related: 'Related contributions*',
             leader: 'Leader',
             coleader: 'Co-leader',

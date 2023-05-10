@@ -23,12 +23,14 @@ export const InputLabel = styled.label`
 
   position: relative;
 
-  line-height: 2.4rem;
+  font-size: 1.6rem;
+  line-height: 2rem;
   text-align: center;
   color: var(--black);
 
   span {
     color: var(--black-tertiary);
+    font-size: 1.4rem;
   }
 
   p {
