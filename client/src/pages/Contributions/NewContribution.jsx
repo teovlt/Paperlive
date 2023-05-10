@@ -40,7 +40,7 @@ const NewContribution = () => {
 
   useEffect(() => {
     setErrorMsg('');
-  }, [contributionData, step]);
+  }, [contributionData, step, t]);
 
   const steps = [
     {
@@ -133,15 +133,15 @@ const NewContribution = () => {
                 if (missings.length <= 0) {
                   next();
                 } else {
-                  const errorMsg = `Please fill in the following field(s): ${missings
+                  const errorMsg = `${t('newContribution.errorMsg')} ${missings
                     .map((key) => {
                       switch (key) {
                         case 'title':
-                          return 'title';
+                          return `${t('newContribution.title')}`;
                         case 'startDate':
-                          return 'start date';
+                          return `${t('newContribution.date')}`;
                         case 'teamRole':
-                          return 'team role';
+                          return `${t('newContribution.teamRole')}`;
                         case 'filename':
                           return 'abstract';
                       }

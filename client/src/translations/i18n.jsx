@@ -109,6 +109,7 @@ i18n
             files: 'Files',
             recap: 'Summary',
             save: 'Save',
+            errorMsg: 'Please fill in the following field(s): ',
           },
           contribution: {
             addContribution: 'Add a contribution',
@@ -209,6 +210,7 @@ i18n
             files: 'Documents',
             recap: 'Récapitulatif',
             save: 'Sauvegarder',
+            errorMsg: 'Merci de remplir le(s) champ(s) suivant(s): ',
           },
           contribution: {
             addContribution: 'Ajouter une contribution',
