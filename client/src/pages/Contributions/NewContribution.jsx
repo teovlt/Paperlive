@@ -186,7 +186,7 @@ const NewContribution = () => {
                 if (missings.length <= 0) {
                   next();
                 } else {
-                  const errorMsg = `Please fill in the following field(s): abstract file`;
+                  const errorMsg = `${t('newContribution.errorMsgAbstract')}`;
                   setErrorMsg(errorMsg);
                 }
               }}>
@@ -203,25 +203,25 @@ const NewContribution = () => {
           <MainWrapper>
             <Heading3>Informations</Heading3>
             <Label>
-              Title:<span>{contributionData.title}</span>
+              {t('newContribution.title')}:<span>{contributionData.title}</span>
             </Label>
             <Label>
-              Start date:<span>{contributionData.startDate}</span>
+              {t('newContribution.date')}:<span>{contributionData.startDate}</span>
             </Label>
             <Label>
-              Team role:<span>{contributionData.teamRole}</span>
+              {t('newContribution.teamRole')}:<span>{contributionData.teamRole}</span>
             </Label>
             <Label>
-              Related contribution*:<span>{contributionData.relatedContribution}</span>
+              {t('newContribution.related')}:<span>{contributionData.relatedContribution}</span>
             </Label>
-            <Link onClick={() => goTo(0)}>Edit this section</Link>
+            <Link onClick={() => goTo(0)}> {t('newContribution.edit')}</Link>
           </MainWrapper>
           <MainWrapper>
-            <Heading3>Files</Heading3>
+            <Heading3>{t('newContribution.files')}</Heading3>
             <Label>
               Abstract:<span>{contributionData.filename}</span>
             </Label>
-            <Link onClick={() => goTo(1)}>Edit this section</Link>
+            <Link onClick={() => goTo(1)}>{t('newContribution.edit')}</Link>
           </MainWrapper>
           {errorMsg && (
             <ErrorLabel>
@@ -283,7 +283,7 @@ const NewContribution = () => {
       <NavBar />
       <Container>
         <SideHeader>
-          <Heading2>New Contribution</Heading2>
+          <Heading2>{t('newContribution.newContribution')}</Heading2>
         </SideHeader>
         <Sidebar>
           <FormNavigation>
