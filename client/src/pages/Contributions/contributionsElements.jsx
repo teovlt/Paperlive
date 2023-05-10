@@ -136,9 +136,32 @@ export const SectionMain = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+`;
+
+export const DivRecherche = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   input {
-    //barre de recherche à faire
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -148,6 +171,7 @@ export const Btn = styled(Button)`
   justify-content: center;
   column-gap: 5px;
   width: auto;
+  height: min-content;
 `;
 
 export const Table = styled.table`
@@ -173,7 +197,7 @@ export const Table = styled.table`
     align-items: center;
     font-weight: 400;
     cursor: pointer;
-    &:hover{
+    &:hover {
       background-color: var(--black-quaternary);
     }
   }
