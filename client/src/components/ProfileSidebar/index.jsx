@@ -91,8 +91,16 @@ const ProfileSidebar = () => {
             template={{
               label: 'Visibility',
               radios: [
-                { label: 'Private', value: false, defaultChecked: profilData.visibility === false },
-                { label: 'Public', value: true, defaultChecked: profilData.visibility === true },
+                {
+                  label: `${t('sideBar.private')}`,
+                  value: false,
+                  defaultChecked: profilData.visibility === false,
+                },
+                {
+                  label: `${t('sideBar.public')}`,
+                  value: true,
+                  defaultChecked: profilData.visibility === true,
+                },
               ],
             }}
             onChange={(event) => {
