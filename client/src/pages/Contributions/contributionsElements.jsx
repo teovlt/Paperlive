@@ -173,6 +173,9 @@ export const Table = styled.table`
     align-items: center;
     font-weight: 400;
     cursor: pointer;
+    &:hover{
+      background-color: var(--black-quaternary);
+    }
   }
 
   .trBody {

@@ -89,7 +89,7 @@ const ProfileSidebar = () => {
           <RadioGroup
             name='visibility'
             template={{
-              label: 'Visibility',
+              label: `${t('sideBar.visibility')}`,
               radios: [
                 {
                   label: `${t('sideBar.private')}`,
