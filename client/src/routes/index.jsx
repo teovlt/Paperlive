@@ -36,7 +36,7 @@ const Routes = () => {
             <Route path='/statistics' element={<Statistics />} />
           </Route>
 
-          <Route path='/contributions/new' element={<NewContribution />} />
+          <Route path='/contributions/new' element={<NewContributionForm />} />
           <Route path='/contributions/:contributionId' element={<Contribution />} />
         </Route>
       </Route>
