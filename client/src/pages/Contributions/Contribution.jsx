@@ -8,6 +8,7 @@ import {
   HiOutlineChartPie,
   HiOutlineNewspaper,
   HiChevronDown,
+  HiOutlineTrash,
 } from 'react-icons/hi2';
 import {
   Sidebar,
@@ -63,8 +64,18 @@ const Contribution = () => {
           <Button secondary onClick={() => console.log('edit')}>
             {t('contribution.edit')}
           </Button>
-          <Button secondary type='negative' onClick={() => console.log('delete')}>
+          <Button
+            secondary
+            type='negative'
+            onClick={() => console.log('delete')}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              columnGap: '8px',
+            }}>
             {t('contribution.delete')}
+            <HiOutlineTrash />
           </Button>
         </Sidebar>
         <SectionContribution>
