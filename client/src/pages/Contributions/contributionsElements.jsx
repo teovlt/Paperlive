@@ -227,5 +227,21 @@ export const Table = styled.table`
 export const DivRelated = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+`;
+
+export const ResultsContainer = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--black-secondary);
+  border-top: none;
+`;
+
+export const Result = styled.li`
+  padding: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--black-quaternary);
+  }
 `;

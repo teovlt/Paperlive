@@ -16,6 +16,8 @@ import {
   Sidebar,
   StepCaption,
   DivRelated,
+  ResultsContainer,
+  Result,
 } from './contributionsElements';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useTranslation } from 'react-i18next';
@@ -48,13 +50,25 @@ const NewContribution = () => {
 
   const [related, setRelated] = useState(false);
   const [results, setResults] = useState([]);
-  const [selectedResult, setSelectedResult] = useState(null); // nouvel état pour stocker l'élément sélectionné
+
+  function handleClickShowAll() {
+    const matchingContributions = [];
+    for (let i = 0; i < auth.contributions.length; i++) {
+      const element = auth.contributions[i].title.toLowerCase();
+      matchingContributions.push(element);
+    }
+    setRelated(true);
+    setResults(matchingContributions);
+  }
+
+  function handleClickShowNone() {
+    setRelated(false);
+  }
 
   function handleSearch(e) {
     const searchTerm = e.target.value.toLowerCase();
     if (searchTerm === '') {
-      setRelated(false);
-      setResults([]);
+      handleClickShowAll();
     } else {
       let isRelated = false;
       const matchingContributions = [];
@@ -72,7 +86,6 @@ const NewContribution = () => {
 
   function handleResultClick(result) {
     // fonction pour gérer le click sur un élément de la liste
-    setSelectedResult(result);
     setContributionData({
       ...contributionData,
       relatedContribution: result,
@@ -143,20 +156,24 @@ const NewContribution = () => {
               label={t('newContribution.related')}
               autoComplete='off'
               onChange={(event) => {
+                const newContributionData = {
+                  ...contributionData,
+                  relatedContribution: event.target.value,
+                };
+                setContributionData(newContributionData);
                 handleSearch(event);
               }}
+              onClick={handleClickShowAll}
+              onBlur={handleClickShowNone}
             />
             {related && (
-              <>
+              <ResultsContainer>
                 {results.map((result, index) => (
-                  <p
-                    key={index}
-                    onClick={() => handleResultClick(result)}
-                    style={{ cursor: 'pointer' }}>
+                  <Result key={index} onClick={() => handleResultClick(result)}>
                     {result}
-                  </p>
+                  </Result>
                 ))}
-              </>
+              </ResultsContainer>
             )}
           </DivRelated>
           {errorMsg && (
