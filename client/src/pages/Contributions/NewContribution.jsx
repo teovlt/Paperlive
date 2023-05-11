@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import NavBar from '../../components/Navbar';
 import Input from '../../components/Input';
 import { Button, Heading2, Heading3, Label } from '../../theme/appElements';
@@ -24,9 +24,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
-import { HiExclamationCircle, HiOutlineExclamationCircle } from 'react-icons/hi2';
+import { HiOutlineExclamationCircle } from 'react-icons/hi2';
 import useAuth from '../../hooks/useAuth';
-import { RadioButton } from '../../components/RadioGroup/radioGroupElements';
 
 const NewContribution = () => {
   const navigate = useNavigate();
@@ -50,26 +49,18 @@ const NewContribution = () => {
 
   const [related, setRelated] = useState(false);
   const [results, setResults] = useState([]);
-
-  function handleClickShowAll() {
-    const matchingContributions = [];
-    for (let i = 0; i < auth.contributions.length; i++) {
-      const element = auth.contributions[i].title.toLowerCase();
-      matchingContributions.push(element);
-    }
-    setRelated(true);
-    setResults(matchingContributions);
-  }
-
-  function handleClickShowNone() {
-    setResults([]);
-  }
+  const divRelated = useRef();
 
   function handleSearch(e) {
     const searchTerm = e.target.value.toLowerCase();
     if (searchTerm === '') {
-      setRelated(false);
-      setResults([]);
+      const matchingContributions = [];
+      for (let i = 0; i < auth.contributions.length; i++) {
+        const element = auth.contributions[i].title.toLowerCase();
+        matchingContributions.push(element);
+      }
+      setRelated(true);
+      setResults(matchingContributions);
     } else {
       let isRelated = false;
       const matchingContributions = [];
@@ -91,8 +82,22 @@ const NewContribution = () => {
       ...contributionData,
       relatedContribution: result,
     });
+
     setRelated(false);
   }
+
+  useEffect(() => {
+    const listener = (event) => {
+      if (!divRelated.current || divRelated.current.contains(event.target)) {
+        return;
+      }
+      setRelated(false);
+    };
+    document.addEventListener('mousedown', listener);
+    return () => {
+      document.removeEventListener('mousedown', listener);
+    };
+  }, [divRelated]);
 
   const steps = [
     {
@@ -149,7 +154,7 @@ const NewContribution = () => {
               ],
             }}
           />{' '}
-          <DivRelated>
+          <DivRelated id='divRelated' ref={divRelated}>
             <Input
               small
               id='related'
@@ -164,8 +169,8 @@ const NewContribution = () => {
                 setContributionData(newContributionData);
                 handleSearch(event);
               }}
-              //  onClick={handleClickShowAll}
-              // onBlur={handleClickShowNone}
+              onClick={(e) => handleSearch(e)}
+              onFocus={() => setRelated(true)}
             />
             {related && (
               <ResultsContainer>
