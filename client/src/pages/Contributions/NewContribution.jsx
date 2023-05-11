@@ -62,13 +62,14 @@ const NewContribution = () => {
   }
 
   function handleClickShowNone() {
-    setRelated(false);
+    setResults([]);
   }
 
   function handleSearch(e) {
     const searchTerm = e.target.value.toLowerCase();
     if (searchTerm === '') {
-      handleClickShowAll();
+      setRelated(false);
+      setResults([]);
     } else {
       let isRelated = false;
       const matchingContributions = [];
@@ -163,8 +164,8 @@ const NewContribution = () => {
                 setContributionData(newContributionData);
                 handleSearch(event);
               }}
-              onClick={handleClickShowAll}
-              onBlur={handleClickShowNone}
+              //  onClick={handleClickShowAll}
+              // onBlur={handleClickShowNone}
             />
             {related && (
               <ResultsContainer>
