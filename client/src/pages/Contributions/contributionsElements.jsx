@@ -203,24 +203,39 @@ export const Table = styled.table`
   }
 `;
 
-export const DivRelated = styled.div`
+export const RelatedContributionSearchContainer = styled.div`
+  position: relative;
+`;
+
+export const RelatedContributionSearchResultContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  padding-block: 4px;
+  top: 50%;
+
   display: flex;
   flex-direction: column;
+
+  background: var(--white);
+  border: 1px solid var(--black-quaternary);
+  border-radius: 0.2rem;
+  box-shadow: 0 0 10px var(--black-quaternary);
+
+  transition: all 0.2s ease-in-out;
+
+  &.open {
+    top: calc(100% + 8px);
+  }
 `;
 
-export const ResultsContainer = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border: 1px solid var(--black-secondary);
-  border-top: none;
-`;
+export const RelatedContributionSearchResult = styled.div`
+  width: 100%;
+  padding: 4px 12px;
 
-export const Result = styled.li`
-  padding: 8px;
-  cursor: pointer;
+  font-size: 1.4rem;
 
   &:hover {
-    background-color: var(--black-quaternary);
+    background: var(--accent);
+    color: var(--white);
   }
 `;

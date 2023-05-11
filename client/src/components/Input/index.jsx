@@ -16,6 +16,9 @@ const Input = forwardRef((props, ref) => {
     focus: () => {
       inputRef.current.focus();
     },
+    blur: () => {
+      inputRef.current.blur();
+    },
   }));
 
   return (
