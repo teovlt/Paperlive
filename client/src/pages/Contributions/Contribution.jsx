@@ -58,13 +58,13 @@ const Contribution = () => {
         <Sidebar>
           <h2>Actions</h2>
           <Button secondary onClick={() => console.log('stats')}>
-            See the statistics
+            {t('contribution.stats')}
           </Button>
           <Button secondary onClick={() => console.log('edit')}>
-            Edit this contribution
+            {t('contribution.edit')}
           </Button>
           <Button secondary type='negative' onClick={() => console.log('delete')}>
-            Delete this contribution
+            {t('contribution.delete')}
           </Button>
         </Sidebar>
         <SectionContribution>
@@ -72,7 +72,7 @@ const Contribution = () => {
             <h3>Informations</h3>
             <DivInfos>
               <Span>
-                <Paragraph>Titre:</Paragraph>
+                <Paragraph> {t('newContribution.title')}:</Paragraph>
                 {contribution?.title}
               </Span>
             </DivInfos>
@@ -80,11 +80,11 @@ const Contribution = () => {
               <Span>
                 {contribution?.relatedContribution ? (
                   <>
-                    <Paragraph>Related contribution(s):</Paragraph>
+                    <Paragraph>{t('newContribution.related2')}:</Paragraph>
                     {contribution?.relatedContribution}
                   </>
                 ) : (
-                  `Aucun contributions en lien avec celle-ci`
+                  `${t('newContribution.noRelated')}`
                 )}
               </Span>
             </DivInfos>
@@ -95,7 +95,11 @@ const Contribution = () => {
               </Span>
               <Span>
                 <Paragraph>Role:</Paragraph>
-                {contribution?.teamRole}
+                {contribution?.teamRole === 'leader'
+                  ? `${t('newContribution.leader')}`
+                  : contribution?.teamRole === 'co-leader'
+                  ? `${t('newContribution.coleader')}`
+                  : `${t('newContribution.guest')}`}
               </Span>
             </DivInfos>
             <DivInfos>
@@ -104,7 +108,7 @@ const Contribution = () => {
                 <Link onClick={() => console.log('download abstract')}>Telecharger</Link>
               </Span>
               <Span>
-                <Paragraph>Etat:</Paragraph>
+                <Paragraph>{t('contribution.state')}:</Paragraph>
                 {contribution?.state}
               </Span>
             </DivInfos>

@@ -37,7 +37,14 @@ const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
           {t('newContribution.date')}:<span>{contributionData.startDate}</span>
         </Label>
         <Label>
-          {t('newContribution.teamRole')}:<span>{contributionData.teamRole}</span>
+          {t('newContribution.teamRole')}:
+          <span>
+            {contributionData.teamRole === 'leader'
+              ? `${t('newContribution.leader')}`
+              : contributionData.teamRole === 'co-leader'
+              ? `${t('newContribution.coleader')}`
+              : `${t('newContribution.guest')}`}
+          </span>
         </Label>
         <Label>
           {t('newContribution.related')}:<span>{contributionData.relatedContribution}</span>

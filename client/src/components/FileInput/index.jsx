@@ -68,13 +68,13 @@ const FileInput = ({ name, file, endpoint, onChange }) => {
         ) : (
           <InputCaption>
             <IoMdCloudUpload />
-            <CaptionHeading>{t('newContribution.drag')}</CaptionHeading>
-            <span style={{ color: 'var(--black-secondary)' }}>{t('newContribution.or')}</span>
-            <Button htmlFor={`${name}FileInput`}>{t('newContribution.browse')}</Button>
+            <CaptionHeading>{t('fileInput.drag')}</CaptionHeading>
+            <span style={{ color: 'var(--black-secondary)' }}>{t('fileInput.or')}</span>
+            <Button htmlFor={`${name}FileInput`}>{t('fileInput.browse')}</Button>
           </InputCaption>
         )}
       </InputContainer>
-      {file && !isUploading && <Chips type='positive'>Successfully uploaded: {filename}</Chips>}
+      {file && !isUploading && <Chips type='positive'>{t('fileInput.success')}: {filename}</Chips>}
     </Container>
   );
 };
