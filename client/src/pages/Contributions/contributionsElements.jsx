@@ -170,7 +170,6 @@ export const DivRecherche = styled.div`
     width: 100%;
     box-sizing: border-box;
   }
-  
 `;
 
 export const Btn = styled(Button)`
@@ -223,4 +222,10 @@ export const Table = styled.table`
     border: none;
     padding: 0;
   }
+`;
+
+export const DivRelated = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
 `;

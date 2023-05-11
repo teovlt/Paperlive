@@ -15,6 +15,7 @@ import {
   SideHeader,
   Sidebar,
   StepCaption,
+  DivRelated,
 } from './contributionsElements';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useTranslation } from 'react-i18next';
@@ -22,11 +23,14 @@ import { useNavigate } from 'react-router-dom';
 import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
 import { HiExclamationCircle, HiOutlineExclamationCircle } from 'react-icons/hi2';
+import useAuth from '../../hooks/useAuth';
+import { RadioButton } from '../../components/RadioGroup/radioGroupElements';
 
 const NewContribution = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const axiosPrivate = useAxiosPrivate();
+  const { auth } = useAuth();
 
   const [step, setStep] = useState(0);
   const [errorMsg, setErrorMsg] = useState('');
@@ -41,6 +45,40 @@ const NewContribution = () => {
   useEffect(() => {
     setErrorMsg('');
   }, [contributionData, step, t]);
+
+  const [related, setRelated] = useState(false);
+  const [results, setResults] = useState([]);
+  const [selectedResult, setSelectedResult] = useState(null); // nouvel état pour stocker l'élément sélectionné
+
+  function handleSearch(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    if (searchTerm === '') {
+      setRelated(false);
+      setResults([]);
+    } else {
+      let isRelated = false;
+      const matchingContributions = [];
+      for (let i = 0; i < auth.contributions.length; i++) {
+        const element = auth.contributions[i].title.toLowerCase();
+        if (element.includes(searchTerm)) {
+          isRelated = true;
+          matchingContributions.push(auth.contributions[i].title);
+        }
+      }
+      setRelated(isRelated);
+      setResults(matchingContributions);
+    }
+  }
+
+  function handleResultClick(result) {
+    // fonction pour gérer le click sur un élément de la liste
+    setSelectedResult(result);
+    setContributionData({
+      ...contributionData,
+      relatedContribution: result,
+    });
+    setRelated(false);
+  }
 
   const steps = [
     {
@@ -96,21 +134,31 @@ const NewContribution = () => {
                 },
               ],
             }}
-          />
-          <Input
-            small
-            id='related'
-            value={contributionData?.relatedContribution}
-            label={t('newContribution.related')}
-            autoComplete='off'
-            onChange={(event) => {
-              const newContributionData = {
-                ...contributionData,
-                relatedContribution: event.target.value,
-              };
-              setContributionData(newContributionData);
-            }}
-          />
+          />{' '}
+          <DivRelated>
+            <Input
+              small
+              id='related'
+              value={contributionData?.relatedContribution}
+              label={t('newContribution.related')}
+              autoComplete='off'
+              onChange={(event) => {
+                handleSearch(event);
+              }}
+            />
+            {related && (
+              <>
+                {results.map((result, index) => (
+                  <p
+                    key={index}
+                    onClick={() => handleResultClick(result)}
+                    style={{ cursor: 'pointer' }}>
+                    {result}
+                  </p>
+                ))}
+              </>
+            )}
+          </DivRelated>
           {errorMsg && (
             <ErrorLabel>
               <HiOutlineExclamationCircle />
