@@ -26,8 +26,8 @@ const StyledProgressBar = styled.div`
 
   circle {
     fill: none;
-    stroke-width: 5px;
-    stroke-linecap: round;
+    stroke-width: 3px;
+    /* stroke-linecap: round; */
   }
 
   circle.bg {

@@ -5,12 +5,13 @@ import {
   Input,
   InputCaption,
   InputContainer,
-  Label,
+  Button,
 } from './fileInputElements';
 import CircularProgressBar from '../CircularProgressBar';
 import { IoMdCloudUpload } from 'react-icons/io';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useTranslation } from 'react-i18next';
+import Chips from '../Chips';
 
 const FileInput = ({ name, file, endpoint, onChange }) => {
   const axiosPrivate = useAxiosPrivate();
@@ -25,7 +26,7 @@ const FileInput = ({ name, file, endpoint, onChange }) => {
     e.preventDefault();
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (e.dataTransfer?.files?.length > 0 || e.target?.files?.length > 0) {
@@ -36,19 +37,22 @@ const FileInput = ({ name, file, endpoint, onChange }) => {
       const data = new FormData();
       data.append('file', e.dataTransfer?.files[0] || e.target?.files[0]);
 
-      try {
-        await axiosPrivate.post(endpoint, data, {
+      axiosPrivate
+        .post(endpoint, data, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
           onUploadProgress: (progressEvent) => {
             const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            setProgress(percentCompleted);
+            if (percentCompleted === 100) {
+              setIsUploading(false);
+              setProgress(0);
+            } else setProgress(percentCompleted);
           },
+        })
+        .catch((error) => {
+          console.log(error);
         });
-      } catch (error) {
-        console.log(error);
-      }
     }
   };
 
@@ -57,16 +61,20 @@ const FileInput = ({ name, file, endpoint, onChange }) => {
       <InputContainer onDrop={handleSubmit} onDragOver={handleDragOver}>
         <Input type='file' id={`${name}FileInput`} accept='.pdf' onChange={handleSubmit} />
         {isUploading ? (
-          <CircularProgressBar progress={progress} />
+          <InputCaption>
+            <CircularProgressBar progress={progress} />
+            Uploading...
+          </InputCaption>
         ) : (
           <InputCaption>
             <IoMdCloudUpload />
             <CaptionHeading>{t('newContribution.drag')}</CaptionHeading>
             <span style={{ color: 'var(--black-secondary)' }}>{t('newContribution.or')}</span>
-            <Label htmlFor={`${name}FileInput`}>{t('newContribution.browse')}</Label>
+            <Button htmlFor={`${name}FileInput`}>{t('newContribution.browse')}</Button>
           </InputCaption>
         )}
       </InputContainer>
+      {file && !isUploading && <Chips type='positive'>Successfully uploaded: {filename}</Chips>}
     </Container>
   );
 };

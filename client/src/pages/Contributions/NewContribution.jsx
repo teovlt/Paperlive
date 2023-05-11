@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../../components/Navbar';
 import Input from '../../components/Input';
-import { Button, Heading2, Heading3, Label } from '../../theme/appElements';
+import { Button, Caption, Heading2, Heading3, Label } from '../../theme/appElements';
 import {
   Container,
-  ErrorLabel,
   FormNavigation,
   LinearContainer,
   Link,
@@ -22,6 +21,7 @@ import { useNavigate } from 'react-router-dom';
 import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
 import { HiExclamationCircle, HiOutlineExclamationCircle } from 'react-icons/hi2';
+import Chips from '../../components/Chips';
 
 const NewContribution = () => {
   const navigate = useNavigate();
@@ -111,12 +111,7 @@ const NewContribution = () => {
               setContributionData(newContributionData);
             }}
           />
-          {errorMsg && (
-            <ErrorLabel>
-              <HiOutlineExclamationCircle />
-              {errorMsg}
-            </ErrorLabel>
-          )}
+          {errorMsg && <Chips type='negative'>{errorMsg}</Chips>}
           <LinearContainer>
             <Button style={{ width: '160px' }} type='neutral' onClick={() => navigate('/')}>
               {t('newContribution.cancel')}
@@ -161,18 +156,16 @@ const NewContribution = () => {
       content: (
         <>
           <Heading3>Abstract</Heading3>
+          <Label>
+            {t('newContribution.fileSupported')}: <span>pdf</span>
+          </Label>
           <FileInput
             name='abstract'
             file={contributionData.filename}
             endpoint='/contributions/abstract'
             onChange={(file) => setContributionData((prev) => ({ ...prev, filename: file?.name }))}
           />
-          {errorMsg && (
-            <ErrorLabel>
-              <HiOutlineExclamationCircle />
-              {errorMsg}
-            </ErrorLabel>
-          )}
+          {errorMsg && <Chips type='negative'>{errorMsg}</Chips>}
           <LinearContainer>
             <Button style={{ width: '160px' }} type='neutral' onClick={() => previous()}>
               {t('newContribution.previous')}
@@ -223,12 +216,7 @@ const NewContribution = () => {
             </Label>
             <Link onClick={() => goTo(1)}>{t('newContribution.edit')}</Link>
           </MainWrapper>
-          {errorMsg && (
-            <ErrorLabel>
-              <HiOutlineExclamationCircle />
-              {errorMsg}
-            </ErrorLabel>
-          )}
+          {errorMsg && <Chips type='negative'>{errorMsg}</Chips>}
           <LinearContainer>
             <Button style={{ width: '160px' }} type='neutral' onClick={() => previous()}>
               {t('newContribution.previous')}

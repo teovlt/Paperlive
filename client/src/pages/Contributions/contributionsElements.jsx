@@ -129,27 +129,6 @@ export const Link = styled.p`
   cursor: pointer;
 `;
 
-export const ErrorLabel = styled.span`
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-
-  width: 100%;
-  padding: 0.8rem 1.2rem;
-  border-radius: 0.4rem;
-
-  color: var(--black);
-  font-size: 1.4rem;
-
-  svg {
-    color: var(--negative);
-  }
-
-  outline-offset: -2px;
-  outline: 2px solid var(--negative-vibrant);
-  background: var(--negative-vibrant);
-`;
-
 export const SectionMain = styled.div`
   display: flex;
   flex-direction: row;
@@ -170,7 +149,6 @@ export const DivRecherche = styled.div`
     width: 100%;
     box-sizing: border-box;
   }
-  
 `;
 
 export const Btn = styled(Button)`
