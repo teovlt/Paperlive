@@ -245,3 +245,17 @@ export const Result = styled.li`
     background-color: var(--black-quaternary);
   }
 `;
+
+
+export const DivTable = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+`
+
+export const DivInfos = styled.div`
+display: flex;
+flex-direction: row;
+width: 100%;
+justify-content: space-between;
+`
