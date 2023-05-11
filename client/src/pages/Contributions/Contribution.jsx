@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import {
-  Container,
-  MainSection,
-  NavLink,
-  Navigation,
-} from '../../components/Layout/layoutElements';
+import { Container, NavLink, Navigation } from '../../components/Layout/layoutElements';
 import NavBar from '../../components/Navbar';
 import {
   HiOutlineBookOpen,
@@ -14,9 +9,17 @@ import {
   HiOutlineNewspaper,
   HiChevronDown,
 } from 'react-icons/hi2';
-import { Sidebar, Table, DivTable, DivInfos } from './contributionsElements';
+import {
+  Sidebar,
+  Table,
+  DivTable,
+  DivInfos,
+  SectionContribution,
+  Span,
+  Link,
+} from './contributionsElements';
 import { useTranslation } from 'react-i18next';
-import { Button } from '../../theme/appElements';
+import { Button, Paragraph } from '../../theme/appElements';
 
 const Contribution = () => {
   const { contributionId } = useParams();
@@ -64,20 +67,46 @@ const Contribution = () => {
             Delete this contribution
           </Button>
         </Sidebar>
-        <MainSection>
+        <SectionContribution>
           <DivTable>
             <h3>Informations</h3>
             <DivInfos>
-              <span>Titre: {contribution?.title}</span>
-              <span>Date: {contribution?.startDate}</span>
+              <Span>
+                <Paragraph>Titre:</Paragraph>
+                {contribution?.title}
+              </Span>
             </DivInfos>
             <DivInfos>
-              <span>Role: {contribution?.teamRole}</span>
-              <span> {contribution?.relatedContribution ?? `Aucun contributions en lien avec celle-ci`}</span>
+              <Span>
+                {contribution?.relatedContribution ? (
+                  <>
+                    <Paragraph>Related contribution(s):</Paragraph>
+                    {contribution?.relatedContribution}
+                  </>
+                ) : (
+                  `Aucun contributions en lien avec celle-ci`
+                )}
+              </Span>
             </DivInfos>
             <DivInfos>
-              <span>Abstract: {contribution?.abstract}</span>
-              <span>Etat:  {contribution?.state}</span>
+              <Span>
+                <Paragraph>Date:</Paragraph>
+                {contribution?.startDate}
+              </Span>
+              <Span>
+                <Paragraph>Role:</Paragraph>
+                {contribution?.teamRole}
+              </Span>
+            </DivInfos>
+            <DivInfos>
+              <Span>
+                <Paragraph>Abstract:</Paragraph>
+                <Link onClick={() => console.log('download abstract')}>Telecharger</Link>
+              </Span>
+              <Span>
+                <Paragraph>Etat:</Paragraph>
+                {contribution?.state}
+              </Span>
             </DivInfos>
           </DivTable>
           <DivTable>
@@ -113,7 +142,7 @@ const Contribution = () => {
               </tbody>
             </Table>
           </DivTable>
-        </MainSection>
+        </SectionContribution>
       </Container>
     </>
   );

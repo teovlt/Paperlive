@@ -246,16 +246,36 @@ export const Result = styled.li`
   }
 `;
 
-
 export const DivTable = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-`
+`;
 
 export const DivInfos = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: 8px;
+  column-gap: 24px;
+`;
+
+export const SectionContribution = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-block: 32px;
+  row-gap: 48px;
+  margin-left: 72px;
+  grid-area: 2 / 2 / 3 / 3;
+`;
+
+
+export const Span = styled.span`
 display: flex;
 flex-direction: row;
 width: 100%;
 justify-content: space-between;
+border-bottom: 1px solid var(--black-quaternary);
+
 `
