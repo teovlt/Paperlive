@@ -165,7 +165,10 @@ function Contributions() {
                       const element = contribution.title.toLowerCase();
                       if (element.includes(searchTerm)) {
                         return (
-                          <tr className='trBody' key={index}>
+                          <tr
+                            className='trBody'
+                            key={index}
+                            onClick={() => navigate(`/contributions/${contribution._id}`)}>
                             <td className='title'>{contribution.title}</td>
                             <td className='date'>{contribution.startDate}</td>
                             <td className='role'>{contribution.teamRole}</td>
