@@ -10,7 +10,8 @@ const StyledProgressBar = styled.div`
     position: relative;
 
     &::after {
-      content: ${(props) => `"${props.progress}"%`};
+      content: ${(props) => `"${props.fillPercentage}%"`};
+      color: var(--black);
       position: absolute;
       top: 50%;
       left: 50%;

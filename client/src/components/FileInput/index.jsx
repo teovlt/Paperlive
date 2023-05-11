@@ -53,7 +53,7 @@ const FileInput = ({ name, file, endpoint, onChange }) => {
     <Container>
       <InputContainer onDrop={handleSubmit} onDragOver={handleDragOver}>
         <Input type='file' id={`${name}FileInput`} accept='.pdf' onChange={handleSubmit} />
-        {isUploading || file ? (
+        {isUploading ? (
           <CircularProgressBar progress={progress} />
         ) : (
           <InputCaption>
