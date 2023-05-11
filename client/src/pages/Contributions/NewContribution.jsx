@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import NavBar from '../../components/Navbar';
 import Input from '../../components/Input';
 import { Button, Caption, Heading2, Heading3, Label } from '../../theme/appElements';
@@ -14,19 +14,24 @@ import {
   SideHeader,
   Sidebar,
   StepCaption,
+  DivRelated,
+  ResultsContainer,
+  Result,
 } from './contributionsElements';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
-import { HiExclamationCircle, HiOutlineExclamationCircle } from 'react-icons/hi2';
+import { HiOutlineExclamationCircle } from 'react-icons/hi2';
 import Chips from '../../components/Chips';
+import useAuth from '../../hooks/useAuth';
 
 const NewContribution = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const axiosPrivate = useAxiosPrivate();
+  const { auth } = useAuth();
 
   const [step, setStep] = useState(0);
   const [errorMsg, setErrorMsg] = useState('');
@@ -41,6 +46,58 @@ const NewContribution = () => {
   useEffect(() => {
     setErrorMsg('');
   }, [contributionData, step, t]);
+
+  const [related, setRelated] = useState(false);
+  const [results, setResults] = useState([]);
+  const divRelated = useRef();
+
+  function handleSearch(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    if (searchTerm === '') {
+      const matchingContributions = [];
+      for (let i = 0; i < auth.contributions.length; i++) {
+        const element = auth.contributions[i].title.toLowerCase();
+        matchingContributions.push(element);
+      }
+      setRelated(true);
+      setResults(matchingContributions);
+    } else {
+      let isRelated = false;
+      const matchingContributions = [];
+      for (let i = 0; i < auth.contributions.length; i++) {
+        const element = auth.contributions[i].title.toLowerCase();
+        if (element.includes(searchTerm)) {
+          isRelated = true;
+          matchingContributions.push(auth.contributions[i].title);
+        }
+      }
+      setRelated(isRelated);
+      setResults(matchingContributions);
+    }
+  }
+
+  function handleResultClick(result) {
+    // fonction pour gérer le click sur un élément de la liste
+    setContributionData({
+      ...contributionData,
+      relatedContribution: result,
+    });
+
+    setRelated(false);
+  }
+
+  useEffect(() => {
+    const listener = (event) => {
+      if (!divRelated.current || divRelated.current.contains(event.target)) {
+        return;
+      }
+      setRelated(false);
+    };
+    document.addEventListener('mousedown', listener);
+    return () => {
+      document.removeEventListener('mousedown', listener);
+    };
+  }, [divRelated]);
 
   const steps = [
     {
@@ -97,21 +154,40 @@ const NewContribution = () => {
               ],
             }}
           />
-          <Input
-            small
-            id='related'
-            value={contributionData?.relatedContribution}
-            label={t('newContribution.related')}
-            autoComplete='off'
-            onChange={(event) => {
-              const newContributionData = {
-                ...contributionData,
-                relatedContribution: event.target.value,
-              };
-              setContributionData(newContributionData);
-            }}
-          />
-          {errorMsg && <Chips type='negative'>{errorMsg}</Chips>}
+          <DivRelated id='divRelated' ref={divRelated}>
+            <Input
+              small
+              id='related'
+              value={contributionData?.relatedContribution}
+              label={t('newContribution.related')}
+              autoComplete='off'
+              onChange={(event) => {
+                const newContributionData = {
+                  ...contributionData,
+                  relatedContribution: event.target.value,
+                };
+                setContributionData(newContributionData);
+                handleSearch(event);
+              }}
+              onClick={(e) => handleSearch(e)}
+              onFocus={() => setRelated(true)}
+            />
+            {related && (
+              <ResultsContainer>
+                {results.map((result, index) => (
+                  <Result key={index} onClick={() => handleResultClick(result)}>
+                    {result}
+                  </Result>
+                ))}
+              </ResultsContainer>
+            )}
+          </DivRelated>
+          {errorMsg && (
+            <ErrorLabel>
+              <HiOutlineExclamationCircle />
+              {errorMsg}
+            </ErrorLabel>
+          )}
           <LinearContainer>
             <Button style={{ width: '160px' }} type='neutral' onClick={() => navigate('/')}>
               {t('newContribution.cancel')}
