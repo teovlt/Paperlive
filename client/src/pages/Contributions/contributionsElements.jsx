@@ -170,18 +170,7 @@ export const DivRecherche = styled.div`
     width: 100%;
     box-sizing: border-box;
   }
-
-  ul {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    max-height: 200px;
-    overflow-y: auto;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
+  
 `;
 
 export const Btn = styled(Button)`

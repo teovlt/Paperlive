@@ -10,6 +10,7 @@ import {
 import CircularProgressBar from '../CircularProgressBar';
 import { IoMdCloudUpload } from 'react-icons/io';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import { useTranslation } from 'react-i18next';
 
 const FileInput = ({ name, file, endpoint, onChange }) => {
   const axiosPrivate = useAxiosPrivate();
@@ -17,6 +18,8 @@ const FileInput = ({ name, file, endpoint, onChange }) => {
   const [filename, setFilename] = useState(file);
   const [progress, setProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
+
+  const { t } = useTranslation();
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -58,9 +61,9 @@ const FileInput = ({ name, file, endpoint, onChange }) => {
         ) : (
           <InputCaption>
             <IoMdCloudUpload />
-            <CaptionHeading>Drag and drop your files here</CaptionHeading>
-            <span style={{ color: 'var(--black-secondary)' }}>or</span>
-            <Label htmlFor={`${name}FileInput`}>Browse files</Label>
+            <CaptionHeading>{t('newContribution.drag')}</CaptionHeading>
+            <span style={{ color: 'var(--black-secondary)' }}>{t('newContribution.or')}</span>
+            <Label htmlFor={`${name}FileInput`}>{t('newContribution.browse')}</Label>
           </InputCaption>
         )}
       </InputContainer>
