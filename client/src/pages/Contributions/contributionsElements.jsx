@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container as AppContainer, Caption, Button } from '../../theme/appElements';
+import { Container as AppContainer, Caption } from '../../theme/appElements';
 
 export const Container = styled(AppContainer)`
   display: grid;
@@ -151,15 +151,6 @@ export const DivRecherche = styled.div`
   }
 `;
 
-export const Btn = styled(Button)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  column-gap: 5px;
-  width: auto;
-  height: min-content;
-`;
-
 export const Table = styled.table`
   display: flex;
   flex-direction: column;
@@ -233,6 +224,7 @@ export const RelatedContributionSearchResult = styled.div`
   padding: 4px 12px;
 
   font-size: 1.4rem;
+  cursor: pointer;
 
   &:hover {
     background: var(--accent);
@@ -240,16 +232,15 @@ export const RelatedContributionSearchResult = styled.div`
   }
 `;
 
-
 export const DivTable = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-`
+`;
 
 export const DivInfos = styled.div`
-display: flex;
-flex-direction: row;
-width: 100%;
-justify-content: space-between;
-`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+`;

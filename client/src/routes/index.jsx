@@ -4,7 +4,6 @@ import { Route, Routes as Switch } from 'react-router-dom';
 // Import components
 import PersistLogin from '../components/PersistLogin';
 import RequireAuth from '../components/RequireAuth';
-import AllowAnnon from '../components/AllowAnon';
 import Layout from '../components/Layout';
 
 // Import pages
@@ -20,13 +19,11 @@ import Contribution from '../pages/Contributions/Contribution';
 const Routes = () => {
   return (
     <Switch>
-      <Route element={<PersistLogin />}>
-        {/* anonymous routes */}
-        <Route element={<AllowAnnon />}>
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-        </Route>
+      {/* anonymous routes */}
+      <Route path='/login' element={<Login />} />
+      <Route path='/register' element={<Register />} />
 
+      <Route element={<PersistLogin />}>
         {/* protected routes */}
         <Route element={<RequireAuth />}>
           {/* profile layout */}

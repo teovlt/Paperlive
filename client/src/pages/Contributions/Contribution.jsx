@@ -55,7 +55,8 @@ const Contribution = () => {
         <Sidebar>
           <h2>Actions</h2>
           <Button secondary onClick={() => console.log('stats')}>
-            See the statistics
+            It's over Anakin I have the highground Don't underestimate my new power Don't try it
+            Anakin
           </Button>
           <Button secondary onClick={() => console.log('edit')}>
             Edit this contribution
@@ -73,11 +74,14 @@ const Contribution = () => {
             </DivInfos>
             <DivInfos>
               <span>Role: {contribution?.teamRole}</span>
-              <span> {contribution?.relatedContribution ?? `Aucun contributions en lien avec celle-ci`}</span>
+              <span>
+                {' '}
+                {contribution?.relatedContribution ?? `Aucun contributions en lien avec celle-ci`}
+              </span>
             </DivInfos>
             <DivInfos>
               <span>Abstract: {contribution?.abstract}</span>
-              <span>Etat:  {contribution?.state}</span>
+              <span>Etat: {contribution?.state}</span>
             </DivInfos>
           </DivTable>
           <DivTable>

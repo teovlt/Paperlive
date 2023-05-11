@@ -12,10 +12,12 @@ import { Button } from '../../theme/appElements';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../../hooks/useAuth';
 import useSearch from '../../hooks/useSearch';
+import { useNavigate } from 'react-router-dom';
 
 const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMsg, next }) => {
   const { t } = useTranslation();
   const { auth } = useAuth();
+  const navigate = useNavigate();
   const search = useSearch();
 
   const searchRelatedContributionRef = useRef(null);
@@ -24,16 +26,11 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
   const [searchResult, setSearchResult] = useState();
 
   useEffect(() => {
-    setSearchResult(auth.contributions?.map((contribution) => contribution.title));
+    setSearchResult(auth.contributions);
   }, [auth]);
 
   useEffect(() => {
-    setSearchResult(
-      search(
-        contributionData.relatedContribution,
-        auth.contributions?.map((contribution) => contribution.title)
-      )
-    );
+    setSearchResult(search(contributionData.relatedContribution, auth.contributions, 'title'));
   }, [contributionData.relatedContribution]);
 
   return (
@@ -115,12 +112,12 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
                   e.preventDefault();
                   const newContributionData = {
                     ...contributionData,
-                    relatedContribution: result,
+                    relatedContribution: result.title,
                   };
                   setContributionData(newContributionData);
                   searchRelatedContributionRef.current.blur();
                 }}>
-                {result}
+                {result.title}
               </RelatedContributionSearchResult>
             ))}
           </RelatedContributionSearchResultContainer>
@@ -128,7 +125,7 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
       </RelatedContributionSearchContainer>
       {errorMsg && <Chips type='negative'>{errorMsg}</Chips>}
       <LinearContainer>
-        <Button style={{ width: '160px' }} type='neutral' onClick={() => navigate('/')}>
+        <Button style={{ width: '160px' }} type='neutral' onClick={() => navigate(-1)}>
           {t('newContribution.cancel')}
         </Button>
         <Button
