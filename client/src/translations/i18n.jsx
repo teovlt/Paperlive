@@ -116,6 +116,7 @@ i18n
             browse: 'Browse files',
             edit: 'Edit this section',
             newContribution: 'New contribution',
+            fileSupported: 'Files supported',
           },
           contribution: {
             addContribution: 'Add a contribution',
@@ -223,6 +224,7 @@ i18n
             browse: 'Parcourir les fichiers',
             edit: 'Changer cette section',
             newContribution: 'Nouvelle contribution',
+            fileSupported: 'Fichiers supportés',
           },
           contribution: {
             addContribution: 'Ajouter une contribution',

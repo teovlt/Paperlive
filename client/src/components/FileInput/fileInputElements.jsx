@@ -14,6 +14,7 @@ export const InputContainer = styled.div`
 
   user-select: none;
 
+  padding: 24px;
   width: 100%;
   aspect-ratio: 2/1;
 
@@ -33,16 +34,6 @@ export const Input = styled.input`
   display: none;
 `;
 
-export const Label = styled.label`
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 4px;
-
-  border: 2px solid var(--accent);
-  color: var(--accent);
-  font-weight: 500;
-`;
-
 export const InputCaption = styled.div`
   display: flex;
   flex-direction: column;
@@ -51,11 +42,23 @@ export const InputCaption = styled.div`
 
   svg {
     color: var(--accent);
-    font-size: 8.8rem;
+    display: block;
+    font-size: 6rem;
   }
 `;
 
 export const CaptionHeading = styled.p`
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 1.6rem;
+  font-weight: 500;
+`;
+
+export const Button = styled.label`
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 0.2rem;
+
+  /* border: 2px solid var(--accent); */
+  background: var(--accent);
+  color: var(--white);
+  font-weight: 400;
 `;

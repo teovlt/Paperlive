@@ -13,7 +13,7 @@ services:
       - ./client:/app
       - /app/node_modules
     environment:
-      - VITE_API_URI=http://api:3000
+      - VITE_API_URI=http://localhost:3000
     networks:
       - paperlive-network
 

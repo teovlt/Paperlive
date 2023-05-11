@@ -10,7 +10,8 @@ const StyledProgressBar = styled.div`
     position: relative;
 
     &::after {
-      content: ${(props) => `"${props.progress}"%`};
+      content: ${(props) => `"${props.fillPercentage}%"`};
+      color: var(--black);
       position: absolute;
       top: 50%;
       left: 50%;
@@ -25,8 +26,8 @@ const StyledProgressBar = styled.div`
 
   circle {
     fill: none;
-    stroke-width: 5px;
-    stroke-linecap: round;
+    stroke-width: 3px;
+    /* stroke-linecap: round; */
   }
 
   circle.bg {
