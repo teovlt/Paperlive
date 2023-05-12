@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container as AppContainer, Caption } from '../../theme/appElements';
+import { Container as AppContainer, Caption, Button as AppButton } from '../../theme/appElements';
 
 export const Container = styled(AppContainer)`
   display: grid;
@@ -324,4 +324,15 @@ export const Span = styled.span`
   width: 100%;
   justify-content: space-between;
   border-bottom: 1px solid var(--black-quaternary);
+`;
+
+export const Button = styled(AppButton)`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 1.4rem;
+  padding: 16px;
+
+  white-space: nowrap;
 `;

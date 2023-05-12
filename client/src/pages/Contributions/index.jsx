@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import useSearch from '../../hooks/useSearch';
 import {
+  LinearContainer,
   SectionMain,
   Table,
   TableCell,
   TableFoot,
   TableHead,
   TableRow,
+  Button,
 } from './contributionsElements';
 import { useTranslation } from 'react-i18next';
 import Input from '../../components/Input';
@@ -81,7 +83,7 @@ function Contributions() {
   return (
     <>
       <Heading2>Contributions</Heading2>
-      <SectionMain>
+      <LinearContainer>
         <Input
           small
           name='search'
@@ -92,7 +94,10 @@ function Contributions() {
           onChange={(e) => setSearchTerm(e.target.value)}
           autoComplete='off'
         />
-      </SectionMain>
+        <Button onClick={() => navigate('/contributions/new')}>
+          {t('contribution.addContribution')}
+        </Button>
+      </LinearContainer>
       <Table>
         <thead>
           <TableHead>
