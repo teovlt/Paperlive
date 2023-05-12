@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import useSearch from '../../hooks/useSearch';
 import { HiChevronDown, HiOutlineClock } from 'react-icons/hi2';
-import { SectionMain, Table, TableHeader } from './contributionsElements';
+import { SectionMain, Table, TableHeader, TitleCell } from './contributionsElements';
 import { useTranslation } from 'react-i18next';
 import Input from '../../components/Input';
 
@@ -140,9 +140,8 @@ function Contributions() {
             <tr
               key={index}
               className='trBody'
-              // onClick={() => navigate(`/contributions/${contribution._id}`)}
-            >
-              <td className='title'>{contribution.title}</td>
+              onClick={() => navigate(`/contributions/${contribution._id}`)}>
+              <TitleCell className='title'>{contribution.title}</TitleCell>
               <td className='date'>
                 {new Intl.DateTimeFormat(i18n.language, {
                   day: '2-digit',

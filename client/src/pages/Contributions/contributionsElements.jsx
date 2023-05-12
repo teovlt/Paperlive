@@ -193,32 +193,6 @@ export const DivTable = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-`;
-
-export const DivInfos = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-<<<<<<< HEAD
-`;
-
-export const Table = styled.table`
-  width: 100%;
-  text-align: left;
-`;
-
-export const TableHeader = styled.thead`
-  font-weight: 400;
-  background: red;
-`;
-
-export const TitleCell = styled.td`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-=======
   padding: 8px;
   column-gap: 24px;
 `;
@@ -232,13 +206,35 @@ export const SectionContribution = styled.div`
   grid-area: 2 / 2 / 3 / 3;
 `;
 
-
 export const Span = styled.span`
-display: flex;
-flex-direction: row;
-width: 100%;
-justify-content: space-between;
-border-bottom: 1px solid var(--black-quaternary);
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--black-quaternary);
+`;
 
-`
->>>>>>> 54496697066b5ab4eea8621cdd2d7532ee9a1a1a
+export const DivInfos = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+export const Table = styled.table`
+  width: 100%;
+  text-align: left;
+`;
+
+export const TableHeader = styled.thead`
+  td  {
+    font-weight: 400;
+    background: red;
+  }
+`;
+
+export const TitleCell = styled.td`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
