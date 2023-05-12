@@ -134,7 +134,6 @@ export const Link = styled(NavLink)`
 
 export const IconLink = styled(NavLink)`
   display: flex;
-  justify-content: center;
   flex-direction: row;
   align-items: center;
 
