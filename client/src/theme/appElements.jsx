@@ -176,3 +176,4 @@ export const VerticalDivider = styled.span`
   width: 1px;
   background: var(--black-quaternary);
 `;
+

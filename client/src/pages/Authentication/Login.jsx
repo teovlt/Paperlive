@@ -127,7 +127,7 @@ const Login = () => {
             {t('login.textSignUp')} <Link to='/register'>{t('login.signUp')}</Link>
           </Caption>
         </Form>
-        <Small style={{ textAlign: 'center' }}>{t('authentication.bottom')}</Small>
+        <Small style={{ textAlign: 'center' }}>{t('login.bottom')}</Small>
       </Container>
     </>
   );

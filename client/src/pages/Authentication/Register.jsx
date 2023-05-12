@@ -134,7 +134,7 @@ const Register = () => {
             <Link to='/login'>{t('register.signIn')}</Link>
           </Caption>
         </Form>
-        <Small>{t('authentication.bottom')}</Small>
+        <Small>{t('register.bottom')}</Small>
       </Container>
     </>
   );

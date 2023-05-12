@@ -42,17 +42,16 @@ i18n
           },
           login: {
             welcome: 'Welcome',
-
             signIn: 'Sign In',
             signUp: 'Sign Up',
             textSignUp: 'New to PaperLive ?',
-
             loginError: 'Login Failed',
             invalidLogin: 'Invalid Credentials',
+            bottom:
+              "The login is required to access PaperLive's services and to securely manage your account.",
           },
           register: {
             welcome: 'Create your profile',
-
             password2: 'Confirm your password',
             signIn: 'Sign In',
             signUp: 'Sign Up',
@@ -62,11 +61,11 @@ i18n
               'The password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, one digit, and one special character. Please try again.',
             errorPasswordConf: 'The passwords do not match. Please try again.',
             registerError: 'Register Failed',
+            bottom:
+              'By creating an account, you agree to the terms of service. For more information about PaperLive’s privacy practices, see the privacy Statement.',
           },
           authentication: {
             servorError: 'No Server Response',
-            bottom:
-              'By creating an account, you agree to the terms of service. For more information about PaperLive’s privacy practices, see the privacy Statement.',
             teamName: 'Team name',
             password: 'Password',
           },
@@ -98,6 +97,8 @@ i18n
             title: 'Title',
             date: 'Start date',
             related: 'Related contributions*',
+            related2: 'Related contribution(s)',
+            noRelated: 'No contributions are linked to this contribution',
             leader: 'Leader',
             coleader: 'Co-leader',
             guest: 'Guest',
@@ -111,9 +112,6 @@ i18n
             save: 'Save',
             errorMsg: 'Please fill in the following field(s): ',
             errorMsgAbstract: 'Please fill in the following field: Abstract',
-            drag: 'Drag and drop your file here',
-            or: 'or',
-            browse: 'Browse files',
             edit: 'Edit this section',
             newContribution: 'New contribution',
             fileSupported: 'Files supported',
@@ -124,6 +122,15 @@ i18n
             date: 'Date',
             state: 'State',
             searchBar: 'Search contributions by title',
+            stats: 'Show the statistics',
+            edit: 'Edit the contribution',
+            delete: 'Delete the contribution',
+          },
+          fileInput: {
+            success: 'Successfully uploaded',
+            drag: 'Drag and drop your file here',
+            or: 'or',
+            browse: 'Browse files',
           },
         },
       },
@@ -153,12 +160,13 @@ i18n
           },
           login: {
             welcome: 'Bienvenue',
-
             signIn: 'Se connecter',
             signUp: "S'enregistrer",
             textSignUp: 'Nouveau sur PaperLive ?',
             loginError: 'Erreur lors de la connexion',
             invalidLogin: 'Identifiants invalides',
+            bottom:
+              'La connexion est nécessaire pour accéder aux services de PaperLive et pour gérer votre compte en toute sécurité.',
           },
           register: {
             welcome: 'Créer votre compte',
@@ -170,11 +178,11 @@ i18n
               'Le mot de passe doit avoir au moins 8 caractères, contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial. Veuillez réessayer.',
             errorPasswordConf: 'Les mots de passe ne correspondent pas. Veuillez réessayer.',
             registerError: "Erreur lors de l'enregistrement",
+            bottom:
+              "En créant un compte, vous acceptez les conditions d'utilisation. Pour plus d'informations sur les pratiques de confidentialité de PaperLive, consultez la déclaration de confidentialité.",
           },
           authentication: {
             servorError: 'Le serveur ne répond pas',
-            bottom:
-              "En créant un compte, vous acceptez les conditions d'utilisation. Pour plus d'informations sur les pratiques de confidentialité de PaperLive, consultez la déclaration de confidentialité.",
             teamName: "Nom de l'équipe",
             password: 'Mot de passe',
           },
@@ -206,6 +214,8 @@ i18n
             title: 'Titre',
             date: 'Date de départ',
             related: 'Contributions en lien*',
+            related2: 'Contribution(s) en lien',
+            noRelated: "Aucune contribution n'est liée à cette contribution",
             leader: 'Meneur',
             coleader: 'Co-meneur',
             guest: 'Invité',
@@ -219,9 +229,6 @@ i18n
             save: 'Sauvegarder',
             errorMsg: 'Merci de remplir le(s) champ(s) suivant(s): ',
             errorMsgAbstract: 'Merci de remplir le champ suivant: Abstract',
-            drag: 'Faites glisser votre fichier ici',
-            or: 'ou',
-            browse: 'Parcourir les fichiers',
             edit: 'Changer cette section',
             newContribution: 'Nouvelle contribution',
             fileSupported: 'Fichiers supportés',
@@ -232,6 +239,15 @@ i18n
             date: 'Date',
             state: 'Etat',
             searchBar: 'Rechercher des contributions par titre',
+            stats: 'Voir les statistiques',
+            edit: 'Modifier la contribution',
+            delete: 'Supprimer la contribution',
+          },
+          fileInput: {
+            success: 'Importé avec succès',
+            drag: 'Faites glisser votre fichier ici',
+            or: 'ou',
+            browse: 'Parcourir les fichiers',
           },
         },
       },
