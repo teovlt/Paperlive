@@ -51,7 +51,7 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
         id='date'
         type='date'
         value={contributionData?.startDate}
-        label={t('contribution.dateStart')}
+        label={t('contribution.startDate')}
         autoComplete='off'
         onChange={(event) => {
           console.log(event.target.value);
@@ -66,7 +66,7 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
           setContributionData(newContributionData);
         }}
         template={{
-          label: `${t('contribution.teamRole')}`,
+          label: t('contribution.teamRole'),
           radios: [
             {
               label: t('contribution.leader'),
@@ -75,8 +75,8 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
             },
             {
               label: t('contribution.coLeader'),
-              value: 'co-leader',
-              defaultChecked: contributionData?.teamRole === 'co-leader',
+              value: 'coLeader',
+              defaultChecked: contributionData?.teamRole === 'coLeader',
             },
             {
               label: t('contribution.guest'),
@@ -140,18 +140,7 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
               next();
             } else {
               const errorMsg = `${t('contribution.errorMsg')} ${missings
-                .map((key) => {
-                  switch (key) {
-                    case 'title':
-                      return `${t('contribution.title')}`;
-                    case 'startDate':
-                      return `${t('contribution.dateStart')}`;
-                    case 'teamRole':
-                      return `${t('contribution.teamRole')}`;
-                    case 'filename':
-                      return 'abstract';
-                  }
-                })
+                .map((key) => t(`contribution.${key}`))
                 .join(', ')}`;
               setErrorMsg(errorMsg);
             }

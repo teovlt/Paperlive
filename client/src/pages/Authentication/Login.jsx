@@ -28,8 +28,8 @@ const Login = () => {
   const [errMsg, setErrMsg] = useState('');
 
   const lngs = {
-    en: { nativeName: `${t('language.english')}`, flag: '🇬🇧' },
-    fr: { nativeName: `${t('language.french')}`, flag: '🇫🇷' },
+    en: { nativeName: t('language.english'), flag: '🇬🇧' },
+    fr: { nativeName: t('language.french'), flag: '🇫🇷' },
   };
 
   useEffect(() => {
@@ -69,11 +69,11 @@ const Login = () => {
       navigate(from, { replace: true });
     } catch (error) {
       if (!error?.response) {
-        setErrMsg(`${t('authentication.servorError')}`);
+        setErrMsg(t('authentication.servorError'));
       } else if (error.response?.status === 400) {
-        setErrMsg(`${t('login.invalidLogin')}`);
+        setErrMsg(t('login.invalidLogin'));
       } else {
-        setErrMsg(`${t('login.loginError')}`);
+        setErrMsg(t('login.loginError'));
       }
     }
   };
@@ -82,7 +82,7 @@ const Login = () => {
     toggle: <HiGlobeAlt />,
     groups: [
       {
-        label: `${t('language.current')}`,
+        label: t('language.current'),
         value: lngs[i18n.resolvedLanguage].nativeName,
       },
       {

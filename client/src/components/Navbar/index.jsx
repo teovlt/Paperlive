@@ -11,8 +11,8 @@ import useAuth from '../../hooks/useAuth';
 const NavBar = () => {
   const { t } = useTranslation();
   const lngs = {
-    en: { nativeName: `${t('language.english')}`, flag: '🇬🇧' },
-    fr: { nativeName: `${t('language.french')}`, flag: '🇫🇷' },
+    en: { nativeName: t('language.english'), flag: '🇬🇧' },
+    fr: { nativeName: t('language.french'), flag: '🇫🇷' },
   };
 
   const { auth } = useAuth();
@@ -28,7 +28,7 @@ const NavBar = () => {
     toggle: <HiGlobeAlt />,
     groups: [
       {
-        label: `${t('language.current')}`,
+        label: t('language.current'),
         value: lngs[i18n.resolvedLanguage].nativeName,
       },
       {
@@ -44,21 +44,21 @@ const NavBar = () => {
     toggle: <HiUserGroup />,
     groups: [
       {
-        label: `${t('dropDown.signedAs')}`,
+        label: t('dropDown.signedAs'),
         value: auth.name?.toUpperCase(),
       },
       {
         actions: [
           {
-            label: `${t('dropDown.profile')}`,
+            label: t('dropDown.profile'),
             onClick: () => navigate('/'),
           },
           {
-            label: `${t('dropDown.contributions')}`,
+            label: t('dropDown.contributions'),
             onClick: () => navigate('/contributions'),
           },
           {
-            label: `${t('dropDown.statistics')}`,
+            label: t('dropDown.statistics'),
             onClick: () => navigate('/statistics'),
           },
         ],
@@ -66,11 +66,11 @@ const NavBar = () => {
       {
         actions: [
           {
-            label: `${t('dropDown.settings')}`,
+            label: t('dropDown.settings'),
             onClick: () => navigate('/settings'),
           },
           {
-            label: `${t('dropDown.logout')}`,
+            label: t('dropDown.logout'),
             onClick: signOut,
           },
         ],
@@ -84,11 +84,11 @@ const NavBar = () => {
       {
         actions: [
           {
-            label: `${t('dropDown.newContribution')}`,
+            label: t('dropDown.newContribution'),
             onClick: () => navigate('/contributions/new'),
           },
           {
-            label: `${t('dropDown.newSubmission')}`,
+            label: t('dropDown.newSubmission'),
             onClick: () => navigate('/'),
           },
         ],

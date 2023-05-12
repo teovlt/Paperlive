@@ -61,7 +61,7 @@ const ProfileSidebar = () => {
             <Label>
               {auth.visibility ? <HiOutlineLockOpen /> : <HiOutlineLockClosed />}
               {t('sideBar.visibility')}
-              <span>{auth.visibility ? `${t('sideBar.public')}` : `${t('sideBar.private')}`}</span>
+              <span>{auth.visibility ? t('sideBar.public') : t('sideBar.private')}</span>
             </Label>
             <Label>
               <HiOutlineNewspaper /> <span>{auth.contributions?.length}</span> contribution(s)
@@ -89,15 +89,15 @@ const ProfileSidebar = () => {
           <RadioGroup
             name='visibility'
             template={{
-              label: `${t('sideBar.visibility')}`,
+              label: t('sideBar.visibility'),
               radios: [
                 {
-                  label: `${t('sideBar.private')}`,
+                  label: t('sideBar.private'),
                   value: false,
                   defaultChecked: profilData.visibility === false,
                 },
                 {
-                  label: `${t('sideBar.public')}`,
+                  label: t('sideBar.public'),
                   value: true,
                   defaultChecked: profilData.visibility === true,
                 },
