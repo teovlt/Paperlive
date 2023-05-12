@@ -151,49 +151,6 @@ export const DivRecherche = styled.div`
   }
 `;
 
-export const Table = styled.table`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  thead {
-    background-color: var(--black-quaternary);
-    border-top: 0.1rem solid var(--black-quaternary);
-    border-left: 0.1rem solid var(--black-quaternary);
-    border-right: 0.1rem solid var(--black-quaternary);
-  }
-  tr {
-    display: grid;
-    grid-template-columns: 5fr repeat(3, 2fr);
-    border-bottom: 0.1rem solid var(--black-quaternary);
-    padding: 12px;
-  }
-  th {
-    display: flex;
-    column-gap: 10px;
-    align-items: center;
-    font-weight: 400;
-    cursor: pointer;
-  }
-
-  .trBody {
-    &:hover {
-      background-color: var(--black-quaternary);
-      cursor: pointer;
-    }
-  }
-
-  .etat {
-    display: flex;
-    align-items: center;
-  }
-
-  .trNoContri {
-    display: flex;
-    border: none;
-    padding: 0;
-  }
-`;
-
 export const RelatedContributionSearchContainer = styled.div`
   position: relative;
 `;
@@ -243,4 +200,20 @@ export const DivInfos = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+`;
+
+export const Table = styled.table`
+  width: 100%;
+  text-align: left;
+`;
+
+export const TableHeader = styled.thead`
+  font-weight: 400;
+  background: red;
+`;
+
+export const TitleCell = styled.td`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

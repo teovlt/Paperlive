@@ -3,97 +3,67 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import useSearch from '../../hooks/useSearch';
 import { HiChevronDown, HiOutlineClock } from 'react-icons/hi2';
-import { SectionMain, Table } from './contributionsElements';
+import { SectionMain, Table, TableHeader } from './contributionsElements';
 import { useTranslation } from 'react-i18next';
 import Input from '../../components/Input';
 
 function Contributions() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { auth } = useAuth();
   const navigate = useNavigate();
   const search = useSearch();
 
-  const [sort, setSort] = useState({ attr: 'title', direction: 'asc' });
+  const [sort, setSort] = useState({ attr: 'startDate', direction: 'desc' });
 
   const [searchResults, setSearchResults] = useState(auth.contributions);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    // TODO: Enlever le tri
     setSearchResults(search(searchTerm, auth.contributions, 'title'));
   }, [searchTerm]);
 
-  // function sortContributions() {
-  //   if (sortTitle != null) {
-  //     const sortedContributions = [...auth.contributions].sort((a, b) => {
-  //       const titleA = a.title.toLowerCase();
-  //       const titleB = b.title.toLowerCase();
-  //       if (titleA < titleB) {
-  //         return sortTitle === 'asc' ? -1 : 1;
-  //       } else if (titleA > titleB) {
-  //         return sortTitle === 'asc' ? 1 : -1;
-  //       } else {
-  //         return 0;
-  //       }
-  //     });
-  //     return sortedContributions;
-  //   } else if (sortDate != null) {
-  //     const sortedContributions = [...auth.contributions].sort((a, b) => {
-  //       const dateA = new Date(a.startDate);
-  //       const dateB = new Date(b.startDate);
-  //       if (dateA < dateB) {
-  //         return sortDate === 'asc' ? -1 : 1;
-  //       } else if (dateA > dateB) {
-  //         return sortDate === 'asc' ? 1 : -1;
-  //       } else {
-  //         return 0;
-  //       }
-  //     });
-  //     return sortedContributions;
-  //   } else if (sortTeamRole != null) {
-  //     const sortedContributions = [...auth.contributions].sort((a, b) => {
-  //       const roleA = a.teamRole.toLowerCase();
-  //       const roleB = b.teamRole.toLowerCase();
-  //       if (roleA === 'leader' && roleB !== 'leader') {
-  //         return sortTeamRole === 'asc' ? -1 : 1;
-  //       } else if (roleA !== 'leader' && roleB === 'leader') {
-  //         return sortTeamRole === 'asc' ? 1 : -1;
-  //       } else if (roleA === 'guest' && roleB === 'co-leader') {
-  //         return sortTeamRole === 'asc' ? 1 : -1;
-  //       } else if (roleA === 'co-leader' && roleB === 'guest') {
-  //         return sortTeamRole === 'asc' ? -1 : 1;
-  //       } else {
-  //         return 0;
-  //       }
-  //     });
-  //     return sortedContributions;
-  //   } else {
-  //     return auth.contributions;
-  //   }
-  // }
+  useEffect(() => {
+    const sortedList = [...searchResults];
+    sortedList.sort((a, b) => {
+      const valueA = a[sort.attr];
+      const valueB = b[sort.attr];
 
-  // function handleSortOrderChange() {
-  //   const newSortTitle = sortTitle === 'asc' ? 'desc' : 'asc';
-  //   setSortTitle(newSortTitle);
-  //   setSortDate(null);
-  //   setSortTeamRole(null);
-  // }
-  // function handleSortDateChange() {
-  //   const newSortDate = sortDate === 'asc' ? 'desc' : 'asc';
-  //   setSortTitle(null);
-  //   setSortDate(newSortDate);
-  //   setSortTeamRole(null);
-  // }
-  // function handleSortRoleChange() {
-  //   const newSortRole = sortTeamRole === 'asc' ? 'desc' : 'asc';
-  //   setSortTitle(null);
-  //   setSortDate(null);
-  //   setSortTeamRole(newSortRole);
-  // }
+      if (sort.attr === 'teamRole') {
+        const order = ['leader', 'co-leader', 'guest'];
+        const indexA = order.indexOf(valueA);
+        const indexB = order.indexOf(valueB);
 
-  // useEffect(() => {
-  //   setSortDate('desc'); // trier par date par défaut lors du chargement de la table
-  // }, []);
+        if (indexA < indexB) {
+          return sort.direction === 'asc' ? -1 : 1;
+        }
+        if (indexA > indexB) {
+          return sort.direction === 'asc' ? 1 : -1;
+        }
+      }
+
+      if (sort.attr === 'state') {
+        const order = ['in-progress', 'approved', 'dropped'];
+        const indexA = order.indexOf(valueA);
+        const indexB = order.indexOf(valueB);
+
+        if (indexA < indexB) {
+          return sort.direction === 'asc' ? -1 : 1;
+        }
+        if (indexA > indexB) {
+          return sort.direction === 'asc' ? 1 : -1;
+        }
+      }
+
+      if (valueA < valueB) {
+        return sort.direction === 'asc' ? -1 : 1;
+      }
+      if (valueA > valueB) {
+        return sort.direction === 'asc' ? 1 : -1;
+      }
+      return 0;
+    });
+    setSearchResults(sortedList);
+  }, [sort]);
 
   return (
     <>
@@ -109,80 +79,77 @@ function Contributions() {
           onChange={(e) => setSearchTerm(e.target.value)}
           autoComplete='off'
         />
-        {/* <Button onClick={() => navigate('/contributions/new')}>
-        {t('contribution.addContribution')}
-        <HiPlus />
-        </Button> */}
       </SectionMain>
       <Table>
-        <thead>
-          <tr>
-            <th className='title'>
-              {t('contribution.titleTable')}
-              <HiChevronDown />
-            </th>
-            <th>
-              {t('contribution.date')}
-              <HiChevronDown />
-            </th>
-            <th>
-              Role
-              <HiChevronDown />
-            </th>
-            <th>
-              {t('contribution.state')}
-              <HiChevronDown />
-            </th>
-          </tr>
-        </thead>
+        <TableHeader>
+          <th
+            onClick={() =>
+              setSort((prev) => {
+                if (prev.attr === 'title' && prev.direction === 'asc')
+                  return { ...prev, direction: 'desc' };
+                else if (prev.attr === 'title' && prev.direction === 'desc')
+                  return { ...prev, direction: 'asc' };
+                else return { attr: 'title', direction: 'asc' };
+              })
+            }>
+            {t('contribution.titleTable')}
+            <HiChevronDown />
+          </th>
+          <th
+            onClick={() =>
+              setSort((prev) => {
+                if (prev.attr === 'startDate' && prev.direction === 'asc')
+                  return { ...prev, direction: 'desc' };
+                else if (prev.attr === 'startDate' && prev.direction === 'desc')
+                  return { ...prev, direction: 'asc' };
+                else return { attr: 'startDate', direction: 'asc' };
+              })
+            }>
+            {t('contribution.date')}
+            <HiChevronDown />
+          </th>
+          <th
+            onClick={() =>
+              setSort((prev) => {
+                if (prev.attr === 'teamRole' && prev.direction === 'asc')
+                  return { ...prev, direction: 'desc' };
+                else if (prev.attr === 'teamRole' && prev.direction === 'desc')
+                  return { ...prev, direction: 'asc' };
+                else return { attr: 'teamRole', direction: 'asc' };
+              })
+            }>
+            Role
+            <HiChevronDown />
+          </th>
+          <th
+            onClick={() =>
+              setSort((prev) => {
+                if (prev.attr === 'state' && prev.direction === 'asc')
+                  return { ...prev, direction: 'desc' };
+                else if (prev.attr === 'state' && prev.direction === 'desc')
+                  return { ...prev, direction: 'asc' };
+                else return { attr: 'state', direction: 'asc' };
+              })
+            }>
+            {t('contribution.state')}
+            <HiChevronDown />
+          </th>
+        </TableHeader>
         <tbody>
-          {/* {auth.contributions?.length > 0
-            ? (() => {
-                return searchResults
-                  ? sortContributions().map((contribution, index) => {
-                      const element = contribution.title.toLowerCase();
-                      if (element.includes(searchTerm)) {
-                        return (
-                          <tr className='trBody' key={index}>
-                            <td className='title'>{contribution.title}</td>
-                            <td className='date'>{contribution.startDate}</td>
-                            <td className='role'>{contribution.teamRole}</td>
-                            <td className='etat'>
-                              {contribution.state}
-                              <HiOutlineClock />
-                            </td>
-                          </tr>
-                        );
-                      }
-                    })
-                  : sortContributions().map((contribution, index) => {
-                      const element = contribution.title.toLowerCase();
-                      if (element.includes(searchTerm)) {
-                        return (
-                          <tr
-                            className='trBody'
-                            key={index}
-                            onClick={() => navigate(`/contributions/${contribution._id}`)}>
-                            <td className='title'>{contribution.title}</td>
-                            <td className='date'>{contribution.startDate}</td>
-                            <td className='role'>{contribution.teamRole}</td>
-                            <td className='etat'>
-                              {contribution.state}
-                              <HiOutlineClock />
-                            </td>
-                          </tr>
-                        );
-                      }
-                    });
-              })()
-            : null} */}
           {searchResults?.map((contribution, index) => (
             <tr
               key={index}
               className='trBody'
-              onClick={() => navigate(`/contributions/${contribution._id}`)}>
+              // onClick={() => navigate(`/contributions/${contribution._id}`)}
+            >
               <td className='title'>{contribution.title}</td>
-              <td className='date'>{contribution.startDate}</td>
+              <td className='date'>
+                {new Intl.DateTimeFormat(i18n.language, {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: '2-digit',
+                }).format(new Date(contribution.startDate))}
+              </td>
               <td className='role'>{contribution.teamRole}</td>
               <td className='etat'>
                 {contribution.state}
