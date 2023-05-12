@@ -13,7 +13,6 @@ export const UploadAvatarLabel = styled.label`
   aspect-ratio: 1/1;
 
   cursor: pointer;
-  border-radius: 100%;
 
   &:hover::before {
     content: ${(props) => `"${props.label}"`};
@@ -37,7 +36,7 @@ export const UploadAvatarLabel = styled.label`
 
 export const Picture = styled.img`
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1/1;
   border-radius: 100%;
 
   object-fit: cover;
