@@ -25,6 +25,9 @@ i18n
             previous: 'Previous',
             save: 'Save',
             download: 'Download',
+            contribution: 'Contribution',
+            submission: 'Submission',
+            search: 'Search',
           },
           layout: {
             overview: 'Overview',
@@ -92,7 +95,6 @@ i18n
               "You don't have a description yet, edit your profile to add one. This will allow other teams to better know what you do and what field you are in.",
           },
           contribution: {
-            addContribution: 'Add a contribution',
             title: 'Title',
             date: 'Date',
             role: 'Role',
@@ -109,7 +111,7 @@ i18n
             coLeader: 'Co-leader',
             guest: 'Guest',
             startDate: 'Start date',
-            related: 'Related contributions*',
+            related: 'Related contribution',
             related2: 'Related contribution(s)',
             noRelated: 'No contributions are linked to this contribution',
             previous: 'Previous',
@@ -140,6 +142,9 @@ i18n
             previous: 'Précédent',
             save: 'Sauvegarder',
             download: 'Telecharger',
+            contribution: 'Contribution',
+            submission: 'Soumission',
+            search: 'Rechercher',
           },
           layout: {
             overview: "Vue d'ensemble",
@@ -206,7 +211,6 @@ i18n
               'Vous ne possédez pas encore de description, modifier votre profil pour en rajouter une. Cela permettra aux autres équipes de mieux savoir ce que vous faites et dans quel domaine êtes vous.',
           },
           contribution: {
-            addContribution: 'Ajouter une contribution',
             title: 'Titre',
             date: 'Date',
             role: 'Rôle',
@@ -223,7 +227,7 @@ i18n
             coLeader: 'Co-meneur',
             guest: 'Invité',
             startDate: 'Date de départ',
-            related: 'Contributions en lien*',
+            related: 'Contribution en lien',
             related2: 'Contribution(s) en lien',
             noRelated: "Aucune contribution n'est liée à cette contribution",
             teamRole: "Role de l'équipe",

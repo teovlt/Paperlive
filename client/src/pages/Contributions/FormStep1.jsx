@@ -91,7 +91,7 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
           small
           id='related'
           value={contributionData?.relatedContribution}
-          label={t('contribution.related')}
+          label={`${t('contribution.related')}*`}
           ref={searchRelatedContributionRef}
           autoComplete='off'
           onChange={(event) => {

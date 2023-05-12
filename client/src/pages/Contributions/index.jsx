@@ -11,6 +11,7 @@ import {
   TableHead,
   TableRow,
   Button,
+  TableCellButton,
 } from './contributionsElements';
 import { useTranslation } from 'react-i18next';
 import Input from '../../components/Input';
@@ -87,7 +88,7 @@ function Contributions() {
         <Input
           small
           name='search'
-          label='Search'
+          label={t('global.search')}
           id='searchBar'
           value={searchTerm}
           placeholder={t('contribution.searchBar')}
@@ -95,7 +96,7 @@ function Contributions() {
           autoComplete='off'
         />
         <Button onClick={() => navigate('/contributions/new')}>
-          {t('contribution.addContribution')}
+          {t('contribution.newContribution')}
         </Button>
       </LinearContainer>
       <Table>
@@ -161,20 +162,26 @@ function Contributions() {
           </TableHead>
         </thead>
         <tbody>
-          {searchResults.map((contribution, index) => (
-            <TableRow key={index} onClick={() => navigate(`/contributions/${contribution._id}`)}>
-              <TableCell>{contribution.title}</TableCell>
-              <TableCell>
-                {new Intl.DateTimeFormat(i18n.language, {
-                  day: '2-digit',
-                  month: '2-digit',
-                  year: '2-digit',
-                }).format(new Date(contribution.startDate))}
-              </TableCell>
-              <TableCell>{t(`contribution.${contribution.teamRole}`)}</TableCell>
-              <TableCell>{t(`contribution.${contribution.state}`)}</TableCell>
+          {searchResults.length > 0 ? (
+            searchResults.map((contribution, index) => (
+              <TableRow key={index} onClick={() => navigate(`/contributions/${contribution._id}`)}>
+                <TableCell>{contribution.title}</TableCell>
+                <TableCell>
+                  {new Intl.DateTimeFormat(i18n.language, {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: '2-digit',
+                  }).format(new Date(contribution.startDate))}
+                </TableCell>
+                <TableCell>{t(`contribution.${contribution.teamRole}`)}</TableCell>
+                <TableCell>{t(`contribution.${contribution.state}`)}</TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow onClick={() => navigate('/contributions/new')}>
+              <TableCellButton>+ {t('contribution.newContribution')}</TableCellButton>
             </TableRow>
-          ))}
+          )}
         </tbody>
         <tfoot>
           <TableFoot>

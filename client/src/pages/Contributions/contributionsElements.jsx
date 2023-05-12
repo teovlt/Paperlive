@@ -189,6 +189,17 @@ export const RelatedContributionSearchResult = styled.div`
   }
 `;
 
+export const Button = styled(AppButton)`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 1.5rem;
+  padding: 16px;
+
+  white-space: nowrap;
+`;
+
 export const Table = styled.table`
   width: 100%;
   text-align: left;
@@ -213,13 +224,11 @@ export const TableCell = styled.td`
 
   &:first-of-type {
     flex: 2;
-    border-radius: 0.2rem 0 0 0.2rem;
     border-left: none;
     border-right: 0.5px solid var(--black-quaternary);
   }
 
   &:last-of-type {
-    border-radius: 0 0.2rem 0.2rem 0;
     border-right: none;
     border-left: 0.5px solid var(--black-quaternary);
   }
@@ -250,6 +259,11 @@ export const TableRow = styled.tr`
   }
 `;
 
+export const TableCellButton = styled(TableCell)`
+  color: var(--black-tertiary);
+  border: none !important;
+`;
+
 export const TableHead = styled.tr`
   display: flex;
 
@@ -258,6 +272,12 @@ export const TableHead = styled.tr`
     border: none;
 
     position: relative;
+
+    margin-right: 1px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
 
     &:hover {
       cursor: pointer;
@@ -295,45 +315,39 @@ export const TableFoot = styled.tr`
   }
 `;
 
-export const SectionContribution = styled.div`
+export const ContributionInfosContainer = styled.div`
+  margin-left: 72px;
+  grid-area: 2 / 2 / 3 / 3;
+
   display: flex;
   flex-direction: column;
   padding-block: 32px;
-  row-gap: 48px;
-  margin-left: 72px;
-  grid-area: 2 / 2 / 3 / 3;
+  row-gap: 24px;
+
+  overflow-y: auto;
 `;
 
-export const DivTable = styled.div`
+export const ContributionInfosLineWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  row-gap: 16px;
+  gap: 32px;
 `;
 
-export const DivInfos = styled.div`
-  display: flex;
-  flex-direction: row;
+export const ContributionInfo = styled.div`
   width: 100%;
-  justify-content: space-between;
-  padding: 8px;
-  column-gap: 24px;
-`;
+  padding-bottom: 8px;
 
-export const Span = styled.span`
   display: flex;
-  flex-direction: row;
-  width: 100%;
   justify-content: space-between;
+
+  font-size: 1.5rem;
   border-bottom: 1px solid var(--black-quaternary);
 `;
 
-export const Button = styled(AppButton)`
-  display: flex;
-  align-items: center;
-  gap: 12px;
+export const Label = styled.span`
+  user-select: none;
+  color: var(--black-tertiary);
+`;
 
-  font-size: 1.5rem;
-  padding: 16px;
-
-  white-space: nowrap;
+export const Value = styled.span`
+  color: var(--black);
 `;
