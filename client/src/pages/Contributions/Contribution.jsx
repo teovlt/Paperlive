@@ -27,19 +27,36 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Button, IconLink, Heading2, Link } from '../../theme/appElements';
 import { useNavigate } from 'react-router-dom';
+import Popup from '../../components/Popup';
 
 const Contribution = () => {
   const { contributionId } = useParams();
   const { auth } = useAuth();
-  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const [contribution, setContribution] = useState(
     auth.contributions.find((c) => c._id === contributionId)
   );
+  const [popup, setPopup] = useState(false);
+
+  function handleDelete() {
+    setPopup(true);
+  }
 
   return (
     <>
+      {popup && (
+        <Popup
+          template={{
+            title: 'Voulez vous vraiment supprimer cette contribution',
+            caption:
+              "Cette action est irréversible, une fois la contribution actuelle supprimé il n'existeras aucun moyen de la récupérer. Soyez sur de votre action",
+            cancelLabel: 'Annuler',
+            confirmLabel: 'Supprimer',
+          }}
+        />
+      )}
       <NavBar />
       <Container>
         <IconLink onClick={() => navigate(-1)}>
@@ -66,12 +83,12 @@ const Contribution = () => {
             {t('contribution.stats')}
           </Button>
           <Button secondary onClick={() => console.log('edit')}>
-            {t('contribution.edit')}
+            {t('contribution.editContribution')}
           </Button>
           <Button
             secondary
             type='negative'
-            onClick={() => console.log('delete')}
+            onClick={handleDelete}
             style={{
               display: 'flex',
               justifyContent: 'center',
@@ -82,9 +99,6 @@ const Contribution = () => {
             <HiOutlineTrash />
           </Button>
         </Sidebar>
-        {/*  */}
-        {/*  */}
-        {/*  */}
         <ContributionInfosContainer>
           <Heading2>Informations</Heading2>
           <ContributionInfo>
