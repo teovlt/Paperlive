@@ -125,6 +125,7 @@ i18n
             stats: 'Show the statistics',
             edit: 'Edit the contribution',
             delete: 'Delete the contribution',
+            download: 'Download',
           },
           fileInput: {
             success: 'Successfully uploaded',
@@ -242,6 +243,7 @@ i18n
             stats: 'Voir les statistiques',
             edit: 'Modifier la contribution',
             delete: 'Supprimer la contribution',
+            download: 'Telecharger',
           },
           fileInput: {
             success: 'Importé avec succès',

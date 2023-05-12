@@ -116,7 +116,7 @@ const Contribution = () => {
             <DivInfos>
               <Span>
                 <Paragraph>Abstract:</Paragraph>
-                <Link onClick={() => console.log('download abstract')}>Telecharger</Link>
+                <Link onClick={() => console.log('download')}>{t('contribution.download')}</Link>
               </Span>
               <Span>
                 <Paragraph>{t('contribution.state')}:</Paragraph>
