@@ -39,7 +39,7 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
         small
         id='title'
         value={contributionData?.title}
-        label={t('newContribution.title')}
+        label={t('contribution.title')}
         autoComplete='off'
         onChange={(event) => {
           const newContributionData = { ...contributionData, title: event.target.value };
@@ -51,7 +51,7 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
         id='date'
         type='date'
         value={contributionData?.startDate}
-        label={t('newContribution.date')}
+        label={t('contribution.date')}
         autoComplete='off'
         onChange={(event) => {
           console.log(event.target.value);
@@ -66,20 +66,20 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
           setContributionData(newContributionData);
         }}
         template={{
-          label: `${t('newContribution.teamRole')}`,
+          label: `${t('contribution.teamRole')}`,
           radios: [
             {
-              label: t('newContribution.leader'),
+              label: t('contribution.leader'),
               value: 'leader',
               defaultChecked: contributionData?.teamRole === 'leader',
             },
             {
-              label: t('newContribution.coleader'),
+              label: t('contribution.coLeader'),
               value: 'co-leader',
               defaultChecked: contributionData?.teamRole === 'co-leader',
             },
             {
-              label: t('newContribution.guest'),
+              label: t('contribution.guest'),
               value: 'guest',
               defaultChecked: contributionData?.teamRole === 'guest',
             },
@@ -91,7 +91,7 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
           small
           id='related'
           value={contributionData?.relatedContribution}
-          label={t('newContribution.related')}
+          label={t('contribution.related')}
           ref={searchRelatedContributionRef}
           autoComplete='off'
           onChange={(event) => {
@@ -127,7 +127,7 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
       {errorMsg && <Chips type='negative'>{errorMsg}</Chips>}
       <LinearContainer>
         <Button style={{ width: '160px' }} type='neutral' onClick={() => navigate(-1)}>
-          {t('newContribution.cancel')}
+          {t('global.cancel')}
         </Button>
         <Button
           style={{ width: '160px' }}
@@ -139,15 +139,15 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
             if (missings.length <= 0) {
               next();
             } else {
-              const errorMsg = `${t('newContribution.errorMsg')} ${missings
+              const errorMsg = `${t('contribution.errorMsg')} ${missings
                 .map((key) => {
                   switch (key) {
                     case 'title':
-                      return `${t('newContribution.title')}`;
+                      return `${t('contribution.title')}`;
                     case 'startDate':
-                      return `${t('newContribution.date')}`;
+                      return `${t('contribution.date')}`;
                     case 'teamRole':
-                      return `${t('newContribution.teamRole')}`;
+                      return `${t('contribution.teamRole')}`;
                     case 'filename':
                       return 'abstract';
                   }
@@ -156,7 +156,7 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
               setErrorMsg(errorMsg);
             }
           }}>
-          {t('newContribution.next')}
+          {t('global.next')}
         </Button>
       </LinearContainer>
     </>

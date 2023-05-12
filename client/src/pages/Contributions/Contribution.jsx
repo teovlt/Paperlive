@@ -90,7 +90,7 @@ const Contribution = () => {
             <Heading2>Informations</Heading2>
             <DivInfos>
               <Span>
-                <Paragraph> {t('newContribution.title')}:</Paragraph>
+                <Paragraph> {t('contribution.title')}:</Paragraph>
                 {contribution?.title}
               </Span>
             </DivInfos>
@@ -98,11 +98,11 @@ const Contribution = () => {
               <Span>
                 {contribution?.relatedContribution ? (
                   <>
-                    <Paragraph>{t('newContribution.related2')}:</Paragraph>
+                    <Paragraph>{t('contribution.related2')}:</Paragraph>
                     {contribution?.relatedContribution}
                   </>
                 ) : (
-                  `${t('newContribution.noRelated')}`
+                  `${t('contribution.noRelated')}`
                 )}
               </Span>
             </DivInfos>
@@ -114,10 +114,10 @@ const Contribution = () => {
               <Span>
                 <Paragraph>Role:</Paragraph>
                 {contribution?.teamRole === 'leader'
-                  ? `${t('newContribution.leader')}`
+                  ? `${t('contribution.leader')}`
                   : contribution?.teamRole === 'co-leader'
-                  ? `${t('newContribution.coleader')}`
-                  : `${t('newContribution.guest')}`}
+                  ? `${t('contribution.coLeader')}`
+                  : `${t('contribution.guest')}`}
               </Span>
             </DivInfos>
             <DivInfos>

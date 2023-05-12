@@ -19,7 +19,7 @@ const FormStep2 = ({
     <>
       <Heading3>Abstract</Heading3>
       <Label>
-        {t('newContribution.fileSupported')}: <span>pdf</span>
+        {t('contribution.fileSupported')}: <span>pdf</span>
       </Label>
       <FileInput
         name='abstract'
@@ -30,7 +30,7 @@ const FormStep2 = ({
       {errorMsg && <Chips type='negative'>{errorMsg}</Chips>}
       <LinearContainer>
         <Button style={{ width: '160px' }} type='neutral' onClick={() => previous()}>
-          {t('newContribution.previous')}
+          {t('global.previous')}
         </Button>
         <Button
           style={{ width: '160px' }}
@@ -41,11 +41,11 @@ const FormStep2 = ({
             if (missings.length <= 0) {
               next();
             } else {
-              const errorMsg = `${t('newContribution.errorMsgAbstract')}`;
+              const errorMsg = `${t('contribution.errorMsgAbstract')}`;
               setErrorMsg(errorMsg);
             }
           }}>
-          {t('newContribution.next')}
+          {t('global.next')}
         </Button>
       </LinearContainer>
     </>

@@ -31,40 +31,40 @@ const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
       <MainWrapper>
         <Heading3>Informations</Heading3>
         <Label>
-          {t('newContribution.title')}:<span>{contributionData.title}</span>
+          {t('contribution.title')}:<span>{contributionData.title}</span>
         </Label>
         <Label>
-          {t('newContribution.date')}:<span>{contributionData.startDate}</span>
+          {t('contribution.date')}:<span>{contributionData.startDate}</span>
         </Label>
         <Label>
-          {t('newContribution.teamRole')}:
+          {t('contribution.teamRole')}:
           <span>
             {contributionData.teamRole === 'leader'
-              ? `${t('newContribution.leader')}`
+              ? `${t('contribution.leader')}`
               : contributionData.teamRole === 'co-leader'
-              ? `${t('newContribution.coleader')}`
-              : `${t('newContribution.guest')}`}
+              ? `${t('contribution.coLeader')}`
+              : `${t('contribution.guest')}`}
           </span>
         </Label>
         <Label>
-          {t('newContribution.related')}:<span>{contributionData.relatedContribution}</span>
+          {t('contribution.related')}:<span>{contributionData.relatedContribution}</span>
         </Label>
-        <Link onClick={() => goTo(0)}> {t('newContribution.edit')}</Link>
+        <Link onClick={() => goTo(0)}> {t('contribution.edit')}</Link>
       </MainWrapper>
       <MainWrapper>
-        <Heading3>{t('newContribution.files')}</Heading3>
+        <Heading3>{t('contribution.files')}</Heading3>
         <Label>
           Abstract:<span>{contributionData.filename}</span>
         </Label>
-        <Link onClick={() => goTo(1)}>{t('newContribution.edit')}</Link>
+        <Link onClick={() => goTo(1)}>{t('contribution.edit')}</Link>
       </MainWrapper>
       {errorMsg && <Chips type='negative'>{errorMsg}</Chips>}
       <LinearContainer>
         <Button style={{ width: '160px' }} type='neutral' onClick={() => previous()}>
-          {t('newContribution.previous')}
+          {t('global.previous')}
         </Button>
         <Button style={{ width: '160px' }} onClick={() => save()}>
-          {t('newContribution.save')}
+          {t('global.save')}
         </Button>
       </LinearContainer>
     </>
