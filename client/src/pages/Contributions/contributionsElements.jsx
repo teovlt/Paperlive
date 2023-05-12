@@ -192,20 +192,106 @@ export const RelatedContributionSearchResult = styled.div`
 export const Table = styled.table`
   width: 100%;
   text-align: left;
+
+  border-collapse: collapse;
+
+  font-size: 1.4rem;
+  user-select: none;
+  color: var(--black);
 `;
 
-export const TableHeader = styled.thead`
-  font-weight: 400;
-  background: red;
-`;
+export const TableCell = styled.td`
+  flex: 1;
 
-export const TitleCell = styled.td`
+  padding: 0.8rem;
+
+  border-inline: 0.5px solid var(--black-quaternary);
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 
-  padding: 8px;
-  column-gap: 24px;
+  &:first-of-type {
+    flex: 2;
+    border-radius: 0.2rem 0 0 0.2rem;
+    border-left: none;
+    border-right: 0.5px solid var(--black-quaternary);
+  }
+
+  &:last-of-type {
+    border-radius: 0 0.2rem 0.2rem 0;
+    border-right: none;
+    border-left: 0.5px solid var(--black-quaternary);
+  }
+
+  svg {
+    font-size: 1.6rem;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+`;
+
+export const TableRow = styled.tr`
+  display: flex;
+  cursor: pointer;
+
+  border-block: 0.5px solid var(--black-quaternary);
+
+  &:first-of-type {
+    border-top: 1px solid var(--black-quaternary);
+  }
+
+  &:last-of-type {
+    border-bottom: 1px solid var(--black-quaternary);
+  }
+
+  &:hover {
+    background: rgba(34, 34, 34, 0.08);
+  }
+`;
+
+export const TableHead = styled.tr`
+  display: flex;
+
+  ${TableCell} {
+    color: var(--black-tertiary);
+    border: none;
+
+    position: relative;
+
+    &:hover {
+      cursor: pointer;
+      background: rgba(34, 34, 34, 0.08);
+    }
+
+    &::after {
+      content: '▶︎';
+      font-size: 0.6rem;
+
+      position: absolute;
+      top: 50%;
+      margin-left: 4px;
+      transform: translateY(-50%) rotate(90deg);
+    }
+
+    &.sortDesc::after {
+      transform: translateY(-50%) rotate(-90deg);
+    }
+  }
+`;
+
+export const TableFoot = styled.tr`
+  display: flex;
+  justify-content: flex-end;
+
+  ${TableCell} {
+    text-align: right;
+    border: none;
+
+    span {
+      color: var(--black);
+    }
+  }
 `;
 
 export const SectionContribution = styled.div`

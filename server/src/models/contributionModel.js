@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const states = ['in-progress', 'approved', 'dropped'];
-const roles = ['leader', 'co-leader', 'guest'];
+const states = ['inProgress', 'approved', 'dropped'];
+const roles = ['leader', 'coLeader', 'guest'];
 
 const contributionSchema = new mongoose.Schema({
   title: {
