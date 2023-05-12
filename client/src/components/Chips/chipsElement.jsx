@@ -11,7 +11,7 @@ export const Container = styled.div`
   border-radius: 0.4rem;
 
   color: var(--black);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 
   svg {
     font-size: 2rem;

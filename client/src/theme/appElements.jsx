@@ -29,7 +29,7 @@ export const Button = styled.button`
   text-align: center;
   border-radius: 2px;
 
-  font-size: ${(props) => (props.secondary ? '1.4rem' : '1.6rem')};
+  font-size: ${(props) => (props.secondary ? '1.5rem' : '1.6rem')};
   line-height: 1.6rem;
   text-decoration: none;
 
@@ -93,14 +93,14 @@ export const Paragraph = styled.p`
 
 export const Caption = styled.p`
   font-weight: 400;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   line-height: 1.8rem;
 
   color: var(--black);
 `;
 
 export const Label = styled.p`
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 
   display: flex;
   align-items: center;
@@ -152,7 +152,7 @@ export const Select = styled.select`
   border: 1px solid var(--black-quaternary);
   border-radius: 0.2rem;
 
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 `;
 export const DivTop = styled.div`
   border-bottom: 1px solid var(--black-quaternary);

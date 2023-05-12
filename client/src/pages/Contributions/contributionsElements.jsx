@@ -98,7 +98,7 @@ export const LinearContainer = styled.div`
 export const NavLink = styled.a`
   position: relative;
 
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   line-height: 2.2rem;
 
   padding-left: 16px;
@@ -123,7 +123,7 @@ export const NavLink = styled.a`
 `;
 
 export const Link = styled.p`
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: var(--accent);
   text-decoration: underline;
   cursor: pointer;
@@ -180,7 +180,7 @@ export const RelatedContributionSearchResult = styled.div`
   width: 100%;
   padding: 4px 12px;
 
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   cursor: pointer;
 
   &:hover {
@@ -195,7 +195,7 @@ export const Table = styled.table`
 
   border-collapse: collapse;
 
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   user-select: none;
   color: var(--black);
 `;
@@ -225,7 +225,7 @@ export const TableCell = styled.td`
   }
 
   svg {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     margin-right: 8px;
     vertical-align: middle;
   }
@@ -332,7 +332,7 @@ export const Button = styled(AppButton)`
   align-items: center;
   gap: 12px;
 
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   padding: 16px;
 
   white-space: nowrap;

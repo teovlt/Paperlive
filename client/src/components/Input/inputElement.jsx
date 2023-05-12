@@ -24,7 +24,7 @@ export const InputField = styled.input`
   outline: 1px solid var(--black-quaternary);
   outline-offset: -1px;
 
-  font-size: ${(props) => (props.small ? '1.4rem' : '1.6rem')};
+  font-size: ${(props) => (props.small ? '1.5rem' : '1.6rem')};
   line-height: 1.6rem;
 
   &[type='Date'] {
@@ -55,7 +55,7 @@ export const InputLabel = styled.label`
   top: 50%;
   left: 1.6rem;
 
-  font-size: ${(props) => (props.small ? '1.4rem' : '1.6rem')};
+  font-size: ${(props) => (props.small ? '1.5rem' : '1.6rem')};
   line-height: 1.6rem;
 
   user-select: none;
