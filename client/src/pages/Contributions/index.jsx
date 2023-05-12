@@ -4,7 +4,6 @@ import useAuth from '../../hooks/useAuth';
 import useSearch from '../../hooks/useSearch';
 import {
   LinearContainer,
-  SectionMain,
   Table,
   TableCell,
   TableFoot,
@@ -90,7 +89,7 @@ function Contributions() {
           label='Search'
           id='searchBar'
           value={searchTerm}
-          placeholder={t('contribution.searchBar')}
+          placeholder={`${t('contribution.searchBar')}`}
           onChange={(e) => setSearchTerm(e.target.value)}
           autoComplete='off'
         />
