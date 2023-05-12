@@ -42,7 +42,7 @@ function Contributions() {
       const valueB = b[sort.attr];
 
       if (sort.attr === 'teamRole') {
-        const order = ['leader', 'co-leader', 'guest'];
+        const order = ['leader', 'coLeader', 'guest'];
         const indexA = order.indexOf(valueA);
         const indexB = order.indexOf(valueB);
 
@@ -55,7 +55,7 @@ function Contributions() {
       }
 
       if (sort.attr === 'state') {
-        const order = ['in-progress', 'approved', 'dropped'];
+        const order = ['inProgress', 'approved', 'dropped'];
         const indexA = order.indexOf(valueA);
         const indexB = order.indexOf(valueB);
 
