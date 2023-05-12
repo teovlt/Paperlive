@@ -51,7 +51,7 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
         id='date'
         type='date'
         value={contributionData?.startDate}
-        label={t('contribution.date')}
+        label={t('contribution.dateStart')}
         autoComplete='off'
         onChange={(event) => {
           console.log(event.target.value);
@@ -145,7 +145,7 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
                     case 'title':
                       return `${t('contribution.title')}`;
                     case 'startDate':
-                      return `${t('contribution.date')}`;
+                      return `${t('contribution.dateStart')}`;
                     case 'teamRole':
                       return `${t('contribution.teamRole')}`;
                     case 'filename':

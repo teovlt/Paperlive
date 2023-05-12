@@ -34,7 +34,7 @@ const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
           {t('contribution.title')}:<span>{contributionData.title}</span>
         </Label>
         <Label>
-          {t('contribution.date')}:<span>{contributionData.startDate}</span>
+          {t('contribution.dateStart')}:<span>{contributionData.startDate}</span>
         </Label>
         <Label>
           {t('contribution.teamRole')}:

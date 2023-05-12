@@ -141,7 +141,7 @@ const Contribution = () => {
                     <HiChevronDown />
                   </th>
                   <th /*onClick={handleSortDateChange}*/>
-                    {t('contribution.date')}
+                    {t('contribution.dateStart')}
                     <HiChevronDown />
                   </th>
                   <th /*onClick={handleSortJournalChange}*/>
