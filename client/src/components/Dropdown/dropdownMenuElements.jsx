@@ -46,7 +46,7 @@ export const Dropdown = styled.div`
 
 export const MenuGroup = styled.div`
   padding-block: 4px;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 
   span {
     font-weight: 600;
@@ -70,7 +70,7 @@ export const MenuButton = styled.button`
   padding: 4px 8px 4px 16px;
 
   color: var(--black);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   text-align: start;
 
   &:hover {

@@ -25,7 +25,7 @@ export const UploadAvatarLabel = styled.label`
     border-radius: 100%;
     background: var(--black-secondary);
 
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     text-decoration: underline;
     color: var(--white);
 

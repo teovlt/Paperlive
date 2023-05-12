@@ -20,6 +20,6 @@ export const SelectContainer = styled.div`
   align-items: center;
   gap: 12px;
 
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: var(--black-tertiary);
 `;

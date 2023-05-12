@@ -54,7 +54,7 @@ export const NavLink = styled(RRNavLink)`
   padding-inline: 8px;
   gap: 8px;
 
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: var(--black-secondary);
 
   &.active {
