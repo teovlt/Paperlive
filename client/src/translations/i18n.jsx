@@ -57,7 +57,7 @@ i18n
             password2: 'Confirm your password',
             textSignIn: 'Already have an account? ',
             errorPasswordFormat:
-              'The password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, one digit, and one special character. Please try again.',
+              'The password must have least 8 characters long, one lowercase letter, one uppercase letter, one digit, and one special character. Please try again.',
             errorPasswordConf: 'The passwords do not match. Please try again.',
             registerError: 'Register Failed',
             bottom:
@@ -171,7 +171,7 @@ i18n
             password2: 'Confirmer votre mot de passe',
             textSignIn: 'Vous possèdez déja un compte? ',
             errorPasswordFormat:
-              'Le mot de passe doit avoir au moins 8 caractères, contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial. Veuillez réessayer.',
+              'Le mot de passe doit contenir au moins 8 caractères, une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial.',
             errorPasswordConf: 'Les mots de passe ne correspondent pas. Veuillez réessayer.',
             registerError: "Erreur lors de l'enregistrement",
             bottom:

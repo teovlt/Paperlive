@@ -122,7 +122,7 @@ const Login = () => {
             value={password}
             required
           />
-          {errMsg && <ErrorLabel>{errMsg}</ErrorLabel>}
+          {errMsg && <Chips type='negative'>{errMsg}</Chips>}
           <Button type='submit'>{t('authentication.signIn')}</Button>
           <Caption>
             {t('login.textSignUp')} <Link to='/register'>{t('authentication.signUp')}</Link>

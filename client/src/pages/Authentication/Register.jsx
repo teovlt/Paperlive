@@ -128,7 +128,7 @@ const Register = () => {
             value={passwordConf}
             required
           />
-          {errMsg && <ErrorLabel>{errMsg}</ErrorLabel>}
+          {errMsg && <Chips type='negative'>{errMsg}</Chips>}
           <Button type='submit'>{t('authentication.signUp')}</Button>
           <Caption>
             {t('register.textSignIn')}
