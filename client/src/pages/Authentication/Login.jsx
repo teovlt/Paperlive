@@ -122,9 +122,9 @@ const Login = () => {
             required
           />
           {errMsg && <ErrorLabel>{errMsg}</ErrorLabel>}
-          <Button type='submit'>{t('login.signIn')}</Button>
+          <Button type='submit'>{t('authentication.signIn')}</Button>
           <Caption>
-            {t('login.textSignUp')} <Link to='/register'>{t('login.signUp')}</Link>
+            {t('login.textSignUp')} <Link to='/register'>{t('authentication.signUp')}</Link>
           </Caption>
         </Form>
         <Small style={{ textAlign: 'center' }}>{t('login.bottom')}</Small>

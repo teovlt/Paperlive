@@ -123,7 +123,7 @@ const Contribution = () => {
             <DivInfos>
               <Span>
                 <Paragraph>Abstract:</Paragraph>
-                <Link onClick={() => console.log('download')}>{t('contribution.download')}</Link>
+                <Link onClick={() => console.log('download')}>{t('global.download')}</Link>
               </Span>
               <Span>
                 <Paragraph>{t('contribution.state')}:</Paragraph>

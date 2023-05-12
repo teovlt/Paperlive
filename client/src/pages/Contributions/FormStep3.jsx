@@ -49,14 +49,14 @@ const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
         <Label>
           {t('contribution.related')}:<span>{contributionData.relatedContribution}</span>
         </Label>
-        <Link onClick={() => goTo(0)}> {t('contribution.edit')}</Link>
+        <Link onClick={() => goTo(0)}> {t('contribution.editForm')}</Link>
       </MainWrapper>
       <MainWrapper>
         <Heading3>{t('contribution.files')}</Heading3>
         <Label>
           Abstract:<span>{contributionData.filename}</span>
         </Label>
-        <Link onClick={() => goTo(1)}>{t('contribution.edit')}</Link>
+        <Link onClick={() => goTo(1)}>{t('contribution.editForm')}</Link>
       </MainWrapper>
       {errorMsg && <Chips type='negative'>{errorMsg}</Chips>}
       <LinearContainer>

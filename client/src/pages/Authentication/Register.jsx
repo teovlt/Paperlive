@@ -128,10 +128,10 @@ const Register = () => {
             required
           />
           {errMsg && <ErrorLabel>{errMsg}</ErrorLabel>}
-          <Button type='submit'>{t('register.signUp')}</Button>
+          <Button type='submit'>{t('authentication.signUp')}</Button>
           <Caption>
             {t('register.textSignIn')}
-            <Link to='/login'>{t('register.signIn')}</Link>
+            <Link to='/login'>{t('authentication.signIn')}</Link>
           </Caption>
         </Form>
         <Small>{t('register.bottom')}</Small>

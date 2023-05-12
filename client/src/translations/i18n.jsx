@@ -37,8 +37,7 @@ i18n
           },
           login: {
             welcome: 'Welcome',
-            signIn: 'Sign In',
-            signUp: 'Sign Up',
+
             textSignUp: 'New to PaperLive ?',
             loginError: 'Login Failed',
             invalidLogin: 'Invalid Credentials',
@@ -48,8 +47,6 @@ i18n
           register: {
             welcome: 'Create your profile',
             password2: 'Confirm your password',
-            signIn: 'Sign In',
-            signUp: 'Sign Up',
             textSignIn: 'Already have an account? ',
             errorPasswordFormat:
               'The password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, one digit, and one special character. Please try again.',
@@ -62,6 +59,8 @@ i18n
             servorError: 'No Server Response',
             teamName: 'Team name',
             password: 'Password',
+            signIn: 'Sign In',
+            signUp: 'Sign Up',
           },
           language: {
             current: 'Current language',
@@ -95,7 +94,6 @@ i18n
             stats: 'Show the statistics',
             edit: 'Edit the contribution',
             delete: 'Delete the contribution',
-            download: 'Download',
             inProgress: 'In progress',
             approved: 'Approved',
             dropped: 'Dropped',
@@ -129,6 +127,7 @@ i18n
             next: 'Next',
             previous: 'Previous',
             save: 'Save',
+            download: 'Download',
           },
         },
       },
@@ -153,8 +152,6 @@ i18n
           },
           login: {
             welcome: 'Bienvenue',
-            signIn: 'Se connecter',
-            signUp: "S'enregistrer",
             textSignUp: 'Nouveau sur PaperLive ?',
             loginError: 'Erreur lors de la connexion',
             invalidLogin: 'Identifiants invalides',
@@ -164,8 +161,6 @@ i18n
           register: {
             welcome: 'Créer votre compte',
             password2: 'Confirmer votre mot de passe',
-            signIn: 'Se connecter',
-            signUp: "S'inscrire",
             textSignIn: 'Vous possèdez déja un compte? ',
             errorPasswordFormat:
               'Le mot de passe doit avoir au moins 8 caractères, contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial. Veuillez réessayer.',
@@ -178,6 +173,8 @@ i18n
             servorError: 'Le serveur ne répond pas',
             teamName: "Nom de l'équipe",
             password: 'Mot de passe',
+            signIn: 'Se connecter',
+            signUp: "S'enregistrer",
           },
           language: {
             current: 'Langue actuelle',
@@ -211,7 +208,6 @@ i18n
             stats: 'Voir les statistiques',
             edit: 'Modifier la contribution',
             delete: 'Supprimer la contribution',
-            download: 'Telecharger',
             inProgress: 'En cours',
             approved: 'Approuvée',
             dropped: 'Abandonnée',
@@ -228,7 +224,7 @@ i18n
             recap: 'Récapitulatif',
             errorMsg: 'Merci de remplir le(s) champ(s) suivant(s): ',
             errorMsgAbstract: 'Merci de remplir le champ suivant: Abstract',
-            edit: 'Changer cette section',
+            editForm: 'Changer cette section',
             newContribution: 'Nouvelle contribution',
             fileSupported: 'Fichiers supportés',
           },
@@ -244,6 +240,7 @@ i18n
             next: 'Suivant',
             previous: 'Précédent',
             save: 'Sauvegarder',
+            download: 'Telecharger',
           },
         },
       },
