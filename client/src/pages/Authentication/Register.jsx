@@ -30,8 +30,8 @@ const Register = () => {
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?/~\|])(?!.*\s).{8,}$/;
 
   const lngs = {
-    en: { nativeName: `${t('language.english')}`, flag: '🇬🇧' },
-    fr: { nativeName: `${t('language.french')}`, flag: '🇫🇷' },
+    en: { nativeName: t('language.english'), flag: '🇬🇧' },
+    fr: { nativeName: t('language.french'), flag: '🇫🇷' },
   };
 
   useEffect(() => {
@@ -44,10 +44,10 @@ const Register = () => {
 
   useEffect(() => {
     if (passwordConf && password !== passwordConf) {
-      setErrMsg(`${t('register.errorPasswordConf')}`);
+      setErrMsg(t('register.errorPasswordConf'));
     }
     if (password && !passwordRegex.test(password)) {
-      setErrMsg(`${t('register.errorPasswordFormat')}`);
+      setErrMsg(t('register.errorPasswordFormat'));
     }
   }, [password, passwordConf, i18n.resolvedLanguage]);
 
@@ -68,9 +68,9 @@ const Register = () => {
       }
     } catch (error) {
       if (!error?.response) {
-        setErrMsg(`${t('authentication.servorError')}`);
+        setErrMsg(t('authentication.servorError'));
       } else {
-        setErrMsg(`${t('register.registerError')}`);
+        setErrMsg(t('register.registerError'));
       }
     }
   };
@@ -79,7 +79,7 @@ const Register = () => {
     toggle: <HiGlobeAlt />,
     groups: [
       {
-        label: `${t('language.current')}`,
+        label: t('language.current'),
         value: lngs[i18n.resolvedLanguage].nativeName,
       },
       {

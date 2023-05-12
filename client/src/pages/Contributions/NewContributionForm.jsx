@@ -70,7 +70,7 @@ const NewContributionForm = () => {
       ),
     },
     {
-      title: `${t('contribution.files')}`,
+      title: t('contribution.files'),
       content: (
         <FormStep2
           contributionData={contributionData}
@@ -83,7 +83,7 @@ const NewContributionForm = () => {
       ),
     },
     {
-      title: `${t('contribution.recap')}`,
+      title: t('contribution.recap'),
       content: (
         <FormStep3
           contributionData={contributionData}

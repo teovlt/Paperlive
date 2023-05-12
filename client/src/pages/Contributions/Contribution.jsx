@@ -102,7 +102,7 @@ const Contribution = () => {
                     {contribution?.relatedContribution}
                   </>
                 ) : (
-                  `${t('contribution.noRelated')}`
+                  t('contribution.noRelated')
                 )}
               </Span>
             </DivInfos>
@@ -114,10 +114,10 @@ const Contribution = () => {
               <Span>
                 <Paragraph>Role:</Paragraph>
                 {contribution?.teamRole === 'leader'
-                  ? `${t('contribution.leader')}`
+                  ? t('contribution.leader')
                   : contribution?.teamRole === 'co-leader'
-                  ? `${t('contribution.coLeader')}`
-                  : `${t('contribution.guest')}`}
+                  ? t('contribution.coLeader')
+                  : t('contribution.guest')}
               </Span>
             </DivInfos>
             <DivInfos>
@@ -141,7 +141,7 @@ const Contribution = () => {
                     <HiChevronDown />
                   </th>
                   <th /*onClick={handleSortDateChange}*/>
-                    {t('contribution.dateStart')}
+                    {t('contribution.startDate')}
                     <HiChevronDown />
                   </th>
                   <th /*onClick={handleSortJournalChange}*/>
