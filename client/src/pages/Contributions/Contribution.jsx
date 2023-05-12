@@ -9,6 +9,7 @@ import {
   HiOutlineNewspaper,
   HiChevronDown,
   HiOutlineTrash,
+  HiOutlineArrowLeft,
 } from 'react-icons/hi2';
 import {
   Sidebar,
@@ -20,7 +21,8 @@ import {
   Link,
 } from './contributionsElements';
 import { useTranslation } from 'react-i18next';
-import { Button, Paragraph } from '../../theme/appElements';
+import { Button, Paragraph, IconLink, Heading2 } from '../../theme/appElements';
+import { useNavigate } from 'react-router-dom';
 
 const Contribution = () => {
   const { contributionId } = useParams();
@@ -29,6 +31,7 @@ const Contribution = () => {
   const { t } = useTranslation();
 
   const [contribution, setContribution] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (auth.contributions) {
@@ -42,6 +45,9 @@ const Contribution = () => {
     <>
       <NavBar />
       <Container>
+        <IconLink onClick={() => navigate(-1)}>
+          <HiOutlineArrowLeft /> {t('global.back')}
+        </IconLink>
         <Navigation>
           <NavLink to='/'>
             <HiOutlineBookOpen />
@@ -57,7 +63,8 @@ const Contribution = () => {
           </NavLink>
         </Navigation>
         <Sidebar>
-          <h2>Actions</h2>
+          <Heading2>Actions</Heading2>
+
           <Button secondary onClick={() => console.log('stats')}>
             {t('contribution.stats')}
           </Button>
@@ -80,10 +87,10 @@ const Contribution = () => {
         </Sidebar>
         <SectionContribution>
           <DivTable>
-            <h3>Informations</h3>
+            <Heading2>Informations</Heading2>
             <DivInfos>
               <Span>
-                <Paragraph> {t('newContribution.title')}:</Paragraph>
+                <Paragraph> {t('contribution.title')}:</Paragraph>
                 {contribution?.title}
               </Span>
             </DivInfos>
@@ -91,11 +98,11 @@ const Contribution = () => {
               <Span>
                 {contribution?.relatedContribution ? (
                   <>
-                    <Paragraph>{t('newContribution.related2')}:</Paragraph>
+                    <Paragraph>{t('contribution.related2')}:</Paragraph>
                     {contribution?.relatedContribution}
                   </>
                 ) : (
-                  `${t('newContribution.noRelated')}`
+                  `${t('contribution.noRelated')}`
                 )}
               </Span>
             </DivInfos>
@@ -107,16 +114,16 @@ const Contribution = () => {
               <Span>
                 <Paragraph>Role:</Paragraph>
                 {contribution?.teamRole === 'leader'
-                  ? `${t('newContribution.leader')}`
+                  ? `${t('contribution.leader')}`
                   : contribution?.teamRole === 'co-leader'
-                  ? `${t('newContribution.coleader')}`
-                  : `${t('newContribution.guest')}`}
+                  ? `${t('contribution.coLeader')}`
+                  : `${t('contribution.guest')}`}
               </Span>
             </DivInfos>
             <DivInfos>
               <Span>
                 <Paragraph>Abstract:</Paragraph>
-                <Link onClick={() => console.log('download abstract')}>Telecharger</Link>
+                <Link onClick={() => console.log('download')}>{t('contribution.download')}</Link>
               </Span>
               <Span>
                 <Paragraph>{t('contribution.state')}:</Paragraph>
@@ -125,7 +132,7 @@ const Contribution = () => {
             </DivInfos>
           </DivTable>
           <DivTable>
-            <h3>Tableau des soumissions de cette contribution</h3>
+            <Heading2>Tableau des soumissions de cette contribution</Heading2>
             <Table>
               <thead>
                 <tr>

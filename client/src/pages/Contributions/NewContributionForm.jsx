@@ -70,7 +70,7 @@ const NewContributionForm = () => {
       ),
     },
     {
-      title: `${t('newContribution.files')}`,
+      title: `${t('contribution.files')}`,
       content: (
         <FormStep2
           contributionData={contributionData}
@@ -83,7 +83,7 @@ const NewContributionForm = () => {
       ),
     },
     {
-      title: `${t('newContribution.recap')}`,
+      title: `${t('contribution.recap')}`,
       content: (
         <FormStep3
           contributionData={contributionData}
@@ -100,7 +100,7 @@ const NewContributionForm = () => {
       <NavBar />
       <Container>
         <SideHeader>
-          <Heading2>{t('newContribution.newContribution')}</Heading2>
+          <Heading2>{t('contribution.newContribution')}</Heading2>
         </SideHeader>
         <Sidebar>
           <FormNavigation>
@@ -116,7 +116,7 @@ const NewContributionForm = () => {
         </MainHeader>
         <Main>
           <StepCaption>
-            {t('newContribution.step')} {step + 1}/{steps.length}
+            {t('contribution.step')} {step + 1}/{steps.length}
           </StepCaption>
           {steps[step].content}
         </Main>

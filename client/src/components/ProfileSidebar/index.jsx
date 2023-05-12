@@ -143,10 +143,10 @@ const ProfileSidebar = () => {
           />
           <Group inline>
             <Button secondary onClick={handleCancelChanges}>
-              {t('sideBar.cancel')}
+              {t('global.cancel')}
             </Button>
             <Button secondary onClick={handleSaveChanges}>
-              {t('sideBar.save')}
+              {t('global.save')}
             </Button>
           </Group>
         </>
