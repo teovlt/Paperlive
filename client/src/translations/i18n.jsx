@@ -18,6 +18,14 @@ i18n
     resources: {
       en: {
         translation: {
+          global: {
+            back: 'Back',
+            cancel: 'Cancel',
+            next: 'Next',
+            previous: 'Previous',
+            save: 'Save',
+            download: 'Download',
+          },
           layout: {
             overview: 'Overview',
             contributions: 'Contributions',
@@ -121,18 +129,18 @@ i18n
             or: 'or',
             browse: 'Browse files',
           },
-          global: {
-            back: 'Back',
-            cancel: 'Cancel',
-            next: 'Next',
-            previous: 'Previous',
-            save: 'Save',
-            download: 'Download',
-          },
         },
       },
       fr: {
         translation: {
+          global: {
+            back: 'Retour',
+            cancel: 'Annuler',
+            next: 'Suivant',
+            previous: 'Précédent',
+            save: 'Sauvegarder',
+            download: 'Telecharger',
+          },
           layout: {
             overview: "Vue d'ensemble",
             contributions: 'Contributions',
@@ -233,14 +241,6 @@ i18n
             drag: 'Faites glisser votre fichier ici',
             or: 'ou',
             browse: 'Parcourir les fichiers',
-          },
-          global: {
-            back: 'Retour',
-            cancel: 'Annuler',
-            next: 'Suivant',
-            previous: 'Précédent',
-            save: 'Sauvegarder',
-            download: 'Telecharger',
           },
         },
       },
