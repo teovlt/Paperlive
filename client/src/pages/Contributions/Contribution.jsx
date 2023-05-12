@@ -151,7 +151,7 @@ const Contribution = () => {
                   <th>
                     {t('contribution.state')}
                     <HiChevronDown />
-                  </th>
+                  </th> 
                 </tr>
               </thead>
               <tbody>

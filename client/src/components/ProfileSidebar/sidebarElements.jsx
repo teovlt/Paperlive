@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Label, Link } from '../../theme/appElements';
 
 export const Container = styled.div`
   grid-area: 1 / 1 / 3 / 2;
@@ -22,4 +23,12 @@ export const SelectContainer = styled.div`
 
   font-size: 1.5rem;
   color: var(--black-tertiary);
+`;
+
+export const LabelInfos = styled(Label)`
+  ${Link} {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;

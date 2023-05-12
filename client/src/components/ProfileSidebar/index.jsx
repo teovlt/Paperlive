@@ -3,7 +3,7 @@ import useAuth from '../../hooks/useAuth';
 
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
-import { Container, Group } from './sidebarElements';
+import { Container, Group, LabelInfos } from './sidebarElements';
 import { Button, Heading1, Link, Label } from '../../theme/appElements';
 import {
   HiOutlineLink,
@@ -69,17 +69,17 @@ const ProfileSidebar = () => {
           </Group>
           <Group>
             {auth.location && (
-              <Label>
+              <LabelInfos>
                 <HiOutlineMapPin /> {auth.location}
-              </Label>
+              </LabelInfos>
             )}
             {auth.website && (
-              <Label>
-                <HiOutlineLink />{' '}
+              <LabelInfos>
+                <HiOutlineLink />
                 <Link to={`https://${auth.website}`} target='_blank'>
                   {auth.website}
                 </Link>
-              </Label>
+              </LabelInfos>
             )}
           </Group>
         </>
