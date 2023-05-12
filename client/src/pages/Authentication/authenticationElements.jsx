@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container as AppContainer } from '../../theme/appElements';
+import { Container as AppContainer, Button as AppButton } from '../../theme/appElements';
 
 export const Container = styled(AppContainer)`
   min-height: 100vh;
@@ -31,14 +31,13 @@ export const DivLanguageIcon = styled.div`
   }
 `;
 
+export const Button = styled(AppButton)`
+  width: 100%;
+`;
+
 export const OptionsContainer = styled.div`
   position: absolute;
   top: calc(32px + 18px);
   right: calc(32px + 18px);
   transform: translateY(-50%);
-`;
-
-export const ErrorLabel = styled.span`
-  font-size: 14px;
-  color: var(--negative);
 `;
