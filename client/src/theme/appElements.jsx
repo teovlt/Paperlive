@@ -7,8 +7,6 @@ export const Container = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 100%;
-
   user-select: none;
   cursor: pointer;
 
@@ -175,4 +173,3 @@ export const VerticalDivider = styled.span`
   width: 1px;
   background: var(--black-quaternary);
 `;
-

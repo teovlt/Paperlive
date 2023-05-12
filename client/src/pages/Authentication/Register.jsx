@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Container, Form, OptionsContainer } from './authenticationElements';
-import { Button, Caption, Heading1, Heading2, Link, Small } from '../../theme/appElements';
+import { Container, Form, OptionsContainer, Button } from './authenticationElements';
+import { Caption, Heading1, Heading2, Link, Small } from '../../theme/appElements';
 import Input from '../../components/Input';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from '../../api/axios';
 import DropdownMenu from '../../components/Dropdown';
+import Chips from '../../components/Chips';
 import { HiGlobeAlt } from 'react-icons/hi2';
 import i18n from '../../translations/i18n';
-import { ErrorLabel } from './authenticationElements';
 const REGISTER_URL = '/auth/register';
 
 const Register = () => {
@@ -26,7 +26,8 @@ const Register = () => {
   const [passwordConf, setPaswordConf] = useState('');
   const [errMsg, setErrMsg] = useState('');
 
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?/~\|])(?!.*\s).{8,}$/;
+  const passwordRegex =
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?/~\|])(?!.*\s).{8,}$/;
 
   const lngs = {
     en: { nativeName: `${t('language.english')}`, flag: '🇬🇧' },

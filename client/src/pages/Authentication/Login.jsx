@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Container, ErrorLabel, Form, OptionsContainer } from './authenticationElements';
-import { Button, Caption, Heading1, Heading2, Link, Small } from '../../theme/appElements';
+import { Container, Form, OptionsContainer, Button } from './authenticationElements';
+import { Caption, Heading1, Heading2, Link, Small } from '../../theme/appElements';
 import Input from '../../components/Input';
 import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from '../../api/axios';
 import DropdownMenu from '../../components/Dropdown';
+import Chips from '../../components/Chips';
 import { HiGlobeAlt } from 'react-icons/hi2';
 import i18n from '../../translations/i18n';
 const LOGIN_URL = '/auth/login';
