@@ -285,6 +285,7 @@ export const TableFoot = styled.tr`
   justify-content: flex-end;
 
   ${TableCell} {
+    color: var(--black-tertiary);
     text-align: right;
     border: none;
 
