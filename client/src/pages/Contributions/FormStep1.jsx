@@ -69,17 +69,17 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
           label: `${t('newContribution.teamRole')}`,
           radios: [
             {
-              label: `${t('newContribution.leader')}`,
+              label: t('newContribution.leader'),
               value: 'leader',
               defaultChecked: contributionData?.teamRole === 'leader',
             },
             {
-              label: `${t('newContribution.coleader')}`,
+              label: t('newContribution.coleader'),
               value: 'co-leader',
               defaultChecked: contributionData?.teamRole === 'co-leader',
             },
             {
-              label: `${t('newContribution.guest')}`,
+              label: t('newContribution.guest'),
               value: 'guest',
               defaultChecked: contributionData?.teamRole === 'guest',
             },

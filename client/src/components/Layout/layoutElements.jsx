@@ -7,6 +7,9 @@ export const Container = styled(AppContainer)`
   grid-template-columns: 296px 1fr;
   grid-template-rows: 56px 1fr;
 
+  max-height: calc(100vh - 40px);
+  overflow-y: hidden;
+
   &::after {
     content: '';
     position: absolute;
@@ -29,6 +32,8 @@ export const MainSection = styled.div`
   flex-direction: column;
   padding-block: 32px;
   row-gap: 24px;
+
+  overflow-y: auto;
 `;
 
 export const Navigation = styled.nav`
