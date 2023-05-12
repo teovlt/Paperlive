@@ -23,9 +23,6 @@ i18n
             contributions: 'Contributions',
             statistics: 'Statistics',
           },
-          navbar: {
-            search: 'Search',
-          },
           sideBar: {
             edit: 'Edit Profile',
             visibility: 'Visibility',
@@ -56,7 +53,6 @@ i18n
             signIn: 'Sign In',
             signUp: 'Sign Up',
             textSignIn: 'Already have an account? ',
-
             errorPasswordFormat:
               'The password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, one digit, and one special character. Please try again.',
             errorPasswordConf: 'The passwords do not match. Please try again.',
@@ -68,9 +64,6 @@ i18n
             servorError: 'No Server Response',
             teamName: 'Team name',
             password: 'Password',
-          },
-          footer: {
-            label: 'Copyright © 2023 PaperLive. All rights reserved.',
           },
           language: {
             current: 'Current language',
@@ -133,6 +126,9 @@ i18n
             or: 'or',
             browse: 'Browse files',
           },
+          global: {
+            back: 'Back',
+          },
         },
       },
       fr: {
@@ -141,9 +137,6 @@ i18n
             overview: "Vue d'ensemble",
             contributions: 'Contributions',
             statistics: 'Statistiques',
-          },
-          navbar: {
-            search: 'Rechercher',
           },
           sideBar: {
             edit: 'Modifier votre profil',
@@ -186,9 +179,6 @@ i18n
             servorError: 'Le serveur ne répond pas',
             teamName: "Nom de l'équipe",
             password: 'Mot de passe',
-          },
-          footer: {
-            label: 'Copyright © 2023 PaperLive. Tout droits réservés.',
           },
           language: {
             current: 'Langue actuelle',
@@ -250,6 +240,9 @@ i18n
             drag: 'Faites glisser votre fichier ici',
             or: 'ou',
             browse: 'Parcourir les fichiers',
+          },
+          global: {
+            back: 'Retour',
           },
         },
       },

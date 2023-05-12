@@ -46,7 +46,7 @@ const Contribution = () => {
       <NavBar />
       <Container>
         <IconLink onClick={() => navigate(-1)}>
-          <HiOutlineArrowLeft /> Retour
+          <HiOutlineArrowLeft /> {t('global.back')}
         </IconLink>
         <Navigation>
           <NavLink to='/'>
