@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { Container, NavLink, Navigation } from '../../components/Layout/layoutElements';
@@ -23,12 +23,21 @@ import {
   TableFoot,
   TableRow,
   TableCellButton,
+  Group,
+  RelatedContributionSearchContainer,
+  RelatedContributionSearchResult,
+  RelatedContributionSearchResultContainer,
 } from './contributionsElements';
 import { useTranslation } from 'react-i18next';
-import { Button, IconLink, Heading2, Link } from '../../theme/appElements';
+import { Button, IconLink, Heading2, Link, Heading3 } from '../../theme/appElements';
 import { useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Popup from '../../components/Popup';
+import Input from '../../components/Input';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import RadioGroup from '../../components/RadioGroup';
+import FileInput from '../../components/FileInput';
+import useSearch from '../../hooks/useSearch';
 
 const Contribution = () => {
   const { contributionId } = useParams();
@@ -36,14 +45,43 @@ const Contribution = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
+  const searchRelatedContributionRef = useRef(null);
+  const search = useSearch();
 
   const [contribution, setContribution] = useState(
     auth.contributions.find((c) => c._id === contributionId)
   );
+  const [isFocused, setIsFocused] = useState(false);
+
   const [popup, setPopup] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [searchResult, setSearchResult] = useState();
 
   function handleDelete() {
     setPopup(true);
+  }
+
+  useEffect(() => {
+    setSearchResult(auth.contributions);
+  }, [auth]);
+
+  useEffect(() => {
+    setSearchResult(search(contribution.relatedContribution, auth.contributions, 'title'));
+  }, [contribution.relatedContribution]);
+
+  async function handleSaveChanges() {
+    setIsEditing(false);
+    const updatedContributionData = { ...contribution };
+
+    await axiosPrivate.put(`/contributions/update/${contributionId}`, {
+      ...updatedContributionData,
+    });
+    setContribution((prev) => ({ ...prev, ...updatedContributionData }));
+  }
+
+  function handleCancelChanges() {
+    setIsEditing(false);
+    setContribution(auth.contributions.find((c) => c._id === contributionId));
   }
 
   const handleDownload = async (e) => {
@@ -61,7 +99,7 @@ const Contribution = () => {
 
   return (
     <>
-      {popup && (
+      {/* {popup && (
         <Popup
           template={{
             title: 'Voulez vous vraiment supprimer cette contribution',
@@ -71,7 +109,7 @@ const Contribution = () => {
             confirmLabel: 'Supprimer',
           }}
         />
-      )}
+      )} */}
       <NavBar />
       <Container>
         <IconLink onClick={() => navigate(-1)}>
@@ -97,9 +135,11 @@ const Contribution = () => {
           <Button secondary onClick={() => console.log('stats')}>
             {t('contribution.stats')}
           </Button>
-          <Button secondary onClick={() => console.log('edit')}>
-            {t('contribution.editContribution')}
-          </Button>
+          {!isEditing && (
+            <Button secondary onClick={() => setIsEditing(true)}>
+              {t('contribution.editContribution')}
+            </Button>
+          )}
           <Button
             secondary
             type='negative'
@@ -116,67 +156,175 @@ const Contribution = () => {
         </Sidebar>
         <ContributionInfosContainer>
           <Heading2>Informations</Heading2>
-          <ContributionInfo>
-            <Label> {t('contribution.title')}</Label>
-            <Value>{contribution.title}</Value>
-          </ContributionInfo>
-          <ContributionInfo>
-            <Label> {t('contribution.related')}</Label>
-            <Value>{contribution.relatedContribution || '-'}</Value>
-          </ContributionInfo>
-          <ContributionInfosLineWrapper>
-            <ContributionInfo>
-              <Label> {t('contribution.startDate')}</Label>
-              <Value>
-                {new Intl.DateTimeFormat(i18n.language, {
-                  day: '2-digit',
-                  month: '2-digit',
-                  year: '2-digit',
-                }).format(new Date(contribution.startDate))}
-              </Value>
-            </ContributionInfo>
-            <ContributionInfo>
-              <Label>Role</Label>
-              <Value>{t(`contribution.${contribution.teamRole}`)}</Value>
-            </ContributionInfo>
-          </ContributionInfosLineWrapper>
-          <ContributionInfosLineWrapper>
-            <ContributionInfo>
-              <Label>Abstract</Label>
-              <Link onClick={handleDownload}>{t('global.download')}</Link>
-            </ContributionInfo>
-            <ContributionInfo>
-              <Label> {t('contribution.state')}</Label>
-              <Value>{t(`contribution.${contribution.state}`)}</Value>
-            </ContributionInfo>
-          </ContributionInfosLineWrapper>
-          <Heading2>{t('global.submission')}s</Heading2>
-          <Table>
-            <thead>
-              <TableHead>
-                <TableCell>Title</TableCell>
-                <TableCell>Date</TableCell>
-                <TableCell>Type</TableCell>
-                <TableCell>Venue</TableCell>
-              </TableHead>
-            </thead>
-            <tbody>
-              {false ? (
-                <h1>hého</h1>
-              ) : (
-                <TableRow onClick={() => navigate('/contributions/new')}>
-                  <TableCellButton>+ {t('submission.newSubmission')}</TableCellButton>
-                </TableRow>
-              )}
-            </tbody>
-            <tfoot>
-              <TableFoot>
-                <TableCell>
-                  Count: <span>0</span>
-                </TableCell>
-              </TableFoot>
-            </tfoot>
-          </Table>
+          {!isEditing ? (
+            <>
+              <ContributionInfo>
+                <Label> {t('contribution.title')}</Label>
+                <Value>{contribution.title}</Value>
+              </ContributionInfo>
+              <ContributionInfo>
+                <Label> {t('contribution.related2')}</Label>
+                <Value>{contribution.relatedContribution || '-'}</Value>
+              </ContributionInfo>
+              <ContributionInfosLineWrapper>
+                <ContributionInfo>
+                  <Label> {t('contribution.startDate')}</Label>
+                  <Value>
+                    {new Intl.DateTimeFormat(i18n.language, {
+                      day: '2-digit',
+                      month: '2-digit',
+                      year: '2-digit',
+                    }).format(new Date(contribution.startDate))}
+                  </Value>
+                </ContributionInfo>
+                <ContributionInfo>
+                  <Label>Role</Label>
+                  <Value>{t(`contribution.${contribution.teamRole}`)}</Value>
+                </ContributionInfo>
+              </ContributionInfosLineWrapper>
+              <ContributionInfosLineWrapper>
+                <ContributionInfo>
+                  <Label>Abstract</Label>
+                  <Link>{t('global.download')}</Link>
+                </ContributionInfo>
+                <ContributionInfo>
+                  <Label> {t('contribution.state')}</Label>
+                  <Value>{t(`contribution.${contribution.state}`)}</Value>
+                </ContributionInfo>
+              </ContributionInfosLineWrapper>
+              <Heading2>{t('global.submission')}s</Heading2>
+
+              <Table>
+                <thead>
+                  <TableHead>
+                    <TableCell>Title</TableCell>
+                    <TableCell>Date</TableCell>
+                    <TableCell>Type</TableCell>
+                    <TableCell>Venue</TableCell>
+                  </TableHead>
+                </thead>
+                <tbody>
+                  {false ? (
+                    <h1>hého</h1>
+                  ) : (
+                    <TableRow onClick={() => navigate('/contributions/new')}>
+                      <TableCellButton>+ {t('submission.newSubmission')}</TableCellButton>
+                    </TableRow>
+                  )}
+                </tbody>
+                <tfoot>
+                  <TableFoot>
+                    <TableCell>
+                      Count: <span>0</span>
+                    </TableCell>
+                  </TableFoot>
+                </tfoot>
+              </Table>
+            </>
+          ) : (
+            <>
+              <Input
+                small
+                id='title'
+                value={contribution?.title}
+                label={t('contribution.title')}
+                autoComplete='off'
+                onChange={(e) => {
+                  const newContributionData = { ...contribution, title: e.target.value };
+                  setContribution(newContributionData);
+                }}
+              />
+              <Input
+                small
+                id='date'
+                type='date'
+                value={contribution?.startDate}
+                label={t('contribution.startDate')}
+                autoComplete='off'
+                onChange={(event) => {
+                  const newContributionData = {
+                    ...contribution,
+                    startDate: event.target.value,
+                  };
+                  setContribution(newContributionData);
+                }}
+              />
+              <RadioGroup
+                name='role'
+                onChange={(event) => {
+                  const newContributionData = { ...contribution, teamRole: event.target.value };
+                  setContribution(newContributionData);
+                }}
+                template={{
+                  label: t('contribution.teamRole'),
+                  radios: [
+                    {
+                      label: t('contribution.leader'),
+                      value: 'leader',
+                      defaultChecked: contribution?.teamRole === 'leader',
+                    },
+                    {
+                      label: t('contribution.coLeader'),
+                      value: 'coLeader',
+                      defaultChecked: contribution?.teamRole === 'coLeader',
+                    },
+                    {
+                      label: t('contribution.guest'),
+                      value: 'guest',
+                      defaultChecked: contribution?.teamRole === 'guest',
+                    },
+                  ],
+                }}
+              />
+              <RelatedContributionSearchContainer>
+                <Input
+                  small
+                  id='related'
+                  value={contribution?.relatedContribution}
+                  label={`${t('contribution.related')}*`}
+                  ref={searchRelatedContributionRef}
+                  autoComplete='off'
+                  onChange={(event) => {
+                    const newContributionData = {
+                      ...contribution,
+                      relatedContribution: event.target.value,
+                    };
+                    setContribution(newContributionData);
+                  }}
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => setIsFocused(false)}
+                />
+                {isFocused && searchResult?.length > 0 && (
+                  <RelatedContributionSearchResultContainer className='open'>
+                    {searchResult.map((result, index) => (
+                      <RelatedContributionSearchResult
+                        key={index}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          const newContributionData = {
+                            ...contribution,
+                            relatedContribution: result.title,
+                          };
+                          setContribution(newContributionData);
+                          searchRelatedContributionRef.current.blur();
+                        }}>
+                        {result.title}
+                      </RelatedContributionSearchResult>
+                    ))}
+                  </RelatedContributionSearchResultContainer>
+                )}
+              </RelatedContributionSearchContainer>
+
+              <Group inline>
+                <Button secondary onClick={handleCancelChanges} style={{ width: '100%' }}>
+                  {t('global.cancel')}
+                </Button>
+                <Button secondary onClick={handleSaveChanges} style={{ width: '100%' }}>
+                  {t('global.save')}
+                </Button>
+              </Group>
+            </>
+          )}
         </ContributionInfosContainer>
       </Container>
     </>

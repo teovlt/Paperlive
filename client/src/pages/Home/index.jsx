@@ -17,7 +17,7 @@ const Home = () => {
       </SectionMain>
       <SectionMain>
         <Heading2>{t('home.activity')}</Heading2>
-        <Paragraph>Nothing here for the moment</Paragraph>
+        <Paragraph>{t('home.noActivity')}</Paragraph>
       </SectionMain>
     </>
   );

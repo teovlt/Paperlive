@@ -351,3 +351,11 @@ export const Label = styled.span`
 export const Value = styled.span`
   color: var(--black);
 `;
+
+
+export const Group = styled.div`
+  display: flex;
+  flex-direction: ${(props) => !props.inline && 'column'};
+  gap: ${(props) => (props.inline ? '8px' : '4px')};
+  width: 100%;
+`;
