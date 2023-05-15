@@ -142,10 +142,10 @@ const ProfileSidebar = () => {
             }}
           />
           <Group inline>
-            <Button secondary onClick={handleCancelChanges}>
+            <Button secondary onClick={handleCancelChanges} style={{ width: '100%' }}>
               {t('global.cancel')}
             </Button>
-            <Button secondary onClick={handleSaveChanges}>
+            <Button secondary onClick={handleSaveChanges} style={{ width: '100%' }}>
               {t('global.save')}
             </Button>
           </Group>
