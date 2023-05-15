@@ -26,3 +26,4 @@ coverage:
 DropDatabase:
 	rm -rf server/data
 	find server/uploads -type f ! -name 'team-picture-default.png' -exec rm {} +
+	make restart
