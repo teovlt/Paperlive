@@ -106,7 +106,7 @@ const Contribution = () => {
             <Value>{contribution.title}</Value>
           </ContributionInfo>
           <ContributionInfo>
-            <Label> {t('contribution.related')}</Label>
+            <Label> {t('contribution.related2')}</Label>
             <Value>{contribution.relatedContribution || '-'}</Value>
           </ContributionInfo>
           <ContributionInfosLineWrapper>
