@@ -17,7 +17,7 @@ export const InputContainer = styled.div`
 
 export const InputField = styled.input`
   width: 100%;
-  padding: 1.6rem;
+  padding: ${(props) => (props.small ? '1.25rem' : '1.6rem')};
   padding-right: ${(props) => props.defaultType === 'password' && '48px'};
   border-radius: 0.2rem;
 
@@ -25,7 +25,7 @@ export const InputField = styled.input`
   outline-offset: -1px;
 
   font-size: ${(props) => (props.small ? '1.5rem' : '1.6rem')};
-  line-height: 1.6rem;
+  line-height: ${(props) => (props.small ? '1.5rem' : '1.6rem')};
 
   &[type='Date'] {
     padding: 1.5rem;
