@@ -126,6 +126,9 @@ i18n
             newContribution: 'New contribution',
             fileSupported: 'Files supported',
           },
+          submission: {
+            newSubmission: 'New submission',
+          },
           fileInput: {
             success: 'Successfully uploaded',
             drag: 'Drag and drop your file here',
@@ -241,6 +244,9 @@ i18n
             editForm: 'Changer cette section',
             newContribution: 'Nouvelle contribution',
             fileSupported: 'Fichiers supportés',
+          },
+          submission: {
+            newSubmission: 'Nouvelle soumission',
           },
           fileInput: {
             success: 'Importé avec succès',

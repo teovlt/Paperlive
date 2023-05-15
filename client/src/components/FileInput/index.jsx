@@ -74,7 +74,11 @@ const FileInput = ({ name, file, endpoint, onChange }) => {
           </InputCaption>
         )}
       </InputContainer>
-      {file && !isUploading && <Chips type='positive'>{t('fileInput.success')}: {filename}</Chips>}
+      {file && !isUploading && (
+        <Chips type='positive'>
+          {t('fileInput.success')}: {filename}
+        </Chips>
+      )}
     </Container>
   );
 };

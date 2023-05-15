@@ -54,7 +54,6 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
         label={t('contribution.startDate')}
         autoComplete='off'
         onChange={(event) => {
-          console.log(event.target.value);
           const newContributionData = { ...contributionData, startDate: event.target.value };
           setContributionData(newContributionData);
         }}

@@ -23,3 +23,6 @@ test:
 	docker exec -it paperlive-api-1 npm run test -- --runInBand
 coverage:
 	docker exec -it paperlive-api-1 npm run coverage -- --runInBand
+DropDatabase:
+	rm -rf server/data
+	find server/uploads -type f ! -name 'team-picture-default.png' -exec rm {} +

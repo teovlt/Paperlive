@@ -145,7 +145,15 @@ const Contribution = () => {
                 <TableCell>Venue</TableCell>
               </TableHead>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              {false ? (
+                <h1>hého</h1>
+              ) : (
+                <TableRow onClick={() => navigate('/contributions/new')}>
+                  <TableCellButton>+ {t('submission.newSubmission')}</TableCellButton>
+                </TableRow>
+              )}
+            </tbody>
             <tfoot>
               <TableFoot>
                 <TableCell>
