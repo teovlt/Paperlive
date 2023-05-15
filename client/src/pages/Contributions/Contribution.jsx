@@ -102,16 +102,16 @@ const Contribution = () => {
         <ContributionInfosContainer>
           <Heading2>Informations</Heading2>
           <ContributionInfo>
-            <Label>Title</Label>
+            <Label> {t('contribution.title')}</Label>
             <Value>{contribution.title}</Value>
           </ContributionInfo>
           <ContributionInfo>
-            <Label>Related contribution</Label>
+            <Label> {t('contribution.related')}</Label>
             <Value>{contribution.relatedContribution || '-'}</Value>
           </ContributionInfo>
           <ContributionInfosLineWrapper>
             <ContributionInfo>
-              <Label>Start date</Label>
+              <Label> {t('contribution.startDate')}</Label>
               <Value>
                 {new Intl.DateTimeFormat(i18n.language, {
                   day: '2-digit',
@@ -131,7 +131,7 @@ const Contribution = () => {
               <Link>{t('global.download')}</Link>
             </ContributionInfo>
             <ContributionInfo>
-              <Label>State</Label>
+              <Label> {t('contribution.state')}</Label>
               <Value>{t(`contribution.${contribution.state}`)}</Value>
             </ContributionInfo>
           </ContributionInfosLineWrapper>
