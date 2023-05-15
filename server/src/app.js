@@ -11,6 +11,7 @@ const app = Express();
 const teamRoutes = require('./routes/teamRoutes');
 const authRoutes = require('./routes/authenticationRoutes');
 const contributionRoutes = require('./routes/contributionRoutes');
+const fileRoutes = require('./routes/fileRoutes');
 
 // Set up middleware to parse JSON, URL-encoded bodies and cookies
 app.use(Express.json());
@@ -61,6 +62,8 @@ app.use('/api/auth', authRoutes);
  * @access Public
  */
 app.use('/api/contributions', contributionRoutes);
+
+app.use('/api/files', fileRoutes);
 
 /**
  * Handle errors
