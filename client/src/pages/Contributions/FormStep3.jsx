@@ -5,10 +5,12 @@ import { Button, Heading3, Label } from '../../theme/appElements';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import useAuth from '../../hooks/useAuth';
 
 const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { auth, setAuth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
 
   const save = async () => {
@@ -23,6 +25,8 @@ const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
 
     const { filename, ...contributionDataWithoutFilename } = contributionData;
     await axiosPrivate.post('/contributions/new', contributionDataWithoutFilename);
+    const contributions = await axiosPrivate.get('/contributions');
+    setAuth((prev) => ({ ...prev, contributions: contributions.data }));
     navigate('/contributions');
   };
 
