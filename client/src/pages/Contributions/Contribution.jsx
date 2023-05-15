@@ -34,7 +34,6 @@ import { useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Popup from '../../components/Popup';
 import Input from '../../components/Input';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
 import useSearch from '../../hooks/useSearch';
@@ -185,7 +184,7 @@ const Contribution = () => {
               <ContributionInfosLineWrapper>
                 <ContributionInfo>
                   <Label>Abstract</Label>
-                  <Link>{t('global.download')}</Link>
+                  <Link onClick={handleDownload}>{t('global.download')}</Link>
                 </ContributionInfo>
                 <ContributionInfo>
                   <Label> {t('contribution.state')}</Label>
