@@ -1,36 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Backdrop, Caption, Container, Title, ActionsContainer } from './popupElements';
 import { Button } from '../../theme/appElements';
 
-const Popup = ({ template }) => {
+const Popup = ({ template, open, onConfirm, onCancel }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // if (!isOpen) return null;
+  useEffect(() => {
+    setIsOpen(open);
+  }, [open]);
 
-  const handleConfirm = () => {
-    setIsOpen(false);
-    template.onConfirm();
-  };
+  if (!isOpen) return null;
 
-  const handleCancel = () => {
-    setIsOpen(false);
-    template.onCancel();
-  };
   return (
-    <Backdrop>
+    <>
+      <Backdrop></Backdrop>
       <Container>
         <>
-          <Title>{template.title}</Title>
-          <Caption>{template.caption}</Caption>
+          <Title>{template?.title}</Title>
+          <Caption>{template?.caption}</Caption>
         </>
         <ActionsContainer>
-          <Button onClick={handleCancel}>{template.cancelLabel}</Button>
-          <Button onClick={handleConfirm} type='negative'>
-            {template.confirmLabel}
+          <Button
+            onClick={() => {
+              onCancel(); // Ajoutez les parenthèses ici
+            }}
+            style={{ width: '150px' }}>
+            {template?.cancelLabel}
+          </Button>
+
+          <Button
+            onClick={() => {
+              onConfirm(); // Ajoutez les parenthèses ici
+            }}
+            type='negative'
+            style={{ width: '150px' }}>
+            {template?.confirmLabel}
           </Button>
         </ActionsContainer>
       </Container>
-    </Backdrop>
+    </>
   );
 };
 
