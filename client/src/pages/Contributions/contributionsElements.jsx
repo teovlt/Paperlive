@@ -284,18 +284,20 @@ export const TableHead = styled.tr`
       background: rgba(34, 34, 34, 0.08);
     }
 
-    &::after {
+    &.active::after {
       content: '▶︎';
-      font-size: 0.6rem;
+      font-size: 0.8rem;
 
       position: absolute;
       top: 50%;
       margin-left: 4px;
-      transform: translateY(-50%) rotate(90deg);
+      transform: translateY(-50%) rotate(-90deg);
+
+      color: var(--accent);
     }
 
-    &.sortDesc::after {
-      transform: translateY(-50%) rotate(-90deg);
+    &.active.sortDesc::after {
+      transform: translateY(-50%) rotate(90deg);
     }
   }
 `;
@@ -351,7 +353,6 @@ export const Label = styled.span`
 export const Value = styled.span`
   color: var(--black);
 `;
-
 
 export const Group = styled.div`
   display: flex;

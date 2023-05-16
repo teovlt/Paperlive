@@ -34,6 +34,7 @@ function Contributions() {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
+    setSort({ attr: 'startDate', direction: 'desc' });
     setSearchResults(search(searchTerm, auth.contributions, 'title'));
   }, [searchTerm]);
 
@@ -102,7 +103,9 @@ function Contributions() {
         <thead>
           <TableHead>
             <TableCell
-              className={`${sort.attr === 'title' && sort.direction === 'desc' && 'sortDesc'}`}
+              className={`${sort.attr === 'title' && 'active'} ${
+                sort.attr === 'title' && sort.direction === 'desc' && 'sortDesc'
+              }`}
               onClick={() =>
                 setSort((prev) => {
                   if (prev.attr === 'title' && prev.direction === 'asc')
@@ -116,7 +119,9 @@ function Contributions() {
               {t('contribution.title')}
             </TableCell>
             <TableCell
-              className={`${sort.attr === 'startDate' && sort.direction === 'desc' && 'sortDesc'}`}
+              className={`${sort.attr === 'startDate' && 'active'} ${
+                sort.attr === 'startDate' && sort.direction === 'desc' && 'sortDesc'
+              }`}
               onClick={() =>
                 setSort((prev) => {
                   if (prev.attr === 'startDate' && prev.direction === 'asc')
@@ -130,7 +135,9 @@ function Contributions() {
               {t('contribution.date')}
             </TableCell>
             <TableCell
-              className={`${sort.attr === 'teamRole' && sort.direction === 'desc' && 'sortDesc'}`}
+              className={`${sort.attr === 'teamRole' && 'active'} ${
+                sort.attr === 'teamRole' && sort.direction === 'desc' && 'sortDesc'
+              }`}
               onClick={() =>
                 setSort((prev) => {
                   if (prev.attr === 'teamRole' && prev.direction === 'asc')
@@ -144,7 +151,9 @@ function Contributions() {
               {t('contribution.role')}
             </TableCell>
             <TableCell
-              className={`${sort.attr === 'state' && sort.direction === 'desc' && 'sortDesc'}`}
+              className={`${sort.attr === 'state' && 'active'} ${
+                sort.attr === 'state' && sort.direction === 'desc' && 'sortDesc'
+              }`}
               onClick={() =>
                 setSort((prev) => {
                   console.log(prev);

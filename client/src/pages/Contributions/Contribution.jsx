@@ -32,7 +32,6 @@ import { useTranslation } from 'react-i18next';
 import { Button, IconLink, Heading2, Link, Heading3 } from '../../theme/appElements';
 import { useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import Popup from '../../components/Popup';
 import Input from '../../components/Input';
 import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
@@ -49,12 +48,13 @@ const Contribution = () => {
   const search = useSearch();
 
   const [contribution, setContribution] = useState(
-    auth.contributions.find((c) => c._id === contributionId)
+    auth.contributions?.find((c) => c._id === contributionId)
   );
+  const [file, setFile] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [searchResult, setSearchResult] = useState();
+  const [searchResult, setSearchResult] = useState(null);
   const { confirm } = useConfirm();
 
   const handleConfirmation = async () => {
@@ -69,8 +69,8 @@ const Contribution = () => {
       await axiosPrivate.delete(`/contributions/delete/${contributionId}`, {
         ...contribution,
       });
-      const newContributions = auth.contributions.filter((c) => c._id !== contributionId);
-      setAuth((prev) => ({ ...prev, contributions: newContributions }));
+      const updatedContributions = auth.contributions.filter((c) => c._id !== contributionId);
+      setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
       navigate('/contributions');
     }
   };
@@ -85,15 +85,14 @@ const Contribution = () => {
 
   async function handleSaveChanges() {
     setIsEditing(false);
-    const updatedContributionData = { ...contribution };
 
+    console.log(contribution);
     await axiosPrivate.put(`/contributions/update/${contributionId}`, {
-      ...updatedContributionData,
+      ...contribution,
     });
-    setContribution((prev) => ({ ...prev, ...updatedContributionData }));
-    const newContributions = auth.contributions.filter((c) => c._id !== contributionId);
-    newContributions.push(contribution);
-    setAuth((prev) => ({ ...prev, contributions: newContributions }));
+    const updatedContributions = auth.contributions.filter((c) => c._id !== contributionId);
+    updatedContributions.push(contribution);
+    setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
   }
 
   function handleCancelChanges() {
@@ -103,6 +102,7 @@ const Contribution = () => {
 
   const handleDownload = async (e) => {
     e.preventDefault();
+    console.log(contribution.abstract);
     const res = await axiosPrivate.get(
       `${import.meta.env.VITE_API_URI}/api/files/${contribution.abstract}`,
       { responseType: 'blob' }
@@ -326,16 +326,14 @@ const Contribution = () => {
                 name='abstract'
                 file={contribution.abstract}
                 endpoint='files/contribution/abstract'
-                onChange={(file) =>
-                  setContribution((prev) => ({ ...prev, abstract: file?.name || file }))
-                }
+                onChange={(file) => setFile(file?.name)}
               />
 
               <Group inline>
-                <Button secondary onClick={handleCancelChanges} style={{ width: '100%' }}>
+                <Button type='neutral' onClick={handleCancelChanges} style={{ width: '100%' }}>
                   {t('global.cancel')}
                 </Button>
-                <Button secondary onClick={handleSaveChanges} style={{ width: '100%' }}>
+                <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>
                   {t('global.save')}
                 </Button>
               </Group>
