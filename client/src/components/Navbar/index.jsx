@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavContainer, Actions, Logo } from './navbarElements';
-import { HiGlobeAlt, HiUserGroup, HiPlus } from 'react-icons/hi2';
+import { HiGlobeAlt, HiUserGroup, HiPlus, HiMoon, HiOutlineMoon } from 'react-icons/hi2';
 import i18n from '../../translations/i18n';
 import { useTranslation } from 'react-i18next';
 import useLogout from '../../hooks/useLogout';
@@ -14,6 +14,12 @@ const NavBar = () => {
     en: { nativeName: t('language.english'), flag: '🇬🇧' },
     fr: { nativeName: t('language.french'), flag: '🇫🇷' },
   };
+  // const themes = {
+  //   dark: { name: 'dark', icon: '🌑' },
+  //   light: { name: 'light', icon: '☀️' },
+  // };
+
+  // const [theme, setTheme] = useState('light');
 
   const { auth } = useAuth();
   const logout = useLogout();
@@ -95,6 +101,22 @@ const NavBar = () => {
       },
     ],
   };
+
+  // const themeDropdownTemplate = {
+  //   toggle: <HiMoon />,
+  //   groups: [
+  //     {
+  //       label: 'Theme actuel : ',
+  //       value: theme,
+  //     },
+  //     {
+  //       actions: Object.keys(themes).map((theme) => ({
+  //         label: `${themes[theme].icon}${themes[theme].name} `,
+  //         onClick: () => setTheme(theme),
+  //       })),
+  //     },
+  //   ],
+  // };
 
   return (
     <NavContainer>

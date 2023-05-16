@@ -160,6 +160,7 @@ export const RelatedContributionSearchResultContainer = styled.div`
   width: 100%;
   padding-block: 4px;
   top: 50%;
+  z-index: 5;
 
   display: flex;
   flex-direction: column;
