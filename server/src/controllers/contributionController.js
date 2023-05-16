@@ -146,16 +146,3 @@ module.exports.deleteContribution = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
-
-/**
- *
- */
-module.exports.getAbstract = async (req, res) => {
-  const filePath = path.join(
-    __dirname,
-    '../../uploads/contributions/abstract/',
-    req.params.filename
-  );
-  if (fs.existsSync(filePath)) res.download(filePath);
-  else return res.status(404).json({ error: 'File not found' });
-};

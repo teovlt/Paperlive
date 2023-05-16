@@ -31,9 +31,9 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Button, IconLink, Heading2, Link, Heading3 } from '../../theme/appElements';
 import { useNavigate } from 'react-router-dom';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Popup from '../../components/Popup';
 import Input from '../../components/Input';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
 import useSearch from '../../hooks/useSearch';
@@ -95,6 +95,19 @@ const Contribution = () => {
     setIsEditing(false);
     setContribution(auth.contributions.find((c) => c._id === contributionId));
   }
+
+  const handleDownload = async (e) => {
+    e.preventDefault();
+    const res = await axiosPrivate.get(
+      `${import.meta.env.VITE_API_URI}/api/files/${contribution.abstract}`,
+      { responseType: 'blob' }
+    );
+    const url = URL.createObjectURL(res.data);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'file.pdf');
+    link.click();
+  };
 
   return (
     <>
@@ -173,7 +186,7 @@ const Contribution = () => {
               <ContributionInfosLineWrapper>
                 <ContributionInfo>
                   <Label>Abstract</Label>
-                  <Link>{t('global.download')}</Link>
+                  <Link onClick={handleDownload}>{t('global.download')}</Link>
                 </ContributionInfo>
                 <ContributionInfo>
                   <Label> {t('contribution.state')}</Label>

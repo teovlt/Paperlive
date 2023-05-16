@@ -24,7 +24,7 @@ const FormStep2 = ({
       <FileInput
         name='abstract'
         file={contributionData.filename}
-        endpoint='/contributions/abstract'
+        endpoint='files/contribution/abstract'
         onChange={(file) => setContributionData((prev) => ({ ...prev, filename: file?.name }))}
       />
       {errorMsg && <Chips type='negative'>{errorMsg}</Chips>}

@@ -36,6 +36,7 @@ export const UploadAvatarLabel = styled.label`
 
 export const Picture = styled.img`
   width: 100%;
+
   aspect-ratio: 1/1;
   border-radius: 100%;
 
@@ -43,6 +44,10 @@ export const Picture = styled.img`
   object-position: center;
 
   border: 1px solid var(--black-quaternary);
+  vertical-align: bottom;
+  &:not([src]) {
+    display: none;
+  }
 `;
 
 export const FileInput = styled.input`
