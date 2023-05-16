@@ -41,7 +41,7 @@ import { useConfirm } from '../../context/ConfirmContext';
 
 const Contribution = () => {
   const { contributionId } = useParams();
-  const { auth } = useAuth();
+  const { auth, setAuth } = useAuth();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
@@ -61,15 +61,18 @@ const Contribution = () => {
   const handleConfirmation = async () => {
     const confirmed = await confirm({
       title: `${t('contribution.suppTitle')}`,
-      caption:`${t('contribution.suppCaption')}`,
+      caption: `${t('contribution.suppCaption')}`,
       cancelLabel: `${t('global.cancel')}`,
       confirmLabel: `${t('global.confirm')}`,
     });
 
     if (confirmed) {
-      console.log('la contribution doit se supprimer');
-    } else {
-      console.log('On abandonne et on ne supprime rien du tout');
+      await axiosPrivate.delete(`/contributions/delete/${contributionId}`, {
+        ...contribution,
+      });
+      const newContributions = auth.contributions.filter((c) => c._id !== contributionId);
+      setAuth((prev) => ({ ...prev, contributions: newContributions }));
+      navigate('/contributions');
     }
   };
 
@@ -89,6 +92,9 @@ const Contribution = () => {
       ...updatedContributionData,
     });
     setContribution((prev) => ({ ...prev, ...updatedContributionData }));
+    const newContributions = auth.contributions.filter((c) => c._id !== contributionId);
+    newContributions.push(contribution);
+    setAuth((prev) => ({ ...prev, contributions: newContributions }));
   }
 
   function handleCancelChanges() {
