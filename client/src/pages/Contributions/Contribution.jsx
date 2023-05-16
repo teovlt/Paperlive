@@ -60,10 +60,10 @@ const Contribution = () => {
 
   const handleConfirmation = async () => {
     const confirmed = await confirm({
-      title: 'Confirmation',
-      caption: 'Êtes-vous sûr de vouloir continuer ?',
-      cancelLabel: 'Annuler',
-      confirmLabel: 'Confirmer',
+      title: `${t('contribution.suppTitle')}`,
+      caption:`${t('contribution.suppCaption')}`,
+      cancelLabel: `${t('global.cancel')}`,
+      confirmLabel: `${t('global.confirm')}`,
     });
 
     if (confirmed) {

@@ -28,6 +28,7 @@ i18n
             contribution: 'Contribution',
             submission: 'Submission',
             search: 'Search',
+            confirm: 'Confirm',
           },
           layout: {
             overview: 'Overview',
@@ -125,6 +126,9 @@ i18n
             editForm: 'Edit this section',
             newContribution: 'New contribution',
             fileSupported: 'Files supported',
+            suppTitle: 'Delete Contribution',
+            suppCaption:
+              'Once deleted, there will be no way to undo this action and retrieve any information related to this contribution. Are you sure you want to delete this contribution from PaperLive?',
           },
           submission: {
             newSubmission: 'New submission',
@@ -149,6 +153,7 @@ i18n
             contribution: 'Contribution',
             submission: 'Soumission',
             search: 'Rechercher',
+            confirm: 'Confirmer',
           },
           layout: {
             overview: "Vue d'ensemble",
@@ -244,6 +249,9 @@ i18n
             editForm: 'Changer cette section',
             newContribution: 'Nouvelle contribution',
             fileSupported: 'Fichiers supportés',
+            suppTitle: 'Supprimer la contribution',
+            suppCaption:
+              "Une fois supprimée, il n'y aura aucun moyen de revenir en arrière et de retrouver une quelconque informations sur cette contribution. Souhaitez vous vraiment supprimer cette contribution de PaperLive ?",
           },
           submission: {
             newSubmission: 'Nouvelle soumission',
