@@ -37,6 +37,7 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
 import useSearch from '../../hooks/useSearch';
+import { useConfirm } from '../../components/ConfirmContext';
 
 const Contribution = () => {
   const { contributionId } = useParams();
@@ -55,10 +56,22 @@ const Contribution = () => {
   const [popup, setPopup] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [searchResult, setSearchResult] = useState();
+  const { confirm } = useConfirm();
 
-  function handleDelete() {
-    setPopup(true);
-  }
+  const handleConfirmation = async () => {
+    const confirmed = await confirm({
+      title: 'Confirmation',
+      caption: 'Êtes-vous sûr de vouloir continuer ?',
+      cancelLabel: 'Annuler',
+      confirmLabel: 'Confirmer',
+    });
+
+    if (confirmed) {
+      console.log('la contribution doit se supprimer');
+    } else {
+      console.log('On abandonne et on ne supprime rien du tout');
+    }
+  };
 
   useEffect(() => {
     setSearchResult(auth.contributions);
@@ -85,17 +98,6 @@ const Contribution = () => {
 
   return (
     <>
-      {/* {popup && (
-        <Popup
-          template={{
-            title: 'Voulez vous vraiment supprimer cette contribution',
-            caption:
-              "Cette action est irréversible, une fois la contribution actuelle supprimé il n'existeras aucun moyen de la récupérer. Soyez sur de votre action",
-            cancelLabel: 'Annuler',
-            confirmLabel: 'Supprimer',
-          }}
-        />
-      )} */}
       <NavBar />
       <Container>
         <IconLink onClick={() => navigate(-1)}>
@@ -129,7 +131,7 @@ const Contribution = () => {
           <Button
             secondary
             type='negative'
-            onClick={handleDelete}
+            onClick={handleConfirmation}
             style={{
               display: 'flex',
               justifyContent: 'center',
