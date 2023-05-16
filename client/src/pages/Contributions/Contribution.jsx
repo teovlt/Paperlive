@@ -107,7 +107,7 @@ const Contribution = () => {
       `${import.meta.env.VITE_API_URI}/api/files/${contribution.abstract}`,
       { responseType: 'blob' }
     );
-    console.log(res.headers['content-disposition']);
+
     const url = URL.createObjectURL(res.data);
     const link = document.createElement('a');
     link.href = url;
@@ -321,6 +321,15 @@ const Contribution = () => {
                   </RelatedContributionSearchResultContainer>
                 )}
               </RelatedContributionSearchContainer>
+              <Heading3>Abstract</Heading3>
+              <FileInput
+                name='abstract'
+                file={contribution.abstract}
+                endpoint='files/contribution/abstract'
+                onChange={(file) =>
+                  setContribution((prev) => ({ ...prev, abstract: file?.name || file }))
+                }
+              />
 
               <Group inline>
                 <Button secondary onClick={handleCancelChanges} style={{ width: '100%' }}>

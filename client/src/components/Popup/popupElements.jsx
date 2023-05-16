@@ -7,25 +7,21 @@ export const Backdrop = styled.div`
   width: 100%;
   height: 100vh;
 
-
-  display: grid;
-  place-items: center;
   position: absolute;
   background-color: var(--black-secondary);
 `;
 
 export const Container = styled.div`
-  width: min(620px, 100%);
-  height: min(280px, 100%);
+  width: min(550px, 100%);
+  height: min(250px, 100%);
 
   background: var(--white);
-  border-radius: 8px;
-  padding: 48px 32px;
+  border-radius: 4px;
+  padding: 28px 20px;
   z-index: 99;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -44,8 +40,7 @@ export const Caption = styled.p`
 
 export const ActionsContainer = styled.div`
   margin-top: auto;
-
   display: inline-flex;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 12px;
 `;
