@@ -1,8 +1,8 @@
 import React from 'react';
-import { LinearContainer } from './contributionsElements';
-import FileInput from '../../components/FileInput';
-import Chips from '../../components/Chips';
-import { Button, Heading3, Label } from '../../theme/appElements';
+import { LinearContainer } from '../contributionsElements';
+import FileInput from '../../../components/FileInput';
+import Chips from '../../../components/Chips';
+import { Button, Heading3, Label } from '../../../theme/appElements';
 import { useTranslation } from 'react-i18next';
 
 const FormStep2 = ({

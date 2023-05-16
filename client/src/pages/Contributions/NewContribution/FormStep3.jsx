@@ -1,16 +1,16 @@
 import React from 'react';
-import { LinearContainer, Link, MainWrapper } from './contributionsElements';
-import Chips from '../../components/Chips';
-import { Button, Heading3, Label } from '../../theme/appElements';
+import { LinearContainer, Link, MainWrapper } from '../contributionsElements';
+import Chips from '../../../components/Chips';
+import { Button, Heading3, Label } from '../../../theme/appElements';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import useAuth from '../../hooks/useAuth';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
+import useAuth from '../../../hooks/useAuth';
 
 const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { auth, setAuth } = useAuth();
+  const { setAuth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
 
   const save = async () => {
