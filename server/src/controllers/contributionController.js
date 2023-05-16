@@ -110,10 +110,13 @@ module.exports.updateContribution = async (req, res) => {
     if (!team) return res.status(404).json({ error: 'Contribution not found' });
 
     // Update file
-    fs.renameSync(
-      `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`,
-      `${__dirname}/../../uploads/contribution/abstract/contribution-abstract-${_id}.pdf`
-    );
+    fs.existsSync(
+      `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`
+    ) &&
+      fs.renameSync(
+        `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`,
+        `${__dirname}/../../uploads/contribution/abstract/contribution-abstract-${contributionId}.pdf`
+      );
 
     const result = await Contribution.updateOne({ _id: contributionId }, { $set: req.body });
     if (result.matchedCount > 0) {
