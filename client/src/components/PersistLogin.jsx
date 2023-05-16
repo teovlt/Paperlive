@@ -3,10 +3,12 @@ import { Outlet } from 'react-router-dom';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import useAuth from '../hooks/useAuth';
 import Loading from './Loading';
+import useRefreshToken from '../hooks/useRefreshToken';
 
 const PersistLogin = () => {
   const axiosPrivate = useAxiosPrivate();
   const { auth, setAuth } = useAuth();
+  const refresh = useRefreshToken();
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -15,7 +17,7 @@ const PersistLogin = () => {
       const response = await axiosPrivate.get('/teams/me');
       setAuth((prev) => ({ ...prev, ...response.data }));
     } catch (error) {
-      // console.error(error);
+      return false;
     } finally {
       setIsLoading(false);
     }
@@ -23,10 +25,14 @@ const PersistLogin = () => {
 
   useEffect(() => {
     let isMounted = true;
-    fetchUserData();
+    refresh();
 
     return () => (isMounted = false);
   }, []);
+
+  useEffect(() => {
+    auth.accessToken && fetchUserData();
+  }, [auth.accessToken]);
 
   return <>{isLoading ? <Loading /> : <Outlet />}</>;
 };
