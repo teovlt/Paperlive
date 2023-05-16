@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import NavBar from '../../components/Navbar';
-import { Heading2 } from '../../theme/appElements';
+import NavBar from '../../../components/Navbar';
+import { Heading2 } from '../../../theme/appElements';
 import {
   Container,
   FormNavigation,
@@ -10,8 +10,8 @@ import {
   SideHeader,
   Sidebar,
   StepCaption,
-} from './contributionsElements';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+} from '../contributionsElements';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { useTranslation } from 'react-i18next';
 import FormStep1 from './FormStep1';
 import FormStep2 from './FormStep2';

@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Input from '../../components/Input';
-import RadioGroup from '../../components/RadioGroup';
+import Input from '../../../components/Input';
+import RadioGroup from '../../../components/RadioGroup';
 import {
   LinearContainer,
   RelatedContributionSearchContainer,
   RelatedContributionSearchResult,
   RelatedContributionSearchResultContainer,
-} from './contributionsElements';
-import Chips from '../../components/Chips';
-import { Button } from '../../theme/appElements';
+} from '../contributionsElements';
+import Chips from '../../../components/Chips';
+import { Button } from '../../../theme/appElements';
 import { useTranslation } from 'react-i18next';
-import useAuth from '../../hooks/useAuth';
-import useSearch from '../../hooks/useSearch';
+import useAuth from '../../../hooks/useAuth';
+import useSearch from '../../../hooks/useSearch';
 import { useNavigate } from 'react-router-dom';
 
 const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMsg, next }) => {

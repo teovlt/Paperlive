@@ -11,7 +11,7 @@ import Login from '../pages/Authentication/Login';
 import Register from '../pages/Authentication/Register';
 import Home from '../pages/Home';
 import Contributions from '../pages/Contributions';
-import NewContributionForm from '../pages/Contributions/NewContributionForm';
+import NewContribution from '../pages/Contributions/NewContribution';
 import Statistics from '../pages/Statistics';
 import NotFound from '../pages/NotFound';
 import Contribution from '../pages/Contributions/Contribution';
@@ -33,7 +33,7 @@ const Routes = () => {
             <Route path='/statistics' element={<Statistics />} />
           </Route>
 
-          <Route path='/contributions/new' element={<NewContributionForm />} />
+          <Route path='/contributions/new' element={<NewContribution />} />
           <Route path='/contributions/:contributionId' element={<Contribution />} />
         </Route>
       </Route>

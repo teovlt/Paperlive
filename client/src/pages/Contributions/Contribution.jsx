@@ -52,7 +52,6 @@ const Contribution = () => {
   );
   const [isFocused, setIsFocused] = useState(false);
 
-  const [popup, setPopup] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [searchResult, setSearchResult] = useState();
 
@@ -89,10 +88,11 @@ const Contribution = () => {
       `${import.meta.env.VITE_API_URI}/api/files/${contribution.abstract}`,
       { responseType: 'blob' }
     );
+    console.log(res.headers['content-disposition']);
     const url = URL.createObjectURL(res.data);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'file.pdf');
+    link.setAttribute('download', contribution.abstract);
     link.click();
   };
 
