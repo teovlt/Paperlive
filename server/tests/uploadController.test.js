@@ -3,10 +3,10 @@ const app = require('../src/app');
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
-const { uploadProfile } = require('../src/controllers/uploadController');
+const { uploadProfile } = require('../src/controllers/fileController');
 
 describe('getProfile', () => {
-  const filePath = 'default.gif';
+  const filePath = 'team-picture-default.png';
   const existingFile = path.join(__dirname, '../uploads/profile/', filePath);
 
   it('should return a 404 error if the file does not exist', async () => {
@@ -17,7 +17,7 @@ describe('getProfile', () => {
   });
 
   it('should return the file if it exists', async () => {
-    const res = await request(app).get(`/api/upload/profile/${filePath}`);
+    const res = await request(app).get(`/api/upload/team/picture/${filePath}`);
 
     expect(res.statusCode).toBe(200);
     expect(res.headers['content-type']).toBe('image/gif');
