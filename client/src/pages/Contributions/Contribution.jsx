@@ -76,11 +76,11 @@ const Contribution = () => {
   };
 
   useEffect(() => {
-    setSearchResult(auth.contributions);
-  }, [auth]);
-
-  useEffect(() => {
-    setSearchResult(search(contribution.relatedContribution, auth.contributions, 'title'));
+    setSearchResult(
+      search(contribution.relatedContribution, auth.contributions, 'title').filter(
+        (c) => c._id !== contributionId
+      )
+    );
   }, [contribution.relatedContribution]);
 
   async function handleSaveChanges() {

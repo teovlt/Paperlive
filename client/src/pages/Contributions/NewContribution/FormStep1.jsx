@@ -26,10 +26,6 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
   const [searchResult, setSearchResult] = useState();
 
   useEffect(() => {
-    setSearchResult(auth.contributions);
-  }, [auth]);
-
-  useEffect(() => {
     setSearchResult(search(contributionData.relatedContribution, auth.contributions, 'title'));
   }, [contributionData.relatedContribution]);
 
