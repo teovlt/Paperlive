@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useRef, useState } from 'react';
-import Popup from './Popup';
+import Popup from '../components/Popup';
 
 const defaultFunction = (p) => Promise.resolve(true);
 

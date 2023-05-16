@@ -37,7 +37,7 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
 import useSearch from '../../hooks/useSearch';
-import { useConfirm } from '../../components/ConfirmContext';
+import { useConfirm } from '../../context/ConfirmContext';
 
 const Contribution = () => {
   const { contributionId } = useParams();
