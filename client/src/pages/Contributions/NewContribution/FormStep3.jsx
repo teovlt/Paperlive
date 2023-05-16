@@ -9,7 +9,7 @@ import useAuth from '../../../hooks/useAuth';
 
 const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { setAuth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
 
@@ -38,7 +38,12 @@ const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
           {t('contribution.title')}:<span>{contributionData.title}</span>
         </Label>
         <Label>
-          {t('contribution.startDate')}:<span>{contributionData.startDate}</span>
+          {t('contribution.startDate')}:{' '}
+          {new Intl.DateTimeFormat(i18n.language, {
+            day: '2-digit',
+            month: '2-digit',
+            year: '2-digit',
+          }).format(new Date(contributionData.startDate))}
         </Label>
         <Label>
           {t('contribution.teamRole')}:<span>{t(`contribution.${contributionData.teamRole}`)}</span>
