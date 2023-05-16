@@ -109,6 +109,12 @@ module.exports.updateContribution = async (req, res) => {
     const team = await Team.findOne({ _id: req.teamId, contributions: { $in: [contributionId] } });
     if (!team) return res.status(404).json({ error: 'Contribution not found' });
 
+    // Update file
+    fs.renameSync(
+      `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`,
+      `${__dirname}/../../uploads/contribution/abstract/contribution-abstract-${_id}.pdf`
+    );
+
     const result = await Contribution.updateOne({ _id: contributionId }, { $set: req.body });
     if (result.matchedCount > 0) {
       return res.status(200).json({ message: 'Successfully updated' });
