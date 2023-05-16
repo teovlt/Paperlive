@@ -39,11 +39,13 @@ const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
         </Label>
         <Label>
           {t('contribution.startDate')}:{' '}
-          {new Intl.DateTimeFormat(i18n.language, {
-            day: '2-digit',
-            month: '2-digit',
-            year: '2-digit',
-          }).format(new Date(contributionData.startDate))}
+          <span>
+            {new Intl.DateTimeFormat(i18n.language, {
+              day: '2-digit',
+              month: '2-digit',
+              year: '2-digit',
+            }).format(new Date(contributionData.startDate))}
+          </span>
         </Label>
         <Label>
           {t('contribution.teamRole')}:<span>{t(`contribution.${contributionData.teamRole}`)}</span>
