@@ -31,7 +31,8 @@ const PersistLogin = () => {
   }, []);
 
   useEffect(() => {
-    auth.accessToken && fetchUserData();
+    // FIXME:
+    fetchUserData();
   }, [auth.accessToken]);
 
   return <>{isLoading ? <Loading /> : <Outlet />}</>;
