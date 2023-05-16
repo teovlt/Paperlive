@@ -36,9 +36,7 @@ module.exports.readContribution = async (req, res) => {
     const team = await Team.findOne({ _id: req.teamId }).populate('contributions');
     if (!team) return res.status(404).json({ error: 'Team not found' });
 
-    const contribution = team.contributions.find(
-      (current) => current._id.toString() === contributionId.toString()
-    );
+    const contribution = await Contribution.findById(contributionId);
 
     if (!contribution) return res.status(404).json({ error: 'Contribution not found' });
 
@@ -65,7 +63,8 @@ module.exports.createContribution = async (req, res) => {
     fs.renameSync(
       `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`,
       `${__dirname}/../../uploads/contribution/abstract/contribution-abstract-${_id}.pdf`
-    );
+    );    
+    
 
     // Save to database
     const contribution = new Contribution({

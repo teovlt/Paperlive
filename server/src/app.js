@@ -3,7 +3,6 @@ const Express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-
 if (process.env.NODE_ENV !== 'test') {
   require('./utils/utils');
 }

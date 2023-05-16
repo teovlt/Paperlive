@@ -1,13 +1,6 @@
 const request = require('supertest');
 const app = require('../src/app');
 
-
-// Mock the setInterval call in utils.js
-jest.spyOn(global, 'setInterval').mockImplementation((callback) => {
-  callback(); // Immediately invoke the callback
-  return setInterval(callback, 1000); // Return a fake interval ID
-});
-
 describe('GET /api/ping', () => {
   it('should return a 200 OK response with a message indicating the server is running', async () => {
     const res = await request(app).get('/api/ping');
