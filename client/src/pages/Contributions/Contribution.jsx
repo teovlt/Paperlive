@@ -119,7 +119,7 @@ const Contribution = () => {
           </NavLink>
           <NavLink to='/contributions'>
             <HiOutlineNewspaper />
-            {t('layout.contributions')}
+            {t('global.contributions')}
           </NavLink>
           <NavLink to='/statistics'>
             <HiOutlineChartPie />

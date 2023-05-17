@@ -19,7 +19,6 @@ import FormStep3 from './FormStep3';
 
 const NewContributionForm = () => {
   const { t } = useTranslation();
-  const axiosPrivate = useAxiosPrivate();
 
   const [step, setStep] = useState(0);
   const [errorMsg, setErrorMsg] = useState('');
@@ -58,7 +57,7 @@ const NewContributionForm = () => {
 
   const steps = [
     {
-      title: 'Informations',
+      title: t('contribution.informations'),
       content: (
         <FormStep1
           contributionData={contributionData}

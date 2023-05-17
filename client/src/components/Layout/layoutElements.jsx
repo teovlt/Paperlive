@@ -28,11 +28,14 @@ export const MainSection = styled.div`
   margin-left: 72px;
   grid-area: 2 / 2 / 3 / 3;
 
+  max-width: calc(100% - 72px);
+
   display: flex;
   flex-direction: column;
   padding-block: 32px;
   row-gap: 24px;
 
+  /* overflow-x: hidden; */
   overflow-y: auto;
 `;
 

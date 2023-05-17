@@ -83,7 +83,7 @@ function Contributions() {
 
   return (
     <>
-      <Heading2>Contributions</Heading2>
+      <Heading2>{t('global.contributions')}</Heading2>
       <LinearContainer>
         <Input
           small
@@ -100,104 +100,98 @@ function Contributions() {
         </Button>
       </LinearContainer>
       <Table>
-        <thead>
-          <TableHead>
-            <TableCell
-              className={`${sort.attr === 'title' && 'active'} ${
-                sort.attr === 'title' && sort.direction === 'desc' && 'sortDesc'
-              }`}
-              onClick={() =>
-                setSort((prev) => {
-                  if (prev.attr === 'title' && prev.direction === 'asc')
-                    return { ...prev, direction: 'desc' };
-                  else if (prev.attr === 'title' && prev.direction === 'desc')
-                    return { ...prev, direction: 'asc' };
-                  else return { attr: 'title', direction: 'asc' };
-                })
-              }>
-              <HiOutlineDocumentText />
-              {t('contribution.title')}
-            </TableCell>
-            <TableCell
-              className={`${sort.attr === 'startDate' && 'active'} ${
-                sort.attr === 'startDate' && sort.direction === 'desc' && 'sortDesc'
-              }`}
-              onClick={() =>
-                setSort((prev) => {
-                  if (prev.attr === 'startDate' && prev.direction === 'asc')
-                    return { ...prev, direction: 'desc' };
-                  else if (prev.attr === 'startDate' && prev.direction === 'desc')
-                    return { ...prev, direction: 'asc' };
-                  else return { attr: 'startDate', direction: 'asc' };
-                })
-              }>
-              <HiOutlineClock />
-              {t('contribution.date')}
-            </TableCell>
-            <TableCell
-              className={`${sort.attr === 'teamRole' && 'active'} ${
-                sort.attr === 'teamRole' && sort.direction === 'desc' && 'sortDesc'
-              }`}
-              onClick={() =>
-                setSort((prev) => {
-                  if (prev.attr === 'teamRole' && prev.direction === 'asc')
-                    return { ...prev, direction: 'desc' };
-                  else if (prev.attr === 'teamRole' && prev.direction === 'desc')
-                    return { ...prev, direction: 'asc' };
-                  else return { attr: 'teamRole', direction: 'asc' };
-                })
-              }>
-              <HiOutlineUsers />
-              {t('contribution.role')}
-            </TableCell>
-            <TableCell
-              className={`${sort.attr === 'state' && 'active'} ${
-                sort.attr === 'state' && sort.direction === 'desc' && 'sortDesc'
-              }`}
-              onClick={() =>
-                setSort((prev) => {
-                  console.log(prev);
-                  if (prev.attr === 'state' && prev.direction === 'asc')
-                    return { ...prev, direction: 'desc' };
-                  else if (prev.attr === 'state' && prev.direction === 'desc')
-                    return { ...prev, direction: 'asc' };
-                  else return { attr: 'state', direction: 'asc' };
-                })
-              }>
-              <HiOutlineSparkles />
-              {t('contribution.state')}
-            </TableCell>
-          </TableHead>
-        </thead>
-        <tbody>
-          {searchResults.length > 0 ? (
-            searchResults.map((contribution, index) => (
-              <TableRow key={index} onClick={() => navigate(`/contributions/${contribution._id}`)}>
-                <TableCell>{contribution.title}</TableCell>
-                <TableCell>
-                  {new Intl.DateTimeFormat(i18n.language, {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: '2-digit',
-                  }).format(new Date(contribution.startDate))}
-                </TableCell>
-                <TableCell>{t(`contribution.${contribution.teamRole}`)}</TableCell>
-                <TableCell>{t(`contribution.${contribution.state}`)}</TableCell>
-              </TableRow>
-            ))
-          ) : (
-            <TableRow onClick={() => navigate('/contributions/new')}>
-              <TableCellButton>+ {t('contribution.newContribution')}</TableCellButton>
+        <TableHead>
+          <TableCell
+            className={`${sort.attr === 'title' && 'active'} ${
+              sort.attr === 'title' && sort.direction === 'desc' && 'sortDesc'
+            }`}
+            onClick={() =>
+              setSort((prev) => {
+                if (prev.attr === 'title' && prev.direction === 'asc')
+                  return { ...prev, direction: 'desc' };
+                else if (prev.attr === 'title' && prev.direction === 'desc')
+                  return { ...prev, direction: 'asc' };
+                else return { attr: 'title', direction: 'asc' };
+              })
+            }>
+            <HiOutlineDocumentText />
+            {t('contribution.title')}
+          </TableCell>
+          <TableCell
+            className={`${sort.attr === 'startDate' && 'active'} ${
+              sort.attr === 'startDate' && sort.direction === 'desc' && 'sortDesc'
+            }`}
+            onClick={() =>
+              setSort((prev) => {
+                if (prev.attr === 'startDate' && prev.direction === 'asc')
+                  return { ...prev, direction: 'desc' };
+                else if (prev.attr === 'startDate' && prev.direction === 'desc')
+                  return { ...prev, direction: 'asc' };
+                else return { attr: 'startDate', direction: 'asc' };
+              })
+            }>
+            <HiOutlineClock />
+            {t('contribution.date')}
+          </TableCell>
+          <TableCell
+            className={`${sort.attr === 'teamRole' && 'active'} ${
+              sort.attr === 'teamRole' && sort.direction === 'desc' && 'sortDesc'
+            }`}
+            onClick={() =>
+              setSort((prev) => {
+                if (prev.attr === 'teamRole' && prev.direction === 'asc')
+                  return { ...prev, direction: 'desc' };
+                else if (prev.attr === 'teamRole' && prev.direction === 'desc')
+                  return { ...prev, direction: 'asc' };
+                else return { attr: 'teamRole', direction: 'asc' };
+              })
+            }>
+            <HiOutlineUsers />
+            {t('contribution.role')}
+          </TableCell>
+          <TableCell
+            className={`${sort.attr === 'state' && 'active'} ${
+              sort.attr === 'state' && sort.direction === 'desc' && 'sortDesc'
+            }`}
+            onClick={() =>
+              setSort((prev) => {
+                console.log(prev);
+                if (prev.attr === 'state' && prev.direction === 'asc')
+                  return { ...prev, direction: 'desc' };
+                else if (prev.attr === 'state' && prev.direction === 'desc')
+                  return { ...prev, direction: 'asc' };
+                else return { attr: 'state', direction: 'asc' };
+              })
+            }>
+            <HiOutlineSparkles />
+            {t('contribution.state')}
+          </TableCell>
+        </TableHead>
+        {searchResults.length > 0 ? (
+          searchResults.map((contribution, index) => (
+            <TableRow key={index} onClick={() => navigate(`/contributions/${contribution._id}`)}>
+              <TableCell>{contribution.title}</TableCell>
+              <TableCell>
+                {new Intl.DateTimeFormat(i18n.language, {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: '2-digit',
+                }).format(new Date(contribution.startDate))}
+              </TableCell>
+              <TableCell>{t(`contribution.${contribution.teamRole}`)}</TableCell>
+              <TableCell>{t(`contribution.${contribution.state}`)}</TableCell>
             </TableRow>
-          )}
-        </tbody>
-        <tfoot>
-          <TableFoot>
-            <TableCell>
-              {t('contribution.count')} <span>{searchResults.length}</span>
-            </TableCell>
-          </TableFoot>
-        </tfoot>
+          ))
+        ) : (
+          <TableRow onClick={() => navigate('/contributions/new')}>
+            <TableCellButton>+ {t('contribution.newContribution')}</TableCellButton>
+          </TableRow>
+        )}
+        <TableFoot>
+          <TableCell>
+            {t('contribution.count')} <span>{searchResults.length}</span>
+          </TableCell>
+        </TableFoot>
       </Table>
     </>
   );

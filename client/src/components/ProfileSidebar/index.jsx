@@ -64,7 +64,8 @@ const ProfileSidebar = () => {
               <span>{auth.visibility ? t('sideBar.public') : t('sideBar.private')}</span>
             </Label>
             <Label>
-              <HiOutlineNewspaper /> <span>{auth.contributions?.length}</span> contribution(s)
+              <HiOutlineNewspaper /> <span>{auth.contributions?.length}</span>{' '}
+              {t('global.contributions')}
             </Label>
           </Group>
           <Group>
