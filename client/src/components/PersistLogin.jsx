@@ -15,7 +15,6 @@ const PersistLogin = () => {
 
   const fetchUserData = async () => {
     try {
-      console.log('hello');
       const response = await axiosPrivate.get('/teams/me');
       setAuth((prev) => ({ ...prev, ...response.data }));
     } catch (error) {
