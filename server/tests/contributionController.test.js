@@ -93,12 +93,47 @@ describe('GET /api/contributions/:contributionId', () => {
     await Contribution.deleteOne({ _id: contribution._id });
   });
 
-  it('should read a contribution', async () => {
+  it('should read a contribution and return 200 status', async () => {
     const res = await request(app)
       .get(`/api/contributions/${contribution._id}`)
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
     expect(res.status).toBe(200);
+  });
+
+  it('should return a 404 Not Found error if the team does not exist', async () => {
+    const unknownId = new mongoose.Types.ObjectId();
+
+    const res = await request(app)
+      .get(`/api/contributions/${contribution._id}`)
+      .set('Authorization', `Bearer ${generateAccessToken(unknownId)}`);
+
+    expect(res.status).toBe(404);
+    expect(res.body).toEqual({ error: 'Team not found' });
+  });
+
+  it('should return a 500 Invalid ID error if the id of the contribution is unvalid', async () => {
+    const falseId = 'lalaa';
+
+    const res = await request(app)
+      .get(`/api/contributions/${falseId}`)
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
+
+    expect(res.status).toBe(500);
+    expect(res.body).toEqual({ error: `Invalid ID: ${falseId}` });
+  });
+
+  it('should handle errors properly', async () => {
+    jest.spyOn(Contribution, 'findOne').mockImplementationOnce(() => {
+      throw new Error('Test error');
+    });
+
+    const res = await request(app)
+      .get(`/api/contributions/${contribution._id}`)
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
+
+    expect(res.status).toBe(500);
+    expect(res.body.error).toBeDefined();
   });
 });
 
@@ -137,5 +172,39 @@ describe('DELETE /api/contributions/delete/:contributionId', () => {
     expect(res.status).toBe(200);
     expect(res.body).toEqual({ message: 'Successfully deleted' });
   });
-});
 
+  it('should return a 404 Not Found error if the team does not exist', async () => {
+    const unknownId = new mongoose.Types.ObjectId();
+
+    const res = await request(app)
+      .delete(`/api/contributions/delete/${contribution._id}`)
+      .set('Authorization', `Bearer ${generateAccessToken(unknownId)}`);
+
+    expect(res.status).toBe(404);
+    expect(res.body).toEqual({ error: 'Contribution not found' });
+  });
+
+  it('should return a 500 Invalid ID error if the id of the contribution is unvalid', async () => {
+    const falseId = 'lalaa';
+
+    const res = await request(app)
+      .delete(`/api/contributions/delete/${falseId}`)
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
+
+    expect(res.status).toBe(500);
+    expect(res.body).toEqual({ error: `Invalid ID: ${falseId}` });
+  });
+
+  it('should handle errors properly and return 500', async () => {
+    jest.spyOn(Contribution, 'deleteOne').mockImplementationOnce(() => {
+      throw new Error('Test error');
+    });
+
+    const res = await request(app)
+      .delete(`/api/contributions/delete/${contribution._id}`)
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
+
+    expect(res.status).toBe(500);
+    expect(res.body.error).toBeDefined();
+  });
+});
