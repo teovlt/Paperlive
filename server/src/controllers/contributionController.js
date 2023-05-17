@@ -56,7 +56,7 @@ module.exports.readContribution = async (req, res) => {
  */
 module.exports.createContribution = async (req, res) => {
   try {
-    const { title, startDate, teamRole, relatedContribution } = req.body;
+    const { title, startDate, teamRole, relatedContributions } = req.body;
 
     const _id = new ObjectId();
     const abstractFileName = `contribution-abstract-${_id}.pdf`;
@@ -73,7 +73,7 @@ module.exports.createContribution = async (req, res) => {
       title,
       startDate,
       teamRole,
-      relatedContribution,
+      relatedContributions,
       abstract: abstractFileName,
     });
     await contribution.save();
