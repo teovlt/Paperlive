@@ -13,6 +13,7 @@ const NavBar = () => {
   const lngs = {
     en: { nativeName: t('language.english'), flag: '🇬🇧' },
     fr: { nativeName: t('language.french'), flag: '🇫🇷' },
+    de: { nativeName: `${t('language.german')}`, flag: '🇩🇪' },
     es: { nativeName: `${t('language.spanish')} (${t('global.beta')})`, flag: '🇪🇸' },
   };
 
