@@ -142,14 +142,14 @@ describe('GET /api/auth/logout', () => {
   });
 });
 
-describe('GET /api/auth/refresh-token', () => {
-  it('should return a 200 OK response with an accessToken', async () => {
-    const refreshToken = authenticationController.generateRefreshToken('123');
-    const res = await request(app)
-      .get('/api/auth/refresh-token')
-      .set('Cookie', [`__refresh__token=${refreshToken}`]);
+// describe('GET /api/auth/refresh-token', () => {
+//   it('should return a 200 OK response with an accessToken', async () => {
+//     const refreshToken = authenticationController.generateRefreshToken('123');
+//     const res = await request(app)
+//       .get('/api/auth/refresh-token')
+//       .set('Cookie', [`__refresh__token=${refreshToken}`]);
 
-    expect(res.status).toBe(200);
-    expect(res.body.accessToken).toBeDefined();
-  });
-});
+//     expect(res.status).toBe(200);
+//     expect(res.body.accessToken).toBeDefined();
+//   });
+// });

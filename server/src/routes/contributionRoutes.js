@@ -4,7 +4,7 @@ const { authenticateAccessToken } = require('../middlewares/authenticationMiddle
 
 Router.get('/', authenticateAccessToken, contributionController.listContributions);
 Router.get(
-  '/read/:contributionId',
+  '/:contributionId',
   authenticateAccessToken,
   contributionController.readContribution
 );

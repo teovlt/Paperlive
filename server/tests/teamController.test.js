@@ -11,7 +11,6 @@ const { generateAccessToken } = require('../src/controllers/authenticationContro
 beforeAll(async () => {
   await mongoose.connect('mongodb://db:27017/paperlive_test', {
     useNewUrlParser: true,
-
     useUnifiedTopology: true,
   });
 });

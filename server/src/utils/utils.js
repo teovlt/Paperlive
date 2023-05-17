@@ -29,4 +29,5 @@ async function removeTempFiles() {
   });
 }
 
-setInterval(removeTempFiles, 5 * 60 * 1000);
+  setInterval(removeTempFiles, 5 * 60 * 1000);
+

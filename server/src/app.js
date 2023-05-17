@@ -2,7 +2,10 @@
 const Express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-require('./utils/utils');
+
+if (process.env.NODE_ENV !== 'test') {
+  require('./utils/utils');
+}
 
 // Create the new Express app
 const app = Express();
