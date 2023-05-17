@@ -195,47 +195,17 @@ export const Button = styled(AppButton)`
   white-space: nowrap;
 `;
 
-export const Table = styled.table`
-  width: 100%;
-  text-align: left;
-
+export const Table = styled.div`
   border-collapse: collapse;
+
+  width: 100%;
 
   font-size: 1.5rem;
   user-select: none;
   color: var(--black);
 `;
 
-export const TableCell = styled.td`
-  flex: 1;
-
-  padding: 0.8rem;
-
-  border-inline: 0.5px solid var(--black-quaternary);
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  &:first-of-type {
-    flex: 2;
-    border-left: none;
-    border-right: 0.5px solid var(--black-quaternary);
-  }
-
-  &:last-of-type {
-    border-right: none;
-    border-left: 0.5px solid var(--black-quaternary);
-  }
-
-  svg {
-    font-size: 1.5rem;
-    margin-right: 8px;
-    vertical-align: middle;
-  }
-`;
-
-export const TableRow = styled.tr`
+export const TableRow = styled.div`
   display: flex;
   cursor: pointer;
 
@@ -254,12 +224,40 @@ export const TableRow = styled.tr`
   }
 `;
 
+export const TableCell = styled.div`
+  padding: 0.8rem;
+  width: 20%;
+
+  border-inline: 0.5px solid var(--black-quaternary);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:first-of-type {
+    width: 40%;
+    border-left: none;
+    border-right: 0.5px solid var(--black-quaternary);
+  }
+
+  &:last-of-type {
+    border-right: none;
+    border-left: 0.5px solid var(--black-quaternary);
+  }
+
+  svg {
+    font-size: 1.5rem;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+`;
+
 export const TableCellButton = styled(TableCell)`
   color: var(--black-tertiary);
   border: none !important;
 `;
 
-export const TableHead = styled.tr`
+export const TableHead = styled.div`
   display: flex;
 
   ${TableCell} {
@@ -297,7 +295,7 @@ export const TableHead = styled.tr`
   }
 `;
 
-export const TableFoot = styled.tr`
+export const TableFoot = styled.div`
   display: flex;
   justify-content: flex-end;
 
