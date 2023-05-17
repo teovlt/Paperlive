@@ -103,9 +103,15 @@ const Contribution = () => {
     <>
       <NavBar />
       <Container>
-        <IconLink onClick={() => navigate(-1)}>
-          <HiOutlineArrowLeft /> {t('global.back')}
-        </IconLink>
+        {!isEditing ? (
+          <IconLink onClick={() => navigate(-1)}>
+            <HiOutlineArrowLeft /> {t('global.back')}
+          </IconLink>
+        ) : (
+          <IconLink onClick={() => setIsEditing(false)}>
+            <HiOutlineArrowLeft /> {t('global.back')}
+          </IconLink>
+        )}
         <Navigation>
           <NavLink to='/'>
             <HiOutlineBookOpen />
