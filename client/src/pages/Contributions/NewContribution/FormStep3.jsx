@@ -51,7 +51,8 @@ const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
           {t('contribution.teamRole')}:<span>{t(`contribution.${contributionData.teamRole}`)}</span>
         </Label>
         <Label>
-          {t('contribution.related')}:<span>{contributionData.relatedContribution}</span>
+          {t('contribution.related')}:
+          <span>{contributionData.relatedContributions.map((c) => c.title).join(', ')}</span>
         </Label>
         <Link onClick={() => goTo(0)}> {t('contribution.editForm')}</Link>
       </MainWrapper>

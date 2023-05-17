@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { Container, NavLink, Navigation } from '../../components/Layout/layoutElements';
 import NavBar from '../../components/Navbar';
@@ -24,19 +23,17 @@ import {
   TableRow,
   TableCellButton,
   Group,
-  RelatedContributionSearchContainer,
-  RelatedContributionSearchResult,
-  RelatedContributionSearchResultContainer,
 } from './contributionsElements';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, IconLink, Heading2, Link, Heading3 } from '../../theme/appElements';
 import { useNavigate } from 'react-router-dom';
+import { useConfirm } from '../../context/ConfirmContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Input from '../../components/Input';
 import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
-import useSearch from '../../hooks/useSearch';
-import { useConfirm } from '../../context/ConfirmContext';
+import Selector from '../../components/Selector';
 
 const Contribution = () => {
   const { contributionId } = useParams();
@@ -44,18 +41,15 @@ const Contribution = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
-  const searchRelatedContributionRef = useRef(null);
-  const search = useSearch();
 
-  const [contribution, setContribution] = useState(
-    auth.contributions?.find((c) => c._id === contributionId)
-  );
-  const [file, setFile] = useState(null);
-  const [isFocused, setIsFocused] = useState(false);
+  const [contribution, setContribution] = useState(null);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [searchResult, setSearchResult] = useState(null);
   const { confirm } = useConfirm();
+
+  useEffect(() => {
+    setContribution(auth.contributions?.find((c) => c._id === contributionId));
+  }, [contributionId]);
 
   const handleConfirmation = async () => {
     const confirmed = await confirm({
@@ -75,18 +69,9 @@ const Contribution = () => {
     }
   };
 
-  useEffect(() => {
-    setSearchResult(
-      search(contribution.relatedContribution, auth.contributions, 'title').filter(
-        (c) => c._id !== contributionId
-      )
-    );
-  }, [contribution.relatedContribution]);
-
   async function handleSaveChanges() {
     setIsEditing(false);
 
-    console.log(contribution);
     await axiosPrivate.put(`/contributions/update/${contributionId}`, {
       ...contribution,
     });
@@ -102,16 +87,15 @@ const Contribution = () => {
 
   const handleDownload = async (e) => {
     e.preventDefault();
-    console.log(contribution.abstract);
     const res = await axiosPrivate.get(
-      `${import.meta.env.VITE_API_URI}/api/files/${contribution.abstract}`,
+      `${import.meta.env.VITE_API_URI}/api/files/${contribution?.abstract}`,
       { responseType: 'blob' }
     );
 
     const url = URL.createObjectURL(res.data);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', contribution.abstract);
+    link.setAttribute('download', contribution?.abstract);
     link.click();
   };
 
@@ -167,11 +151,22 @@ const Contribution = () => {
             <>
               <ContributionInfo>
                 <Label> {t('contribution.title')}</Label>
-                <Value>{contribution.title}</Value>
+                <Value>{contribution?.title}</Value>
               </ContributionInfo>
               <ContributionInfo>
                 <Label> {t('contribution.related2')}</Label>
-                <Value>{contribution.relatedContribution || '-'}</Value>
+                {contribution?.relatedContributions.length > 0 ? (
+                  <Value>
+                    {contribution.relatedContributions.map((c, index) => (
+                      <React.Fragment key={index}>
+                        <Link to={`/contributions/${c._id}`}>{c.title}</Link>
+                        {index != contribution.relatedContributions.length - 1 && ', '}
+                      </React.Fragment>
+                    ))}
+                  </Value>
+                ) : (
+                  '-'
+                )}
               </ContributionInfo>
               <ContributionInfosLineWrapper>
                 <ContributionInfo>
@@ -181,12 +176,12 @@ const Contribution = () => {
                       day: '2-digit',
                       month: '2-digit',
                       year: '2-digit',
-                    }).format(new Date(contribution.startDate))}
+                    }).format(new Date(contribution?.startDate ?? 0))}
                   </Value>
                 </ContributionInfo>
                 <ContributionInfo>
                   <Label>Role</Label>
-                  <Value>{t(`contribution.${contribution.teamRole}`)}</Value>
+                  <Value>{t(`contribution.${contribution?.teamRole}`)}</Value>
                 </ContributionInfo>
               </ContributionInfosLineWrapper>
               <ContributionInfosLineWrapper>
@@ -196,7 +191,7 @@ const Contribution = () => {
                 </ContributionInfo>
                 <ContributionInfo>
                   <Label> {t('contribution.state')}</Label>
-                  <Value>{t(`contribution.${contribution.state}`)}</Value>
+                  <Value>{t(`contribution.${contribution?.state}`)}</Value>
                 </ContributionInfo>
               </ContributionInfosLineWrapper>
               <Heading2>{t('global.submission')}s</Heading2>
@@ -283,48 +278,22 @@ const Contribution = () => {
                   ],
                 }}
               />
-              <RelatedContributionSearchContainer>
-                <Input
-                  small
-                  id='related'
-                  value={contribution?.relatedContribution}
-                  label={`${t('contribution.related')}*`}
-                  ref={searchRelatedContributionRef}
-                  autoComplete='off'
-                  onChange={(event) => {
-                    const newContributionData = {
-                      ...contribution,
-                      relatedContribution: event.target.value,
-                    };
-                    setContribution(newContributionData);
-                  }}
-                  onFocus={() => setIsFocused(true)}
-                  onBlur={() => setIsFocused(false)}
-                />
-                {isFocused && searchResult?.length > 0 && (
-                  <RelatedContributionSearchResultContainer className='open'>
-                    {searchResult.map((result, index) => (
-                      <RelatedContributionSearchResult
-                        key={index}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          const newContributionData = {
-                            ...contribution,
-                            relatedContribution: result.title,
-                          };
-                          setContribution(newContributionData);
-                          searchRelatedContributionRef.current.blur();
-                        }}>
-                        {result.title}
-                      </RelatedContributionSearchResult>
-                    ))}
-                  </RelatedContributionSearchResultContainer>
-                )}
-              </RelatedContributionSearchContainer>
+              <Selector
+                list={auth.contributions}
+                id='relatedContributions'
+                name='relatedContributions'
+                selected={contribution?.relatedContributions}
+                onChange={(list) => {
+                  setContribution((prev) => ({
+                    ...prev,
+                    relatedContributions: list.map((c) => ({ _id: c._idn, title: c.title })),
+                  }));
+                }}
+              />
               <Heading3>Abstract</Heading3>
               <FileInput
                 name='abstract'
-                file={contribution.abstract}
+                file={contribution?.abstract}
                 endpoint='files/contribution/abstract'
                 onChange={(file) => setFile(file?.name)}
               />

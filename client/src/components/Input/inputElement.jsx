@@ -2,22 +2,13 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  row-gap: 5px;
-`;
-
-export const InputContainer = styled.div`
-  width: 100%;
   position: relative;
 `;
 
 export const InputField = styled.input`
   width: 100%;
   padding: ${(props) => (props.small ? '1.25rem' : '1.6rem')};
+  padding-left: 1.6rem;
   padding-right: ${(props) => props.defaultType === 'password' && '48px'};
   border-radius: 0.2rem;
 

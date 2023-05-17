@@ -27,7 +27,7 @@ const NewContributionForm = () => {
     title: '',
     startDate: '',
     teamRole: '',
-    relatedContribution: '',
+    relatedContributions: [],
     filename: '',
   });
 

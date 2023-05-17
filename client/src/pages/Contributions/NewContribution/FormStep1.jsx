@@ -1,33 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Input from '../../../components/Input';
 import RadioGroup from '../../../components/RadioGroup';
-import {
-  LinearContainer,
-  RelatedContributionSearchContainer,
-  RelatedContributionSearchResult,
-  RelatedContributionSearchResultContainer,
-} from '../contributionsElements';
+import { LinearContainer } from '../contributionsElements';
 import Chips from '../../../components/Chips';
 import { Button } from '../../../theme/appElements';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../../../hooks/useAuth';
-import useSearch from '../../../hooks/useSearch';
 import { useNavigate } from 'react-router-dom';
+import Selector from '../../../components/Selector';
 
 const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMsg, next }) => {
   const { t } = useTranslation();
-  const { auth } = useAuth();
   const navigate = useNavigate();
-  const search = useSearch();
-
-  const searchRelatedContributionRef = useRef(null);
-
-  const [isFocused, setIsFocused] = useState(false);
-  const [searchResult, setSearchResult] = useState();
-
-  useEffect(() => {
-    setSearchResult(search(contributionData.relatedContribution, auth.contributions, 'title'));
-  }, [contributionData.relatedContribution]);
+  const { auth } = useAuth();
 
   return (
     <>
@@ -81,44 +66,17 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
           ],
         }}
       />
-      <RelatedContributionSearchContainer>
-        <Input
-          small
-          id='related'
-          value={contributionData?.relatedContribution}
-          label={`${t('contribution.related')}*`}
-          ref={searchRelatedContributionRef}
-          autoComplete='off'
-          onChange={(event) => {
-            const newContributionData = {
-              ...contributionData,
-              relatedContribution: event.target.value,
-            };
-            setContributionData(newContributionData);
-          }}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-        />
-        {isFocused && searchResult?.length > 0 && (
-          <RelatedContributionSearchResultContainer className='open'>
-            {searchResult.map((result, index) => (
-              <RelatedContributionSearchResult
-                key={index}
-                onMouseDown={(e) => {
-                  e.preventDefault();
-                  const newContributionData = {
-                    ...contributionData,
-                    relatedContribution: result.title,
-                  };
-                  setContributionData(newContributionData);
-                  searchRelatedContributionRef.current.blur();
-                }}>
-                {result.title}
-              </RelatedContributionSearchResult>
-            ))}
-          </RelatedContributionSearchResultContainer>
-        )}
-      </RelatedContributionSearchContainer>
+      <Selector
+        list={auth.contributions}
+        id='relatedContributions'
+        name='relatedContributions'
+        onChange={(list) => {
+          setContributionData((prev) => ({
+            ...prev,
+            relatedContributions: list.map((c) => ({_id: c._id, title: c.title })),
+          }));
+        }}
+      />
       {errorMsg && <Chips type='negative'>{errorMsg}</Chips>}
       <LinearContainer>
         <Button style={{ width: '160px' }} type='neutral' onClick={() => navigate(-1)}>

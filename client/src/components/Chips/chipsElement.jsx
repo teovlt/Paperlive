@@ -19,7 +19,7 @@ export const Container = styled.div`
     color: ${(props) => `var(--${props.type})`};
   }
 
-  outline-offset: -2px;
-  outline: 2px solid ${(props) => `var(--${props.type}-vibrant)`};
+  outline-offset: -1px;
+  outline: 1px solid ${(props) => `var(--${props.type}-vibrant)`};
   background: ${(props) => `var(--${props.type}-vibrant)`};
 `;

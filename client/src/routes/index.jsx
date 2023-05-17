@@ -29,7 +29,7 @@ const Routes = () => {
           {/* profile layout */}
           <Route path='/' element={<Layout />}>
             <Route path='' element={<Home />} />
-            <Route path='/contributions' element={<Contributions />} />
+            <Route path='/contributions/' element={<Contributions />} />
             <Route path='/statistics' element={<Statistics />} />
           </Route>
 

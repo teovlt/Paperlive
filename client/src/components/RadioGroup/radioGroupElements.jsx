@@ -33,7 +33,7 @@ export const RadioButton = styled.label`
 
   flex: 1;
   text-align: center;
-  padding: 1.6rem;
+  padding: 1.55rem;
 
   font-size: 1.5rem;
   line-height: 100%;

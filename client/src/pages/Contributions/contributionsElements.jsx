@@ -158,9 +158,9 @@ export const RelatedContributionSearchContainer = styled.div`
 export const RelatedContributionSearchResultContainer = styled.div`
   position: absolute;
   width: 100%;
-  padding-block: 4px;
-  top: 50%;
-  z-index: 5;
+  padding-block: 0.4rem;
+  top: calc(100% + 0.8rem);
+  z-index: 100;
 
   display: flex;
   flex-direction: column;
@@ -169,12 +169,6 @@ export const RelatedContributionSearchResultContainer = styled.div`
   border: 1px solid var(--black-quaternary);
   border-radius: 0.2rem;
   box-shadow: 0 0 10px var(--black-quaternary);
-
-  transition: all 0.2s ease-in-out;
-
-  &.open {
-    top: calc(100% + 8px);
-  }
 `;
 
 export const RelatedContributionSearchResult = styled.div`
