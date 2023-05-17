@@ -341,9 +341,11 @@ export const ContributionInfo = styled.div`
 export const Label = styled.span`
   user-select: none;
   color: var(--black-tertiary);
+  margin-right: 3.2rem;
 `;
 
 export const Value = styled.span`
+  text-align: right;
   color: var(--black);
 `;
 

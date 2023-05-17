@@ -203,30 +203,24 @@ const Contribution = () => {
               <Heading2>{t('global.submission')}s</Heading2>
 
               <Table>
-                <thead>
-                  <TableHead>
-                    <TableCell>Title</TableCell>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Type</TableCell>
-                    <TableCell>Venue</TableCell>
-                  </TableHead>
-                </thead>
-                <tbody>
-                  {false ? (
-                    <h1>hého</h1>
-                  ) : (
-                    <TableRow onClick={() => navigate('/contributions/new')}>
-                      <TableCellButton>+ {t('submission.newSubmission')}</TableCellButton>
-                    </TableRow>
-                  )}
-                </tbody>
-                <tfoot>
-                  <TableFoot>
-                    <TableCell>
-                      Count: <span>0</span>
-                    </TableCell>
-                  </TableFoot>
-                </tfoot>
+                <TableHead>
+                  <TableCell>Title</TableCell>
+                  <TableCell>Date</TableCell>
+                  <TableCell>Type</TableCell>
+                  <TableCell>Venue</TableCell>
+                </TableHead>
+                {false ? (
+                  <h1>hého</h1>
+                ) : (
+                  <TableRow onClick={() => navigate('/contributions/new')}>
+                    <TableCellButton>+ {t('submission.newSubmission')}</TableCellButton>
+                  </TableRow>
+                )}
+                <TableFoot>
+                  <TableCell>
+                    Count: <span>0</span>
+                  </TableCell>
+                </TableFoot>
               </Table>
             </>
           ) : (
