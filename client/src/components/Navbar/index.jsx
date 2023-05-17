@@ -13,13 +13,8 @@ const NavBar = () => {
   const lngs = {
     en: { nativeName: t('language.english'), flag: '🇬🇧' },
     fr: { nativeName: t('language.french'), flag: '🇫🇷' },
+    es: { nativeName: `${t('language.spanish')} (${t('global.beta')})`, flag: '🇪🇸' },
   };
-  // const themes = {
-  //   dark: { name: 'dark', icon: '🌑' },
-  //   light: { name: 'light', icon: '☀️' },
-  // };
-
-  // const [theme, setTheme] = useState('light');
 
   const { auth } = useAuth();
   const logout = useLogout();
@@ -60,7 +55,7 @@ const NavBar = () => {
             onClick: () => navigate('/'),
           },
           {
-            label: t('dropDown.contributions'),
+            label: t('global.contributions'),
             onClick: () => navigate('/contributions'),
           },
           {
