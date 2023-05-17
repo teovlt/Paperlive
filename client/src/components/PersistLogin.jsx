@@ -36,7 +36,7 @@ const PersistLogin = () => {
     fetchData();
 
     return () => (isMounted = false);
-  }, [auth.accessToken, refresh, fetchUserData]);
+  }, [auth.accessToken]);
 
   return <>{isLoading ? <Loading /> : <Outlet />}</>;
 };
