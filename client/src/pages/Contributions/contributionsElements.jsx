@@ -6,6 +6,9 @@ export const Container = styled(AppContainer)`
   grid-template-columns: 296px 1fr;
   grid-template-rows: 56px 1fr;
 
+  height: calc(100vh - 40px);
+  overflow-y: hidden;
+
   &::after {
     content: '';
     position: absolute;
@@ -29,13 +32,29 @@ export const SideHeader = styled.div`
 `;
 
 export const MainHeader = styled.div`
+  margin-left: 72px;
   grid-area: 1 / 2 / 2 / 2;
-  height: 100%;
 
-  margin-left: 32px;
+  height: 100%;
 
   display: flex;
   align-items: center;
+`;
+
+export const Main = styled.div`
+  margin-left: 72px;
+  grid-area: 2 / 2 / 3 / 3;
+
+  max-width: calc(100% - 72px);
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-block: 32px;
+  gap: 24px;
+
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 export const Sidebar = styled.div`
@@ -44,16 +63,6 @@ export const Sidebar = styled.div`
   flex-direction: column;
   padding-block: 32px;
   gap: 24px;
-`;
-
-export const Main = styled.div`
-  grid-area: 2 / 2 / 3 / 3;
-  display: flex;
-  flex-direction: column;
-  padding-block: 32px;
-  gap: 24px;
-
-  margin-left: 32px;
 `;
 
 export const FormNavigation = styled.nav`

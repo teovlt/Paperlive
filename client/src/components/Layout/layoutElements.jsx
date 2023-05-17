@@ -7,7 +7,7 @@ export const Container = styled(AppContainer)`
   grid-template-columns: 296px 1fr;
   grid-template-rows: 56px 1fr;
 
-  max-height: calc(100vh - 40px);
+  height: calc(100vh - 40px);
   overflow-y: hidden;
 
   &::after {
@@ -35,7 +35,7 @@ export const MainSection = styled.div`
   padding-block: 32px;
   row-gap: 24px;
 
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
   overflow-y: auto;
 `;
 

@@ -279,7 +279,7 @@ const Contribution = () => {
                 }}
               />
               <Selector
-                list={auth.contributions}
+                list={auth.contributions.filter((c) => c._id !== contributionId)}
                 id='relatedContributions'
                 name='relatedContributions'
                 selected={contribution?.relatedContributions}

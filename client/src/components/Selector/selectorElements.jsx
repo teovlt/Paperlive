@@ -6,8 +6,10 @@ export const Container = styled.div`
 
   display: flex;
   flex-flow: row wrap;
-  column-gap: 0.8rem;
   align-items: center;
+
+  padding: 0.8rem 1.6rem;
+  gap: 0.8rem;
 
   outline: 1px solid var(--black-quaternary);
   outline-offset: -1px;
@@ -19,7 +21,9 @@ export const Container = styled.div`
 
 export const Input = styled.input`
   flex: 1;
+  flex-basis: 50%;
   padding: 1.25rem 1.6rem;
+  margin: -0.8rem -1.6rem;
   border-radius: 0.2rem;
 
   font-size: ${(props) => (props.small ? '1.5rem' : '1.6rem')};
@@ -51,26 +55,31 @@ export const Label = styled.label`
 `;
 
 export const ChipsContainer = styled.span`
+  flex-basis: 0;
   font-size: 1.5rem;
 
   display: flex;
   column-gap: 0.8rem;
-  justify-content: center;
   align-items: center;
+
+  max-width: calc(25% - 0.8rem);
 
   padding: 0.4rem 0.5rem 0.4rem 1.6rem;
   border-radius: 1.6rem;
 
-  /* background: var(--black-quaternary); */
   outline: 1px solid var(--black-quaternary);
   outline-offset: -1px;
+`;
 
-  &:first-child {
-    margin-left: 1rem;
-  }
+export const ChipsValue = styled.span`
+  /* flex: 1; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const ChipsButton = styled.button`
+  flex-shrink: 0;
   cursor: pointer;
 
   width: 2.4rem;

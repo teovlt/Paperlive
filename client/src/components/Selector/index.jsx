@@ -3,6 +3,7 @@ import useSearch from '../../hooks/useSearch';
 import {
   ChipsButton,
   ChipsContainer,
+  ChipsValue,
   Container,
   Input,
   Label,
@@ -11,7 +12,6 @@ import {
   SearchResultContainer,
 } from './selectorElements';
 import { HiXMark } from 'react-icons/hi2';
-import { Caption } from '../Popup/popupElements';
 
 const Selector = ({ list, id, name, onChange, selected = [] }) => {
   const search = useSearch();
@@ -37,7 +37,7 @@ const Selector = ({ list, id, name, onChange, selected = [] }) => {
       {selectedList.length > 0 &&
         selectedList.map((item, index) => (
           <ChipsContainer key={index}>
-            {item.title}
+            <ChipsValue>{item.title}</ChipsValue>
             <ChipsButton
               onMouseDown={(e) => {
                 e.preventDefault();
