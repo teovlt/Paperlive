@@ -5,6 +5,7 @@ const authenticationController = require('../src/controllers/authenticationContr
 
 const app = require('../src/app');
 const Team = require('../src/models/teamModel');
+const { refreshToken } = require('../src/controllers/authenticationController');
 
 beforeAll(async () => {
   await mongoose.connect('mongodb://db:27017/paperlive_test', {
@@ -142,14 +143,29 @@ describe('GET /api/auth/logout', () => {
   });
 });
 
-// describe('GET /api/auth/refresh-token', () => {
-//   it('should return a 200 OK response with an accessToken', async () => {
-//     const refreshToken = authenticationController.generateRefreshToken('123');
-//     const res = await request(app)
-//       .get('/api/auth/refresh-token')
-//       .set('Cookie', [`__refresh__token=${refreshToken}`]);
+describe('GET /api/auth/refresh-token', () => {
+  jest.setTimeout(10000); // Augmenter le délai d'expiration du test à 10 secondes
 
-//     expect(res.status).toBe(200);
-//     expect(res.body.accessToken).toBeDefined();
-//   });
-// });
+  it('should refresh the access token and set the new refresh token cookie', async () => {
+    const mockReq = {
+      teamId: 'teamId',
+      refreshToken: 'mockRefreshToken',
+    };
+
+    const mockRes = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+      cookie: jest.fn(),
+    };
+
+    await refreshToken(mockReq, mockRes);
+
+    expect(mockRes.status).toHaveBeenCalledWith(200);
+    expect(mockRes.json).toHaveBeenCalledWith({ accessToken: expect.any(String) });
+    expect(mockRes.cookie).toHaveBeenCalledWith('__refresh__token', 'mockRefreshToken', {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+    });
+  });
+  
+});
