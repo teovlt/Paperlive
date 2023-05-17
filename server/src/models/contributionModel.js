@@ -12,7 +12,14 @@ const contributionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  relatedContribution: String,
+  relatedContributions: {
+    type: [
+      {
+        _id: mongoose.Schema.Types.ObjectId,
+        title: String,
+      },
+    ],
+  },
   abstract: {
     type: String,
     required: true,
