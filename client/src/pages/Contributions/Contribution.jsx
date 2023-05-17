@@ -288,6 +288,7 @@ const Contribution = () => {
                 list={auth.contributions}
                 id='relatedContributions'
                 name='relatedContributions'
+                label={t('contribution.related2')}
                 selected={contribution?.relatedContributions}
                 onChange={(list) => {
                   setContribution((prev) => ({

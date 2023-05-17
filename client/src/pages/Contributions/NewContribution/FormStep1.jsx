@@ -70,10 +70,11 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
         list={auth.contributions}
         id='relatedContributions'
         name='relatedContributions'
+        label={t('contribution.related2')}
         onChange={(list) => {
           setContributionData((prev) => ({
             ...prev,
-            relatedContributions: list.map((c) => ({_id: c._id, title: c.title })),
+            relatedContributions: list.map((c) => ({ _id: c._id, title: c.title })),
           }));
         }}
       />
