@@ -27,3 +27,7 @@ dropDatabase:
 	rm -rf server/data
 	find server/uploads -type f ! -name 'team-picture-default.png' -exec rm {} +
 	make restart
+insertAdmin:
+	curl -s --location 'http://localhost:3000/api/auth/register' \
+		--header 'Content-Type: application/json' \
+		--data '{"name": "admin", "password": "admin"}'
