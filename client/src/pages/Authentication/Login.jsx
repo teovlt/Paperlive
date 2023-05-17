@@ -30,6 +30,7 @@ const Login = () => {
   const lngs = {
     en: { nativeName: t('language.english'), flag: '🇬🇧' },
     fr: { nativeName: t('language.french'), flag: '🇫🇷' },
+    es: { nativeName: `${t('language.spanish')} (${t('global.beta')})`, flag: '🇪🇸' },
   };
 
   useEffect(() => {
