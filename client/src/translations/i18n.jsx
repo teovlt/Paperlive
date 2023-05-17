@@ -131,6 +131,7 @@ i18n
             suppTitle: 'Delete Contribution',
             suppCaption:
               'Once deleted, there will be no way to undo this action and retrieve any information related to this contribution. Are you sure you want to delete this contribution from PaperLive?',
+            noResults: 'Sorry, no results found.',
           },
           submission: {
             newSubmission: 'New submission',
@@ -256,6 +257,7 @@ i18n
             suppTitle: 'Supprimer la contribution',
             suppCaption:
               "Une fois supprimée, il n'y aura aucun moyen de revenir en arrière et de retrouver une quelconque informations sur cette contribution. Souhaitez vous vraiment supprimer cette contribution de PaperLive ?",
+            noResults: 'Désolé, aucun résultat trouvé.',
           },
           submission: {
             newSubmission: 'Nouvelle soumission',
@@ -383,6 +385,7 @@ i18n
             suppTitle: 'Eliminar contribución',
             suppCaption:
               'Una vez eliminada, no habrá forma de deshacer esta acción y recuperar cualquier información relacionada con esta contribución. ¿Estás seguro de que quieres eliminar esta contribución de PaperLive?',
+            noResults: 'Lo sentimos, no se encontraron resultados.',
           },
           submission: {
             newSubmission: 'Nuevo envío',
