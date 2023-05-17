@@ -155,7 +155,6 @@ function Contributions() {
             }`}
             onClick={() =>
               setSort((prev) => {
-                console.log(prev);
                 if (prev.attr === 'state' && prev.direction === 'asc')
                   return { ...prev, direction: 'desc' };
                 else if (prev.attr === 'state' && prev.direction === 'desc')
