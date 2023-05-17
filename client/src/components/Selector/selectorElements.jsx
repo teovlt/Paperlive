@@ -95,6 +95,9 @@ export const SearchResultContainer = styled.div`
   display: flex;
   flex-direction: column;
 
+  max-height: 220px;
+  overflow-y: scroll;
+
   background: var(--white);
   border: 1px solid var(--black-quaternary);
   border-radius: 0.2rem;
@@ -103,7 +106,7 @@ export const SearchResultContainer = styled.div`
 
 export const SearchResult = styled.div`
   width: 100%;
-  padding: 4px 12px;
+  padding: 8px 12px;
 
   font-size: 1.5rem;
   cursor: pointer;
@@ -112,4 +115,16 @@ export const SearchResult = styled.div`
     background: var(--accent);
     color: var(--white);
   }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--black-quaternary);
+  }
+`;
+
+export const SearchResultCaption = styled.div`
+  width: 100%;
+  padding: 4px 12px;
+
+  color: var(--black-tertiary);
+  font-size: 1.5rem;
 `;

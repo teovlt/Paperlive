@@ -7,9 +7,11 @@ import {
   Input,
   Label,
   SearchResult,
+  SearchResultCaption,
   SearchResultContainer,
 } from './selectorElements';
 import { HiXMark } from 'react-icons/hi2';
+import { Caption } from '../Popup/popupElements';
 
 const Selector = ({ list, id, name, onChange, selected = [], label }) => {
   const search = useSearch();
@@ -59,23 +61,27 @@ const Selector = ({ list, id, name, onChange, selected = [], label }) => {
       <Label small htmlFor={id} className={`${list.length > 0 && 'filled'}`}>
       {label}
       </Label>
-      {isFocused && searchResults.length > 0 && (
+      {isFocused && (
         <SearchResultContainer className='open'>
-          {searchResults.map((result, index) => (
-            <SearchResult
-              key={index}
-              onMouseDown={(e) => {
-                e.preventDefault();
-                setSearchTerms('');
-                setSelectedList((prev) => {
-                  const newList = [...prev];
-                  newList.push(result);
-                  return newList;
-                });
-              }}>
-              {result.title}
-            </SearchResult>
-          ))}
+          {searchResults.length > 0 ? (
+            searchResults.map((result, index) => (
+              <SearchResult
+                key={index}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  setSearchTerms('');
+                  setSelectedList((prev) => {
+                    const newList = [...prev];
+                    newList.push(result);
+                    return newList;
+                  });
+                }}>
+                {result.title}
+              </SearchResult>
+            ))
+          ) : (
+            <SearchResultCaption>No result</SearchResultCaption>
+          )}
         </SearchResultContainer>
       )}
     </Container>
