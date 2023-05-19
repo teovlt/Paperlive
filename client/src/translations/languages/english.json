@@ -1,0 +1,121 @@
+{
+  "global": {
+    "back": "Back",
+    "cancel": "Cancel",
+    "next": "Next",
+    "previous": "Previous",
+    "save": "Save",
+    "download": "Download",
+    "contribution": "Contribution",
+    "contributions": "Contributions",
+    "submission": "Submission",
+    "search": "Search",
+    "confirm": "Confirm",
+    "beta": "Beta"
+  },
+  "layout": {
+    "overview": "Overview",
+    "statistics": "Statistics"
+  },
+  "sideBar": {
+    "edit": "Edit Profile",
+    "visibility": "Visibility",
+    "description": "Description",
+    "location": "Location",
+    "webSite": "Website",
+    "public": "Public",
+    "private": "Private"
+  },
+  "avatar": {
+    "hover": "Change your profile picture"
+  },
+  "login": {
+    "welcome": "Welcome",
+    "textSignUp": "New to PaperLive?",
+    "loginError": "Login Failed",
+    "invalidLogin": "Invalid Credentials",
+    "bottom": "The login is required to access PaperLive's services and to securely manage your account."
+  },
+  "register": {
+    "welcome": "Create your profile",
+    "password2": "Confirm your password",
+    "textSignIn": "Already have an account? ",
+    "errorPasswordFormat": "The password must have at least 8 characters, one lowercase letter, one uppercase letter, one digit, and one special character. Please try again.",
+    "errorPasswordConf": "The passwords do not match. Please try again.",
+    "registerError": "Register Failed",
+    "bottom": "By creating an account, you agree to the terms of service. For more information about PaperLive's privacy practices, see the privacy statement."
+  },
+  "authentication": {
+    "servorError": "No Server Response",
+    "teamName": "Team name",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
+  "language": {
+    "current": "Current language",
+    "english": "English",
+    "french": "French",
+    "spanish": "Spanish",
+    "german": "German"
+  },
+  "dropDown": {
+    "signedAs": "Signed in as",
+    "profile": "Profile",
+    "statistics": "Statistics",
+    "logout": "Logout",
+    "settings": "Settings",
+    "newContribution": "New contribution",
+    "newSubmission": "New submission"
+  },
+  "home": {
+    "desc": "About us",
+    "activity": "Recent activity",
+    "noDesc": "You don't have a description yet, edit your profile to add one. This will allow other teams to better know what you do and what field you are in.",
+    "noActivity": "Nothing here for the moment"
+  },
+  "contribution": {
+    "title": "Title",
+    "date": "Date",
+    "role": "Role",
+    "state": "State",
+    "count": "Count:",
+    "searchBar": "Search contributions by title",
+    "stats": "Show the statistics",
+    "editContribution": "Edit the contribution",
+    "delete": "Delete the contribution",
+    "inProgress": "In progress",
+    "approved": "Approved",
+    "dropped": "Dropped",
+    "leader": "Leader",
+    "coLeader": "Co-leader",
+    "guest": "Guest",
+    "startDate": "Start date",
+    "related": "Related contribution",
+    "related2": "Related contributions",
+    "noRelated": "No contributions are linked to this contribution",
+    "previous": "Previous",
+    "teamRole": "Team role",
+    "step": "Step",
+    "informations": "Information",
+    "files": "Files",
+    "recap": "Summary",
+    "errorMsg": "Please fill in the following field(s): ",
+    "errorMsgAbstract": "Please fill in the following field: Abstract",
+    "editForm": "Edit this section",
+    "newContribution": "New contribution",
+    "fileSupported": "Supported files",
+    "suppTitle": "Delete Contribution",
+    "suppCaption": "Once deleted, there will be no way to undo this action and retrieve any information related to this contribution. Are you sure you want to delete this contribution from PaperLive?",
+    "noResults": "Sorry, no results found."
+  },
+  "submission": {
+    "newSubmission": "New submission"
+  },
+  "fileInput": {
+    "success": "Successfully uploaded",
+    "drag": "Drag and drop your file here",
+    "or": "or",
+    "browse": "Browse files"
+  }
+}
