@@ -36,7 +36,7 @@ const Avatar = () => {
   };
 
   useEffect(() => {
-    const fetchImage = async (url = picture.url) => {
+    const fetchImage = async () => {
       try {
         const res = await axiosPrivate.get(picture.url, { responseType: 'blob' });
         const url = URL.createObjectURL(res.data);
