@@ -1,0 +1,120 @@
+{
+  "global": {
+    "back": "Retour",
+    "cancel": "Annuler",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "save": "Sauvegarder",
+    "download": "Télécharger",
+    "contribution": "Contribution",
+    "contributions": "Contribution(s)",
+    "submission": "Soumission",
+    "search": "Rechercher",
+    "confirm": "Confirmer",
+    "beta": "Bêta"
+  },
+  "layout": {
+    "overview": "Vue d'ensemble",
+    "statistics": "Statistiques"
+  },
+  "sideBar": {
+    "edit": "Modifier votre profil",
+    "visibility": "Visibilité",
+    "description": "Description",
+    "location": "Localisation",
+    "webSite": "Site internet",
+    "public": "Public",
+    "private": "Privé"
+  },
+  "avatar": {
+    "hover": "Changer votre photo de profil"
+  },
+  "login": {
+    "welcome": "Bienvenue",
+    "textSignUp": "Nouveau sur PaperLive ?",
+    "loginError": "Erreur lors de la connexion",
+    "invalidLogin": "Identifiants invalides",
+    "bottom": "La connexion est nécessaire pour accéder aux services de PaperLive et pour gérer votre compte en toute sécurité."
+  },
+  "register": {
+    "welcome": "Créer votre compte",
+    "password2": "Confirmer votre mot de passe",
+    "textSignIn": "Vous possédez déjà un compte ? ",
+    "errorPasswordFormat": "Le mot de passe doit contenir au moins 8 caractères, une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial.",
+    "errorPasswordConf": "Les mots de passe ne correspondent pas. Veuillez réessayer.",
+    "registerError": "Erreur lors de l'enregistrement",
+    "bottom": "En créant un compte, vous acceptez les conditions d'utilisation. Pour plus d'informations sur les pratiques de confidentialité de PaperLive, consultez la déclaration de confidentialité."
+  },
+  "authentication": {
+    "servorError": "Le serveur ne répond pas",
+    "teamName": "Nom de l'équipe",
+    "password": "Mot de passe",
+    "signIn": "Se connecter",
+    "signUp": "S'enregistrer"
+  },
+  "language": {
+    "current": "Langue actuelle",
+    "english": "Anglais",
+    "french": "Français",
+    "spanish": "Espagnol",
+    "german": "Allemand"
+  },
+  "dropDown": {
+    "signedAs": "Connecté en tant que",
+    "profile": "Profil",
+    "statistics": "Statistiques",
+    "logout": "Déconnexion",
+    "settings": "Paramètres",
+    "newContribution": "Nouvelle contribution",
+    "newSubmission": "Nouvelle soumission"
+  },
+  "home": {
+    "desc": "À propos de nous",
+    "activity": "Activité récente",
+    "noDesc": "Vous ne possédez pas encore de description, modifiez votre profil pour en rajouter une. Cela permettra aux autres équipes de mieux savoir ce que vous faites et dans quel domaine vous êtes.",
+    "noActivity": "Rien ici pour l'instant"
+  },
+  "contribution": {
+    "title": "Titre",
+    "date": "Date",
+    "role": "Rôle",
+    "state": "État",
+    "count": "Décompte :",
+    "searchBar": "Rechercher des contributions par titre",
+    "stats": "Voir les statistiques",
+    "edit": "Modifier la contribution",
+    "delete": "Supprimer la contribution",
+    "inProgress": "En cours",
+    "approved": "Approuvée",
+    "dropped": "Abandonnée",
+    "leader": "Meneur",
+    "coLeader": "Co-meneur",
+    "guest": "Invité",
+    "startDate": "Date de départ",
+    "related": "Contribution en lien",
+    "related2": "Contributions en lien",
+    "noRelated": "Aucune contribution n'est liée à cette contribution",
+    "teamRole": "Rôle de l'équipe",
+    "step": "Étape",
+    "informations": "Informations",
+    "files": "Documents",
+    "recap": "Récapitulatif",
+    "errorMsg": "Merci de remplir le(s) champ(s) suivant(s) :",
+    "errorMsgAbstract": "Merci de remplir le champ suivant : Abstract",
+    "editForm": "Modifier cette section",
+    "newContribution": "Nouvelle contribution",
+    "fileSupported": "Fichiers supportés",
+    "suppTitle": "Supprimer la contribution",
+    "suppCaption": "Une fois supprimée, il n'y aura aucun moyen de revenir en arrière et de récupérer des informations liées à cette contribution. Souhaitez-vous vraiment supprimer cette contribution de PaperLive ?",
+    "noResults": "Désolé, aucun résultat trouvé."
+  },
+  "submission": {
+    "newSubmission": "Nouvelle soumission"
+  },
+  "fileInput": {
+    "success": "Importé avec succès",
+    "drag": "Faites glisser votre fichier ici",
+    "or": "ou",
+    "browse": "Parcourir les fichiers"
+  }
+}
