@@ -30,5 +30,11 @@ data
 server/coverage
 
 # uploads
-/server/uploads/*
-!/server/uploads/profile/default.gif
+/server/uploads/team/picture/*
+!/server/uploads/team/picture/team-picture-default.png
+
+/server/uploads/contribution/abstract/*
+
+/server/uploads/submission/zipfolder/*
+/server/uploads/submission/compiledpdf/*
+/server/uploads/submission/diffpdf/*
