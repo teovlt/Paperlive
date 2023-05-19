@@ -80,6 +80,7 @@ i18n
             english: 'English',
             french: 'French',
             spanish: 'Spanish',
+            german: 'German',
           },
           dropDown: {
             signedAs: 'Signed in as',
@@ -131,6 +132,7 @@ i18n
             suppTitle: 'Delete Contribution',
             suppCaption:
               'Once deleted, there will be no way to undo this action and retrieve any information related to this contribution. Are you sure you want to delete this contribution from PaperLive?',
+            noResults: 'Sorry, no results found.',
           },
           submission: {
             newSubmission: 'New submission',
@@ -206,6 +208,7 @@ i18n
             english: 'Anglais',
             french: 'Français',
             spanish: 'Espagnol',
+            german: 'Allemand',
           },
           dropDown: {
             signedAs: 'Connecté en tant que',
@@ -256,6 +259,7 @@ i18n
             suppTitle: 'Supprimer la contribution',
             suppCaption:
               "Une fois supprimée, il n'y aura aucun moyen de revenir en arrière et de retrouver une quelconque informations sur cette contribution. Souhaitez vous vraiment supprimer cette contribution de PaperLive ?",
+            noResults: 'Désolé, aucun résultat trouvé.',
           },
           submission: {
             newSubmission: 'Nouvelle soumission',
@@ -332,6 +336,7 @@ i18n
             english: 'Inglés',
             french: 'Francés',
             spanish: 'Español',
+            german: 'alemán',
           },
           dropDown: {
             signedAs: 'Firmado como',
@@ -383,6 +388,7 @@ i18n
             suppTitle: 'Eliminar contribución',
             suppCaption:
               'Una vez eliminada, no habrá forma de deshacer esta acción y recuperar cualquier información relacionada con esta contribución. ¿Estás seguro de que quieres eliminar esta contribución de PaperLive?',
+            noResults: 'Lo sentimos, no se encontraron resultados.',
           },
           submission: {
             newSubmission: 'Nuevo envío',
@@ -392,6 +398,136 @@ i18n
             drag: 'Arrastre y suelte su archivo aquí',
             or: 'o',
             browse: 'Examinar archivos',
+          },
+        },
+      },
+      de: {
+        translation: {
+          global: {
+            back: 'Rücken',
+            cancel: 'Abbrechen',
+            next: 'Nächste',
+            previous: 'Vorherige',
+            save: 'Speichern',
+            download: 'Herunterladen',
+            contribution: 'Beitrag',
+            contributions: 'Beitrag(e)',
+            submission: 'Einreichung',
+            search: 'Suche',
+            confirm: 'Bestätigen Sie',
+            beta: 'Beta',
+          },
+          layout: {
+            overview: 'Übersicht',
+            statistics: 'Statistik',
+          },
+          sideBar: {
+            edit: 'Profil bearbeiten',
+            visibility: 'Sichtbarkeit',
+            description: 'Beschreibung',
+            location: 'Standort',
+            webSite: 'Internetauftritt',
+            public: 'Offentlich',
+            private: 'Privat',
+          },
+          avatar: {
+            hover: 'Ändern Sie Ihr Profilbild',
+          },
+          login: {
+            welcome: 'Willkommen',
+
+            textSignUp: 'Neu auf PaperLive',
+            loginError: 'Anmeldung fehlgeschlagen',
+            invalidLogin: 'Ungültige Berechtigungsnachweise',
+            bottom:
+              'Die Anmeldung ist erforderlich, um auf die Dienste von PaperLive zuzugreifen und Ihr Konto sicher zu verwalten.',
+          },
+          register: {
+            welcome: 'Erstellen Sie Ihr Profil',
+            password2: 'Bestätigen Sie Ihr Passwort',
+            textSignIn: 'Sie haben bereits ein Konto? ',
+            errorPasswordFormat:
+              'Das Passwort muss mindestens 8 Zeichen lang sein, einen Kleinbuchstaben, einen Großbuchstaben, eine Ziffer und ein Sonderzeichen enthalten. Bitte versuchen Sie es erneut.',
+            errorPasswordConf:
+              'Die Passwörter stimmen nicht überein. Bitte versuchen Sie es erneut.',
+            registerError: 'Registrierung fehlgeschlagen',
+            bottom:
+              'Mit der Erstellung eines Kontos erklären Sie sich mit den Nutzungsbedingungen einverstanden. Weitere Informationen über die Datenschutzpraktiken von PaperLive finden Sie in den Datenschutzbestimmungen.',
+          },
+          authentication: {
+            servorError: 'Keine Server-Antwort',
+            teamName: 'Name der Mannschaft',
+            password: 'Passwort',
+            signIn: 'Eintragen',
+            signUp: 'Anmeldung',
+          },
+          language: {
+            current: 'Aktuelle Sprache',
+            english: 'Englisch',
+            french: 'Französisch',
+            spanish: 'Spanisch',
+            german: 'Deutsch',
+          },
+          dropDown: {
+            signedAs: 'Eingetragen als',
+            profile: 'Profil',
+            statistics: 'Statistik',
+            logout: 'Abmeldung',
+            settings: 'Einstellungen',
+            newContribution: 'Neuer Beitrag',
+            newSubmission: 'Neue Vorlage',
+          },
+          home: {
+            desc: 'Über uns',
+            activity: 'Jüngste Aktivität',
+            noDesc:
+              'Wenn Sie noch keine Beschreibung haben, bearbeiten Sie Ihr Profil, um eine hinzuzufügen. So können andere Teams besser erkennen, was Sie tun und in welchem Bereich Sie tätig sind.',
+            noActivity: 'Im Moment gibt es hier nichts',
+          },
+          contribution: {
+            title: 'Titel',
+            date: 'Datum',
+            role: 'Rolle',
+            state: 'Staat',
+            count: 'Zählen Sie:',
+            searchBar: 'Beiträge nach Titel suchen',
+            stats: 'Zeigen Sie die Statistiken',
+            editContribution: 'Bearbeiten Sie den Beitrag',
+            delete: 'Löschen Sie den Beitrag',
+            inProgress: 'In Arbeit',
+            approved: 'Genehmigt',
+            dropped: 'Fallengelassen',
+            leader: 'Anführer',
+            coLeader: 'Co-Leiter',
+            guest: 'Gast',
+            startDate: 'Datum des Beginns',
+            related: 'Verwandter Beitrag',
+            related2: 'Zugehörige(r) Beitrag(e)',
+            noRelated: 'Keine Beiträge sind mit diesem Beitrag verknüpft',
+            previous: 'Vorherige',
+            teamRole: 'Rolle des Teams',
+            step: 'Schritt',
+            informations: 'Informationen',
+            files: 'Dateien',
+            recap: 'Zusammenfassung',
+            errorMsg: 'ZusammenfassungBitte füllen Sie das/die folgende(n) Feld(er) aus: ',
+            errorMsgAbstract: 'Bitte füllen Sie das folgende Feld aus: Zusammenfassung',
+            editForm: 'Diesen Abschnitt bearbeiten',
+            newContribution: 'Neuer Beitrag',
+            fileSupported: 'Unterstützte Dateien',
+            suppTitle: 'Beitrag löschen',
+            suppCaption:
+              'Nach der Löschung gibt es keine Möglichkeit mehr, diesen Vorgang rückgängig zu machen und alle Informationen zu diesem Beitrag wiederherzustellen. Sind Sie sicher, dass Sie diesen Beitrag aus PaperLive löschen möchten?',
+            noResults: 'Leider keine Ergebnisse gefunden.',
+          },
+          submission: {
+            newSubmission: 'Neue Vorlage',
+          },
+          fileInput: {
+            success: 'Erfolgreich hochgeladen',
+            drag: 'Ziehen Sie Ihre Datei hierher und legen Sie sie ab',
+            or: 'oder',
+            browse: 'Dateien durchsuchen',
           },
         },
       },

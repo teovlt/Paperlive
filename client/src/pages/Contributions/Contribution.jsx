@@ -282,6 +282,7 @@ const Contribution = () => {
                 list={auth.contributions.filter((c) => c._id !== contributionId)}
                 id='relatedContributions'
                 name='relatedContributions'
+                label={t('contribution.related2')}
                 selected={contribution?.relatedContributions}
                 onChange={(list) => {
                   setContribution((prev) => ({

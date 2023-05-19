@@ -12,8 +12,9 @@ import {
   SearchResultContainer,
 } from './selectorElements';
 import { HiXMark } from 'react-icons/hi2';
+import { useTranslation } from 'react-i18next';
 
-const Selector = ({ list, id, name, onChange, selected = [] }) => {
+const Selector = ({ list, id, name, onChange, selected = [], label }) => {
   const search = useSearch();
 
   const inputRef = useRef(null);
@@ -22,6 +23,8 @@ const Selector = ({ list, id, name, onChange, selected = [] }) => {
   const [searchTerms, setSearchTerms] = useState('');
   const [selectedList, setSelectedList] = useState(selected);
   const [searchResults, setSearchResults] = useState([]);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const listWithoutSelected = list.filter((item) => !selectedList.includes(item));
@@ -52,14 +55,14 @@ const Selector = ({ list, id, name, onChange, selected = [] }) => {
         small
         id={id}
         name={name}
-        placeholder='Related contributions*'
+        placeholder={label}
         value={searchTerms}
         onChange={(e) => setSearchTerms(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
       <Label small htmlFor={id} className={`${list.length > 0 && 'filled'}`}>
-        Related contributions*
+        {label}
       </Label>
       {isFocused && (
         <SearchResultContainer className='open'>
@@ -80,7 +83,7 @@ const Selector = ({ list, id, name, onChange, selected = [] }) => {
               </SearchResult>
             ))
           ) : (
-            <SearchResultCaption>No result</SearchResultCaption>
+            <SearchResultCaption>{t('contribution.noResults')}</SearchResultCaption>
           )}
         </SearchResultContainer>
       )}

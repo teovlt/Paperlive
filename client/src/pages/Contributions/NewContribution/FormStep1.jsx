@@ -71,6 +71,7 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
         id='relatedContributions'
         name='relatedContributions'
         selected={contributionData.relatedContributions}
+        label={t('contribution.related2')}
         onChange={(list) => {
           setContributionData((prev) => ({
             ...prev,
