@@ -37,6 +37,12 @@ export const MainSection = styled.div`
 
   overflow-x: hidden;
   overflow-y: auto;
+
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, IE and Edge */
+  }
 `;
 
 export const Navigation = styled.nav`

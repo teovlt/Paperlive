@@ -55,6 +55,12 @@ export const Main = styled.div`
 
   overflow-x: hidden;
   overflow-y: auto;
+
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, IE and Edge */
+  }
 `;
 
 export const Sidebar = styled.div`
@@ -329,6 +335,12 @@ export const ContributionInfosContainer = styled.div`
   row-gap: 24px;
 
   overflow-y: auto;
+
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, IE and Edge */
+  }
 `;
 
 export const ContributionInfosLineWrapper = styled.div`

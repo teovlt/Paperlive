@@ -99,6 +99,7 @@ export const SearchResultContainer = styled.div`
   width: 100%;
   padding-block: 0.4rem;
   top: calc(100% + 0.8rem);
+  left: 0;
   z-index: 100;
 
   display: flex;
@@ -111,6 +112,12 @@ export const SearchResultContainer = styled.div`
   border: 1px solid var(--black-quaternary);
   border-radius: 0.2rem;
   box-shadow: 0 0 10px var(--black-quaternary);
+
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, IE and Edge */
+  }
 `;
 
 export const SearchResult = styled.div`
@@ -132,7 +139,9 @@ export const SearchResult = styled.div`
 
 export const SearchResultCaption = styled.div`
   width: 100%;
-  padding: 4px 12px;
+  padding: 8px 12px;
+
+  font-size: 1.5rem;
 
   color: var(--black-tertiary);
   font-size: 1.5rem;
