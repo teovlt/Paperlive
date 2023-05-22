@@ -16,6 +16,12 @@ export const DivLeftInfos = styled.div`
 
 export const DivTheme = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 100px;
+  justify-content: space-around;
 `;
+
+
+export const DivThemeDispo = styled.div`
+  display: flex;
+  flex-direction: row;
+
+`
