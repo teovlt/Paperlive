@@ -69,7 +69,7 @@ const NavBar = () => {
         actions: [
           {
             label: t('dropDown.settings'),
-            onClick: () => navigate('/settings'),
+            onClick: () => navigate('/settings/profile'),
           },
           {
             label: t('dropDown.logout'),
