@@ -23,6 +23,7 @@ import {
   TableRow,
   TableCellButton,
   Group,
+  RelatedContributionLink,
 } from './contributionsElements';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -127,7 +128,7 @@ const Contribution = () => {
           </NavLink>
         </Navigation>
         <Sidebar>
-          <Heading2>Actions</Heading2>
+          <Heading2>{t('contribution.actions')}</Heading2>
 
           <Button secondary onClick={() => console.log('stats')}>
             {t('contribution.stats')}
@@ -152,7 +153,7 @@ const Contribution = () => {
           </Button>
         </Sidebar>
         <ContributionInfosContainer>
-          <Heading2>Informations</Heading2>
+          <Heading2>{t('contribution.informations')}</Heading2>
           {!isEditing ? (
             <>
               <ContributionInfo>
@@ -161,18 +162,15 @@ const Contribution = () => {
               </ContributionInfo>
               <ContributionInfo>
                 <Label> {t('contribution.related2')}</Label>
-                {contribution?.relatedContributions.length > 0 ? (
-                  <Value>
-                    {contribution.relatedContributions.map((c, index) => (
-                      <React.Fragment key={index}>
-                        <Link to={`/contributions/${c._id}`}>{c.title}</Link>
-                        {index != contribution.relatedContributions.length - 1 && ', '}
-                      </React.Fragment>
-                    ))}
-                  </Value>
-                ) : (
-                  '-'
-                )}
+                <Value>
+                  {contribution?.relatedContributions.length > 0
+                    ? contribution?.relatedContributions.map((c, index) => (
+                        <RelatedContributionLink key={index} to={`/contributions/${c._id}`}>
+                          <abbr title={c.title}>{c.title}</abbr>
+                        </RelatedContributionLink>
+                      ))
+                    : '-'}
+                </Value>
               </ContributionInfo>
               <ContributionInfosLineWrapper>
                 <ContributionInfo>
@@ -181,7 +179,7 @@ const Contribution = () => {
                     {new Intl.DateTimeFormat(i18n.language, {
                       day: '2-digit',
                       month: '2-digit',
-                      year: '2-digit',
+                      year: 'numeric',
                     }).format(new Date(contribution?.startDate ?? 0))}
                   </Value>
                 </ContributionInfo>
@@ -287,7 +285,7 @@ const Contribution = () => {
                 onChange={(list) => {
                   setContribution((prev) => ({
                     ...prev,
-                    relatedContributions: list.map((c) => ({ _id: c._idn, title: c.title })),
+                    relatedContributions: list.map((c) => ({ _id: c._id, title: c.title })),
                   }));
                 }}
               />
