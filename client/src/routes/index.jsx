@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes as Switch } from 'react-router-dom';
+import { Route, Routes as Switch, Navigate } from 'react-router-dom';
 
 // Import components
 import PersistLogin from '../components/PersistLogin';
@@ -15,7 +15,10 @@ import NewContribution from '../pages/Contributions/NewContribution';
 import Statistics from '../pages/Statistics';
 import NotFound from '../pages/NotFound';
 import Contribution from '../pages/Contributions/Contribution';
-import Settings from '../pages/Settings';
+import SettingsLayout from '../components/SettingsLayout';
+import ProfilSettings from '../pages/Settings/profile';
+import ThemeSettings from '../pages/Settings/theme';
+import SecuritySettings from '../pages/Settings/security';
 
 const Routes = () => {
   return (
@@ -35,9 +38,13 @@ const Routes = () => {
           </Route>
 
           <Route path='/contributions/new' element={<NewContribution />} />
-          <Route path='/contributions/:contributionId' element={<Contribution />} />            
-          <Route path='/settings' element={<Settings />} />
+          <Route path='/contributions/:contributionId' element={<Contribution />} />
 
+          <Route path='/settings' element={<SettingsLayout />}>
+            <Route path='/settings/profile' element={<ProfilSettings />} />
+            <Route path='/settings/security' element={<SecuritySettings />} />
+            <Route path='/settings/theme' element={<ThemeSettings />} />
+          </Route>
         </Route>
       </Route>
 
