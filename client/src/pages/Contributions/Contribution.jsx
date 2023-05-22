@@ -164,11 +164,14 @@ const Contribution = () => {
                 <Label> {t('contribution.related2')}</Label>
                 <Value>
                   {contribution?.relatedContributions.length > 0
-                    ? contribution?.relatedContributions.map((c, index) => (
-                        <RelatedContributionLink key={index} to={`/contributions/${c._id}`}>
-                          <abbr title={c.title}>{c.title}</abbr>
-                        </RelatedContributionLink>
-                      ))
+                    ? contribution?.relatedContributions.map((c, index) => {
+                        console.log(c);
+                        return (
+                          <RelatedContributionLink key={index} to={`/contributions/${c._id}`}>
+                            <abbr title={c.title}>{c.title}</abbr>
+                          </RelatedContributionLink>
+                        );
+                      })
                     : '-'}
                 </Value>
               </ContributionInfo>
@@ -285,7 +288,7 @@ const Contribution = () => {
                 onChange={(list) => {
                   setContribution((prev) => ({
                     ...prev,
-                    relatedContributions: list.map((c) => ({ _id: c._idn, title: c.title })),
+                    relatedContributions: list.map((c) => ({ _id: c._id, title: c.title })),
                   }));
                 }}
               />
