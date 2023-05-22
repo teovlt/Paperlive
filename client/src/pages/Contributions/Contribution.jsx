@@ -128,7 +128,7 @@ const Contribution = () => {
           </NavLink>
         </Navigation>
         <Sidebar>
-          <Heading2>Actions</Heading2>
+          <Heading2>{t('contribution.actions')}</Heading2>
 
           <Button secondary onClick={() => console.log('stats')}>
             {t('contribution.stats')}
@@ -153,7 +153,7 @@ const Contribution = () => {
           </Button>
         </Sidebar>
         <ContributionInfosContainer>
-          <Heading2>Informations</Heading2>
+          <Heading2>{t('contribution.informations')}</Heading2>
           {!isEditing ? (
             <>
               <ContributionInfo>
