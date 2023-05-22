@@ -177,7 +177,7 @@ const Contribution = () => {
                   <Label> {t('contribution.startDate')}</Label>
                   <Value>
                     {new Intl.DateTimeFormat(i18n.language, {
-                      da: '2-digit',
+                      day: '2-digit',
                       month: '2-digit',
                       year: 'numeric',
                     }).format(new Date(contribution?.startDate ?? 0))}
