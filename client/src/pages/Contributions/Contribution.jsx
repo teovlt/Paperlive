@@ -23,6 +23,7 @@ import {
   TableRow,
   TableCellButton,
   Group,
+  RelatedContributionLink,
 } from './contributionsElements';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -161,18 +162,15 @@ const Contribution = () => {
               </ContributionInfo>
               <ContributionInfo>
                 <Label> {t('contribution.related2')}</Label>
-                {contribution?.relatedContributions.length > 0 ? (
-                  <Value>
-                    {contribution.relatedContributions.map((c, index) => (
-                      <React.Fragment key={index}>
-                        <Link to={`/contributions/${c._id}`}>{c.title}</Link>
-                        {index != contribution.relatedContributions.length - 1 && ', '}
-                      </React.Fragment>
-                    ))}
-                  </Value>
-                ) : (
-                  '-'
-                )}
+                <Value>
+                  {contribution?.relatedContributions.length > 0
+                    ? contribution?.relatedContributions.map((c, index) => (
+                        <RelatedContributionLink key={index} to={`/contributions/${c._id}`}>
+                          <abbr title={c.title}>{c.title}</abbr>
+                        </RelatedContributionLink>
+                      ))
+                    : '-'}
+                </Value>
               </ContributionInfo>
               <ContributionInfosLineWrapper>
                 <ContributionInfo>

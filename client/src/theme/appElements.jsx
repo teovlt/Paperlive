@@ -104,6 +104,8 @@ export const Caption = styled.p`
 export const Label = styled.p`
   font-size: 1.5rem;
 
+  white-space: nowrap;
+
   display: flex;
   align-items: center;
   gap: 8px;

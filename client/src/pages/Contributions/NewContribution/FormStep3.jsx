@@ -1,5 +1,10 @@
 import React from 'react';
-import { LinearContainer, Link, MainWrapper } from '../contributionsElements';
+import {
+  LinearContainer,
+  Link,
+  MainWrapper,
+  RelatedContributionLink,
+} from '../contributionsElements';
 import Chips from '../../../components/Chips';
 import { Button, Heading3, Label } from '../../../theme/appElements';
 import { useTranslation } from 'react-i18next';
@@ -52,7 +57,11 @@ const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
         </Label>
         <Label>
           {t('contribution.related')}:
-          <span>{contributionData.relatedContributions.map((c) => c.title).join(', ')}</span>
+          {contributionData.relatedContributions.map((c, index) => (
+            <RelatedContributionLink key={index} to={`/contributions/${c._id}`}>
+              <abbr title={c.title}>{c.title}</abbr>
+            </RelatedContributionLink>
+          ))}
         </Label>
         <Link onClick={() => goTo(0)}> {t('contribution.editForm')}</Link>
       </MainWrapper>

@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { Container as AppContainer, Caption, Button as AppButton } from '../../theme/appElements';
+import {
+  Container as AppContainer,
+  Caption,
+  Button as AppButton,
+  Link as AppLink,
+} from '../../theme/appElements';
 
 export const Container = styled(AppContainer)`
   display: grid;
@@ -142,6 +147,12 @@ export const Link = styled.p`
   color: var(--accent);
   text-decoration: underline;
   cursor: pointer;
+`;
+
+export const RelatedContributionLink = styled(AppLink)`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 export const SectionMain = styled.div`
@@ -363,11 +374,20 @@ export const Label = styled.span`
   user-select: none;
   color: var(--black-tertiary);
   margin-right: 3.2rem;
+
+  white-space: nowrap;
 `;
 
 export const Value = styled.span`
   text-align: right;
   color: var(--black);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;
 
 export const Group = styled.div`
