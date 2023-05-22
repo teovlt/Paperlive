@@ -13,3 +13,9 @@ export const DivLeftInfos = styled.div`
   width: 100%;
   row-gap: 32px;
 `;
+
+export const DivTheme = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+`;
