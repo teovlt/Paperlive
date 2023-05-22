@@ -48,7 +48,7 @@ const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
             {new Intl.DateTimeFormat(i18n.language, {
               day: '2-digit',
               month: '2-digit',
-              year: '2-digit',
+              year: 'numeric',
             }).format(new Date(contributionData.startDate))}
           </span>
         </Label>
