@@ -15,6 +15,7 @@ import NewContribution from '../pages/Contributions/NewContribution';
 import Statistics from '../pages/Statistics';
 import NotFound from '../pages/NotFound';
 import Contribution from '../pages/Contributions/Contribution';
+import Settings from '../pages/Settings';
 
 const Routes = () => {
   return (
@@ -34,7 +35,9 @@ const Routes = () => {
           </Route>
 
           <Route path='/contributions/new' element={<NewContribution />} />
-          <Route path='/contributions/:contributionId' element={<Contribution />} />
+          <Route path='/contributions/:contributionId' element={<Contribution />} />            
+          <Route path='/settings' element={<Settings />} />
+
         </Route>
       </Route>
 
