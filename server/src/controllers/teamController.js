@@ -107,6 +107,30 @@ module.exports.updateTeam = async (req, res) => {
 };
 
 /**
+ * Change a team password
+ * @route PUT /api/teams/change-password
+ * @group Teams
+ * @access Private
+ */
+module.exports.changePassword = async (req, res) => {
+  try {
+    // extract the request body fields
+    const { oldPassword, newPassword } = req.body;
+
+    // Find the team with the given ID
+    const team = await Team.findOne({ _id: req.teamId });
+
+    // If team not found, return a 404 Not Found response with an error message
+    if (!team) return res.status(404).json({ error: 'Team not found' });
+
+    await team.changePassword(oldPassword, newPassword);
+    return res.status(200).json({ message: 'Successfully updated' });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+/**
  * Delete a team by ID
  * @route DELETE /api/teams/delete
  * @group Teams
