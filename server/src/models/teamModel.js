@@ -32,7 +32,7 @@ const teamSchema = new mongoose.Schema({
   },
   contributions: [
     {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Contribution',
     },
   ],
@@ -88,6 +88,26 @@ teamSchema.pre('save', async function (next) {
     return next(new Error(`Error during saving: ${error.message}`));
   }
 });
+
+teamSchema.methods.changePassword = async function (oldPassword, newPassword) {
+  try {
+    // Compare the provided old password with the stored password
+    const isPasswordCorrect = await bcrypt.compare(oldPassword, this.password);
+
+    if (!isPasswordCorrect) {
+      throw new Error('Invalid password');
+    }
+
+    // Update the password in the team instance
+    this.password = newPassword;
+
+    // Save the team instance with the updated password
+    await this.save();
+  } catch (error) {
+    // Error handling
+    throw new Error(`Error changing password: ${error.message}`);
+  }
+};
 
 const team = new mongoose.model('team', teamSchema);
 module.exports = team;
