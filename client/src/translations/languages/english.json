@@ -127,7 +127,7 @@
     },
     "pages": {
       "myAccount": "My Account",
-      "passwordAndAuthentication": "Password and Authentication",
+      "password": "Password",
       "appearance": "Appearance"
     },
     "profile": {
