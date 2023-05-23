@@ -95,7 +95,7 @@ export const Caption = styled.p`
   font-weight: 400;
   font-size: 1.5rem;
   line-height: 1.8rem;
-  
+
   //white-space: nowrap;
 
   color: var(--black);

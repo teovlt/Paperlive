@@ -48,7 +48,7 @@ const SecuritySettings = () => {
   };
 
   const handleSubmit = async () => {
-    if (!errMsg) {
+    if (!errMsg && oldPassword && newPassword && newPassword === newPasswordConf) {
       const confirmed = await confirm({
         title: t('settings.security.changePasswordConfirmationTitle'),
         caption: t('settings.security.changePasswordConfirmationCaption'),
@@ -58,7 +58,7 @@ const SecuritySettings = () => {
 
       if (confirmed) {
         try {
-          const response = await axiosPrivate.put('/teams/change-password', {
+          await axiosPrivate.put('/teams/change-password', {
             newPassword: newPassword,
             oldPassword: oldPassword,
           });

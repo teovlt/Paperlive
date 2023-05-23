@@ -138,7 +138,7 @@ module.exports.changePassword = async (req, res) => {
 
 /**
  * Delete a team by ID
- * @route DELETE /api/teams/delete
+ * @route POST /api/teams/delete
  * @group Teams
  * @access Private
  */

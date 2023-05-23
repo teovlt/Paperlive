@@ -7,6 +7,7 @@ import TextArea from '../../components/TextArea';
 import { useTranslation } from 'react-i18next';
 import RadioGroup from '../../components/RadioGroup';
 import Avatar from '../../components/Avatar';
+import Chips from '../../components/Chips';
 import {
   DivConnected,
   DivLeftInfos,
@@ -15,20 +16,28 @@ import {
 } from './settingsElements';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { HiOutlineExclamationCircle } from 'react-icons/hi2';
+import { useNavigate } from 'react-router-dom';
 
-const ProfilSettings = () => {
+const AccountSettings = () => {
   const { auth, setAuth } = useAuth();
   const { t } = useTranslation();
-  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
-
   const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
 
   const [profilData, setProfilData] = useState(auth);
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmation, setConfirmation] = useState('');
+  const [errMsg, setErrMsg] = useState('');
 
   useEffect(() => {
     setProfilData(auth);
   }, [auth]);
+
+  useEffect(() => {
+    setErrMsg('');
+  }, [name, password, confirmation]);
 
   const notify = () => {
     toast.success(t('toast.profileUpdatedSuccess'), {
@@ -43,24 +52,45 @@ const ProfilSettings = () => {
     });
   };
 
-  const handleChanges = async () => {
-    // TODO: Vérifier changements
-    const updatedProfilData = { ...profilData };
-    updatedProfilData.website &&
-      (updatedProfilData.website = updatedProfilData.website.replace(/^https?:\/\//i, ''));
+  const handleSubmit = async () => {
+    if (profilData !== auth) {
+      try {
+        const updatedProfilData = { ...profilData };
+        updatedProfilData.website &&
+          (updatedProfilData.website = updatedProfilData.website.replace(/^https?:\/\//i, ''));
 
-    await axiosPrivate.put('/teams/update', { ...updatedProfilData });
-    setAuth((prev) => ({ ...prev, ...updatedProfilData }));
-    notify();
+        await axiosPrivate.put('/teams/update', { ...updatedProfilData });
+        setAuth((prev) => ({ ...prev, ...updatedProfilData }));
+        notify();
+      } catch (error) {}
+    }
   };
 
-  const handleConfirmDelete = () => {
-    setDeleteConfirmation(!deleteConfirmation);
+  const handleCancel = () => {
+    setDeleteConfirmation(false);
+    setName('');
+    setPassword('');
+    setConfirmation('');
   };
 
   const handleDeleteAccount = async () => {
-    //TODO
-    //Verifier les inputs avants, si pas bon => chips ou toast d'erreur, si bon => delete account
+    if (confirmation === t('settings.profile.accountDeletionText')) {
+      try {
+        await axiosPrivate.post('/teams/delete', {
+          name: name,
+          password: password,
+        });
+        navigate('/login');
+      } catch (error) {
+        if (!error?.response) {
+          setErrMsg(t('authentication.servorError'));
+        } else {
+          setErrMsg(t('settings.profile.credentialsError'));
+        }
+      }
+    } else {
+      setErrMsg(t('settings.profile.verificationError'));
+    }
   };
 
   return (
@@ -131,13 +161,13 @@ const ProfilSettings = () => {
           setProfilData(newProfilData);
         }}
       />
-      <Button type='neutral' onClick={handleChanges} style={{ width: '100%' }}>
+      <Button type='neutral' onClick={handleSubmit} style={{ width: '100%' }}>
         {t('settings.profile.updateProfile')}
       </Button>
       <Heading2
         style={{ borderBottom: '1px solid var(--black-quaternary)', color: 'var(--negative)' }}>
         {t('settings.profile.deleteAccount')}
-      </Heading2>{' '}
+      </Heading2>
       {!deleteConfirmation ? (
         <>
           <Caption>{t('settings.profile.deleteAccountWarning1')}</Caption>
@@ -145,44 +175,52 @@ const ProfilSettings = () => {
           <Button
             type='negative'
             style={{ width: '250px' }}
-            secondary
-            onClick={handleConfirmDelete}>
+            onClick={() => setDeleteConfirmation(true)}>
             {t('settings.profile.deleteAccount')}
           </Button>
         </>
       ) : (
         <>
-          <Caption
-            style={{
-              color: 'var(--negative)',
-              display: 'flex',
-              columnGap: '4px',
-              alignItems: 'center',
-            }}>
-            <HiOutlineExclamationCircle /> {t('settings.profile.deleteAccountWarning2')}
-          </Caption>
+          <Chips type='notice'>{t('settings.profile.deleteAccountWarning2')}</Chips>
           <Caption>{t('settings.profile.deleteAccountWarning3')}</Caption>
-          <Input id='name' label={t('settings.profile.teamName')} autoComplete='off' small />
-          <Input id='password' label={t('settings.profile.password')} autoComplete='off' small />
+
+          <Input
+            id='name'
+            label={t('settings.profile.teamName')}
+            autoComplete='off'
+            small
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <Input
+            id='password'
+            type='password'
+            label={t('settings.profile.password')}
+            autoComplete='off'
+            small
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
           <DivConfirmDelete>
-            <Caption>{t('settings.profile.captionConfirm')}</Caption>
+            <Caption>{t('settings.profile.verificationPrompt')}</Caption>
             <Input
               id='confirm'
               label={t('settings.profile.inputConfirm')}
               autoComplete='off'
               small
+              value={confirmation}
+              onChange={(e) => setConfirmation(e.target.value)}
             />
           </DivConfirmDelete>
 
+          {errMsg && <Chips type='negative'>{errMsg}</Chips>}
+
           <DivDeleteAccountBtns>
-            <Button style={{ width: '250px' }} secondary onClick={handleConfirmDelete}>
+            <Button style={{ width: '250px' }} type='neutral' onClick={handleCancel}>
               {t('global.cancel')}
             </Button>
-            <Button
-              type='negative'
-              style={{ width: '250px' }}
-              secondary
-              onClick={handleDeleteAccount}>
+            <Button type='negative' style={{ width: '250px' }} onClick={handleDeleteAccount}>
               {t('settings.profile.deleteAccount')}
             </Button>
           </DivDeleteAccountBtns>
@@ -193,4 +231,4 @@ const ProfilSettings = () => {
   );
 };
 
-export default ProfilSettings;
+export default AccountSettings;

@@ -26,9 +26,11 @@ const teamSchema = new mongoose.Schema({
   },
   location: {
     type: String,
+    default: '',
   },
   website: {
     type: String,
+    default: '',
   },
   contributions: [
     {

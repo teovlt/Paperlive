@@ -16,7 +16,7 @@ import Statistics from '../pages/Statistics';
 import NotFound from '../pages/NotFound';
 import Contribution from '../pages/Contributions/Contribution';
 import SettingsLayout from '../components/SettingsLayout';
-import ProfilSettings from '../pages/Settings/profile';
+import AccountSettings from '../pages/Settings/account';
 import AppearanceSettings from '../pages/Settings/appearance';
 import SecuritySettings from '../pages/Settings/security';
 
@@ -41,7 +41,7 @@ const Routes = () => {
           <Route path='/contributions/:contributionId' element={<Contribution />} />
 
           <Route path='/settings' element={<SettingsLayout />}>
-            <Route path='/settings/profile' element={<ProfilSettings />} />
+            <Route path='/settings/profile' element={<AccountSettings />} />
             <Route path='/settings/security' element={<SecuritySettings />} />
             <Route path='/settings/appearance' element={<AppearanceSettings />} />
           </Route>

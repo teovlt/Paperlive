@@ -24,6 +24,7 @@ const Popup = ({ template, open, onConfirm, onCancel }) => {
             onClick={() => {
               onCancel(); // Ajoutez les parenthèses ici
             }}
+            type='neutral'
             style={{ width: '150px' }}>
             {template?.cancelLabel}
           </Button>

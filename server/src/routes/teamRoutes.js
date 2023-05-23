@@ -7,6 +7,6 @@ Router.get('/me', authenticateAccessToken, teamController.me);
 Router.get('/:teamId', authenticateAccessToken, teamController.readTeam);
 Router.put('/update', authenticateAccessToken, teamController.updateTeam);
 Router.put('/change-password', authenticateAccessToken, teamController.changePassword);
-Router.delete('/delete', authenticateAccessToken, teamController.deleteTeam);
+Router.post('/delete', authenticateAccessToken, teamController.deleteTeam);
 
 module.exports = Router;
