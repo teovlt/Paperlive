@@ -9,6 +9,8 @@ import RadioGroup from '../../components/RadioGroup';
 import { Group } from '../../components/ProfileSidebar/sidebarElements';
 import Avatar from '../../components/Avatar';
 import { DivConnected, DivLeftInfos } from './settingsElements';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProfilSettings = () => {
   const { auth, setAuth } = useAuth();
@@ -22,93 +24,106 @@ const ProfilSettings = () => {
     setProfilData(auth);
   }, [auth]);
 
-  async function handleChanges() {
+  const notify = () => {
+    // TODO: traduction
+    toast.success('Profile updated', {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  };
+
+  const handleChanges = async () => {
+    // TODO: Vérifier changements
     const updatedProfilData = { ...profilData };
     updatedProfilData.website &&
       (updatedProfilData.website = updatedProfilData.website.replace(/^https?:\/\//i, ''));
 
     await axiosPrivate.put('/teams/update', { ...updatedProfilData });
     setAuth((prev) => ({ ...prev, ...updatedProfilData }));
-    console.log(profilData.visibility);
-  }
+    notify();
+  };
 
   return (
     <>
-      <IconLink to='/'>
-        Team <strong>{auth.name}</strong>
-      </IconLink>
-      <Heading2 style={{ borderBottom: '1px solid var(--black-quaternary)' }}>My account</Heading2>
-      <>
-        <DivConnected>
-          <DivLeftInfos>
-            <RadioGroup
-              name='visibility'
-              template={{
-                label: t('sideBar.visibility'),
-                radios: [
-                  {
-                    label: t('sideBar.private'),
-                    value: false,
-                    defaultChecked: profilData.visibility === false,
-                  },
-                  {
-                    label: t('sideBar.public'),
-                    value: true,
-                    defaultChecked: profilData.visibility === true,
-                  },
-                ],
-              }}
-              onChange={(event) => {
-                setProfilData((prev) => ({ ...prev, visibility: JSON.parse(event.target.value) }));
-              }}
-            />
-            <TextArea
-              id='description'
-              label={t('sideBar.description')}
-              maxLength='240'
-              autoComplete='off'
-              small
-              value={profilData.description}
-              onChange={(e) => {
-                const newProfilData = { ...profilData, description: e.target.value };
-                setProfilData(newProfilData);
-              }}
-            />
-          </DivLeftInfos>
+      <Heading2 style={{ borderBottom: '1px solid var(--black-quaternary)' }}>
+        {t('settings.pages.myAccount')}
+      </Heading2>
+      <DivConnected>
+        <DivLeftInfos>
+          <RadioGroup
+            name='visibility'
+            template={{
+              label: t('sideBar.visibility'),
+              radios: [
+                {
+                  label: t('sideBar.private'),
+                  value: false,
+                  defaultChecked: profilData.visibility === false,
+                },
+                {
+                  label: t('sideBar.public'),
+                  value: true,
+                  defaultChecked: profilData.visibility === true,
+                },
+              ],
+            }}
+            onChange={(event) => {
+              setProfilData((prev) => ({ ...prev, visibility: JSON.parse(event.target.value) }));
+            }}
+          />
+          <TextArea
+            id='description'
+            label={t('sideBar.description')}
+            maxLength='240'
+            autoComplete='off'
+            small
+            value={profilData.description}
+            onChange={(e) => {
+              const newProfilData = { ...profilData, description: e.target.value };
+              setProfilData(newProfilData);
+            }}
+          />
+        </DivLeftInfos>
 
-          <div style={{ width: '200px' }}>
-            <Avatar />
-          </div>
-        </DivConnected>
+        <div style={{ width: '200px' }}>
+          <Avatar />
+        </div>
+      </DivConnected>
 
-        <Input
-          id='location'
-          label={t('sideBar.location')}
-          autoComplete='off'
-          small
-          value={profilData.location}
-          onChange={(e) => {
-            const newProfilData = { ...profilData, location: e.target.value };
-            setProfilData(newProfilData);
-          }}
-        />
-        <Input
-          id='website'
-          label={t('sideBar.webSite')}
-          autoComplete='off'
-          small
-          value={profilData.website}
-          onChange={(e) => {
-            const newProfilData = { ...profilData, website: e.target.value };
-            setProfilData(newProfilData);
-          }}
-        />
-        <Group inline>
-          <Button secondary onClick={handleChanges} style={{ width: '100%' }}>
-            Update profile
-          </Button>
-        </Group>
-      </>
+      <Input
+        id='location'
+        label={t('sideBar.location')}
+        autoComplete='off'
+        small
+        value={profilData.location}
+        onChange={(e) => {
+          const newProfilData = { ...profilData, location: e.target.value };
+          setProfilData(newProfilData);
+        }}
+      />
+      <Input
+        id='website'
+        label={t('sideBar.webSite')}
+        autoComplete='off'
+        small
+        value={profilData.website}
+        onChange={(e) => {
+          const newProfilData = { ...profilData, website: e.target.value };
+          setProfilData(newProfilData);
+        }}
+      />
+      <Group inline>
+        <Button type='neutral' onClick={handleChanges} style={{ width: '100%' }}>
+          {t('settings.profile.updateProfile')}
+        </Button>
+      </Group>
+      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
     </>
   );
 };

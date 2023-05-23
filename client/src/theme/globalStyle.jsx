@@ -5,7 +5,8 @@ const GlobalStyle = createGlobalStyle`
     font-size: 62.5%;
 
     /* Variables */
-    --accent: ${(props) => props.theme.accentColor};    
+    --accent: ${(props) => `rgb(${props.theme.accentColor})`};
+    --accent-vibrant: ${(props) => `rgba(${props.theme.accentColor}, 0.15)`};
     --positive: #42b983;
     --positive-vibrant: #42b98333;
     --notice: #ff9800;

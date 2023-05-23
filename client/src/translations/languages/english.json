@@ -119,11 +119,32 @@
     "browse": "Browse files"
   },
   "settings": {
-    "changePasswordConfirmationTitle": "Change Password Confirmation",
-    "changePasswordConfirmationCaption": "Are you sure you want to change your password?",
-    "oldPassword": "Old Password",
-    "newPassword": "New Password",
-    "newPasswordConf": "Confirm New Password",
-    "passwordError": "Please provide the correct old password and try again."
+    "sections": {
+      "profile": "Profile",
+      "security": "Security",
+      "accessibility": "Accessibility"
+    },
+    "pages": {
+      "myAccount": "My Account",
+      "passwordAndAuthentication": "Password and Authentication",
+      "appearance": "Appearance"
+    },
+    "profile": {
+      "updateProfile": "Update Profile"
+    },
+    "accessibility": {
+      "munsellBlue": "Munsell Blue",
+      "persianRed": "Persian Red",
+      "periwinkle": "Periwinkle",
+      "keppel": "Keppel"
+    },
+    "security": {
+      "changePasswordConfirmationTitle": "Change Password Confirmation",
+      "changePasswordConfirmationCaption": "Are you sure you want to change your password?",
+      "oldPassword": "Old Password",
+      "newPassword": "New Password",
+      "newPasswordConf": "Confirm New Password",
+      "passwordError": "Please provide the correct old password and try again."
+    }
   }
 }

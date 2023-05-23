@@ -119,11 +119,32 @@
     "browse": "Parcourir les fichiers"
   },
   "settings": {
-    "changePasswordConfirmationTitle": "Confirmation du changement de mot de passe",
-    "changePasswordConfirmationCaption": "Êtes-vous sûr(e) de vouloir changer votre mot de passe ?",
-    "oldPassword": "Ancien mot de passe",
-    "newPassword": "Nouveau mot de passe",
-    "newPasswordConf": "Confirmer le nouveau mot de passe",
-    "passwordError": "Veuillez fournir le mot de passe actuel correct et réessayer."
+    "sections": {
+      "profile": "Profil",
+      "security": "Sécurité",
+      "accessibility": "Accessibilité"
+    },
+    "pages": {
+      "myAccount": "Mon compte",
+      "passwordAndAuthentication": "Mot de passe et authentification",
+      "appearance": "Apparence"
+    },
+    "profile": {
+      "updateProfile": "Mettre à jour le profil"
+    },
+    "accessibility": {
+      "munsellBlue": "Bleu Munsell",
+      "persianRed": "Rouge persan",
+      "periwinkle": "Bleu pervenche",
+      "keppel": "Vert keppel"
+    },
+    "security": {
+      "changePasswordConfirmationTitle": "Confirmation du changement de mot de passe",
+      "changePasswordConfirmationCaption": "Êtes-vous sûr(e) de vouloir changer votre mot de passe ?",
+      "oldPassword": "Ancien mot de passe",
+      "newPassword": "Nouveau mot de passe",
+      "newPasswordConf": "Confirmer le nouveau mot de passe",
+      "passwordError": "Veuillez fournir le mot de passe actuel correct et réessayer."
+    }
   }
 }

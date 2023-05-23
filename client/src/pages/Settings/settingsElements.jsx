@@ -4,7 +4,7 @@ export const DivConnected = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  column-gap: 48px;
+  column-gap: 24px;
 `;
 
 export const DivLeftInfos = styled.div`

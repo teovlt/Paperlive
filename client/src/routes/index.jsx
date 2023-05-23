@@ -17,7 +17,7 @@ import NotFound from '../pages/NotFound';
 import Contribution from '../pages/Contributions/Contribution';
 import SettingsLayout from '../components/SettingsLayout';
 import ProfilSettings from '../pages/Settings/profile';
-import ThemeSettings from '../pages/Settings/theme';
+import AppearanceSettings from '../pages/Settings/appearance';
 import SecuritySettings from '../pages/Settings/security';
 
 const Routes = () => {
@@ -43,7 +43,7 @@ const Routes = () => {
           <Route path='/settings' element={<SettingsLayout />}>
             <Route path='/settings/profile' element={<ProfilSettings />} />
             <Route path='/settings/security' element={<SecuritySettings />} />
-            <Route path='/settings/theme' element={<ThemeSettings />} />
+            <Route path='/settings/appearance' element={<AppearanceSettings />} />
           </Route>
         </Route>
       </Route>

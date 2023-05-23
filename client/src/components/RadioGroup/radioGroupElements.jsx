@@ -58,7 +58,7 @@ export const RadioInput = styled.input`
   display: none;
 
   &:checked + ${RadioButton} {
-    background: rgba(55, 136, 161, 0.15);
+    background: var(--accent-vibrant);
     outline: 1px solid var(--accent);
     outline-offset: -1px;
   }

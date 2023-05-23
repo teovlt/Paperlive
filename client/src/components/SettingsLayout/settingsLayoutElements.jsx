@@ -51,23 +51,39 @@ export const SectionParams = styled.div`
   }
 `;
 export const Link = styled(NavLink)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-left: 4px;
-  padding: 4px;
-  border-radius: 4px;
+  font-size: 1.5rem;
   color: var(--black);
+
+  display: flex;
+  align-items: center;
   column-gap: 8px;
+
+  padding: 4px 12px;
+  border-radius: 4px;
+
+  position: relative;
 
   &:hover {
     cursor: pointer;
     background: var(--black-quaternary);
   }
+
+  transition: margin 0.1s ease-in-out, background 0.1s ease-in-out;
+
   &.active {
-    border-left: 4px solid var(--accent);
-    background: var(--black-quaternary);
-    margin-left: 0px;
+    margin-left: 12px;
+    background: var(--accent-vibrant);
+
+    &::after {
+      content: '';
+      width: 4px;
+      height: 100%;
+      border-radius: 4px;
+
+      position: absolute;
+      left: -12px;
+
+      background: var(--accent);
+    }
   }
 `;
-

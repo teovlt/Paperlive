@@ -34,7 +34,6 @@ const SecuritySettings = () => {
     }
   }, [newPassword, newPasswordConf, i18n.resolvedLanguage]);
 
-
   const notify = () => {
     toast.success('Password updated', {
       position: 'bottom-right',
@@ -51,8 +50,8 @@ const SecuritySettings = () => {
   const handleSubmit = async () => {
     if (!errMsg) {
       const confirmed = await confirm({
-        title: t('settings.changePasswordConfirmationTitle'),
-        caption: t('settings.changePasswordConfirmationCaption'),
+        title: t('settings.security.changePasswordConfirmationTitle'),
+        caption: t('settings.security.changePasswordConfirmationCaption'),
         cancelLabel: t('global.cancel'),
         confirmLabel: t('global.confirm'),
       });
@@ -66,12 +65,12 @@ const SecuritySettings = () => {
           setOldPassword('');
           setNewPassword('');
           setNewPasswordConf('');
-          notify()
+          notify();
         } catch (error) {
           if (!error?.response) {
             setErrMsg(t('authentication.servorError'));
           } else {
-            setErrMsg(t('settings.passwordError'));
+            setErrMsg(t('settings.security.passwordError'));
           }
         }
       }
@@ -86,7 +85,7 @@ const SecuritySettings = () => {
       <Input
         id='oldPassword'
         type='password'
-        label={t('settings.oldPassword')}
+        label={t('settings.security.oldPassword')}
         autoComplete='off'
         small
         value={oldPassword}
@@ -95,7 +94,7 @@ const SecuritySettings = () => {
       <Input
         id='newPassword'
         type='password'
-        label={t('settings.newPassword')}
+        label={t('settings.security.newPassword')}
         autoComplete='off'
         small
         value={newPassword}
@@ -104,7 +103,7 @@ const SecuritySettings = () => {
       <Input
         id='newPasswordConf'
         type='password'
-        label={t('settings.newPasswordConf')}
+        label={t('settings.security.newPasswordConf')}
         autoComplete='off'
         small
         value={newPasswordConf}
@@ -114,9 +113,7 @@ const SecuritySettings = () => {
       <Button type='neutral' onClick={handleSubmit}>
         Change password
       </Button>
-      <ToastContainer
-       toastStyle={{ backgroundColor: 'var(--positive)' }}
-      />
+      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
     </>
   );
 };

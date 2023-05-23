@@ -9,9 +9,6 @@ import { useTranslation } from 'react-i18next';
 
 const Settings = () => {
   const { t } = useTranslation();
-  const [active, setActive] = useState(true);
-
-  const makeActive = () => {};
 
   return (
     <>
@@ -23,24 +20,24 @@ const Settings = () => {
             Accueil
           </IconLink>
           <SectionParams>
-            <Heading2>Profile </Heading2>
-            <Link to='/settings/profile' onClick={makeActive}>
-              <HiOutlineUserGroup />
-              My account
+            <Heading2>{t('settings.sections.profile')}</Heading2>
+            <Link to='/settings/profile'>
+              {/* <HiOutlineUserGroup /> */}
+              {t('settings.pages.myAccount')}
             </Link>
           </SectionParams>
           <SectionParams>
-            <Heading2>Security</Heading2>
+            <Heading2>{t('settings.sections.security')}</Heading2>
             <Link to='/settings/security'>
-              <HiOutlineKey />
-              Password and authentification
+              {/* <HiOutlineKey /> */}
+              {t('settings.pages.passwordAndAuthentication')}
             </Link>
           </SectionParams>
           <SectionParams>
-            <Heading2>Accessibility</Heading2>
-            <Link to='/settings/theme'>
-              <BsPalette />
-              Appearance
+            <Heading2>{t('settings.sections.accessibility')}</Heading2>
+            <Link to='/settings/appearance'>
+              {/* <BsPalette /> */}
+              {t('settings.pages.appearance')}
             </Link>
           </SectionParams>
         </SideBar>
