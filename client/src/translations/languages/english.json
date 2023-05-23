@@ -125,5 +125,8 @@
     "newPassword": "New Password",
     "newPasswordConf": "Confirm New Password",
     "passwordError": "Please provide the correct old password and try again."
+  },
+  "toast": {
+    "fileUploadSucess": "File uploaded successfuly"
   }
 }

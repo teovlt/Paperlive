@@ -29,7 +29,7 @@ const FileInput = ({ name, file, endpoint, onChange }) => {
   };
 
   const notify = () => {
-    toast.success('File uploaded sucessfuly ', {
+    toast.success(t('toast.fileUploadSucess'), {
       position: 'bottom-right',
       autoClose: 5000,
       hideProgressBar: false,

@@ -125,5 +125,9 @@
     "newPassword": "Nouveau mot de passe",
     "newPasswordConf": "Confirmer le nouveau mot de passe",
     "passwordError": "Veuillez fournir le mot de passe actuel correct et réessayer."
+  },
+  "toast" : {
+    "fileUploadSucess" : "Fichier importé avec succès"
   }
+  
 }
