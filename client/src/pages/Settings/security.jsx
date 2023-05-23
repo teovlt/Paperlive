@@ -95,7 +95,7 @@ const SecuritySettings = () => {
         onChange={(e) => setNewPasswordConf(e.target.value)}
       />
       {errMsg && <Chips type='negative'>{errMsg}</Chips>}
-      <Button secondary onClick={handleSubmit}>
+      <Button type='neutral' onClick={handleSubmit}>
         Change password
       </Button>
     </>
