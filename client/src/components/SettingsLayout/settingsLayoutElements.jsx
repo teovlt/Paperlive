@@ -68,6 +68,10 @@ export const Link = styled(NavLink)`
     background: var(--black-quaternary);
   }
 
+  svg {
+    width: 1.6rem;
+  }
+
   transition: margin 0.1s ease-in-out, background 0.1s ease-in-out;
 
   &.active {

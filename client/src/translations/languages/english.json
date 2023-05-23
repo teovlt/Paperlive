@@ -127,7 +127,7 @@
     },
     "pages": {
       "myAccount": "My Account",
-      "passwordAndAuthentication": "Password and Authentication",
+      "password": "Password",
       "appearance": "Appearance"
     },
     "profile": {
@@ -146,9 +146,9 @@
       "newPassword": "New Password",
       "newPasswordConf": "Confirm New Password",
       "passwordError": "Please provide the correct old password and try again."
-    },
-    "toast": {
-      "fileUploadSucess": "File uploaded successfuly"
     }
+  },
+  "toast": {
+    "fileUploadSucess": "File uploaded successfuly"
   }
 }
