@@ -1,10 +1,8 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import translationFR from './languages/french.json';
-import translationES from './languages/spanish.json';
-import translationGE from './languages/german.json';
 import translationEN from './languages/english.json';
+import translationFR from './languages/french.json';
 
 i18n
   // detect user language
@@ -25,12 +23,6 @@ i18n
       },
       fr: {
         translation: translationFR, // Utilisez le fichier de traduction en français
-      },
-      es: {
-        translation: translationES,
-      },
-      de: {
-        translation: translationGE,
       },
     },
   });

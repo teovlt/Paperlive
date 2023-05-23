@@ -117,5 +117,13 @@
     "drag": "Drag and drop your file here",
     "or": "or",
     "browse": "Browse files"
+  },
+  "settings": {
+    "changePasswordConfirmationTitle": "Change Password Confirmation",
+    "changePasswordConfirmationCaption": "Are you sure you want to change your password?",
+    "oldPassword": "Old Password",
+    "newPassword": "New Password",
+    "newPasswordConf": "Confirm New Password",
+    "passwordError": "Please provide the correct old password and try again."
   }
 }
