@@ -2,10 +2,25 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Button, Heading2 } from '../../theme/appElements';
 import { AccentContext } from '../../App';
 import { DivTheme, DivThemeDispo } from './settingsElements';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SecuritySettings = () => {
   const { accentColor, handleAccentColorChange } = useContext(AccentContext);
   const [actualColor, setActualColor] = useState();
+
+  const notify = (color) => {
+    toast.success(' Your new color is now : '+color, {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  };
 
   useEffect(() => {
     if (accentColor === '#e74c3c') {
@@ -24,6 +39,7 @@ const SecuritySettings = () => {
   const changeAccentColor = (color, nameColor) => {
     handleAccentColorChange(color);
     setActualColor(nameColor);
+    notify(nameColor);
   };
 
   return (
@@ -35,8 +51,7 @@ const SecuritySettings = () => {
         Theme actuel : <strong style={{ color: 'var(--accent)' }}>{actualColor}</strong>{' '}
       </span>
       <DivThemeDispo>
-        <span>
-        Themes disponibles :</span>
+        <span>Themes disponibles :</span>
         <DivTheme>
           {actualColor !== 'Blue' && (
             <Button secondary onClick={() => changeAccentColor('#3788a1', 'Blue')}>
@@ -64,9 +79,10 @@ const SecuritySettings = () => {
             </Button>
           )}
         </DivTheme>
-      
       </DivThemeDispo>
-      
+      <ToastContainer
+        toastStyle={{ backgroundColor: 'var(--accent)' }}
+      />
     </>
   );
 };
