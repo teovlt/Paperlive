@@ -34,6 +34,12 @@ const contributionSchema = new mongoose.Schema({
       message: (props) => `${props.value} is not a valid role!`,
     },
   },
+  submissions: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Submission',
+    },
+  ],
   state: {
     type: String,
     default: states[0],
