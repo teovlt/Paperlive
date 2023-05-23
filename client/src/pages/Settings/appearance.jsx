@@ -63,7 +63,7 @@ const AppearanceSettings = () => {
         }}
         onChange={changeAccentColor}
       />
-      <ToastContainer toastStyle={{ backgroundColor: 'var(--accent)' }} />
+      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
     </>
   );
 };

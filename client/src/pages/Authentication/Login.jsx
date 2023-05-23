@@ -11,6 +11,8 @@ import Chips from '../../components/Chips';
 import { HiGlobeAlt } from 'react-icons/hi2';
 import i18n from '../../translations/i18n';
 const LOGIN_URL = '/auth/login';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const { t, i18n } = useTranslation();
@@ -30,6 +32,19 @@ const Login = () => {
   const lngs = {
     en: { nativeName: t('language.english'), flag: '🇬🇧' },
     fr: { nativeName: t('language.french'), flag: '🇫🇷' },
+  };
+
+  const notify = () => {
+    toast.success(t('toast.languageChangementSucess'), {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
   };
 
   useEffect(() => {
@@ -88,7 +103,9 @@ const Login = () => {
       {
         actions: Object.keys(lngs).map((lng) => ({
           label: `${lngs[lng].flag} ${lngs[lng].nativeName}`,
-          onClick: () => i18n.changeLanguage(lng),
+          onClick: () => {
+            i18n.changeLanguage(lng), notify();
+          },
         })),
       },
     ],
@@ -130,6 +147,7 @@ const Login = () => {
         </Form>
         <Small style={{ textAlign: 'center' }}>{t('login.bottom')}</Small>
       </Container>
+      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
     </>
   );
 };
