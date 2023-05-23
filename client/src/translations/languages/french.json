@@ -113,7 +113,7 @@
     "newSubmission": "Nouvelle soumission"
   },
   "fileInput": {
-    "success": "Importé avec succès",
+    "success": "Fichier importé ",
     "drag": "Faites glisser votre fichier ici",
     "or": "ou",
     "browse": "Parcourir les fichiers"
@@ -145,6 +145,9 @@
       "newPassword": "Nouveau mot de passe",
       "newPasswordConf": "Confirmer le nouveau mot de passe",
       "passwordError": "Veuillez fournir le mot de passe actuel correct et réessayer."
+    },
+    "toast": {
+      "fileUploadSucess": "Fichier importé avec succès"
     }
   }
 }

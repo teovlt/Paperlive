@@ -12,6 +12,8 @@ import { IoMdCloudUpload } from 'react-icons/io';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useTranslation } from 'react-i18next';
 import Chips from '../Chips';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const FileInput = ({ name, file, endpoint, onChange }) => {
   const axiosPrivate = useAxiosPrivate();
@@ -24,6 +26,19 @@ const FileInput = ({ name, file, endpoint, onChange }) => {
 
   const handleDragOver = (e) => {
     e.preventDefault();
+  };
+
+  const notify = () => {
+    toast.success(t('toast.fileUploadSucess'), {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
   };
 
   const handleSubmit = (e) => {
@@ -47,6 +62,7 @@ const FileInput = ({ name, file, endpoint, onChange }) => {
             if (percentCompleted === 100) {
               setIsUploading(false);
               setProgress(0);
+              notify();
             } else setProgress(percentCompleted);
           },
         })
@@ -79,6 +95,7 @@ const FileInput = ({ name, file, endpoint, onChange }) => {
           {t('fileInput.success')}: {filename}
         </Chips>
       )}
+      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
     </Container>
   );
 };

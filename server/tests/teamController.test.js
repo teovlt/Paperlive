@@ -335,3 +335,51 @@ describe('DELETE /api/teams/delete', () => {
     expect(res.body).toEqual({ error: error.message });
   });
 });
+
+describe('PUT api/teams/change-password', () => {
+  let team;
+
+  beforeEach(async () => {
+    // Create a team for testing*
+
+    team = await Team.create({ name: 'Test Team', password: 'password' });
+  });
+
+  afterEach(async () => {
+    // Delete the test team from the database*
+
+    await Team.deleteOne({ _id: team._id });
+  });
+
+  it('should return 200 with a sucess message', async () => {
+    const res = await request(app)
+      .put(`/api/teams/change-password`)
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`)
+      .send({ oldPassword: 'password', newPassword: 'newPassword' });
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ message: 'Successfully updated' });
+  });
+
+  it('should return 404 error with an error message', async () => {
+    const unknownId = new mongoose.Types.ObjectId();
+
+    const res = await request(app)
+      .put(`/api/teams/change-password`)
+      .set('Authorization', `Bearer ${generateAccessToken(unknownId)}`)
+      .send({ oldPassword: 'password', newPassword: 'newPassword' });
+
+    expect(res.status).toBe(404);
+    expect(res.body).toEqual({ error: 'Team not found' });
+  });
+
+  it('should handle errors properly', async () => {
+    
+    const res = await request(app)
+      .put(`/api/teams/change-password`)
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`)
+      .send({ oldPassword: 'wrongPassword', newPassword: 'newPassword' });
+
+    expect(res.status).toBe(500);
+  });
+});

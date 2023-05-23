@@ -3,6 +3,8 @@ import { FileInput, Picture, UploadAvatarLabel, UploadForm } from './avatarEleme
 import useAuth from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Avatar = () => {
   const { auth } = useAuth();
@@ -14,6 +16,18 @@ const Avatar = () => {
     _v: 0,
   });
 
+  const notify = () => {
+    toast.success(t('toast.fileUploadSucess'), {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -30,6 +44,7 @@ const Avatar = () => {
         url: `${import.meta.env.VITE_API_URI}/api/files/${res.data.filename}`,
         _v: prev._v + 1,
       }));
+      notify();
     } catch (error) {
       return false;
     }
@@ -53,12 +68,16 @@ const Avatar = () => {
   }, [picture._v]);
 
   return (
-    <UploadForm onChange={handleSubmit}>
-      <UploadAvatarLabel label={t('avatar.hover')} onDrop={handleSubmit}>
-        <Picture src={picture.imgSrc} alt='avatar' />
-        <FileInput type='file' name='file' accept='.jpg,.jpeg,.png,.gif' />
-      </UploadAvatarLabel>
-    </UploadForm>
+    <>
+      {' '}
+      <UploadForm onChange={handleSubmit}>
+        <UploadAvatarLabel label={t('avatar.hover')} onDrop={handleSubmit}>
+          <Picture src={picture.imgSrc} alt='avatar' />
+          <FileInput type='file' name='file' accept='.jpg,.jpeg,.png,.gif' />
+        </UploadAvatarLabel>
+      </UploadForm>
+      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
+    </>
   );
 };
 
