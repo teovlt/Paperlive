@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { Heading2, Button, IconLink } from '../../theme/appElements';
+import { Heading2, Button, Caption, Small } from '../../theme/appElements';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Input from '../../components/Input';
 import TextArea from '../../components/TextArea';
 import { useTranslation } from 'react-i18next';
 import RadioGroup from '../../components/RadioGroup';
-import { Group } from '../../components/ProfileSidebar/sidebarElements';
 import Avatar from '../../components/Avatar';
-import { DivConnected, DivLeftInfos } from './settingsElements';
+import {
+  DivConnected,
+  DivLeftInfos,
+  DivDeleteAccountBtns,
+  DivConfirmDelete,
+} from './settingsElements';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { HiOutlineExclamationCircle } from 'react-icons/hi2';
 
 const ProfilSettings = () => {
   const { auth, setAuth } = useAuth();
   const { t } = useTranslation();
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
 
   const axiosPrivate = useAxiosPrivate();
 
@@ -46,6 +52,15 @@ const ProfilSettings = () => {
     await axiosPrivate.put('/teams/update', { ...updatedProfilData });
     setAuth((prev) => ({ ...prev, ...updatedProfilData }));
     notify();
+  };
+
+  const handleConfirmDelete = () => {
+    setDeleteConfirmation(!deleteConfirmation);
+  };
+
+  const handleDeleteAccount = async () => {
+    //TODO
+    //Verifier les inputs avants, si pas bon => chips ou toast d'erreur, si bon => delete account
   };
 
   return (
@@ -94,7 +109,6 @@ const ProfilSettings = () => {
           <Avatar />
         </div>
       </DivConnected>
-
       <Input
         id='location'
         label={t('sideBar.location')}
@@ -117,11 +131,63 @@ const ProfilSettings = () => {
           setProfilData(newProfilData);
         }}
       />
-      <Group inline>
-        <Button type='neutral' onClick={handleChanges} style={{ width: '100%' }}>
-          {t('settings.profile.updateProfile')}
-        </Button>
-      </Group>
+      <Button type='neutral' onClick={handleChanges} style={{ width: '100%' }}>
+        {t('settings.profile.updateProfile')}
+      </Button>
+      <Heading2
+        style={{ borderBottom: '1px solid var(--black-quaternary)', color: 'var(--negative)' }}>
+        {t('settings.profile.deleteAccount')}
+      </Heading2>{' '}
+      {!deleteConfirmation ? (
+        <>
+          <Caption>{t('settings.profile.deleteAccountWarning1')}</Caption>
+
+          <Button
+            type='negative'
+            style={{ width: '250px' }}
+            secondary
+            onClick={handleConfirmDelete}>
+            {t('settings.profile.deleteAccount')}
+          </Button>
+        </>
+      ) : (
+        <>
+          <Caption
+            style={{
+              color: 'var(--negative)',
+              display: 'flex',
+              columnGap: '4px',
+              alignItems: 'center',
+            }}>
+            <HiOutlineExclamationCircle /> {t('settings.profile.deleteAccountWarning2')}
+          </Caption>
+          <Caption>{t('settings.profile.deleteAccountWarning3')}</Caption>
+          <Input id='name' label={t('settings.profile.teamName')} autoComplete='off' small />
+          <Input id='password' label={t('settings.profile.password')} autoComplete='off' small />
+          <DivConfirmDelete>
+            <Caption>{t('settings.profile.captionConfirm')}</Caption>
+            <Input
+              id='confirm'
+              label={t('settings.profile.inputConfirm')}
+              autoComplete='off'
+              small
+            />
+          </DivConfirmDelete>
+
+          <DivDeleteAccountBtns>
+            <Button style={{ width: '250px' }} secondary onClick={handleConfirmDelete}>
+              {t('global.cancel')}
+            </Button>
+            <Button
+              type='negative'
+              style={{ width: '250px' }}
+              secondary
+              onClick={handleDeleteAccount}>
+              {t('settings.profile.deleteAccount')}
+            </Button>
+          </DivDeleteAccountBtns>
+        </>
+      )}
       <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
     </>
   );

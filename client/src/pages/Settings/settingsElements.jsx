@@ -19,3 +19,15 @@ export const DivTheme = styled.div`
   flex-direction: row;
   width: 100%;
 `;
+
+export const DivDeleteAccountBtns = styled.div`
+  display: flex;
+  flex-direction: row;
+  column-gap: 24px;
+`
+
+export const DivConfirmDelete = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+`
