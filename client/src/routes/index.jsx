@@ -19,6 +19,8 @@ import SettingsLayout from '../components/SettingsLayout';
 import AccountSettings from '../pages/Settings/account';
 import AppearanceSettings from '../pages/Settings/appearance';
 import SecuritySettings from '../pages/Settings/security';
+import Submission from '../pages/Submission';
+import NewSubmission from '../pages/Submission/NewSubmission';
 
 const Routes = () => {
   return (
@@ -39,6 +41,9 @@ const Routes = () => {
 
           <Route path='/contributions/new' element={<NewContribution />} />
           <Route path='/contributions/:contributionId' element={<Contribution />} />
+
+          <Route path='/submissions/new' element={<NewSubmission />} />
+          <Route path='/submissions/:submissionId' element={<Submission />} />
 
           <Route path='/settings' element={<SettingsLayout />}>
             <Route path='/settings/profile' element={<AccountSettings />} />

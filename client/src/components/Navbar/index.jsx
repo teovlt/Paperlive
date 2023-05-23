@@ -89,7 +89,7 @@ const NavBar = () => {
           },
           {
             label: t('dropDown.newSubmission'),
-            onClick: () => navigate('/'),
+            onClick: () => navigate('/submissions/new'),
           },
         ],
       },
