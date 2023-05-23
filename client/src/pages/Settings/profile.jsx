@@ -25,8 +25,7 @@ const ProfilSettings = () => {
   }, [auth]);
 
   const notify = () => {
-    // TODO: traduction
-    toast.success('Profile updated', {
+    toast.success(t('toast.profileUpdatedSuccess'), {
       position: 'bottom-right',
       autoClose: 5000,
       hideProgressBar: false,

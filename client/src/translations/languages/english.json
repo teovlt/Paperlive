@@ -146,9 +146,12 @@
       "newPassword": "New Password",
       "newPasswordConf": "Confirm New Password",
       "passwordError": "Please provide the correct old password and try again."
-    },
-    "toast": {
-      "fileUploadSucess": "File uploaded successfuly"
     }
+  },
+  "toast": {
+    "fileUploadSucess": "File uploaded successfully",
+    "profileUpdatedSuccess": "Profile updated successfully",
+    "passwordUpdatedSuccess": "Paswword updated successfully",
+    "accentChangeSucess": "Accent color changed successfully"
   }
 }

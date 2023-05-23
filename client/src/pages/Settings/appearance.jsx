@@ -11,7 +11,7 @@ const AppearanceSettings = () => {
   const { accentColor, handleAccentColorChange } = useContext(AccentContext);
 
   const notify = () => {
-    toast.success('Accent color changed successfully', {
+    toast.success(t('toast.accentChangeSucess'), {
       position: 'bottom-right',
       autoClose: 5000,
       hideProgressBar: false,
