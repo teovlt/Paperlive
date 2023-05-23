@@ -16,12 +16,6 @@ export const DivLeftInfos = styled.div`
 
 export const DivTheme = styled.div`
   display: flex;
-  justify-content: space-around;
-`;
-
-
-export const DivThemeDispo = styled.div`
-  display: flex;
   flex-direction: row;
-
-`
+  width: 100%;
+`;
