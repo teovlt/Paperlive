@@ -17,7 +17,7 @@ const Settings = () => {
         <SideBar>
           <IconLink to='/'>
             <HiArrowSmallLeft />
-            Accueil
+            {t('global.accueil')}
           </IconLink>
           <SectionParams>
             <Heading2>{t('settings.sections.profile')}</Heading2>
