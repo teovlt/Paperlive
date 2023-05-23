@@ -5,6 +5,8 @@ import Chips from '../../components/Chips';
 import { useTranslation } from 'react-i18next';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useConfirm } from '../../context/ConfirmContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SecuritySettings = () => {
   const { t, i18n } = useTranslation();
@@ -32,6 +34,20 @@ const SecuritySettings = () => {
     }
   }, [newPassword, newPasswordConf, i18n.resolvedLanguage]);
 
+
+  const notify = () => {
+    toast.success('Password updated', {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  };
+
   const handleSubmit = async () => {
     if (!errMsg) {
       const confirmed = await confirm({
@@ -50,7 +66,7 @@ const SecuritySettings = () => {
           setOldPassword('');
           setNewPassword('');
           setNewPasswordConf('');
-          // TODO: Notification succes
+          notify()
         } catch (error) {
           if (!error?.response) {
             setErrMsg(t('authentication.servorError'));
@@ -98,6 +114,9 @@ const SecuritySettings = () => {
       <Button type='neutral' onClick={handleSubmit}>
         Change password
       </Button>
+      <ToastContainer
+       toastStyle={{ backgroundColor: 'var(--positive)' }}
+      />
     </>
   );
 };
