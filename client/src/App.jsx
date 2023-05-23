@@ -6,7 +6,9 @@ import GlobalStyle from './theme/globalStyle';
 export const AccentContext = createContext();
 
 function App() {
-  const [accentColor, setAccentColor] = useState(localStorage.getItem('accentColor') || '#3788a1');
+  const [accentColor, setAccentColor] = useState(
+    localStorage.getItem('accentColor') || '55, 136, 161'
+  );
 
   useEffect(() => {
     localStorage.setItem('accentColor', accentColor);

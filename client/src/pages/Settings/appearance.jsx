@@ -37,7 +37,7 @@ const AppearanceSettings = () => {
       <RadioGroup
         name='accent'
         template={{
-          label: 'Accent Color',
+          label: t('settings.accessibility.accentColor'),
           radios: [
             {
               label: t('settings.accessibility.munsellBlue'),

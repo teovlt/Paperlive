@@ -1,7 +1,13 @@
 const Team = require('../models/teamModel');
+const Contribution = require('../models/contributionModel');
+const Submission = require('../models/submissionModel');
+
 const ObjectId = require('mongoose').Types.ObjectId;
 const path = require('path');
 const fs = require('fs');
+
+const dir = `${__dirname}/../../uploads`;
+const { removeFilesContainingTerms } = require('../utils/utils');
 
 /**
  * Get a list of all teams.
@@ -138,16 +144,39 @@ module.exports.changePassword = async (req, res) => {
  */
 module.exports.deleteTeam = async (req, res) => {
   try {
-    // Find the team with the givent ID and delete it in the database
-    const result = await Team.deleteOne({ _id: req.teamId });
+    const { name, password } = req.body;
 
-    // If the deletion was successful, return a 200 OK response with a success message
-    if (result.deletedCount > 0) {
+    // Find the team with the givent ID
+    const team = await Team.findOne({ _id: req.teamId });
+
+    if (!team) return res.status(404).json({ error: 'Team not found' });
+
+    // Verify credentials
+    const validCredentials = await team.validCredentials(name, password);
+
+    if (validCredentials) {
+      // Delete every contributions related to the given team
+      team.contributions?.forEach(async (contribution) => {
+        // Delete every submissions related to the given contribution
+        contribution.submissions?.forEach(async (submission) => {
+          // Delete every files related to the given submission
+          removeFilesContainingTerms(submission._id);
+          await Submission.deleteOne({ _id: submission._id.toString() });
+        });
+
+        // Delete every files related to the given contribution
+        removeFilesContainingTerms(contribution._id);
+        await Contribution.deleteOne({ _id: contribution._id.toString() });
+      });
+
+      // Delete every files related to the given team
+      removeFilesContainingTerms(team._id);
+      await Team.deleteOne({ _id: team._id.toString() });
+
       return res.status(200).json({ message: 'Successfully deleted' });
+    } else {
+      return res.status(400).json({ error: 'Invalid credentials' });
     }
-
-    // If no documents were deleted, return a 404 Not Found response with an error message
-    return res.status(404).json({ error: 'Team not found' });
   } catch (error) {
     // Error handling
     return res.status(500).json({ error: error.message });

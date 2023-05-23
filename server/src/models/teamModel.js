@@ -109,5 +109,16 @@ teamSchema.methods.changePassword = async function (oldPassword, newPassword) {
   }
 };
 
+teamSchema.methods.validCredentials = async function (name = '', password = '') {
+  try {
+    const isPasswordCorrect = await bcrypt.compare(password, this.password);
+
+    return name === this.name && isPasswordCorrect;
+  } catch (error) {
+    // Error handling
+    throw new Error(`Error verfifying credentials: ${error.message}`);
+  }
+};
+
 const team = new mongoose.model('team', teamSchema);
 module.exports = team;

@@ -134,6 +134,7 @@
       "updateProfile": "Mettre à jour le profil"
     },
     "accessibility": {
+      "accentColor": "Couleur d'accentuation",
       "munsellBlue": "Bleu Munsell",
       "persianRed": "Rouge persan",
       "periwinkle": "Bleu pervenche",

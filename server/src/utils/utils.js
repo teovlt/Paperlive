@@ -19,7 +19,7 @@ function getAllSubdirectories(dir) {
 async function removeTempFiles() {
   const now = Date.now();
   const subdirs = getAllSubdirectories(dir);
-  subdirs.forEach((subdir, index) => {
+  subdirs.forEach((subdir) => {
     const files = fs.readdirSync(subdir);
     files.forEach((file) => {
       const path = `${subdir}/${file}`;
@@ -29,5 +29,17 @@ async function removeTempFiles() {
   });
 }
 
-  setInterval(removeTempFiles, 5 * 60 * 1000);
+async function removeFilesContainingTerms(terms) {
+  const subdirs = getAllSubdirectories(dir);
+  subdirs.forEach((subdir) => {
+    const files = fs.readdirSync(subdir);
+    files.forEach((file) => {
+      const path = `${subdir}/${file}`;
+      if (file.includes(terms.toString())) fs.unlinkSync(path);
+    });
+  });
+}
 
+setInterval(removeTempFiles, 5 * 60 * 1000);
+
+module.exports = { removeFilesContainingTerms };

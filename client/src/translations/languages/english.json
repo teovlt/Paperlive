@@ -134,6 +134,7 @@
       "updateProfile": "Update Profile"
     },
     "accessibility": {
+      "accentColor": "Accent Color",
       "munsellBlue": "Munsell Blue",
       "persianRed": "Persian Red",
       "periwinkle": "Periwinkle",
