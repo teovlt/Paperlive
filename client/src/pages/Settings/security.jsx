@@ -35,7 +35,7 @@ const SecuritySettings = () => {
   }, [newPassword, newPasswordConf, i18n.resolvedLanguage]);
 
   const notify = () => {
-    toast.success('Password updated', {
+    toast.success(t('toast.passwordUpdatedSuccess'), {
       position: 'bottom-right',
       autoClose: 5000,
       hideProgressBar: false,

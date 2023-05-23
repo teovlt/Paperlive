@@ -131,7 +131,15 @@
       "appearance": "Apparence"
     },
     "profile": {
-      "updateProfile": "Mettre à jour le profil"
+      "updateProfile": "Mettre à jour le profil",
+      "deleteAccount": "Supprimer le compte",
+      "deleteAccountWarning1": "Une fois que vous supprimez votre compte, il n'y a pas de retour en arrière possible. Veuillez être certain(e).",
+      "deleteAccountWarning2": "Ceci est extrêmement important.",
+      "deleteAccountWarning3": "Nous supprimerons immédiatement toutes vos contributions, ainsi que toutes vos soumissions, statistiques et informations privées. Vous n'existerez plus pour personne, y compris pour vous, sur PaperLive. Remplissez ces champs pour confirmer la suppression permanente de votre compte.",
+      "teamName": "Le nom de votre équipe",
+      "password": "Votre mot de passe",
+      "captionConfirm": "Pour vérifier, veuillez taper *SUPPRIMER MON COMPTE* dans le champ ci-dessous :",
+      "inputConfirm": "Texte de confirmation"
     },
     "accessibility": {
       "accentColor": "Couleur d'accentuation",
@@ -150,6 +158,9 @@
     }
   },
   "toast": {
-    "fileUploadSucess": "File uploaded successfuly"
+    "fileUploadSucess": "Fichier importé avec succès",
+    "profileUpdatedSuccess": "Profil mis à jour avec succès",
+    "passwordUpdatedSuccess": "Mot de passe mis à jour avec succès",
+    "accentChangeSucess": "La couleur d'accentuation a été changé avec succès"
   }
 }

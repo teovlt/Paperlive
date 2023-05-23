@@ -131,7 +131,15 @@
       "appearance": "Appearance"
     },
     "profile": {
-      "updateProfile": "Update Profile"
+      "updateProfile": "Update Profile",
+      "deleteAccount": "Delete the account",
+      "deleteAccountWarning1": "Once you delete your account, there is no going back. Please be certain.",
+      "deleteAccountWarning2": "This is extremely important",
+      "deleteAccountWarning3": "We will immediately delete all of your contributions, along with all of your soumissions, stats and private informations. You will no longer exist to anyone including you on PaperLive. Fill thoses input to confirm the permanent deletion of your account",
+      "teamName": "The name of your team",
+      "password": "Your password",
+      "captionConfirm": "To verify, please type *DELETE MY ACCOUNT* in the input below:",
+      "inputConfirm": "Confirmation text"
     },
     "accessibility": {
       "accentColor": "Accent Color",
@@ -150,6 +158,9 @@
     }
   },
   "toast": {
-    "fileUploadSucess": "File uploaded successfuly"
+    "fileUploadSucess": "File uploaded successfully",
+    "profileUpdatedSuccess": "Profile updated successfully",
+    "passwordUpdatedSuccess": "Paswword updated successfully",
+    "accentChangeSucess": "Accent color changed successfully"
   }
 }
