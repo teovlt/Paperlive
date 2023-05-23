@@ -113,7 +113,7 @@
     "newSubmission": "Nouvelle soumission"
   },
   "fileInput": {
-    "success": "Importé avec succès",
+    "success": "Fichier importé ",
     "drag": "Faites glisser votre fichier ici",
     "or": "ou",
     "browse": "Parcourir les fichiers"

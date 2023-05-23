@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Button, Heading2 } from '../../theme/appElements';
+import { Button, Heading2, Caption } from '../../theme/appElements';
 import { AccentContext } from '../../App';
-import { DivTheme, DivThemeDispo } from './settingsElements';
+import { DivTheme } from './settingsElements';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
