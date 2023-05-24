@@ -7,6 +7,8 @@ import useLogout from '../../hooks/useLogout';
 import DropdownMenu from '../Dropdown';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NavBar = () => {
   const { t } = useTranslation();
@@ -24,6 +26,19 @@ const NavBar = () => {
     navigate('/login');
   };
 
+  const notify = () => {
+    toast.success(t('toast.languageChangementSucess'), {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  };
+
   const languagesDropdownTemplate = {
     toggle: <HiGlobeAlt />,
     groups: [
@@ -34,7 +49,9 @@ const NavBar = () => {
       {
         actions: Object.keys(lngs).map((lng) => ({
           label: `${lngs[lng].flag} ${lngs[lng].nativeName}`,
-          onClick: () => i18n.changeLanguage(lng),
+          onClick: () => {
+            i18n.changeLanguage(lng), notify();
+          },
         })),
       },
     ],
@@ -89,7 +106,7 @@ const NavBar = () => {
           },
           {
             label: t('dropDown.newSubmission'),
-            onClick: () => navigate('/'),
+            onClick: () => navigate('/submissions/new'),
           },
         ],
       },
@@ -113,15 +130,18 @@ const NavBar = () => {
   // };
 
   return (
-    <NavContainer>
-      <Logo to='/'>PaperLive</Logo>
+    <>
+      <NavContainer>
+        <Logo to='/'>PaperLive</Logo>
 
-      <Actions>
-        <DropdownMenu template={actionDropdownTemplate} />
-        <DropdownMenu template={languagesDropdownTemplate} />
-        <DropdownMenu template={profileDropdownTemplate} />
-      </Actions>
-    </NavContainer>
+        <Actions>
+          <DropdownMenu template={actionDropdownTemplate} />
+          <DropdownMenu template={languagesDropdownTemplate} />
+          <DropdownMenu template={profileDropdownTemplate} />
+        </Actions>
+      </NavContainer>
+      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
+    </>
   );
 };
 

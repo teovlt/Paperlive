@@ -210,7 +210,7 @@ const Contribution = () => {
                 {false ? (
                   <h1>hého</h1>
                 ) : (
-                  <TableRow onClick={() => navigate('/contributions/new')}>
+                  <TableRow onClick={() => navigate('/submissions/new')}>
                     <TableCellButton>+ {t('submission.newSubmission')}</TableCellButton>
                   </TableRow>
                 )}

@@ -164,6 +164,8 @@
     "fileUploadSucess": "Fichier importé avec succès",
     "profileUpdatedSuccess": "Profil mis à jour avec succès",
     "passwordUpdatedSuccess": "Mot de passe mis à jour avec succès",
-    "accentChangeSucess": "La couleur d'accentuation a été changé avec succès"
+    "accentChangeSucess": "La couleur d'accentuation a été changé avec succès",
+    "languageChangementSucess" : "Langage modifié avec succès"
+
   }
 }
