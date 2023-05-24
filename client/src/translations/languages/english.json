@@ -111,7 +111,8 @@
     "noResults": "Sorry, no results found."
   },
   "submission": {
-    "newSubmission": "New submission"
+    "newSubmission": "New submission",
+    "title": "Title"
   },
   "fileInput": {
     "success": "Imported file",
