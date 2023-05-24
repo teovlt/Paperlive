@@ -15,8 +15,20 @@ const FormStep5 = ({ submissionData, previous, goTo }) => {
   const axiosPrivate = useAxiosPrivate();
 
   const save = async () => {
-    //enregistrer la soumission
-    navigate('/contributions');
+    // if (
+    //   !Object.keys(submissionData)
+    //     .filter((key) => key === 'title')
+    //     .every((key) => submissionData[key] !== '')
+    // ) {
+    //   console.error('missing fields');
+    //   return;
+    // }
+    // const { abstract, zipFolder, compiledPDF, diffPDF, ...submissionDataWithoutFiles } =
+    //   submissionData;
+    // await axiosPrivate.post('/submission/new', submissionDataWithoutFiles);
+    // const contributions = await axiosPrivate.get('/contributions');
+    // setAuth((prev) => ({ ...prev, contributions: contributions.data }));
+    navigate('/contributions/');
   };
 
   return (
@@ -26,7 +38,7 @@ const FormStep5 = ({ submissionData, previous, goTo }) => {
         <Label>
           {t('submission.title')}:<span>{submissionData.title}</span>
         </Label>
-        <Label>
+        {/* <Label>
           Date:
           <span>
             {new Intl.DateTimeFormat(i18n.language, {
@@ -35,7 +47,7 @@ const FormStep5 = ({ submissionData, previous, goTo }) => {
               year: 'numeric',
             }).format(new Date(submissionData?.submissionDate))}
           </span>
-        </Label>
+        </Label> */}
         <Label>
           type:<span>{submissionData?.type}</span>
         </Label>
