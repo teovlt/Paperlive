@@ -12,7 +12,6 @@ import { useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import useAuth from '../../../hooks/useAuth';
 import {  toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
   const navigate = useNavigate();

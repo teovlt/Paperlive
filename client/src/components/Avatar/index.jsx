@@ -4,7 +4,6 @@ import useAuth from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import {  toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Avatar = () => {
   const { auth } = useAuth();

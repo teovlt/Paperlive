@@ -36,7 +36,6 @@ import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
 import Selector from '../../components/Selector';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Contribution = () => {
   const { contributionId } = useParams();

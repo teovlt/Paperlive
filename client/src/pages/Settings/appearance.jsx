@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Heading2 } from '../../theme/appElements';
 import { AccentContext } from '../../App';
 import {  toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import RadioGroup from '../../components/RadioGroup';
 import { useTranslation } from 'react-i18next';
 

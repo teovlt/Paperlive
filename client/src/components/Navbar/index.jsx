@@ -8,7 +8,6 @@ import DropdownMenu from '../Dropdown';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import {  toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const NavBar = () => {
   const { t } = useTranslation();

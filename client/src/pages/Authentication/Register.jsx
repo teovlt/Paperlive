@@ -12,7 +12,6 @@ import { HiGlobeAlt } from 'react-icons/hi2';
 import i18n from '../../translations/i18n';
 const REGISTER_URL = '/auth/register';
 import {  toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const { t } = useTranslation();

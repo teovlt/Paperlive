@@ -18,7 +18,6 @@ import TextArea from '../TextArea';
 import { useTranslation } from 'react-i18next';
 import RadioGroup from '../RadioGroup';
 import {  toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const ProfileSidebar = () => {
   const { t } = useTranslation();
