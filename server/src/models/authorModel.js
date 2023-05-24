@@ -1,9 +1,18 @@
 const mongoose = require('mongoose');
 
 const authorSchema = new mongoose.Schema({
-  name: String,
-  grade: String,
-  country: String,
+  name: {
+    type: String,
+    required: true,
+  },
+  grade: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
 });
 
 const author = new mongoose.model('Author', authorSchema);

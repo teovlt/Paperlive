@@ -1,7 +1,6 @@
 const Team = require('../models/teamModel');
 const Contribution = require('../models/contributionModel');
 const ObjectId = require('mongoose').Types.ObjectId;
-const path = require('path');
 const fs = require('fs');
 
 /**
@@ -33,12 +32,10 @@ module.exports.readContribution = async (req, res) => {
     if (!ObjectId.isValid(contributionId))
       return res.status(500).json({ error: `Invalid ID: ${contributionId}` });
 
-    const team = await Team.findOne({ _id: req.teamId }).populate('contributions');
-    if (!team) return res.status(404).json({ error: 'Team not found' });
+    const team = await Team.findOne({ _id: req.teamId, contributions: { $in: [contributionId] } });
+    if (!team) return res.status(404).json({ error: 'Contribution not found' });
 
     const contribution = await Contribution.findById(contributionId);
-
-    if (!contribution) return res.status(404).json({ error: 'Contribution not found' });
 
     return res.status(200).json(contribution);
   } catch (error) {
@@ -60,11 +57,15 @@ module.exports.createContribution = async (req, res) => {
     const abstractFileName = `contribution-abstract-${_id}.pdf`;
 
     // Update file
-    fs.renameSync(
-      `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`,
-      `${__dirname}/../../uploads/contribution/abstract/contribution-abstract-${_id}.pdf`
-    );    
-    
+    if (
+      fs.existsSync(
+        `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`
+      )
+    )
+      fs.renameSync(
+        `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`,
+        `${__dirname}/../../uploads/contribution/abstract/contribution-abstract-${_id}.pdf`
+      );
 
     // Save to database
     const contribution = new Contribution({
@@ -104,14 +105,14 @@ module.exports.updateContribution = async (req, res) => {
     if (!ObjectId.isValid(contributionId))
       return res.status(500).json({ error: `Invalid ID: ${contributionId}` });
 
-    // Check if the contribution belongs to the team
     const team = await Team.findOne({ _id: req.teamId, contributions: { $in: [contributionId] } });
     if (!team) return res.status(404).json({ error: 'Contribution not found' });
 
-    // Update file
-    fs.existsSync(
-      `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`
-    ) &&
+    if (
+      fs.existsSync(
+        `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`
+      )
+    )
       fs.renameSync(
         `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`,
         `${__dirname}/../../uploads/contribution/abstract/contribution-abstract-${contributionId}.pdf`
@@ -135,6 +136,7 @@ module.exports.updateContribution = async (req, res) => {
  * @access Private
  */
 module.exports.deleteContribution = async (req, res) => {
+  // TODO: Supprimer les fichiers
   try {
     const { contributionId } = req.params;
     if (!ObjectId.isValid(contributionId))

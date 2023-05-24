@@ -74,15 +74,6 @@ module.exports.me = async (req, res) => {
 };
 
 /**
- *
- */
-module.exports.getPicture = async (req, res) => {
-  const filePath = path.join(__dirname, '../../uploads/team/picture/', req.params.filename);
-  if (fs.existsSync(filePath)) res.sendFile(filePath);
-  else return res.status(404).json({ error: 'File not found' });
-};
-
-/**
  * Update a team by ID
  * @route PUT /api/teams/update
  * @group Teams
