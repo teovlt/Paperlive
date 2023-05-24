@@ -14,7 +14,7 @@ import {
   DivDeleteAccountBtns,
   DivConfirmDelete,
 } from './settingsElements';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -226,7 +226,6 @@ const AccountSettings = () => {
           </DivDeleteAccountBtns>
         </>
       )}
-      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
     </>
   );
 };

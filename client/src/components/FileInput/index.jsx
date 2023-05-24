@@ -12,8 +12,7 @@ import { IoMdCloudUpload } from 'react-icons/io';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useTranslation } from 'react-i18next';
 import Chips from '../Chips';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const FileInput = ({ name, file, endpoint, onChange }) => {
   const axiosPrivate = useAxiosPrivate();
@@ -95,7 +94,6 @@ const FileInput = ({ name, file, endpoint, onChange }) => {
           {t('fileInput.success')}: {filename}
         </Chips>
       )}
-      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
     </Container>
   );
 };

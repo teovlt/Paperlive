@@ -7,7 +7,7 @@ import useLogout from '../../hooks/useLogout';
 import DropdownMenu from '../Dropdown';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const NavBar = () => {
@@ -140,7 +140,6 @@ const NavBar = () => {
           <DropdownMenu template={profileDropdownTemplate} />
         </Actions>
       </NavContainer>
-      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
     </>
   );
 };

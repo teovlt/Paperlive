@@ -168,6 +168,7 @@
     "accentChangeSucess": "Accent color changed successfully",
     "languageChangementSucess": "Language changed successfully",
     "contributionUpdatedSuccess": "Contribution updated successfully",
-    "contributionDeletedSuccess" : "Contribution deleted successfully"
+    "contributionDeletedSuccess": "Contribution deleted successfully",
+    "contributionCreatedSucess": "Contribution created successfully"
   }
 }

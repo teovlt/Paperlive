@@ -11,7 +11,7 @@ import Chips from '../../components/Chips';
 import { HiGlobeAlt } from 'react-icons/hi2';
 import i18n from '../../translations/i18n';
 const LOGIN_URL = '/auth/login';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
@@ -147,7 +147,6 @@ const Login = () => {
         </Form>
         <Small style={{ textAlign: 'center' }}>{t('login.bottom')}</Small>
       </Container>
-      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
     </>
   );
 };

@@ -35,7 +35,7 @@ import Input from '../../components/Input';
 import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
 import Selector from '../../components/Selector';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Contribution = () => {
@@ -340,7 +340,6 @@ const Contribution = () => {
           )}
         </ContributionInfosContainer>
       </Container>
-      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
     </>
   );
 };
