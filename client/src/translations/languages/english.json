@@ -166,6 +166,6 @@
     "profileUpdatedSuccess": "Profile updated successfully",
     "passwordUpdatedSuccess": "Paswword updated successfully",
     "accentChangeSucess": "Accent color changed successfully",
-    "languageChangementSucess" : "Language changed with success"
+    "languageChangementSucess" : "Language changed successfully"
   }
 }
