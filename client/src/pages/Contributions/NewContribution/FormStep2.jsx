@@ -17,10 +17,13 @@ const FormStep2 = ({
 
   return (
     <>
-      <Heading3>Abstract</Heading3>
-      <Label>
-        {t('contribution.fileSupported')}: <span>pdf</span>
-      </Label>
+      <Heading3>
+        Abstract
+        <Label>
+          {t('contribution.fileSupported')}: <span>pdf</span>
+        </Label>
+      </Heading3>
+
       <FileInput
         name='abstract'
         file={contributionData.filename}

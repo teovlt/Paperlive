@@ -1,8 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Heading2 } from '../../theme/appElements';
 import { AccentContext } from '../../App';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {  toast } from 'react-toastify';
 import RadioGroup from '../../components/RadioGroup';
 import { useTranslation } from 'react-i18next';
 
@@ -63,7 +62,6 @@ const AppearanceSettings = () => {
         }}
         onChange={changeAccentColor}
       />
-      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
     </>
   );
 };

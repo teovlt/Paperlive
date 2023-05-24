@@ -11,12 +11,26 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import useAuth from '../../../hooks/useAuth';
+import {  toast } from 'react-toastify';
 
 const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const { setAuth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
+
+  const notify = () => {
+    toast.success(t('toast.contributionCreatedSucess'), {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  };
 
   const save = async () => {
     if (
@@ -33,6 +47,7 @@ const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
     const contributions = await axiosPrivate.get('/contributions');
     setAuth((prev) => ({ ...prev, contributions: contributions.data }));
     navigate('/contributions');
+    notify();
   };
 
   return (

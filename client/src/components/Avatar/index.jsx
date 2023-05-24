@@ -3,8 +3,7 @@ import { FileInput, Picture, UploadAvatarLabel, UploadForm } from './avatarEleme
 import useAuth from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {  toast } from 'react-toastify';
 
 const Avatar = () => {
   const { auth } = useAuth();
@@ -76,7 +75,6 @@ const Avatar = () => {
           <FileInput type='file' name='file' accept='.jpg,.jpeg,.png,.gif' />
         </UploadAvatarLabel>
       </UploadForm>
-      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
     </>
   );
 };

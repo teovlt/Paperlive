@@ -11,7 +11,6 @@ import {
   Sidebar,
   StepCaption,
 } from '../contributionsElements';
-import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { useTranslation } from 'react-i18next';
 import FormStep1 from './FormStep1';
 import FormStep2 from './FormStep2';

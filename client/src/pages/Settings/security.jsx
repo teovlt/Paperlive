@@ -5,8 +5,7 @@ import Chips from '../../components/Chips';
 import { useTranslation } from 'react-i18next';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useConfirm } from '../../context/ConfirmContext';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const SecuritySettings = () => {
   const { t, i18n } = useTranslation();
@@ -113,7 +112,6 @@ const SecuritySettings = () => {
       <Button type='neutral' onClick={handleSubmit}>
         Change password
       </Button>
-      <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
     </>
   );
 };

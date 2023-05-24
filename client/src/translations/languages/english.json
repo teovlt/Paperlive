@@ -111,7 +111,8 @@
     "noResults": "Sorry, no results found."
   },
   "submission": {
-    "newSubmission": "New submission"
+    "newSubmission": "New submission",
+    "title": "Title"
   },
   "fileInput": {
     "success": "Imported file",
@@ -165,6 +166,9 @@
     "profileUpdatedSuccess": "Profile updated successfully",
     "passwordUpdatedSuccess": "Paswword updated successfully",
     "accentChangeSucess": "Accent color changed successfully",
-    "languageChangementSucess" : "Language changed with success"
+    "languageChangementSucess": "Language changed successfully",
+    "contributionUpdatedSuccess": "Contribution updated successfully",
+    "contributionDeletedSuccess": "Contribution deleted successfully",
+    "contributionCreatedSucess": "Contribution created successfully"
   }
 }

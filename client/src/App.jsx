@@ -2,6 +2,8 @@ import React, { useState, useEffect, createContext } from 'react';
 import { ThemeProvider } from 'styled-components';
 import Routes from './routes';
 import GlobalStyle from './theme/globalStyle';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AccentContext = createContext();
 
@@ -24,6 +26,7 @@ function App() {
           <GlobalStyle />
           <Routes />
         </ThemeProvider>
+        <ToastContainer toastStyle={{ backgroundColor: 'var(--positive)' }} />
       </AccentContext.Provider>
     </>
   );

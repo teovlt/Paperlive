@@ -17,6 +17,7 @@ import Input from '../Input';
 import TextArea from '../TextArea';
 import { useTranslation } from 'react-i18next';
 import RadioGroup from '../RadioGroup';
+import {  toast } from 'react-toastify';
 
 const ProfileSidebar = () => {
   const { t } = useTranslation();
@@ -28,6 +29,19 @@ const ProfileSidebar = () => {
 
   const [profilData, setProfilData] = useState();
 
+  const notify = () => {
+    toast.success(t('toast.profileUpdatedSuccess'), {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  };
+
   useEffect(() => {
     setProfilData(auth);
   }, [auth]);
@@ -35,12 +49,15 @@ const ProfileSidebar = () => {
   async function handleSaveChanges() {
     setIsEditing(false);
 
-    const updatedProfilData = { ...profilData };
-    updatedProfilData.website &&
-      (updatedProfilData.website = updatedProfilData.website.replace(/^https?:\/\//i, ''));
+    if (profilData !== auth) {
+      const updatedProfilData = { ...profilData };
+      updatedProfilData.website &&
+        (updatedProfilData.website = updatedProfilData.website.replace(/^https?:\/\//i, ''));
 
-    await axiosPrivate.put('/teams/update', { ...updatedProfilData });
-    setAuth((prev) => ({ ...prev, ...updatedProfilData }));
+      await axiosPrivate.put('/teams/update', { ...updatedProfilData });
+      setAuth((prev) => ({ ...prev, ...updatedProfilData }));
+      notify();
+    }
   }
 
   function handleCancelChanges() {

@@ -35,6 +35,7 @@ import Input from '../../components/Input';
 import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
 import Selector from '../../components/Selector';
+import { toast } from 'react-toastify';
 
 const Contribution = () => {
   const { contributionId } = useParams();
@@ -47,6 +48,32 @@ const Contribution = () => {
 
   const [isEditing, setIsEditing] = useState(false);
   const { confirm } = useConfirm();
+
+  const notifySave = () => {
+    toast.success(t('toast.contributionUpdatedSuccess'), {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  };
+
+  const notifyDelete = () => {
+    toast.success(t('toast.contributionDeletedSuccess'), {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  };
 
   useEffect(() => {
     setContribution(auth.contributions?.find((c) => c._id === contributionId));
@@ -67,10 +94,12 @@ const Contribution = () => {
       const updatedContributions = auth.contributions.filter((c) => c._id !== contributionId);
       setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
       navigate('/contributions');
+      notifyDelete();
     }
   };
 
   async function handleSaveChanges() {
+    //TODO : utiliser notify seulement en cas de changements
     setIsEditing(false);
 
     await axiosPrivate.put(`/contributions/update/${contributionId}`, {
@@ -79,6 +108,7 @@ const Contribution = () => {
     const updatedContributions = auth.contributions.filter((c) => c._id !== contributionId);
     updatedContributions.push(contribution);
     setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
+    notifySave();
   }
 
   function handleCancelChanges() {
