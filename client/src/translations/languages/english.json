@@ -112,7 +112,24 @@
   },
   "submission": {
     "newSubmission": "New submission",
-    "title": "Title"
+    "title": "Title",
+    "date": "Date",
+    "type": "Type",
+    "poster": "Poster",
+    "shortPaper": "ShortPaper",
+    "state": "State",
+    "draft": "Draft",
+    "submitted": "Submitted",
+    "approved": "Approved",
+    "rejected": "Rejected",
+
+    "abstract": "Abstract",
+    "zipFolder": "Zip Folder",
+    "compiledPDF": "Compiled file",
+    "diffPDF": "Difference file",
+
+    "authors": "Authors",
+    "venue": "Venue"
   },
   "fileInput": {
     "success": "Imported file",

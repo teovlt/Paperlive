@@ -36,6 +36,7 @@ import RadioGroup from '../../components/RadioGroup';
 import FileInput from '../../components/FileInput';
 import Selector from '../../components/Selector';
 import { toast } from 'react-toastify';
+import ChipsState from '../../components/ChipsState';
 
 const Contribution = () => {
   const { contributionId } = useParams();
@@ -225,7 +226,11 @@ const Contribution = () => {
                 </ContributionInfo>
                 <ContributionInfo>
                   <Label> {t('contribution.state')}</Label>
-                  <Value>{t(`contribution.${contribution?.state}`)}</Value>
+                  <Value>
+                    <ChipsState type='notice'>
+                      {t(`contribution.${contribution?.state}`)}
+                    </ChipsState>
+                  </Value>
                 </ContributionInfo>
               </ContributionInfosLineWrapper>
               <Heading2>{t('global.submission')}s</Heading2>

@@ -87,7 +87,7 @@ const NewSubmission = () => {
       ),
     },
     {
-      title: 'Authors',
+      title: t('submission.authors'),
       content: (
         <FormStep3
           submissionData={submissionData}
@@ -98,7 +98,7 @@ const NewSubmission = () => {
       ),
     },
     {
-      title: 'Venue',
+      title: t('submission.venue'),
       content: (
         <FormStep4
           submissionData={submissionData}
@@ -109,7 +109,7 @@ const NewSubmission = () => {
       ),
     },
     {
-      title: 'Recap',
+      title: t('contribution.recap'),
       content: (
         <FormStep5
           submissionData={submissionData}
@@ -126,7 +126,7 @@ const NewSubmission = () => {
       <NavBar />
       <Container>
         <SideHeader>
-          <Heading2>New submission</Heading2>
+          <Heading2>{t('submission.newSubmission')}</Heading2>
         </SideHeader>
         <Sidebar>
           <FormNavigation>

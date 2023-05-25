@@ -11,7 +11,6 @@ import Chips from '../../../components/Chips';
 const FormStep1 = ({ submissionData, setSubmissionData, errorMsg, setErrorMsg, next }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { auth } = useAuth();
 
   return (
     <>
@@ -19,7 +18,7 @@ const FormStep1 = ({ submissionData, setSubmissionData, errorMsg, setErrorMsg, n
         small
         id='title'
         value={submissionData?.title}
-        label='titre'
+        label={t('submission.title')}
         autoComplete='off'
         onChange={(event) => {
           const newSubmissionData = { ...submissionData, title: event.target.value };
@@ -31,7 +30,7 @@ const FormStep1 = ({ submissionData, setSubmissionData, errorMsg, setErrorMsg, n
         id='date'
         type='date'
         value={submissionData?.submissionDate}
-        label='date'
+        label={t('submission.date')}
         autoComplete='off'
         onChange={(event) => {
           const newSubmissionData = { ...submissionData, submissionDate: event.target.value };
@@ -45,20 +44,20 @@ const FormStep1 = ({ submissionData, setSubmissionData, errorMsg, setErrorMsg, n
           setSubmissionData(newSubmissionData);
         }}
         template={{
-          label: 'type',
+          label: t('submission.type'),
           radios: [
             {
-              label: 'Poster',
+              label: t('submission.poster'),
               value: 'poster',
               defaultChecked: submissionData?.type === 'poster',
             },
             {
-              label: 'ShortPaper',
+              label: t('submission.shortPaper'),
               value: 'shortPaper',
               defaultChecked: submissionData?.type === 'shortPaper',
             },
             {
-              label: 'Contribution',
+              label: t('global.contribution'),
               value: 'contribution',
               defaultChecked: submissionData?.type === 'contribution',
             },
@@ -72,25 +71,25 @@ const FormStep1 = ({ submissionData, setSubmissionData, errorMsg, setErrorMsg, n
           setSubmissionData(newSubmissionData);
         }}
         template={{
-          label: 'state',
+          label: t('submission.state'),
           radios: [
             {
-              label: 'Draft',
+              label: t('submission.draft'),
               value: 'draft',
               defaultChecked: submissionData?.state === 'draft',
             },
             {
-              label: 'Submitted',
+              label: t('submission.submitted'),
               value: 'submitted',
               defaultChecked: submissionData?.state === 'submitted',
             },
             {
-              label: 'Approved',
+              label: t('submission.approved'),
               value: 'approved',
               defaultChecked: submissionData?.state === 'approved',
             },
             {
-              label: 'Rejected',
+              label: t('submission.rejected'),
               value: 'rejected',
               defaultChecked: submissionData?.state === 'rejected',
             },

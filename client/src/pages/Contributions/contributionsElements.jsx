@@ -362,12 +362,14 @@ export const ContributionInfosLineWrapper = styled.div`
 export const ContributionInfo = styled.div`
   width: 100%;
   padding-bottom: 8px;
+  height: 35px;
 
   display: flex;
   justify-content: space-between;
 
   font-size: 1.5rem;
   border-bottom: 1px solid var(--black-quaternary);
+  align-items: center;
 `;
 
 export const Label = styled.span`
