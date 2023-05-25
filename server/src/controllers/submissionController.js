@@ -3,6 +3,7 @@ const Contribution = require('../models/contributionModel');
 const Submission = require('../models/submissionModel');
 const Author = require('../models/authorModel');
 const Venue = require('../models/venueModel');
+const submission = require('../models/submissionModel');
 
 const ObjectId = require('mongoose').Types.ObjectId;
 
@@ -102,7 +103,7 @@ module.exports.createSubmission = async (req, res) => {
     // TODO: rename files
 
     await Promise.all(
-      authors.map(async (c, index) => {
+      authors?.map(async (c, index) => {
         if (c.author._id) {
           const newAuthor = await Author.findOne({ _id: c.author._id });
           await newAuthor.updateOne({
@@ -172,3 +173,20 @@ module.exports.createSubmission = async (req, res) => {
  * @group Submissions
  * @access Private
  */
+module.exports.deleteSubmission = async (req, res) => {
+  try {
+    const { submissionId } = req.params;
+    if (!ObjectId.isValid(submissionId)) {
+      return res.status(500).json({ error: `Invalid ID : ${submissionId}` });
+    }
+    const team = await Team.findOne({ _id: req.teamId, submissions: { $in: [submissionId] } });
+    if (!team) return res.status(404).json({ error: 'Submission not found' });
+
+    const result = await Submission.deleteOne({ _id: submissionId });
+    if (result.deletedCount > 0) {
+      return res.status(200).json({ message: 'Successfully deleted' });
+    }
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
