@@ -3,10 +3,10 @@ import { FileInput, Picture, UploadAvatarLabel, UploadForm } from './avatarEleme
 import useAuth from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const Avatar = () => {
-  const { auth } = useAuth();
+  const { auth, setAuth } = useAuth();
   const { t } = useTranslation();
   const axiosPrivate = useAxiosPrivate();
 
@@ -39,6 +39,10 @@ const Avatar = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
+      setAuth((prev) => ({
+        ...prev,
+        picture: res.data.filename,
+      }));
       setPicture((prev) => ({
         url: `${import.meta.env.VITE_API_URI}/api/files/${res.data.filename}`,
         _v: prev._v + 1,
