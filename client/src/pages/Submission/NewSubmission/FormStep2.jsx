@@ -10,7 +10,7 @@ const FormStep2 = ({ submissionData, setSubmissionData, next, previous }) => {
   return (
     <>
       <Heading3>
-        Abstract{' '}
+        Abstract
         <Label>
           {t('contribution.fileSupported')}: <span>pdf</span>
         </Label>
@@ -23,7 +23,7 @@ const FormStep2 = ({ submissionData, setSubmissionData, next, previous }) => {
         onChange={(file) => setSubmissionData((prev) => ({ ...prev, abstract: file?.name }))}
       />
       <Heading3>
-        zipFolder
+        {t('submission.zipFolder')}
         <Label>
           {t('contribution.fileSupported')}: <span>zip</span>
         </Label>
@@ -36,20 +36,20 @@ const FormStep2 = ({ submissionData, setSubmissionData, next, previous }) => {
         onChange={(file) => setSubmissionData((prev) => ({ ...prev, zipFolder: file?.name }))}
       />
       <Heading3>
-        compiledPDF
+        {t('submission.compiledPDF')}
         <Label>
           {t('contribution.fileSupported')}: <span>pdf</span>
         </Label>
       </Heading3>
 
       <FileInput
-        name='compiledPDD'
+        name='compiledPDF'
         file={submissionData.compiledPDF}
         endpoint='files/submission/compiledpdf'
         onChange={(file) => setSubmissionData((prev) => ({ ...prev, compiledPDF: file?.name }))}
       />
       <Heading3>
-        diffPDF
+        {t('submission.diffPDF')}
         <Label>
           {t('contribution.fileSupported')}: <span>pdf</span>
         </Label>

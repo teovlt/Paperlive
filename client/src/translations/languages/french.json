@@ -112,7 +112,24 @@
   },
   "submission": {
     "newSubmission": "Nouvelle soumission",
-    "title": "Titre"
+    "title": "Titre",
+    "date": "Date",
+    "type": "Type",
+    "poster": "Poster",
+    "shortPaper": "Article court",
+    "state": "Etat",
+    "draft": "Brouillon",
+    "submitted": "Soumise",
+    "approved": "Approuvée",
+    "rejected": "Rejetée",
+
+    "abstract": "Abstract",
+    "zipFolder": "Dossier Zip",
+    "compiledPDF": "Fichier compilé",
+    "diffPDF": "Fichier de différence",
+
+    "authors": "Auteurs",
+    "venue": "Revue"
   },
   "fileInput": {
     "success": "Fichier importé ",

@@ -34,7 +34,7 @@ const FormStep5 = ({ submissionData, previous, goTo }) => {
   return (
     <>
       <MainWrapper>
-        <Heading3>Informations</Heading3>
+        <Heading3>{t('contribution.informatons')}</Heading3>
         <Label>
           {t('submission.title')}:<span>{submissionData.title}</span>
         </Label>
@@ -49,10 +49,10 @@ const FormStep5 = ({ submissionData, previous, goTo }) => {
           </span>
         </Label> */}
         <Label>
-          type:<span>{submissionData?.type}</span>
+          {t('submission.type')}:<span>{submissionData?.type}</span>
         </Label>
         <Label>
-          state:<span>{submissionData?.state}</span>
+          {t('submission.state')}:<span>{submissionData?.state}</span>
         </Label>
         <Label>la contribution en lien</Label>
         <Link onClick={() => goTo(0)}> {t('contribution.editForm')}</Link>
@@ -60,30 +60,30 @@ const FormStep5 = ({ submissionData, previous, goTo }) => {
       <MainWrapper>
         <Heading3>{t('contribution.files')}</Heading3>
         <Label>
-          Abstract:<span>{submissionData?.abstract}</span>
+          {t('submission.abstract')}:<span>{submissionData?.abstract}</span>
         </Label>
         <Label>
-          zipFolder:<span>{submissionData?.zipFolder}</span>
+          {t('submission.zipFolder')}:<span>{submissionData?.zipFolder}</span>
         </Label>
         <Label>
-          compiledPDF:<span>{submissionData?.compiledPDF}</span>
+          {t('submission.compiledPDF')}:<span>{submissionData?.compiledPDF}</span>
         </Label>
         <Label>
-          diffPDF:<span>{submissionData?.diffPDF}</span>
+          {t('submission.diffPDF')}:<span>{submissionData?.diffPDF}</span>
         </Label>
         <Link onClick={() => goTo(1)}>{t('contribution.editForm')}</Link>
       </MainWrapper>
       <MainWrapper>
-        <Heading3>Authors</Heading3>
+        <Heading3> {t('submission.authors')}</Heading3>
         <Label>
-          Authors:<span>{submissionData?.authors}</span>
+          {t('submission.authors')}:<span>{submissionData?.authors}</span>
         </Label>
         <Link onClick={() => goTo(2)}>{t('contribution.editForm')}</Link>
       </MainWrapper>
       <MainWrapper>
-        <Heading3>Venue</Heading3>
+        <Heading3>{t('submission.venue')}</Heading3>
         <Label>
-          Venue:<span>{submissionData?.venue}</span>
+          {t('submission.venue')}:<span>{submissionData?.venue}</span>
         </Label>
         <Link onClick={() => goTo(3)}>{t('contribution.editForm')}</Link>
       </MainWrapper>
