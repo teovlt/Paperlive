@@ -102,23 +102,25 @@ module.exports.createSubmission = async (req, res) => {
 
     // TODO: rename files
 
-    await Promise.all(
-      authors?.map(async (c, index) => {
-        if (c.author._id) {
-          const newAuthor = await Author.findOne({ _id: c.author._id });
-          await newAuthor.updateOne({
-            $set: {
-              name: c.author.name,
-              grade: c.author.grade,
-              country: c.author.country,
-            },
-          });
-          authors[index]['author'] = newAuthor._id;
-        } else {
-          authors[index]['author'] = await new Author({ ...c.author }).save()._id;
-        }
-      })
-    );
+    if (authors) {
+      await Promise.all(
+        authors.map(async (c, index) => {
+          if (c.author._id) {
+            const newAuthor = await Author.findOne({ _id: c.author._id });
+            await newAuthor.updateOne({
+              $set: {
+                name: c.author.name,
+                grade: c.author.grade,
+                country: c.author.country,
+              },
+            });
+            authors[index]['author'] = newAuthor._id;
+          } else {
+            authors[index]['author'] = await new Author({ ...c.author }).save()._id;
+          }
+        })
+      );
+    }
 
     if (venue) {
       if (venue._id) {
