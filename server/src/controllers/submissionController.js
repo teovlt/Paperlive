@@ -3,6 +3,7 @@ const Contribution = require('../models/contributionModel');
 const Submission = require('../models/submissionModel');
 const Author = require('../models/authorModel');
 const Venue = require('../models/venueModel');
+const submission = require('../models/submissionModel');
 
 const fs = require('fs');
 const { removeFilesContainingTerms } = require('../utils/utils');

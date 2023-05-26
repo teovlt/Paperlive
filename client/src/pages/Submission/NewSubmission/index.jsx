@@ -31,6 +31,7 @@ const NewSubmission = () => {
     zipFolder: '',
     compiledPDF: '',
     diffPDF: '',
+    commentsPDF: '',
     authors: [],
     venue: '',
     type: '',

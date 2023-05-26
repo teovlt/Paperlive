@@ -15,7 +15,6 @@ const FormStep2 = ({ submissionData, setSubmissionData, next, previous }) => {
           {t('contribution.fileSupported')}: <span>pdf</span>
         </Label>
       </Heading3>
-
       <FileInput
         name='abstract'
         file={submissionData.abstract}
@@ -28,7 +27,6 @@ const FormStep2 = ({ submissionData, setSubmissionData, next, previous }) => {
           {t('contribution.fileSupported')}: <span>zip</span>
         </Label>
       </Heading3>
-
       <FileInput
         name='zipFolder'
         file={submissionData.zipFolder}
@@ -41,7 +39,6 @@ const FormStep2 = ({ submissionData, setSubmissionData, next, previous }) => {
           {t('contribution.fileSupported')}: <span>pdf</span>
         </Label>
       </Heading3>
-
       <FileInput
         name='compiledPDF'
         file={submissionData.compiledPDF}
@@ -54,12 +51,23 @@ const FormStep2 = ({ submissionData, setSubmissionData, next, previous }) => {
           {t('contribution.fileSupported')}: <span>pdf</span>
         </Label>
       </Heading3>
-
       <FileInput
         name='diffPDF'
         file={submissionData.diffPDF}
         endpoint='files/submission/diffpdf'
         onChange={(file) => setSubmissionData((prev) => ({ ...prev, diffPDF: file?.name }))}
+      />
+      <Heading3>
+        {t('submission.commentsPDF')}
+        <Label>
+          {t('contribution.fileSupported')}: <span>pdf</span>
+        </Label>
+      </Heading3>
+      <FileInput
+        name='commentPDF'
+        file={submissionData.commentsPDF}
+        endpoint='files/submission/commentsPDF'
+        onChange={(file) => setSubmissionData((prev) => ({ ...prev, commentsPDF: file?.name }))}
       />
       <LinearContainer>
         <Button style={{ width: '160px' }} type='neutral' onClick={previous}>
