@@ -1,6 +1,11 @@
 import React from 'react';
 import { Container } from './chipsStateElements';
-import { HiOutlineCheckCircle, HiOutlineClock, HiOutlineXCircle } from 'react-icons/hi2';
+import {
+  HiOutlineCheckCircle,
+  HiOutlineClock,
+  HiOutlineXCircle,
+  HiOutlinePencil,
+} from 'react-icons/hi2';
 
 const ChipsState = ({ type, children }) => {
   return (
@@ -9,8 +14,10 @@ const ChipsState = ({ type, children }) => {
         <HiOutlineCheckCircle />
       ) : type === 'notice' ? (
         <HiOutlineClock />
-      ) : (
+      ) : type === 'destructive' ? (
         <HiOutlineXCircle />
+      ) : (
+        <HiOutlinePencil />
       )}
       {children}
     </Container>

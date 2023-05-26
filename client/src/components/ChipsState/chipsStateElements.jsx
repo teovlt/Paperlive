@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+const neutral = 'var(--black-quaternary)';
 
 export const Container = styled.div`
   width: 100%;
@@ -16,10 +17,11 @@ export const Container = styled.div`
   svg {
     font-size: 2rem;
     min-width: 16px;
-    color: ${(props) => `var(--${props.type})`};
+    color: ${(props) => (props.type === 'neutral' ? 'var(--black)' : `var(--${props.type})`)};
   }
 
   outline-offset: -1px;
-  outline: 1px solid ${(props) => `var(--${props.type}-vibrant)`};
-  background: ${(props) => `var(--${props.type}-vibrant)`};
+  outline: 1px solid
+    ${(props) => (props.type === 'neutral' ? neutral : `var(--${props.type}-vibrant)`)};
+  background: ${(props) => (props.type === 'neutral' ? neutral : `var(--${props.type}-vibrant)`)};
 `;
