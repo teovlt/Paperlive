@@ -1,7 +1,10 @@
 const Team = require('../models/teamModel');
 const Contribution = require('../models/contributionModel');
+const Submission = require('../models/submissionModel');
 const ObjectId = require('mongoose').Types.ObjectId;
+
 const fs = require('fs');
+const { removeFilesContainingTerms } = require('../utils/utils');
 
 /**
  * Get a list of all contributions belongs to the connected team
@@ -136,7 +139,6 @@ module.exports.updateContribution = async (req, res) => {
  * @access Private
  */
 module.exports.deleteContribution = async (req, res) => {
-  // TODO: Supprimer les fichiers
   try {
     const { contributionId } = req.params;
     if (!ObjectId.isValid(contributionId))
@@ -146,10 +148,19 @@ module.exports.deleteContribution = async (req, res) => {
     const team = await Team.findOne({ _id: req.teamId, contributions: { $in: [contributionId] } });
     if (!team) return res.status(404).json({ error: 'Contribution not found' });
 
+    const contribution = await Contribution.findOne({ _id: contributionId });
+    // Delete every submissions related to the given contribution
+    contribution.submissions?.forEach(async (submission) => {
+      // Delete every files related to the given submission
+      removeFilesContainingTerms(submission._id);
+      await Submission.deleteOne({ _id: submission._id });
+    });
+
+    await team.updateOne({ $pull: { contributions: contributionId } });
+
     const result = await Contribution.deleteOne({ _id: contributionId });
-    if (result.deletedCount > 0) {
-      return res.status(200).json({ message: 'Successfully deleted' });
-    }
+    console.log(result);
+    if (result.deletedCount > 0) return res.status(200).json({ message: 'Successfully deleted' });
 
     return res.status(400).json({ error: 'Deletion failed' });
   } catch (error) {

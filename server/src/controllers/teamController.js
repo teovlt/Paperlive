@@ -63,7 +63,16 @@ module.exports.me = async (req, res) => {
   try {
     const team = await Team.findOne({ _id: req.teamId })
       .select('-password')
-      .populate('contributions');
+      .populate({
+        path: 'contributions',
+        populate: {
+          path: 'submissions',
+          populate: {
+            path: 'authors.author',
+            path: 'venue',
+          },
+        },
+      });
     if (!team) return res.status(404).json({ error: 'Team not found' });
 
     return res.status(200).json(team);
