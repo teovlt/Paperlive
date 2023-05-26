@@ -73,12 +73,8 @@ const Submission = () => {
 
   useEffect(() => {
     //auth.contributions?.find((c) => c._id === contributionId)
-    // setSubmission(
-    //   auth.contributions.forEach((cont) => {
-    //     cont.submissions?.find((c) => c._id === submissionId);
-    //   })
-    // );
 
+ 
   }, [submissionId]);
 
   const handleConfirmation = async () => {};
@@ -124,7 +120,7 @@ const Submission = () => {
           </Button>
           {!isEditing && (
             <Button secondary onClick={() => setIsEditing(true)}>
-              {t('contribution.editContribution')}
+              edit the submission
             </Button>
           )}
           <Button
@@ -137,7 +133,7 @@ const Submission = () => {
               alignItems: 'center',
               columnGap: '8px',
             }}>
-            {t('contribution.delete')}
+            supprimer la submission
             <HiOutlineTrash />
           </Button>
         </Sidebar>
@@ -145,9 +141,7 @@ const Submission = () => {
           <Heading2>{t('contribution.informations')}</Heading2>
           {!isEditing ? (
             <>
-              <p>
-                {submission ? submission?.title : 'aucune soumission detecté'}
-              </p>
+              <p>{submission ? submission?.title : 'aucune soumission detecté'}</p>
             </>
           ) : (
             <>
