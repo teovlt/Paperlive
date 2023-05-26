@@ -24,6 +24,7 @@ import {
   TableCellButton,
   Group,
   RelatedContributionLink,
+  DivSectionContribution,
 } from '../Contributions/contributionsElements';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -32,6 +33,7 @@ import { useNavigate } from 'react-router-dom';
 import { useConfirm } from '../../context/ConfirmContext';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { toast } from 'react-toastify';
+import ChipsState from '../../components/ChipsState';
 
 const Submission = () => {
   const { submissionId } = useParams();
@@ -141,11 +143,79 @@ const Submission = () => {
             <HiOutlineTrash />
           </Button>
         </Sidebar>
-        <ContributionInfosContainer>
-          <Heading2>{t('contribution.informations')}</Heading2>
+        <ContributionInfosContainer style={{ rowGap: '56px' }}>
           {!isEditing ? (
             <>
-              <p>{submission ? submission?.title : 'aucune soumission detecté'}</p>
+              <DivSectionContribution>
+                <Heading2>{t('contribution.informations')}</Heading2>
+                <ContributionInfo>
+                  <Label> {t('contribution.title')}</Label>
+                  <Value>{submission?.title}</Value>
+                </ContributionInfo>
+                <ContributionInfo>
+                  <Label>{t('global.contribution')}</Label>
+                  {/* <Value>
+                    {contribution?.relatedContributions.length > 0
+                      ? contribution?.relatedContributions.map((c, index) => (
+                          <RelatedContributionLink key={index} to={`/contributions/${c._id}`}>
+                            <abbr title={c.title}>{c.title}</abbr>
+                          </RelatedContributionLink>
+                        ))
+                      : '-'}
+                  </Value> */}
+                </ContributionInfo>
+                <ContributionInfosLineWrapper>
+                  <ContributionInfo>
+                    <Label> {t('submission.date')}</Label>
+                    <Value>
+                      {new Intl.DateTimeFormat(i18n.language, {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                      }).format(new Date(submission?.submissionDate ?? 0))}
+                    </Value>
+                  </ContributionInfo>
+                  <ContributionInfo>
+                    <Label>{t('submission.type')}</Label>
+                    <Value>{t(`submission.${submission?.type}`)}</Value>
+                  </ContributionInfo>
+                </ContributionInfosLineWrapper>
+                <ContributionInfosLineWrapper>
+                  <ContributionInfo>
+                    <Label>Abstract</Label>
+                    <Link onClick={handleDownload}>{t('global.download')}</Link>
+                  </ContributionInfo>
+                  <ContributionInfo>
+                    <Label> {t('submission.state')}</Label>
+                    <Value>
+                      <ChipsState type='neutral'>{t(`submission.${submission?.state}`)}</ChipsState>
+                    </Value>
+                  </ContributionInfo>
+                </ContributionInfosLineWrapper>
+              </DivSectionContribution>
+              <DivSectionContribution>
+                <Heading2>{t('contribution.files')}</Heading2>
+                <ContributionInfo>
+                  <Label>{t('submission.abstract')}</Label>
+                  <Link onClick={handleDownload}>{t('global.download')}</Link>
+                </ContributionInfo>
+                <ContributionInfo>
+                  <Label>{t('submission.zipFolder')}</Label>
+                  <Link onClick={handleDownload}>{t('global.download')}</Link>
+                </ContributionInfo>
+                <ContributionInfo>
+                  <Label>{t('submission.compiledPDF')}</Label>
+                  <Link onClick={handleDownload}>{t('global.download')}</Link>
+                </ContributionInfo>
+                <ContributionInfo>
+                  <Label>{t('submission.diffPDF')}</Label>
+                  <Link onClick={handleDownload}>{t('global.download')}</Link>
+                </ContributionInfo>
+                <ContributionInfo>
+                  <Label>{t('submission.commentsPDF')}</Label>
+                  <Link onClick={handleDownload}>{t('global.download')}</Link>
+                </ContributionInfo>
+              </DivSectionContribution>
             </>
           ) : (
             <>
