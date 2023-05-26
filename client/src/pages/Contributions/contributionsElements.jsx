@@ -398,3 +398,9 @@ export const Group = styled.div`
   gap: ${(props) => (props.inline ? '8px' : '4px')};
   width: 100%;
 `;
+
+export const DivSectionContribution = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+`;
