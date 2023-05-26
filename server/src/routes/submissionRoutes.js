@@ -9,5 +9,6 @@ Router.get(
   submissionController.listSubmissionsBelongToContribution
 );
 Router.post('/new', authenticateAccessToken, submissionController.createSubmission);
+Router.delete('/:submissionId', authenticateAccessToken, submissionController.deleteSubmission);
 
 module.exports = Router;
