@@ -242,8 +242,17 @@ const Contribution = () => {
                   <TableCell>Type</TableCell>
                   <TableCell>Venue</TableCell>
                 </TableHead>
-                {false ? (
-                  <h1>hého</h1>
+                {contribution?.submissions.length > 0 ? (
+                  contribution.submissions.map((submission, index) => (
+                    <TableRow
+                      key={index}
+                      onClick={() => navigate(`/submissions/${submission._id}`)}>
+                      <TableCell>{submission.title}</TableCell>
+                      <TableCell>{submission.submissionDate || '-'}</TableCell>
+                      <TableCell>{submission.type}</TableCell>
+                      <TableCell>{submission.venue.title || '-'}</TableCell>
+                    </TableRow>
+                  ))
                 ) : (
                   <TableRow onClick={() => navigate('/submissions/new')}>
                     <TableCellButton>+ {t('submission.newSubmission')}</TableCellButton>

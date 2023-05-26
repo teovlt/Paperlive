@@ -72,9 +72,11 @@ const Submission = () => {
   };
 
   useEffect(() => {
-    //auth.contributions?.find((c) => c._id === contributionId)
-
- 
+    setSubmission(
+      auth.contributions?.map((contribution) =>
+        contribution.submissions?.find((submission) => submission._id.toString() === submissionId)
+      )[0]
+    );
   }, [submissionId]);
 
   const handleConfirmation = async () => {};
