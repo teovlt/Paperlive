@@ -8,6 +8,10 @@ import {
   HiOutlineNewspaper,
   HiOutlineTrash,
   HiOutlineArrowLeft,
+  HiOutlineDocumentText,
+  HiOutlineClock,
+  HiOutlineSparkles,
+  HiOutlineMicrophone,
 } from 'react-icons/hi2';
 import {
   Sidebar,
@@ -185,7 +189,7 @@ const Contribution = () => {
             <HiOutlineTrash />
           </Button>
         </Sidebar>
-        <ContributionInfosContainer style={{ rowGap: '96px' }}>
+        <ContributionInfosContainer style={{ rowGap: '56px' }}>
           {!isEditing ? (
             <>
               <DivSectionContribution>
@@ -245,35 +249,56 @@ const Contribution = () => {
                   </Button>
                 </LinearContainer>
 
-                <Table>
-                  <TableHead>
-                    <TableCell>Title</TableCell>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Type</TableCell>
-                    <TableCell>Venue</TableCell>
-                  </TableHead>
-                  {contribution?.submissions.length > 0 ? (
-                    contribution.submissions.map((submission, index) => (
-                      <TableRow
-                        key={index}
-                        onClick={() => navigate(`/submissions/${submission._id}`)}>
-                        <TableCell>{submission.title}</TableCell>
-                        <TableCell>{submission.submissionDate || '-'}</TableCell>
-                        <TableCell>{submission.type}</TableCell>
-                        <TableCell>{submission.venue?.title || '-'}</TableCell>
-                      </TableRow>
-                    ))
-                  ) : (
-                    <TableRow onClick={() => navigate('/submissions/new')}>
-                      <TableCellButton>+ {t('submission.newSubmission')}</TableCellButton>
+              <Table>
+                <TableHead>
+                  <TableCell>
+                    <HiOutlineDocumentText />
+                    Title
+                  </TableCell>
+                  <TableCell>
+                    <HiOutlineClock />
+                    Date
+                  </TableCell>
+                  <TableCell>
+                    <HiOutlineSparkles />
+                    Type
+                  </TableCell>
+                  <TableCell>
+                    <HiOutlineMicrophone />
+                    Venue
+                  </TableCell>
+                </TableHead>
+                {contribution?.submissions.length > 0 ? (
+                  contribution.submissions.map((submission, index) => (
+                    <TableRow
+                      key={index}
+                      onClick={() => navigate(`/submissions/${submission._id}`)}>
+                      <TableCell>{submission.title}</TableCell>
+                      <TableCell>
+                        {submission.submissionDate
+                          ? new Intl.DateTimeFormat(i18n.language, {
+                              day: '2-digit',
+                              month: '2-digit',
+                              year: 'numeric',
+                            }).format(new Date(submission.submissionDate))
+                          : '-'}
+                      </TableCell>
+                      <TableCell>{submission.type}</TableCell>
+                      <TableCell>{submission.venue?.name || '-'}</TableCell>
                     </TableRow>
-                  )}
-                  <TableFoot>
-                    <TableCell>
-                      Count: <span>0</span>
-                    </TableCell>
-                  </TableFoot>
-                </Table>
+                  ))
+                ) : (
+                  <TableRow onClick={() => navigate('/submissions/new')}>
+                    <TableCellButton>+ {t('submission.newSubmission')}</TableCellButton>
+                  </TableRow>
+                )}
+                <TableFoot>
+                  <TableCell>
+                    Count: <span>{contribution?.submissions.length}</span>
+                  </TableCell>
+                </TableFoot>
+              </Table>
+                
               </DivSectionContribution>
             </>
           ) : (
