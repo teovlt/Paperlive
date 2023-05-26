@@ -4,11 +4,13 @@ const { authenticateAccessToken } = require('../middlewares/authenticationMiddle
 
 Router.get('/', authenticateAccessToken, submissionController.listSubmissionsBelongToTeam);
 Router.get(
-  '/:contributionId',
+  '/:contributionId/submissions',
   authenticateAccessToken,
   submissionController.listSubmissionsBelongToContribution
 );
+Router.get('/:submissionId', authenticateAccessToken, submissionController.readSubmission);
 Router.post('/new', authenticateAccessToken, submissionController.createSubmission);
+Router.put('/:submissionId', authenticateAccessToken, submissionController.updateSubmission);
 Router.delete('/:submissionId', authenticateAccessToken, submissionController.deleteSubmission);
 
 module.exports = Router;

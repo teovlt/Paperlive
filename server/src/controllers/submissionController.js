@@ -6,6 +6,8 @@ const Venue = require('../models/venueModel');
 
 const fs = require('fs');
 const { removeFilesContainingTerms } = require('../utils/utils');
+const { createOrUpdateAuthor } = require('./authorController');
+const { createOrUpdateVenue } = require('./venueController');
 const ObjectId = require('mongoose').Types.ObjectId;
 
 /**
@@ -91,6 +93,8 @@ module.exports.readSubmission = async (req, res) => {
     const team = await Team.findOne({ _id: req.teamId }).populate('contributions');
     if (!team) return;
 
+    console.log(submissionId);
+
     const contribution = team.contributions?.find((contribution) =>
       contribution.submissions?.some((submission) => submission._id.toString() === submissionId)
     );
@@ -120,10 +124,7 @@ module.exports.createSubmission = async (req, res) => {
     const { contributionId, authors, venue: v, ...submissionData } = req.body;
     let venue = v;
 
-    const team = await Team.findOne({
-      _id: req.teamId,
-      contributions: { $in: [contributionId] },
-    });
+    const team = await Team.findOne({ _id: req.teamId, contributions: { $in: [contributionId] } });
     if (!team) return res.status(404).json({ error: 'Contribution not found' });
 
     if (
@@ -170,40 +171,27 @@ module.exports.createSubmission = async (req, res) => {
       );
     }
 
+    if (
+      fs.existsSync(
+        `${__dirname}/../../uploads/submission/abstract/temp-submission-commentpdf-${req.teamId}.pdf`
+      )
+    ) {
+      fs.renameSync(
+        `${__dirname}/../../uploads/submission/abstract/temp-submission-commentpdf-${req.teamId}.pdf`,
+        `${__dirname}/../../uploads/submission/abstract/submission-commentpdf-${_id}.pdf`
+      );
+    }
+
     if (authors) {
       await Promise.all(
         authors.map(async (c, index) => {
-          if (c.author._id) {
-            const newAuthor = await Author.findOne({ _id: c.author._id });
-            await newAuthor.updateOne({
-              $set: {
-                name: c.author.name,
-                grade: c.author.grade,
-                country: c.author.country,
-              },
-            });
-            authors[index]['author'] = newAuthor._id;
-          } else {
-            authors[index]['author'] = await new Author({ ...c.author }).save()._id;
-          }
+          authors[index]['author'] = await createOrUpdateAuthor(c.author);
         })
       );
     }
 
     if (venue) {
-      if (venue._id) {
-        const newVenue = await Venue.findOne({ _id: venue._id });
-        await newVenue.updateOne({
-          $set: {
-            name: venue.name,
-            rank: venue.rank,
-          },
-        });
-        venue = newVenue._id;
-      } else {
-        venue = await new Venue({ ...venue }).save()._id;
-        console.log(venue);
-      }
+      venue = await createOrUpdateVenue(venue);
     }
 
     const submission = new Submission({
@@ -236,6 +224,106 @@ module.exports.createSubmission = async (req, res) => {
  * @access Private
  * @params {title?, type?, state?, submissionDate?, abstract?, zipFolder?, compiledPDF?, diffPDF?, authors[]?, venue?}
  */
+module.exports.updateSubmission = async (req, res) => {
+  try {
+    const { submissionId } = req.params;
+    const { authors, venue: v, ...submissionData } = req.body;
+    let venue = v;
+
+    const team = await Team.findOne({ _id: req.teamId }).populate('contributions');
+
+    const contribution = team.contributions?.find((contribution) =>
+      contribution.submissions?.some((submission) => submission._id.toString() === submissionId)
+    );
+    if (!contribution) return res.status(404).json({ error: 'Contribution not found' });
+
+    if (
+      fs.existsSync(
+        `${__dirname}/../../uploads/submission/abstract/temp-submission-abstract-${req.teamId}.pdf`
+      )
+    ) {
+      fs.renameSync(
+        `${__dirname}/../../uploads/submission/abstract/temp-submission-abstract-${req.teamId}.pdf`,
+        `${__dirname}/../../uploads/submission/abstract/submission-abstract-${submissionId}.pdf`
+      );
+    }
+
+    if (
+      fs.existsSync(
+        `${__dirname}/../../uploads/submission/abstract/temp-submission-zipfolder-${req.teamId}.zip`
+      )
+    ) {
+      fs.renameSync(
+        `${__dirname}/../../uploads/submission/abstract/temp-submission-zipfolder-${req.teamId}.zip`,
+        `${__dirname}/../../uploads/submission/abstract/submission-zipfolder-${submissionId}.zip`
+      );
+    }
+
+    if (
+      fs.existsSync(
+        `${__dirname}/../../uploads/submission/abstract/temp-submission-compiledpdf-${req.teamId}.pdf`
+      )
+    ) {
+      fs.renameSync(
+        `${__dirname}/../../uploads/submission/abstract/temp-submission-compiledpdf-${req.teamId}.pdf`,
+        `${__dirname}/../../uploads/submission/abstract/submission-compiledpdf-${submissionId}.pdf`
+      );
+    }
+
+    if (
+      fs.existsSync(
+        `${__dirname}/../../uploads/submission/abstract/temp-submission-diffpdf-${req.teamId}.pdf`
+      )
+    ) {
+      fs.renameSync(
+        `${__dirname}/../../uploads/submission/abstract/temp-submission-diffpdf-${req.teamId}.pdf`,
+        `${__dirname}/../../uploads/submission/abstract/submission-diffpdf-${submissionId}.pdf`
+      );
+    }
+
+    if (
+      fs.existsSync(
+        `${__dirname}/../../uploads/submission/abstract/temp-submission-commentpdf-${req.teamId}.pdf`
+      )
+    ) {
+      fs.renameSync(
+        `${__dirname}/../../uploads/submission/abstract/temp-submission-commentpdf-${req.teamId}.pdf`,
+        `${__dirname}/../../uploads/submission/abstract/submission-commentpdf-${submissionId}.pdf`
+      );
+    }
+
+    if (authors) {
+      await Promise.all(
+        authors.map(async (c, index) => {
+          authors[index]['author'] = await createOrUpdateAuthor(c.author);
+        })
+      );
+    }
+
+    if (venue) {
+      venue = await createOrUpdateVenue(venue);
+    }
+
+    const result = await Submission.updateOne(
+      { _id: submissionId },
+      {
+        $set: {
+          venue,
+          authors,
+          ...submissionData,
+        },
+      }
+    );
+
+    if (result.matchedCount > 0) {
+      return res.status(201).json({ message: 'Successfully updated' });
+    }
+
+    return res.status(404).json({ error: 'Submission not found' });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
 
 /**
  * Delete a submission by ID
