@@ -30,11 +30,7 @@ data
 server/coverage
 
 # Exclude file contents within the uploads directory
-/server/uploads/team/picture/*
-/server/uploads/contribution/abstract/*
-/server/uploads/submission/zipfolder/*
-/server/uploads/submission/compiledpdf/*
-/server/uploads/submission/diffpdf/*
+/server/uploads/*
 
 # Include specific files within the uploads directory
 !/server/uploads/team/picture/team-picture-default.png
