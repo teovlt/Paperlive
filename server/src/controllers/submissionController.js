@@ -328,7 +328,7 @@ module.exports.updateSubmission = async (req, res) => {
 
 /**
  * Delete a submission by ID
- * @route DELETE /api/submissions/:submissionId
+ * @route DELETE /api/submissions/delete/:submissionId
  * @group Submissions
  * @access Private
  */

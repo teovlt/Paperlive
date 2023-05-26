@@ -83,7 +83,29 @@ const Submission = () => {
     );
   }, [submissionId]);
 
-  const handleConfirmation = async () => {};
+  const handleConfirmation = async () => {
+    //traduire pour les soumissions
+    const confirmed = await confirm({
+      title: `${t('contribution.suppTitle')}`,
+      caption: `${t('contribution.suppCaption')}`,
+      cancelLabel: `${t('global.cancel')}`,
+      confirmLabel: `${t('global.confirm')}`,
+    });
+
+    if (confirmed) {
+      await axiosPrivate.delete(`/submissions/delete/${submissionId}`, {
+        ...submission,
+      });
+      console.log('coucou');
+      
+
+      // const updatedContributions = auth.contributions.filter((c) => c._id !== contributionId);
+      // setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
+      navigate(-1);
+      //traduire le toast
+      notifyDelete();
+    }
+  };
 
   async function handleSaveChanges() {}
 
@@ -182,8 +204,8 @@ const Submission = () => {
                 </ContributionInfosLineWrapper>
                 <ContributionInfosLineWrapper>
                   <ContributionInfo>
-                    <Label>Abstract</Label>
-                    <Link onClick={handleDownload}>{t('global.download')}</Link>
+                    <Label> {t('submission.venue')}</Label>
+                    <Value>{submission?.venue || '-'}</Value>
                   </ContributionInfo>
                   <ContributionInfo>
                     <Label> {t('submission.state')}</Label>
@@ -192,6 +214,10 @@ const Submission = () => {
                     </Value>
                   </ContributionInfo>
                 </ContributionInfosLineWrapper>
+                <ContributionInfo>
+                  <Label> {t('submission.authors')}</Label>
+                  <Value>{submission?.authors || '-'}</Value>
+                </ContributionInfo>
               </DivSectionContribution>
               <DivSectionContribution>
                 <Heading2>{t('contribution.files')}</Heading2>
