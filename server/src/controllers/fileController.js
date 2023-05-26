@@ -1,7 +1,15 @@
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
-const { teamPictureStorage, contributionAbstractStorage } = require('../utils/multerStorage');
+const {
+  teamPictureStorage,
+  contributionAbstractStorage,
+  submissionAbstractStorage,
+  submissionZipfolderStorage,
+  submissionCompiledPDFStorage,
+  submissionDiffPDFStorage,
+  submissionCommentPDFStorage,
+} = require('../utils/multerStorage');
 const Team = require('../models/teamModel');
 
 const findFileInSubdirectories = (filename, directory) => {
@@ -66,6 +74,70 @@ module.exports.uploadTeamPicture = async (req, res) => {
  */
 module.exports.uploadContributionAbstract = (req, res) => {
   const upload = multer({ storage: contributionAbstractStorage });
+  upload.single('file')(req, res, async (err) => {
+    if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
+  });
+};
+
+/**
+ * Upload a submission abstract.
+ * @route POST /api/files/submission/abstract
+ * @desc Upload a submission abstract file.
+ * @access Private
+ */
+module.exports.uploadSubmissionAbstract = (req, res) => {
+  const upload = multer({ storage: submissionAbstractStorage });
+  upload.single('file')(req, res, async (err) => {
+    if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
+  });
+};
+
+/**
+ * Upload a submission zipfolder.
+ * @route POST /api/files/submission/zipfolder
+ * @desc Upload a submission zipfolder file.
+ * @access Private
+ */
+module.exports.uploadSubmissionZipfolder = (req, res) => {
+  const upload = multer({ storage: submissionZipfolderStorage });
+  upload.single('file')(req, res, async (err) => {
+    if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
+  });
+};
+/**
+ * Upload a submission zipfolder.
+ * @route POST /api/files/submission/compiledpdf
+ * @desc Upload a submission compiledpdf file.
+ * @access Private
+ */
+module.exports.uploadSubmissionCompiledPDF = (req, res) => {
+  const upload = multer({ storage: submissionCompiledPDFStorage });
+  upload.single('file')(req, res, async (err) => {
+    if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
+  });
+};
+
+/**
+ * Upload a submission diffpdf.
+ * @route POST /api/files/submission/diffpdf
+ * @desc Upload a submission diffpdf file.
+ * @access Private
+ */
+module.exports.uploadSubmissionDiffPDF = (req, res) => {
+  const upload = multer({ storage: submissionDiffPDFStorage });
+  upload.single('file')(req, res, async (err) => {
+    if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
+  });
+};
+
+/**
+ * Upload a submission commentpdf.
+ * @route POST /api/files/submission/commentpdf
+ * @desc Upload a submission commentpdf file.
+ * @access Private
+ */
+module.exports.uploadSubmissionCommentPDF = (req, res) => {
+  const upload = multer({ storage: submissionCommentPDFStorage });
   upload.single('file')(req, res, async (err) => {
     if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
   });
