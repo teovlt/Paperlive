@@ -127,10 +127,13 @@
     "zipFolder": "Zip Folder",
     "compiledPDF": "Compiled file",
     "diffPDF": "Difference file",
-    "commentsPDF" : "Comment file",
+    "commentsPDF": "Comment file",
 
     "authors": "Authors",
-    "venue": "Venue"
+    "venue": "Venue",
+
+    "edit": "Edit the submission",
+    "delete": "Delete the submission"
   },
   "fileInput": {
     "success": "Imported file",

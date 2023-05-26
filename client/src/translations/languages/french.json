@@ -130,7 +130,9 @@
     "commentsPDF": "Fichier des commentaires",
 
     "authors": "Auteurs",
-    "venue": "Revue"
+    "venue": "Revue",
+    "edit": "Modifier la soumission",
+    "delete": "Supprimer la soumission"
   },
   "fileInput": {
     "success": "Fichier importé ",

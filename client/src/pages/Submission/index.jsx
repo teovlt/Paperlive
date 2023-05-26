@@ -126,7 +126,7 @@ const Submission = () => {
           </Button>
           {!isEditing && (
             <Button secondary onClick={() => setIsEditing(true)}>
-              edit the submission
+              {t('submission.edit')}
             </Button>
           )}
           <Button
@@ -139,7 +139,7 @@ const Submission = () => {
               alignItems: 'center',
               columnGap: '8px',
             }}>
-            supprimer la submission
+            {t('submission.delete')}
             <HiOutlineTrash />
           </Button>
         </Sidebar>
