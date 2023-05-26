@@ -73,9 +73,11 @@ const Submission = () => {
 
   useEffect(() => {
     setSubmission(
-      auth.contributions?.map((contribution) =>
-        contribution.submissions?.find((submission) => submission._id.toString() === submissionId)
-      )[0]
+      auth.contributions
+        ?.find((contribution) =>
+          contribution.submissions?.find((submission) => submission._id.toString() === submissionId)
+        )
+        .submissions?.find((submission) => submission._id.toString() === submissionId)
     );
   }, [submissionId]);
 
