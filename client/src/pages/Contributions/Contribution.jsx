@@ -8,6 +8,10 @@ import {
   HiOutlineNewspaper,
   HiOutlineTrash,
   HiOutlineArrowLeft,
+  HiOutlineDocumentText,
+  HiOutlineClock,
+  HiOutlineSparkles,
+  HiOutlineMicrophone,
 } from 'react-icons/hi2';
 import {
   Sidebar,
@@ -237,10 +241,22 @@ const Contribution = () => {
 
               <Table>
                 <TableHead>
-                  <TableCell>Title</TableCell>
-                  <TableCell>Date</TableCell>
-                  <TableCell>Type</TableCell>
-                  <TableCell>Venue</TableCell>
+                  <TableCell>
+                    <HiOutlineDocumentText />
+                    Title
+                  </TableCell>
+                  <TableCell>
+                    <HiOutlineClock />
+                    Date
+                  </TableCell>
+                  <TableCell>
+                    <HiOutlineSparkles />
+                    Type
+                  </TableCell>
+                  <TableCell>
+                    <HiOutlineMicrophone />
+                    Venue
+                  </TableCell>
                 </TableHead>
                 {contribution?.submissions.length > 0 ? (
                   contribution.submissions.map((submission, index) => (
@@ -248,9 +264,17 @@ const Contribution = () => {
                       key={index}
                       onClick={() => navigate(`/submissions/${submission._id}`)}>
                       <TableCell>{submission.title}</TableCell>
-                      <TableCell>{submission.submissionDate || '-'}</TableCell>
+                      <TableCell>
+                        {submission.submissionDate
+                          ? new Intl.DateTimeFormat(i18n.language, {
+                              day: '2-digit',
+                              month: '2-digit',
+                              year: 'numeric',
+                            }).format(new Date(submission.submissionDate))
+                          : '-'}
+                      </TableCell>
                       <TableCell>{submission.type}</TableCell>
-                      <TableCell>{submission.venue.title || '-'}</TableCell>
+                      <TableCell>{submission.venue?.name || '-'}</TableCell>
                     </TableRow>
                   ))
                 ) : (
@@ -260,7 +284,7 @@ const Contribution = () => {
                 )}
                 <TableFoot>
                   <TableCell>
-                    Count: <span>0</span>
+                    Count: <span>{contribution?.submissions.length}</span>
                   </TableCell>
                 </TableFoot>
               </Table>
