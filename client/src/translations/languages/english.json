@@ -113,7 +113,7 @@
   "submission": {
     "newSubmission": "New submission",
     "title": "Title",
-    "date": "Date",
+    "date": "Submission date",
     "type": "Type",
     "poster": "Poster",
     "shortPaper": "ShortPaper",
@@ -127,7 +127,7 @@
     "zipFolder": "Zip Folder",
     "compiledPDF": "Compiled file",
     "diffPDF": "Difference file",
-    "commentsPDF" : "Comment file",
+    "commentsPDF": "Comment file",
 
     "authors": "Authors",
     "venue": "Venue"

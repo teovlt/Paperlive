@@ -12,10 +12,30 @@ Router.post(
   fileController.uploadContributionAbstract
 );
 
-// POST /api/files/submission/zipfolder
+Router.post(
+  '/submission/abstract',
+  authenticateAccessToken,
+  fileController.uploadSubmissionAbstract
+);
 
-// POST /api/files/submission/compiledpdf
+Router.post(
+  '/submission/zipfolder',
+  authenticateAccessToken,
+  fileController.uploadSubmissionZipfolder
+);
 
-// POST /api/files/submission/diffpdf
+Router.post(
+  '/submission/compiledpdf',
+  authenticateAccessToken,
+  fileController.uploadSubmissionCompiledPDF
+);
+
+Router.post('/submission/diffpdf', authenticateAccessToken, fileController.uploadSubmissionDiffPDF);
+
+Router.post(
+  '/submission/commentpdf',
+  authenticateAccessToken,
+  fileController.uploadSubmissionCommentPDF
+);
 
 module.exports = Router;

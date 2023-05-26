@@ -17,3 +17,48 @@ module.exports.contributionAbstractStorage = multer.diskStorage({
     cb(null, 'temp-contribution-abstract-' + req.teamId + '.pdf');
   },
 });
+
+module.exports.submissionAbstractStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/submission/abstract/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, 'temp-submission-abstract-' + req.teamId + '.pdf');
+  },
+});
+
+module.exports.submissionZipfolderStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/submission/zipfolder/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, 'temp-submission-zipfolder-' + req.teamId + '.zip');
+  },
+});
+
+module.exports.submissionCompiledPDFStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/submission/compiledpdf/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, 'temp-submission-compiledpdf-' + req.teamId + '.pdf');
+  },
+});
+
+module.exports.submissionDiffPDFStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/submission/diffpdf/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, 'temp-submission-diffpdf-' + req.teamId + '.pdf');
+  },
+});
+
+module.exports.submissionCommentPDFStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/submission/commentpdf/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, 'temp-submission-commentpdf-' + req.teamId + '.pdf');
+  },
+});

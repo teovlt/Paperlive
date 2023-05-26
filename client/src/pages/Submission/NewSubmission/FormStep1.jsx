@@ -76,7 +76,7 @@ const FormStep1 = ({ submissionData, setSubmissionData, errorMsg, setErrorMsg, n
             {
               label: t('submission.draft'),
               value: 'draft',
-              defaultChecked: submissionData?.state === 'draft',
+              defaultChecked: submissionData?.state === 'draft' || true,
             },
             {
               label: t('submission.submitted'),
