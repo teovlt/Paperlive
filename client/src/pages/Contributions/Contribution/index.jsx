@@ -109,7 +109,7 @@ const Contribution = () => {
               name: 'venue',
               label: 'Venue',
               icon: <HiOutlineMicrophone />,
-              operator: (value) => value.name,
+              operator: (value) => value?.name,
             },
           ]}
         />

@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import React, { useContext, useState, useEffect } from 'react';
-import { AccentContext, ThemeContext } from '../App';
+import { AccentContext } from '../App';
 
 const GlobalStyle = createGlobalStyle`
 
