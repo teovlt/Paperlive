@@ -3,7 +3,7 @@ import useAuth from '../../hooks/useAuth';
 
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
-import { Container, Group, LabelInfos } from './sidebarElements';
+import { Container, Group, LabelInfos } from './sidebarProfileElements';
 import { Button, Heading1, Link, Label } from '../../theme/appElements';
 import {
   HiOutlineLink,
@@ -17,9 +17,9 @@ import Input from '../Input';
 import TextArea from '../TextArea';
 import { useTranslation } from 'react-i18next';
 import RadioGroup from '../RadioGroup';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
-const ProfileSidebar = () => {
+const SidebarProfile = () => {
   const { t } = useTranslation();
 
   const { auth, setAuth } = useAuth();
@@ -173,4 +173,4 @@ const ProfileSidebar = () => {
   );
 };
 
-export default ProfileSidebar;
+export default SidebarProfile;

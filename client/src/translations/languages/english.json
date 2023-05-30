@@ -9,13 +9,15 @@
     "contribution": "Contribution",
     "contributions": "Contributions",
     "submission": "Submission",
+    "submissions": "Submissions",
     "search": "Search",
     "confirm": "Confirm",
     "beta": "Beta",
     "accueil": "Home"
   },
-  "layout": {
+  "navigation": {
     "overview": "Overview",
+    "contributions": "Contributions",
     "statistics": "Statistics"
   },
   "sideBar": {
@@ -29,6 +31,11 @@
   },
   "avatar": {
     "hover": "Change your profile picture"
+  },
+  "table": {
+    "search": "Search...",
+    "new": "New",
+    "count": "Count:"
   },
   "login": {
     "welcome": "Welcome",
@@ -76,11 +83,14 @@
     "noActivity": "Nothing here for the moment"
   },
   "contribution": {
+    "overview": "Overview",
+    "statistics": "Statistics",
+    "settings": "Settings",
     "title": "Title",
     "date": "Date",
     "role": "Role",
     "state": "State",
-    "count": "Count:",
+    "abstract": "Abstract",
     "searchBar": "Search contributions by title",
     "stats": "Show the statistics",
     "editContribution": "Edit the contribution",
@@ -92,8 +102,7 @@
     "coLeader": "Co-leader",
     "guest": "Guest",
     "startDate": "Start date",
-    "related": "Related contribution",
-    "related2": "Related contributions",
+    "related": "Related contributions",
     "noRelated": "No contributions are linked to this contribution",
     "teamRole": "Team role",
     "step": "Step",
@@ -113,7 +122,7 @@
   "submission": {
     "newSubmission": "New submission",
     "title": "Title",
-    "date": "Submission date",
+    "date": "Date",
     "type": "Type",
     "poster": "Poster",
     "shortPaper": "ShortPaper",

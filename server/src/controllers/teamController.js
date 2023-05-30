@@ -29,6 +29,34 @@ module.exports.listTeams = async (req, res) => {
 };
 
 /**
+ * Retreives details of the authenticated team based on the `teamId` passed in the request
+ * @route GET /api/teams/me
+ * @group Teams
+ * @access Private
+ */
+module.exports.me = async (req, res) => {
+  try {
+    const team = await Team.findOne({ _id: req.teamId })
+      .select('-password')
+      .populate({
+        path: 'contributions',
+        populate: {
+          path: 'submissions',
+          populate: {
+            path: 'authors.author venue',
+          },
+        },
+      });
+    if (!team) return res.status(404).json({ error: 'Team not found' });
+
+    return res.status(200).json(team);
+  } catch (error) {
+    // Error handling
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+/**
  * Get a team by ID.
  * @route GET /api/teams/:teamId
  * @group Teams
@@ -46,35 +74,6 @@ module.exports.readTeam = async (req, res) => {
     if (!team) return res.status(404).json({ error: 'Team not found' });
 
     // If the team is found, return a 200 OK response with the team object
-    return res.status(200).json(team);
-  } catch (error) {
-    // Error handling
-    return res.status(500).json({ error: error.message });
-  }
-};
-
-/**
- * Retreives details of the authenticated team based on the `teamId` passed in the request
- * @route GET /api/teams/me
- * @group Teams
- * @access Private
- */
-module.exports.me = async (req, res) => {
-  try {
-    const team = await Team.findOne({ _id: req.teamId })
-      .select('-password')
-      .populate({
-        path: 'contributions',
-        populate: {
-          path: 'submissions',
-          populate: {
-            path: 'authors.author',
-            path: 'venue',
-          },
-        },
-      });
-    if (!team) return res.status(404).json({ error: 'Team not found' });
-
     return res.status(200).json(team);
   } catch (error) {
     // Error handling

@@ -1,33 +1,18 @@
 import React from 'react';
-import { Container, MainSection, NavLink, Navigation } from './layoutElements';
-import ProfileSidebar from '../ProfileSidebar';
+import { Container, MainSection } from './layoutElements';
 import NavBar from '../Navbar';
 import { Outlet } from 'react-router-dom';
-import { HiOutlineBookOpen, HiOutlineChartPie, HiOutlineNewspaper } from 'react-icons/hi2';
 import { useTranslation } from 'react-i18next';
 
-const Layout = () => {
+const Layout = (props) => {
   const { t } = useTranslation();
 
   return (
     <>
       <NavBar />
       <Container>
-        <Navigation>
-          <NavLink to='/'>
-            <HiOutlineBookOpen />
-            {t('layout.overview')}
-          </NavLink>
-          <NavLink to='/contributions'>
-            <HiOutlineNewspaper />
-            {t('global.contributions')}
-          </NavLink>
-          <NavLink to='/statistics'>
-            <HiOutlineChartPie />
-            {t('layout.statistics')}
-          </NavLink>
-        </Navigation>
-        <ProfileSidebar />
+        {props.head}
+        {props.sidebar}
         <MainSection>
           <Outlet />
         </MainSection>

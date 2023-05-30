@@ -1,197 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import useAuth from '../../hooks/useAuth';
-import useSearch from '../../hooks/useSearch';
-import {
-  LinearContainer,
-  Table,
-  TableCell,
-  TableFoot,
-  TableHead,
-  TableRow,
-  Button,
-  TableCellButton,
-} from './contributionsElements';
 import { useTranslation } from 'react-i18next';
-import Input from '../../components/Input';
 import { Heading2 } from '../../theme/appElements';
+import Table from '../../components/Table';
 import {
   HiOutlineClock,
   HiOutlineDocumentText,
   HiOutlineSparkles,
   HiOutlineUsers,
 } from 'react-icons/hi2';
+import i18n from '../../translations/i18n';
 
 function Contributions() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { auth } = useAuth();
-  const navigate = useNavigate();
-  const search = useSearch();
-
-  const [sort, setSort] = useState({ attr: 'startDate', direction: 'desc' });
-
-  const [searchResults, setSearchResults] = useState(auth.contributions);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  useEffect(() => {
-    setSort({ attr: 'startDate', direction: 'desc' });
-    setSearchResults(search(searchTerm, auth.contributions, 'title'));
-  }, [searchTerm]);
-
-  useEffect(() => {
-    const sortedList = [...searchResults];
-    sortedList.sort((a, b) => {
-      const valueA = a[sort.attr];
-      const valueB = b[sort.attr];
-
-      if (sort.attr === 'teamRole') {
-        const order = ['leader', 'coLeader', 'guest'];
-        const indexA = order.indexOf(valueA);
-        const indexB = order.indexOf(valueB);
-
-        if (indexA < indexB) {
-          return sort.direction === 'asc' ? -1 : 1;
-        }
-        if (indexA > indexB) {
-          return sort.direction === 'asc' ? 1 : -1;
-        }
-      }
-
-      if (sort.attr === 'state') {
-        const order = ['inProgress', 'approved', 'dropped'];
-        const indexA = order.indexOf(valueA);
-        const indexB = order.indexOf(valueB);
-
-        if (indexA < indexB) {
-          return sort.direction === 'asc' ? -1 : 1;
-        }
-        if (indexA > indexB) {
-          return sort.direction === 'asc' ? 1 : -1;
-        }
-      }
-
-      if (valueA < valueB) {
-        return sort.direction === 'asc' ? -1 : 1;
-      }
-      if (valueA > valueB) {
-        return sort.direction === 'asc' ? 1 : -1;
-      }
-      return 0;
-    });
-    setSearchResults(sortedList);
-  }, [sort]);
 
   return (
     <>
       <Heading2>{t('global.contributions')}</Heading2>
-      <LinearContainer>
-        <Input
-          small
-          name='search'
-          label={t('global.search')}
-          id='searchBar'
-          value={searchTerm}
-          placeholder={`${t('contribution.searchBar')}`}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          autoComplete='off'
-        />
-        <Button onClick={() => navigate('/contributions/new')}>
-          {t('contribution.newContribution')}
-        </Button>
-      </LinearContainer>
-      <Table>
-        <TableHead>
-          <TableCell
-            className={`${sort.attr === 'title' && 'active'} ${
-              sort.attr === 'title' && sort.direction === 'desc' && 'sortDesc'
-            }`}
-            onClick={() =>
-              setSort((prev) => {
-                if (prev.attr === 'title' && prev.direction === 'asc')
-                  return { ...prev, direction: 'desc' };
-                else if (prev.attr === 'title' && prev.direction === 'desc')
-                  return { ...prev, direction: 'asc' };
-                else return { attr: 'title', direction: 'asc' };
-              })
-            }>
-            <HiOutlineDocumentText />
-            {t('contribution.title')}
-          </TableCell>
-          <TableCell
-            className={`${sort.attr === 'startDate' && 'active'} ${
-              sort.attr === 'startDate' && sort.direction === 'desc' && 'sortDesc'
-            }`}
-            onClick={() =>
-              setSort((prev) => {
-                if (prev.attr === 'startDate' && prev.direction === 'asc')
-                  return { ...prev, direction: 'desc' };
-                else if (prev.attr === 'startDate' && prev.direction === 'desc')
-                  return { ...prev, direction: 'asc' };
-                else return { attr: 'startDate', direction: 'asc' };
-              })
-            }>
-            <HiOutlineClock />
-            {t('contribution.date')}
-          </TableCell>
-          <TableCell
-            className={`${sort.attr === 'teamRole' && 'active'} ${
-              sort.attr === 'teamRole' && sort.direction === 'desc' && 'sortDesc'
-            }`}
-            onClick={() =>
-              setSort((prev) => {
-                if (prev.attr === 'teamRole' && prev.direction === 'asc')
-                  return { ...prev, direction: 'desc' };
-                else if (prev.attr === 'teamRole' && prev.direction === 'desc')
-                  return { ...prev, direction: 'asc' };
-                else return { attr: 'teamRole', direction: 'asc' };
-              })
-            }>
-            <HiOutlineUsers />
-            {t('contribution.role')}
-          </TableCell>
-          <TableCell
-            className={`${sort.attr === 'state' && 'active'} ${
-              sort.attr === 'state' && sort.direction === 'desc' && 'sortDesc'
-            }`}
-            onClick={() =>
-              setSort((prev) => {
-                if (prev.attr === 'state' && prev.direction === 'asc')
-                  return { ...prev, direction: 'desc' };
-                else if (prev.attr === 'state' && prev.direction === 'desc')
-                  return { ...prev, direction: 'asc' };
-                else return { attr: 'state', direction: 'asc' };
-              })
-            }>
-            <HiOutlineSparkles />
-            {t('contribution.state')}
-          </TableCell>
-        </TableHead>
-        {searchResults.length > 0 ? (
-          searchResults.map((contribution, index) => (
-            <TableRow key={index} onClick={() => navigate(`/contributions/${contribution._id}`)}>
-              <TableCell>{contribution.title}</TableCell>
-              <TableCell>
-                {new Intl.DateTimeFormat(i18n.language, {
-                  day: '2-digit',
-                  month: '2-digit',
-                  year: 'numeric',
-                }).format(new Date(contribution.startDate))}
-              </TableCell>
-              <TableCell>{t(`contribution.${contribution.teamRole}`)}</TableCell>
-              <TableCell>{t(`contribution.${contribution.state}`)}</TableCell>
-            </TableRow>
-          ))
-        ) : (
-          <TableRow onClick={() => navigate('/contributions/new')}>
-            <TableCellButton>+ {t('contribution.newContribution')}</TableCellButton>
-          </TableRow>
-        )}
-        <TableFoot>
-          <TableCell>
-            {t('contribution.count')} <span>{searchResults.length}</span>
-          </TableCell>
-        </TableFoot>
-      </Table>
+      <Table
+        name='contributions'
+        list={auth.contributions}
+        searchAttr='title'
+        defaultSort={{ attr: 'startDate', direction: 'desc' }}
+        fields={[
+          // TODO: translation
+          {
+            name: 'title',
+            label: 'Title',
+            icon: <HiOutlineDocumentText />,
+            operator: (value) => value,
+          },
+          {
+            name: 'startDate',
+            label: 'Date',
+            icon: <HiOutlineClock />,
+            operator: (value) =>
+              new Intl.DateTimeFormat(i18n.language, {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+              }).format(new Date(value)),
+          },
+          {
+            name: 'teamRole',
+            label: 'Role',
+            icon: <HiOutlineUsers />,
+            operator: (value) => t(`contribution.${value}`),
+          },
+          {
+            name: 'state',
+            label: 'State',
+            icon: <HiOutlineSparkles />,
+            operator: (value) => t(`contribution.${value}`),
+          },
+        ]}
+      />
     </>
   );
 }

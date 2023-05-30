@@ -9,13 +9,15 @@
     "contribution": "Contribution",
     "contributions": "Contribution(s)",
     "submission": "Soumission",
+    "submissions": "Soumissions",
     "search": "Rechercher",
     "confirm": "Confirmer",
     "beta": "Bêta",
     "accueil": "Accueil"
   },
-  "layout": {
+  "navigation": {
     "overview": "Vue d'ensemble",
+    "contributions": "Contributions",
     "statistics": "Statistiques"
   },
   "sideBar": {
@@ -29,6 +31,11 @@
   },
   "avatar": {
     "hover": "Changer votre photo de profil"
+  },
+  "table": {
+    "search": "Rechercher...",
+    "new": "Nouvelle",
+    "count": "Décompte :"
   },
   "login": {
     "welcome": "Bienvenue",
@@ -76,11 +83,14 @@
     "noActivity": "Rien ici pour l'instant"
   },
   "contribution": {
+    "overview": "Vue d'ensemble",
+    "statistics": "Statistiques",
+    "settings": "Paramètres",
     "title": "Titre",
     "date": "Date",
     "role": "Rôle",
     "state": "État",
-    "count": "Décompte :",
+    "abstract": "Abstract",
     "searchBar": "Rechercher des contributions par titre",
     "stats": "Voir les statistiques",
     "edit": "Modifier la contribution",
@@ -92,8 +102,7 @@
     "coLeader": "Co-meneur",
     "guest": "Invité",
     "startDate": "Date de départ",
-    "related": "Contribution en lien",
-    "related2": "Contributions en lien",
+    "related": "Contributions en lien",
     "noRelated": "Aucune contribution n'est liée à cette contribution",
     "teamRole": "Rôle de l'équipe",
     "step": "Étape",
@@ -113,7 +122,7 @@
   "submission": {
     "newSubmission": "Nouvelle soumission",
     "title": "Titre",
-    "date": "Date de soumission",
+    "date": "Date",
     "type": "Type",
     "poster": "Poster",
     "shortPaper": "Article court",
