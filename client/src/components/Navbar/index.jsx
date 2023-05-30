@@ -7,7 +7,7 @@ import useLogout from '../../hooks/useLogout';
 import DropdownMenu from '../Dropdown';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const NavBar = () => {
   const { t } = useTranslation();
@@ -66,15 +66,15 @@ const NavBar = () => {
       {
         actions: [
           {
-            label: t('dropDown.profile'),
+            label: t('navigation.overview'),
             onClick: () => navigate('/'),
           },
           {
-            label: t('global.contributions'),
+            label: t('navigation.contributions'),
             onClick: () => navigate('/contributions'),
           },
           {
-            label: t('dropDown.statistics'),
+            label: t('navigation.statistics'),
             onClick: () => navigate('/statistics'),
           },
         ],
