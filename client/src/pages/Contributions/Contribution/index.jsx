@@ -43,6 +43,7 @@ const Contribution = () => {
 
   return (
     <>
+      {/* TODO: translation */}
       <SectionContainer>
         <Heading2>{t('contribution.informations')}</Heading2>
         <InfoContainer>
