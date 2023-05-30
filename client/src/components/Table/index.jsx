@@ -25,10 +25,10 @@ const Table = ({ name, list, fields, defaultSort, searchAttr }) => {
 
   const [sort, setSort] = useState(defaultSort);
   const [terms, setTerms] = useState('');
-  const [resultList, setResultList] = useState(list);
+  const [resultList, setResultList] = useState(null);
 
   useEffect(() => {
-    const sortedList = [...resultList];
+    const sortedList = resultList || list;
     sortedList.sort((a, b) => {
       const ValueA = a[sort.attr];
       const ValueB = b[sort.attr];
@@ -38,7 +38,7 @@ const Table = ({ name, list, fields, defaultSort, searchAttr }) => {
       return 0;
     });
     setResultList(sortedList);
-  }, [sort]);
+  }, [sort, list]);
 
   useEffect(() => {
     setSort(defaultSort);
