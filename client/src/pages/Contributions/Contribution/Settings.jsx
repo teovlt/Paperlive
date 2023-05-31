@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import {
-  HiOutlineBookOpen,
-  HiOutlineChartPie,
-  HiOutlineNewspaper,
-  HiOutlineTrash,
-  HiOutlineArrowLeft,
-} from 'react-icons/hi2';
+import { HiOutlineTrash } from 'react-icons/hi2';
+import { toast } from 'react-toastify';
 
 import { Group, SectionContainer } from './contributionElements';
-import { Button, Heading2, Heading3 } from '../../../theme/appElements';
+import { Button, Heading2, Heading3, Caption } from '../../../theme/appElements';
 
 import Input from '../../../components/Input';
 import RadioGroup from '../../../components/RadioGroup';
 import FileInput from '../../../components/FileInput';
 import Selector from '../../../components/Selector';
+import Chips from '../../../components/Chips';
 
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -21,9 +17,6 @@ import useAuth from '../../../hooks/useAuth';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { useNavigate } from 'react-router-dom';
 import { useConfirm } from '../../../context/ConfirmContext';
-
-import { toast } from 'react-toastify';
-import { Container } from '../../../components/Layout/layoutElements';
 
 const ContributionSettings = () => {
   const { id } = useParams();
@@ -35,6 +28,15 @@ const ContributionSettings = () => {
 
   const contribution = auth.contributions?.find((c) => c._id === id);
   const [contributionData, setContributionData] = useState({ ...contribution });
+
+  const [deleting, setDeleting] = useState(false);
+  const [errMsg, setErrMsg] = useState('');
+
+  const [contributionName, setContributionName] = useState('');
+
+  useEffect(() => {
+    setErrMsg('');
+  }, [contributionName]);
 
   const notifySave = () => {
     toast.success(t('toast.contributionUpdatedSuccess'), {
@@ -50,6 +52,7 @@ const ContributionSettings = () => {
   };
 
   const notifyCancel = () => {
+    //traduire
     toast.success(t('changements non sauvegardés'), {
       position: 'bottom-right',
       autoClose: 5000,
@@ -76,7 +79,6 @@ const ContributionSettings = () => {
   };
 
   async function handleSaveChanges() {
-    //TODO : utiliser notify seulement en cas de changements
     await axiosPrivate.put(`/contributions/update/${id}`, {
       ...contributionData,
     });
@@ -88,29 +90,38 @@ const ContributionSettings = () => {
   }
 
   function handleCancelChanges() {
-    navigate(`/contributions/${id}`)
+    navigate(`/contributions/${id}`);
     notifyCancel();
   }
 
-  const handleConfirmation = async () => {
-    const confirmed = await confirm({
-      title: `${t('contribution.suppTitle')}`,
-      caption: `${t('contribution.suppCaption')}`,
-      cancelLabel: `${t('global.cancel')}`,
-      confirmLabel: `${t('global.confirm')}`,
-    });
-
-    if (confirmed) {
-      await axiosPrivate.delete(`/contributions/delete/${id}`, {
-        ...contribution,
-      });
-      const updatedContributions = auth.contributions.filter((c) => c._id !== id);
-      setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
-      navigate('/contributions');
-      notifyDelete();
-    }
+  const handleCancel = () => {
+    setDeleting(false);
+    setContributionName('');
   };
 
+  const handleDeleteContribution = async () => {
+    if (contributionName === contribution.title) {
+      try {
+        await axiosPrivate.delete(`/contributions/delete/${id}`, {
+          ...contribution,
+        });
+        const updatedContributions = auth.contributions.filter((c) => c._id !== id);
+        setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
+        navigate('/contributions');
+        notifyDelete();
+      } catch (error) {
+        //verifier cca
+        if (!error?.response) {
+          setErrMsg(t('authentication.servorError'));
+        } else {
+          setErrMsg(t('settings.profile.credentialsError'));
+        }
+        //
+      }
+    } else {
+      setErrMsg('Le nom de la contribution nest pas le bon');
+    }
+  };
   return (
     <>
       <SectionContainer>
@@ -200,19 +211,57 @@ const ContributionSettings = () => {
       </SectionContainer>
       <SectionContainer>
         <Heading2> {t('contribution.delete')}</Heading2>
-        <Button
-          secondary
-          type='negative'
-          onClick={handleConfirmation}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            columnGap: '8px',
-          }}>
-          {t('contribution.delete')}
-          <HiOutlineTrash />
-        </Button>
+
+        {!deleting ? (
+          <>
+            <Button
+              secondary
+              type='negative'
+              onClick={() => setDeleting(true)}
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                columnGap: '8px',
+              }}>
+              {t('contribution.delete')}
+              <HiOutlineTrash />
+            </Button>
+          </>
+        ) : (
+          <>
+            <Chips type='notice'>{t('settings.profile.deleteAccountWarning2')}</Chips>
+            <Caption>
+              Cette contribution va disparaitre et ses informations ne pourront jamais être
+              retrouvés, soyez sur de votre action
+            </Caption>
+
+            <div style={{ display: 'flex', flexDirection: 'column', rowGap: '12px' }}>
+              <Caption>
+                Pour confirmer la suppression de votre contribution, veuillez entrer le titre exact
+                de la contribution sur laquelle vous vous situer
+              </Caption>
+              <Input
+                id='contributionName'
+                label='Nom de la contribution'
+                autoComplete='off'
+                small
+                value={contributionName}
+                onChange={(e) => setContributionName(e.target.value)}
+              />
+            </div>
+
+            {errMsg && <Chips type='negative'>{errMsg}</Chips>}
+            <div style={{ width: '100%', display: 'flex', columnGap: '24px' }}>
+              <Button style={{ width: '250px' }} type='neutral' onClick={handleCancel}>
+                {t('global.cancel')}
+              </Button>
+              <Button type='negative' style={{ width: '250px' }} onClick={handleDeleteContribution}>
+                {t('contribution.delete')}
+              </Button>
+            </div>
+          </>
+        )}
       </SectionContainer>
     </>
   );

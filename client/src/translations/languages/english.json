@@ -13,7 +13,8 @@
     "search": "Search",
     "confirm": "Confirm",
     "beta": "Beta",
-    "accueil": "Home"
+    "accueil": "Home",
+    "password" : "Password"
   },
   "navigation": {
     "overview": "Overview",
