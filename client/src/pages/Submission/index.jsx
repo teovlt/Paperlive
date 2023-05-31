@@ -62,11 +62,11 @@ const Submission = () => {
         <LineWrapper>
           <InfoContainer>
             <Label>{t('submission.type')}</Label>
-            <Value>{submission.type || '-'}</Value>
+            <Value>{t(`submission.${submission.type}`) || '-'}</Value>
           </InfoContainer>
           <InfoContainer>
             <Label>{t('submission.state')}</Label>
-            <Value>{submission.state || '-'}</Value>
+            <Value> {t(`submission.${submission.state}`) || '-'}</Value>
           </InfoContainer>
         </LineWrapper>
 
