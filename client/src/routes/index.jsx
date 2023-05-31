@@ -145,6 +145,7 @@ const Routes = () => {
                     ]}
                   />
                 }
+                head={<Navigation />}
               />
             }>
             <Route path='' element={<Navigate to='profile' replace />} />
