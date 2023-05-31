@@ -24,7 +24,6 @@ function Contributions() {
         searchAttr='title'
         defaultSort={{ attr: 'startDate', direction: 'desc' }}
         fields={[
-          // TODO: translation
           {
             name: 'title',
             label: 'Title',

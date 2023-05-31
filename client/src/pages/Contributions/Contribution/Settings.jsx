@@ -1,5 +1,9 @@
+import { useParams } from 'react-router-dom';
+
 const ContributionSettings = () => {
-  return 'Settings';
+  const { id } = useParams();
+
+  return id;
 };
 
 export default ContributionSettings;

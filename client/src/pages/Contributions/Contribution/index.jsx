@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
@@ -24,8 +24,10 @@ const Contribution = () => {
   const { auth } = useAuth();
   const { id } = useParams();
   const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
 
   const contribution = auth.contributions?.find((c) => c._id === id);
+  if (!contribution) navigate('/');
 
   const handleDownload = async (e) => {
     e.preventDefault();

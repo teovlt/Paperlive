@@ -1,5 +1,9 @@
+import { useParams } from 'react-router-dom';
+
 const ContributionStatistics = () => {
-  return 'Statistics';
+  const { id } = useParams();
+
+  return id;
 };
 
 export default ContributionStatistics;

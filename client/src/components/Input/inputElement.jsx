@@ -19,7 +19,7 @@ export const InputField = styled.input`
   line-height: ${(props) => (props.small ? '1.5rem' : '1.6rem')};
 
   &[type='Date'] {
-    padding: 1.5rem;
+    padding: 1.45rem;
   }
 
   &::placeholder {
