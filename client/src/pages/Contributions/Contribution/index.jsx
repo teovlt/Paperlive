@@ -45,11 +45,10 @@ const Contribution = () => {
 
   return (
     <>
-      {/* TODO: translation */}
       <SectionContainer>
         <Heading2>{t('contribution.informations')}</Heading2>
         <InfoContainer>
-          <Label>Titre</Label>
+          <Label>{t('contribution.title')}</Label>
           <Value>{contribution.title}</Value>
         </InfoContainer>
         <InfoContainer>

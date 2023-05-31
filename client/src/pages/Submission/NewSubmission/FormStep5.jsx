@@ -28,7 +28,8 @@ const FormStep5 = ({ submissionData, previous, goTo }) => {
     // await axiosPrivate.post('/submission/new', submissionDataWithoutFiles);
     // const contributions = await axiosPrivate.get('/contributions');
     // setAuth((prev) => ({ ...prev, contributions: contributions.data }));
-    navigate('/contributions/');
+    // navigate('/contributions/');
+    console.log('fonction pas faite');
   };
 
   return (

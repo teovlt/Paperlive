@@ -4,7 +4,7 @@ import { Link as AppLink } from '../../theme/appElements';
 export const SectionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 16px;
+  row-gap: 24px;
 `;
 
 export const LineWrapper = styled.div`
@@ -49,4 +49,11 @@ export const Link = styled(AppLink)`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+`;
+
+export const Group = styled.div`
+  display: flex;
+  flex-direction: ${(props) => !props.inline && 'column'};
+  gap: ${(props) => (props.inline ? '8px' : '4px')};
+  width: 100%;
 `;

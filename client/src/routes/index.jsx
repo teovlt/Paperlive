@@ -18,10 +18,11 @@ import NotFound from '../pages/NotFound';
 import Contribution from '../pages/Contributions/Contribution';
 import ContributionStatistics from '../pages/Contributions/Contribution/Statistics';
 import ContributionSettings from '../pages/Contributions/Contribution/Settings';
-import AccountSettings from '../pages/Settings/account';
-import AppearanceSettings from '../pages/Settings/appearance';
-import SecuritySettings from '../pages/Settings/security';
+import AccountSettings from '../pages/Settings/Account';
+import AppearanceSettings from '../pages/Settings/Appearance';
+import SecuritySettings from '../pages/Settings/Security';
 import Submission from '../pages/Submission';
+import SubmissionSettings from '../pages/Submission/Settings';
 import NewSubmission from '../pages/Submission/NewSubmission';
 import SidebarProfile from '../components/SidebarProfile';
 import SidebarNavigation from '../components/SidebarNavigation';
@@ -99,7 +100,7 @@ const Routes = () => {
             }>
             <Route path='' element={<Submission />} />
             <Route path='statistics' element={<ContributionStatistics />} />
-            <Route path='settings' element={<ContributionSettings />} />
+            <Route path='settings' element={<SubmissionSettings />} />
           </Route>
 
           <Route path='/submissions/new' element={<NewSubmission />} />

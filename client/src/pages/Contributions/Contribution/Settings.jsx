@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { HiOutlineTrash } from 'react-icons/hi2';
 import { toast } from 'react-toastify';
 
 import { Group, SectionContainer } from './contributionElements';
@@ -51,19 +50,6 @@ const ContributionSettings = () => {
     });
   };
 
-  const notifyCancel = () => {
-    toast.success(t('toast.unsavedChangements'), {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'colored',
-    });
-  };
-
   const notifyDelete = () => {
     toast.success(t('toast.contributionDeletedSuccess'), {
       position: 'bottom-right',
@@ -86,11 +72,6 @@ const ContributionSettings = () => {
     setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
     notifySave();
     navigate(`/contributions/${id}`);
-  }
-
-  function handleCancelChanges() {
-    navigate(`/contributions/${id}`);
-    notifyCancel();
   }
 
   const handleCancelDelete = () => {
@@ -201,17 +182,14 @@ const ContributionSettings = () => {
             />
 
             <Group inline>
-              <Button type='neutral' onClick={handleCancelChanges} style={{ width: '100%' }}>
-                {t('global.cancel')}
-              </Button>
               <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>
-                {t('global.save')}
+                {t('contribution.update')}
               </Button>
             </Group>
           </SectionContainer>
 
           <div style={{ display: 'flex', flexDirection: 'column', width: '300px', rowGap: '12px' }}>
-            <Heading2> {t('contribution.delete')}</Heading2>
+            <Heading2 style={{ color: 'var(--negative)' }}> {t('contribution.delete')}</Heading2>
             <Button type='negative' onClick={() => setDeleting(true)} style={{ width: '250px' }}>
               {t('contribution.delete')}
             </Button>
