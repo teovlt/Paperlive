@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { HiOutlineTrash } from 'react-icons/hi2';
 import { toast } from 'react-toastify';
 
 import { Group, SectionContainer } from './contributionElements';

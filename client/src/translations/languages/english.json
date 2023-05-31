@@ -124,12 +124,11 @@
     "deleteContError": "Error: deletion failed",
     "contributionName": "Name of the contribution",
     "update": "Update the contribution"
-
   },
   "submission": {
     "newSubmission": "New submission",
-    "informations" : "Information",
-    "files" : "Files",
+    "informations": "Information",
+    "files": "Files",
     "title": "Title",
     "date": "Date",
     "type": "Type",
@@ -149,9 +148,14 @@
 
     "authors": "Authors",
     "venue": "Venue",
-
     "edit": "Edit the submission",
-    "delete": "Delete the submission"
+    "delete": "Delete the submission",
+    "update": "Update the submission",
+
+    "submissionName": "Name of the submission",
+    "deleteSubWarning1": "The submission is about to be delete of this contribution, there will be no way to get it back, please be aware of what you are doing!",
+    "deleteSubWarning2": "To confirm the deletion of this submission, please enter below the title of the submission:",
+    "deleteSubWrongName": "The name in your input does not accord to the name of the submission, please try again."
   },
   "fileInput": {
     "success": "Imported file",
@@ -207,6 +211,8 @@
     "contributionUpdatedSuccess": "Contribution updated successfully",
     "contributionDeletedSuccess": "Contribution deleted successfully",
     "contributionCreatedSucess": "Contribution created successfully",
-    "unsavedChangements": "Unsaved changements"
+    "unsavedChangements": "Unsaved changements",
+    "submissionUpdatedSuccess": "Submission updated successfully",
+    "submissionDeletedSuccess": "Submission deleted successfully"
   }
 }

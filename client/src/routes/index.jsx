@@ -22,6 +22,7 @@ import AccountSettings from '../pages/Settings/Account';
 import AppearanceSettings from '../pages/Settings/Appearance';
 import SecuritySettings from '../pages/Settings/Security';
 import Submission from '../pages/Submission';
+import SubmissionSettings from '../pages/Submission/Settings';
 import NewSubmission from '../pages/Submission/NewSubmission';
 import SidebarProfile from '../components/SidebarProfile';
 import SidebarNavigation from '../components/SidebarNavigation';
@@ -99,7 +100,7 @@ const Routes = () => {
             }>
             <Route path='' element={<Submission />} />
             <Route path='statistics' element={<ContributionStatistics />} />
-            <Route path='settings' element={<ContributionSettings />} />
+            <Route path='settings' element={<SubmissionSettings />} />
           </Route>
 
           <Route path='/submissions/new' element={<NewSubmission />} />

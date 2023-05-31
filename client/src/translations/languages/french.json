@@ -123,7 +123,7 @@
     "deleteContWrongName": "Le titre de la contribution ne correspond pas au texte que vous avez saisi",
     "deleteContError": "Erreur : suppresion echouée",
     "contributionName": "Nom de la contribution",
-    "update": "Mettre à jour la conntribution"
+    "update": "Mettre à jour la contribution"
   },
   "submission": {
     "newSubmission": "Nouvelle soumission",
@@ -149,8 +149,15 @@
     "authors": "Auteurs",
     "venue": "Revue",
     "edit": "Modifier la soumission",
-    "delete": "Supprimer la soumission"
+    "delete": "Supprimer la soumission",
+    "update": "Mettre à jour la soumission",
+
+    "submissionName": "Nom de la soumission",
+    "deleteSubWarning1": "La soumission va être supprimée de cette contribution, il n'y aura aucun moyen de la récupérer, soyez sûr de ce que vous faites !",
+    "deleteSubWarning2": "Pour confirmer la suppression de cette soumission, veuillez entrer son titre exact ci-dessous : ",
+    "deleteSubWrongName": "Le titre de la soumission ne correspond pas au texte que vous avez saisi, réessayer s'il vous plait."
   },
+
   "fileInput": {
     "success": "Fichier importé ",
     "drag": "Faites glisser votre fichier ici",
@@ -205,6 +212,8 @@
     "contributionUpdatedSuccess": "Contribution mis à jour avec succès",
     "contributionDeletedSuccess": "Contribution supprimé avec succès",
     "contributionCreatedSucess": "Contribution créée avec succès",
-    "unsavedChangements": "Changements non sauvegardés"
+    "unsavedChangements": "Changements non sauvegardés",
+    "submissionUpdatedSuccess": "Soumission mise à jour avec succès",
+    "submissionDeletedSuccess": "Soumission supprimée avec succès"
   }
 }

@@ -50,3 +50,10 @@ export const Link = styled(AppLink)`
   white-space: nowrap;
   text-overflow: ellipsis;
 `;
+
+export const Group = styled.div`
+  display: flex;
+  flex-direction: ${(props) => !props.inline && 'column'};
+  gap: ${(props) => (props.inline ? '8px' : '4px')};
+  width: 100%;
+`;
