@@ -122,7 +122,8 @@
     "deleteContWarning2": "Pour confirmer la suppression de cette contribution, veuillez entrer son titre exact ci-dessous : ",
     "deleteContWrongName": "Le titre de la contribution ne correspond pas au texte que vous avez saisi",
     "deleteContError": "Erreur : suppresion echouée",
-    "contributionName": "Nom de la contribution"
+    "contributionName": "Nom de la contribution",
+    "update": "Mettre à jour la conntribution"
   },
   "submission": {
     "newSubmission": "Nouvelle soumission",
