@@ -127,6 +127,8 @@
   },
   "submission": {
     "newSubmission": "Nouvelle soumission",
+    "informations": "Informations",
+    "files": "Documents",
     "title": "Titre",
     "date": "Date",
     "type": "Type",

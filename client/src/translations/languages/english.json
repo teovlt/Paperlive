@@ -128,6 +128,8 @@
   },
   "submission": {
     "newSubmission": "New submission",
+    "informations" : "Information",
+    "files" : "Files",
     "title": "Title",
     "date": "Date",
     "type": "Type",
