@@ -122,139 +122,131 @@ const ContributionSettings = () => {
   };
   return (
     <>
-      <SectionContainer>
-        <Heading2>{t('contribution.edit')}</Heading2>
-        <Input
-          small
-          id='title'
-          defaultValue={contribution.title}
-          label={t('contribution.title')}
-          autoComplete='off'
-          onChange={(event) => {
-            const newContributionData = { ...contribution, title: event.target.value };
-            setContributionData(newContributionData);
-          }}
-        />
-        <Input
-          small
-          id='date'
-          type='date'
-          defaultValue={contribution?.startDate}
-          label={t('contribution.startDate')}
-          autoComplete='off'
-          onChange={(event) => {
-            const newContributionData = {
-              ...contribution,
-              startDate: event.target.value,
-            };
-            setContributionData(newContributionData);
-          }}
-        />
-        <RadioGroup
-          name='role'
-          onChange={(event) => {
-            const newContributionData = { ...contribution, teamRole: event.target.value };
-            setContributionData(newContributionData);
-          }}
-          template={{
-            label: t('contribution.teamRole'),
-            radios: [
-              {
-                label: t('contribution.leader'),
-                value: 'leader',
-                defaultChecked: contribution?.teamRole === 'leader',
-              },
-              {
-                label: t('contribution.coLeader'),
-                value: 'coLeader',
-                defaultChecked: contribution?.teamRole === 'coLeader',
-              },
-              {
-                label: t('contribution.guest'),
-                value: 'guest',
-                defaultChecked: contribution?.teamRole === 'guest',
-              },
-            ],
-          }}
-        />
-        <Selector
-          list={auth.contributions.filter((c) => c._id !== id)}
-          id='relatedContributions'
-          name='relatedContributions'
-          label={t('contribution.related')}
-          selected={contribution.relatedContributions}
-          onChange={(list) => {
-            setContributionData((prev) => ({
-              ...prev,
-              relatedContributions: list.map((c) => ({ _id: c._id, title: c.title })),
-            }));
-          }}
-        />
-        <Heading3>{t('contribution.abstract')}</Heading3>
-        <FileInput
-          name='abstract'
-          file={contribution.abstract}
-          endpoint='files/contribution/abstract'
-          onChange={(file) => setContributionData((prev) => ({ ...prev, filename: file?.name }))}
-        />
+      {!deleting ? (
+        <>
+          <SectionContainer>
+            <Heading2>{t('contribution.edit')}</Heading2>
+            <Input
+              small
+              id='title'
+              defaultValue={contribution.title}
+              label={t('contribution.title')}
+              autoComplete='off'
+              onChange={(event) => {
+                const newContributionData = { ...contribution, title: event.target.value };
+                setContributionData(newContributionData);
+              }}
+            />
+            <Input
+              small
+              id='date'
+              type='date'
+              defaultValue={contribution?.startDate}
+              label={t('contribution.startDate')}
+              autoComplete='off'
+              onChange={(event) => {
+                const newContributionData = {
+                  ...contribution,
+                  startDate: event.target.value,
+                };
+                setContributionData(newContributionData);
+              }}
+            />
+            <RadioGroup
+              name='role'
+              onChange={(event) => {
+                const newContributionData = { ...contribution, teamRole: event.target.value };
+                setContributionData(newContributionData);
+              }}
+              template={{
+                label: t('contribution.teamRole'),
+                radios: [
+                  {
+                    label: t('contribution.leader'),
+                    value: 'leader',
+                    defaultChecked: contribution?.teamRole === 'leader',
+                  },
+                  {
+                    label: t('contribution.coLeader'),
+                    value: 'coLeader',
+                    defaultChecked: contribution?.teamRole === 'coLeader',
+                  },
+                  {
+                    label: t('contribution.guest'),
+                    value: 'guest',
+                    defaultChecked: contribution?.teamRole === 'guest',
+                  },
+                ],
+              }}
+            />
+            <Selector
+              list={auth.contributions.filter((c) => c._id !== id)}
+              id='relatedContributions'
+              name='relatedContributions'
+              label={t('contribution.related')}
+              selected={contribution.relatedContributions}
+              onChange={(list) => {
+                setContributionData((prev) => ({
+                  ...prev,
+                  relatedContributions: list.map((c) => ({ _id: c._id, title: c.title })),
+                }));
+              }}
+            />
+            <Heading3>{t('contribution.abstract')}</Heading3>
+            <FileInput
+              name='abstract'
+              file={contribution.abstract}
+              endpoint='files/contribution/abstract'
+              onChange={(file) =>
+                setContributionData((prev) => ({ ...prev, filename: file?.name }))
+              }
+            />
 
-        <Group inline>
-          <Button type='neutral' onClick={handleCancelChanges} style={{ width: '100%' }}>
-            {t('global.cancel')}
-          </Button>
-          <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>
-            {t('global.save')}
-          </Button>
-        </Group>
-      </SectionContainer>
-      <SectionContainer>
-        <Heading2> {t('contribution.delete')}</Heading2>
-
-        {!deleting ? (
-          <>
-            <Button
-              secondary
-              type='negative'
-              onClick={() => setDeleting(true)}
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                columnGap: '8px',
-              }}>
-              {t('contribution.delete')}
-              <HiOutlineTrash />
-            </Button>
-          </>
-        ) : (
-          <>
-            <Chips type='notice'>{t('settings.profile.deleteAccountWarning2')}</Chips>
-            <Caption>{t('contribution.deleteContWarning1')}</Caption>
-
-            <div style={{ display: 'flex', flexDirection: 'column', rowGap: '12px' }}>
-              <Caption>{t('contribution.deleteContWarning2')}</Caption>
-              <Input
-                id='contributionName'
-                label={t('contribution.contributionName')}
-                autoComplete='off'
-                small
-                value={contributionName}
-                onChange={(e) => setContributionName(e.target.value)}
-              />
-            </div>
-
-            {errMsg && <Chips type='negative'>{errMsg}</Chips>}
-            <div style={{ width: '100%', display: 'flex', columnGap: '24px' }}>
-              <Button style={{ width: '250px' }} type='neutral' onClick={handleCancelDelete}>
+            <Group inline>
+              <Button type='neutral' onClick={handleCancelChanges} style={{ width: '100%' }}>
                 {t('global.cancel')}
               </Button>
-              <Button type='negative' style={{ width: '250px' }} onClick={handleDeleteContribution}>
-                {t('contribution.delete')}
+              <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>
+                {t('global.save')}
               </Button>
-            </div>
-          </>
-        )}
-      </SectionContainer>
+            </Group>
+          </SectionContainer>
+
+          <div style={{ display: 'flex', flexDirection: 'column', width: '300px', rowGap: '12px' }}>
+            <Heading2> {t('contribution.delete')}</Heading2>
+            <Button type='negative' onClick={() => setDeleting(true)} style={{ width: '250px' }}>
+              {t('contribution.delete')}
+            </Button>
+          </div>
+        </>
+      ) : (
+        <SectionContainer>
+          <Chips type='notice'>{t('settings.profile.deleteAccountWarning2')}</Chips>
+          <Caption>{t('contribution.deleteContWarning1')}</Caption>
+
+          <div style={{ display: 'flex', flexDirection: 'column', rowGap: '12px' }}>
+            <Caption>{t('contribution.deleteContWarning2')}</Caption>
+            <Input
+              id='contributionName'
+              label={t('contribution.contributionName')}
+              autoComplete='off'
+              small
+              value={contributionName}
+              onChange={(e) => setContributionName(e.target.value)}
+            />
+          </div>
+
+          {errMsg && <Chips type='negative'>{errMsg}</Chips>}
+          <div style={{ width: '100%', display: 'flex', columnGap: '24px' }}>
+            <Button style={{ width: '250px' }} type='neutral' onClick={handleCancelDelete}>
+              {t('global.cancel')}
+            </Button>
+            <Button type='negative' style={{ width: '250px' }} onClick={handleDeleteContribution}>
+              {t('contribution.delete')}
+            </Button>
+          </div>
+        </SectionContainer>
+      )}
     </>
   );
 };
