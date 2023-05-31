@@ -13,6 +13,7 @@ import {
   DivLeftInfos,
   DivDeleteAccountBtns,
   DivConfirmDelete,
+  SectionContainer,
 } from './settingsElements';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -97,86 +98,94 @@ const AccountSettings = () => {
       <Heading2 style={{ borderBottom: '1px solid var(--black-quaternary)' }}>
         {t('settings.pages.myAccount')}
       </Heading2>
-      <DivConnected>
-        <DivLeftInfos>
-          <RadioGroup
-            name='visibility'
-            template={{
-              label: t('sideBar.visibility'),
-              radios: [
-                {
-                  label: t('sideBar.private'),
-                  value: false,
-                  defaultChecked: profilData.visibility === false,
-                },
-                {
-                  label: t('sideBar.public'),
-                  value: true,
-                  defaultChecked: profilData.visibility === true,
-                },
-              ],
-            }}
-            onChange={(event) => {
-              setProfilData((prev) => ({ ...prev, visibility: JSON.parse(event.target.value) }));
-            }}
-          />
-          <TextArea
-            id='description'
-            label={t('sideBar.description')}
-            maxLength='240'
+      {!deleteConfirmation ? (
+        <>
+          <DivConnected>
+            <DivLeftInfos>
+              <RadioGroup
+                name='visibility'
+                template={{
+                  label: t('sideBar.visibility'),
+                  radios: [
+                    {
+                      label: t('sideBar.private'),
+                      value: false,
+                      defaultChecked: profilData.visibility === false,
+                    },
+                    {
+                      label: t('sideBar.public'),
+                      value: true,
+                      defaultChecked: profilData.visibility === true,
+                    },
+                  ],
+                }}
+                onChange={(event) => {
+                  setProfilData((prev) => ({
+                    ...prev,
+                    visibility: JSON.parse(event.target.value),
+                  }));
+                }}
+              />
+              <TextArea
+                id='description'
+                label={t('sideBar.description')}
+                maxLength='240'
+                autoComplete='off'
+                small
+                value={profilData.description}
+                onChange={(e) => {
+                  const newProfilData = { ...profilData, description: e.target.value };
+                  setProfilData(newProfilData);
+                }}
+              />
+            </DivLeftInfos>
+
+            <div style={{ width: '200px' }}>
+              <Avatar />
+            </div>
+          </DivConnected>
+          <Input
+            id='location'
+            label={t('sideBar.location')}
             autoComplete='off'
             small
-            value={profilData.description}
+            value={profilData.location}
             onChange={(e) => {
-              const newProfilData = { ...profilData, description: e.target.value };
+              const newProfilData = { ...profilData, location: e.target.value };
               setProfilData(newProfilData);
             }}
           />
-        </DivLeftInfos>
-
-        <div style={{ width: '200px' }}>
-          <Avatar />
-        </div>
-      </DivConnected>
-      <Input
-        id='location'
-        label={t('sideBar.location')}
-        autoComplete='off'
-        small
-        value={profilData.location}
-        onChange={(e) => {
-          const newProfilData = { ...profilData, location: e.target.value };
-          setProfilData(newProfilData);
-        }}
-      />
-      <Input
-        id='website'
-        label={t('sideBar.webSite')}
-        autoComplete='off'
-        small
-        value={profilData.website}
-        onChange={(e) => {
-          const newProfilData = { ...profilData, website: e.target.value };
-          setProfilData(newProfilData);
-        }}
-      />
-      <Button type='neutral' onClick={handleSubmit} style={{ width: '100%' }}>
-        {t('settings.profile.updateProfile')}
-      </Button>
-      <Heading2
-        style={{ borderBottom: '1px solid var(--black-quaternary)', color: 'var(--negative)' }}>
-        {t('settings.profile.deleteAccount')}
-      </Heading2>
-      {!deleteConfirmation ? (
-        <>
-          <Caption>{t('settings.profile.deleteAccountWarning1')}</Caption>
-
-          <Button
-            type='negative'
-            style={{ width: '250px' }}
-            onClick={() => setDeleteConfirmation(true)}>
-            {t('settings.profile.deleteAccount')}
+          <Input
+            id='website'
+            label={t('sideBar.webSite')}
+            autoComplete='off'
+            small
+            value={profilData.website}
+            onChange={(e) => {
+              const newProfilData = { ...profilData, website: e.target.value };
+              setProfilData(newProfilData);
+            }}
+          />
+          <Button type='neutral' onClick={handleSubmit} style={{ width: '100%' }}>
+            {t('settings.profile.updateProfile')}
           </Button>
+          <SectionContainer>
+            <Heading2
+              style={{
+                borderBottom: '1px solid var(--black-quaternary)',
+                color: 'var(--negative)',
+              }}>
+              {t('settings.profile.deleteAccount')}
+            </Heading2>
+            <Caption>{t('settings.profile.deleteAccountWarning1')}</Caption>
+
+            <Button
+              type='negative'
+              style={{ width: '250px' }}
+              onClick={() => setDeleteConfirmation(true)}>
+              {t('settings.profile.deleteAccount')}
+            </Button>
+          </SectionContainer>
         </>
       ) : (
         <>
@@ -194,7 +203,7 @@ const AccountSettings = () => {
           <Input
             id='password'
             type='password'
-            label={t('settings.profile.password')}
+            label={t('global.password')}
             autoComplete='off'
             small
             value={password}

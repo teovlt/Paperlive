@@ -129,7 +129,7 @@ const Register = () => {
           <Input
             type='password'
             id='password'
-            label={t('authentication.password')}
+            label={t('global.password')}
             autoComplete='off'
             onChange={(e) => setPassword(e.target.value)}
             value={password}

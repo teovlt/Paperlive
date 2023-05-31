@@ -125,7 +125,7 @@ const Routes = () => {
                         title: t('settings.sections.security'),
                         links: [
                           {
-                            label: t('settings.pages.password'),
+                            label: t('global.password'),
                             icon: <HiLockClosed />,
                             to: '/settings/security',
                           },

@@ -33,7 +33,7 @@ export const MainSection = styled.div`
   display: flex;
   flex-direction: column;
   padding-block: 32px;
-  row-gap: 32px;
+  row-gap: 48px;
 
   overflow-x: hidden;
   overflow-y: auto;
