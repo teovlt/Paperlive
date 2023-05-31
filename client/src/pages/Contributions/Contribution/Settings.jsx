@@ -186,10 +186,8 @@ const ContributionSettings = () => {
               label={t('contribution.related')}
               selected={contribution.relatedContributions}
               onChange={(list) => {
-                setContributionData((prev) => ({
-                  ...prev,
-                  relatedContributions: list.map((c) => ({ _id: c._id, title: c.title })),
-                }));
+                const newContributionData = { ...contributionData, relatedContributions: list };
+                setContributionData(newContributionData);
               }}
             />
             <Heading3>{t('contribution.abstract')}</Heading3>

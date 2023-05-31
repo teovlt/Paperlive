@@ -73,10 +73,8 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
         selected={contributionData.relatedContributions}
         label={t('contribution.related')}
         onChange={(list) => {
-          setContributionData((prev) => ({
-            ...prev,
-            relatedContributions: list.map((c) => ({ _id: c._id, title: c.title })),
-          }));
+          const newContributionData = { ...contributionData, relatedContributions: list };
+          setContributionData(newContributionData);
         }}
       />
       {errorMsg && <Chips type='negative'>{errorMsg}</Chips>}

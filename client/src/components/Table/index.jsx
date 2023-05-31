@@ -24,7 +24,7 @@ const Table = ({ name, list, fields, defaultSort, searchAttr }) => {
   const search = useSearch();
 
   const [sort, setSort] = useState('');
-  const [terms, setTerms] = useState('');
+  const [searchTerms, setSearchTerms] = useState('');
   const [resultList, setResultList] = useState(list);
 
   useEffect(() => {
@@ -41,16 +41,16 @@ const Table = ({ name, list, fields, defaultSort, searchAttr }) => {
 
   useEffect(() => {
     setSort(defaultSort);
-    setResultList(search(terms, list, searchAttr));
-  }, [terms, defaultSort]);
+    setResultList(search(searchTerms, list, searchAttr));
+  }, [searchTerms, defaultSort]);
 
   return (
     <Container>
       <THeader>
         <Search
           placeholder={t('table.search')}
-          value={terms}
-          onInput={(e) => setTerms(e.target.value)}></Search>
+          value={searchTerms}
+          onInput={(e) => setSearchTerms(e.target.value)}></Search>
         <Button onClick={() => navigate(`/${name}/new`)}>
           {t('table.new')} {t(`global.${name.slice(0, -1)}`).toLowerCase()}
         </Button>
