@@ -117,7 +117,12 @@
     "fileSupported": "Fichiers supportés",
     "suppTitle": "Supprimer la contribution",
     "suppCaption": "Une fois supprimée, il n'y aura aucun moyen de revenir en arrière et de récupérer des informations liées à cette contribution. Souhaitez-vous vraiment supprimer cette contribution de PaperLive ?",
-    "noResults": "Désolé, aucun résultat trouvé."
+    "noResults": "Désolé, aucun résultat trouvé.",
+    "deleteContWarning1": "La contribution va être supprimée de votre compte, il n'y aura aucun moyen de la récupérer, soyez sûr de ce que vous faites !",
+    "deleteContWarning2": "Pour confirmer la suppression de cette contribution, veuillez entrer son titre exact ci-dessous : ",
+    "deleteContWrongName": "Le titre de la contribution ne correspond pas au texte que vous avez saisi",
+    "deleteContError": "Erreur : suppresion echouée",
+    "contributionName": "Nom de la contribution"
   },
   "submission": {
     "newSubmission": "Nouvelle soumission",
@@ -198,6 +203,7 @@
     "languageChangementSucess": "Langage modifié avec succès",
     "contributionUpdatedSuccess": "Contribution mis à jour avec succès",
     "contributionDeletedSuccess": "Contribution supprimé avec succès",
-    "contributionCreatedSucess": "Contribution créée avec succès"
+    "contributionCreatedSucess": "Contribution créée avec succès",
+    "unsavedChangements": "Changements non sauvegardés"
   }
 }

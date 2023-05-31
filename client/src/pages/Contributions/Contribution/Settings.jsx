@@ -52,8 +52,7 @@ const ContributionSettings = () => {
   };
 
   const notifyCancel = () => {
-    //traduire
-    toast.success(t('changements non sauvegardés'), {
+    toast.success(t('toast.unsavedChangements'), {
       position: 'bottom-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -94,7 +93,7 @@ const ContributionSettings = () => {
     notifyCancel();
   }
 
-  const handleCancel = () => {
+  const handleCancelDelete = () => {
     setDeleting(false);
     setContributionName('');
   };
@@ -114,12 +113,12 @@ const ContributionSettings = () => {
         if (!error?.response) {
           setErrMsg(t('authentication.servorError'));
         } else {
-          setErrMsg(t('settings.profile.credentialsError'));
+          setErrMsg(t('contribution.deleteContError'));
         }
         //
       }
     } else {
-      setErrMsg('Le nom de la contribution nest pas le bon');
+      setErrMsg(t('contribution.deleteContWrongName'));
     }
   };
   return (
@@ -192,7 +191,7 @@ const ContributionSettings = () => {
             }));
           }}
         />
-        <Heading3>Abstract</Heading3>
+        <Heading3>{t('contribution.abstract')}</Heading3>
         <FileInput
           name='abstract'
           file={contribution.abstract}
@@ -231,19 +230,13 @@ const ContributionSettings = () => {
         ) : (
           <>
             <Chips type='notice'>{t('settings.profile.deleteAccountWarning2')}</Chips>
-            <Caption>
-              Cette contribution va disparaitre et ses informations ne pourront jamais être
-              retrouvés, soyez sur de votre action
-            </Caption>
+            <Caption>{t('contribution.deleteContWarning1')}</Caption>
 
             <div style={{ display: 'flex', flexDirection: 'column', rowGap: '12px' }}>
-              <Caption>
-                Pour confirmer la suppression de votre contribution, veuillez entrer le titre exact
-                de la contribution sur laquelle vous vous situer
-              </Caption>
+              <Caption>{t('contribution.deleteContWarning2')}</Caption>
               <Input
                 id='contributionName'
-                label='Nom de la contribution'
+                label={t('contribution.contributionName')}
                 autoComplete='off'
                 small
                 value={contributionName}
@@ -253,7 +246,7 @@ const ContributionSettings = () => {
 
             {errMsg && <Chips type='negative'>{errMsg}</Chips>}
             <div style={{ width: '100%', display: 'flex', columnGap: '24px' }}>
-              <Button style={{ width: '250px' }} type='neutral' onClick={handleCancel}>
+              <Button style={{ width: '250px' }} type='neutral' onClick={handleCancelDelete}>
                 {t('global.cancel')}
               </Button>
               <Button type='negative' style={{ width: '250px' }} onClick={handleDeleteContribution}>
