@@ -34,10 +34,23 @@ const ContributionSettings = () => {
   const { confirm } = useConfirm();
 
   const contribution = auth.contributions?.find((c) => c._id === id);
-  const [contributionData, setContributionData] = useState(null);
+  const [contributionData, setContributionData] = useState({ ...contribution });
 
   const notifySave = () => {
     toast.success(t('toast.contributionUpdatedSuccess'), {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  };
+
+  const notifyCancel = () => {
+    toast.success(t('changements non sauvegardés'), {
       position: 'bottom-right',
       autoClose: 5000,
       hideProgressBar: false,
@@ -68,14 +81,15 @@ const ContributionSettings = () => {
       ...contributionData,
     });
     const updatedContributions = auth.contributions.filter((c) => c._id !== id);
-    updatedContributions.push(contribution);
+    updatedContributions.push(contributionData);
     setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
     notifySave();
     navigate(`/contributions/${id}`);
   }
 
   function handleCancelChanges() {
-    setContributionData(auth.contributions.find((c) => c._id === id));
+    navigate(`/contributions/${id}`)
+    notifyCancel();
   }
 
   const handleConfirmation = async () => {
@@ -100,15 +114,15 @@ const ContributionSettings = () => {
   return (
     <>
       <SectionContainer>
-        <Heading2>{t('contribution.edit ')}</Heading2>
+        <Heading2>{t('contribution.edit')}</Heading2>
         <Input
           small
           id='title'
-          value={contribution?.title}
+          defaultValue={contribution.title}
           label={t('contribution.title')}
           autoComplete='off'
-          onChange={(e) => {
-            const newContributionData = { ...contribution, title: e.target.value };
+          onChange={(event) => {
+            const newContributionData = { ...contribution, title: event.target.value };
             setContributionData(newContributionData);
           }}
         />
@@ -159,7 +173,7 @@ const ContributionSettings = () => {
           id='relatedContributions'
           name='relatedContributions'
           label={t('contribution.related')}
-          selected={contribution?.relatedContributions}
+          selected={contribution.relatedContributions}
           onChange={(list) => {
             setContributionData((prev) => ({
               ...prev,
@@ -170,9 +184,9 @@ const ContributionSettings = () => {
         <Heading3>Abstract</Heading3>
         <FileInput
           name='abstract'
-          file={contribution?.abstract}
+          file={contribution.abstract}
           endpoint='files/contribution/abstract'
-          onChange={(file) => setFile(file?.name)}
+          onChange={(file) => setContributionData((prev) => ({ ...prev, filename: file?.name }))}
         />
 
         <Group inline>
