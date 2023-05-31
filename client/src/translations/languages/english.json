@@ -57,7 +57,6 @@
   "authentication": {
     "servorError": "No Server Response",
     "teamName": "Team name",
-    "password": "Password",
     "signIn": "Sign In",
     "signUp": "Sign Up"
   },
@@ -164,7 +163,6 @@
     },
     "pages": {
       "myAccount": "My Account",
-      "password": "Password",
       "appearance": "Appearance"
     },
     "profile": {
@@ -174,7 +172,6 @@
       "deleteAccountWarning2": "This is extremely important",
       "deleteAccountWarning3": "We will immediately delete all of your contributions, along with all of your soumissions, stats and private informations. You will no longer exist to anyone including you on PaperLive. Fill thoses input to confirm the permanent deletion of your account",
       "teamName": "Team Name",
-      "password": "Password",
       "verificationPrompt": "To verify, please type \"DELETE MY ACCOUNT\" in the input below:",
       "accountDeletionText": "DELETE MY ACCOUNT",
       "verificationError": "Invalid verification. Please type \"DELETE MY ACCOUNT\" correctly to proceed with the account deletion.",

@@ -13,7 +13,8 @@
     "search": "Rechercher",
     "confirm": "Confirmer",
     "beta": "Bêta",
-    "accueil": "Accueil"
+    "accueil": "Accueil",
+    "password": "Mot de passe"
   },
   "navigation": {
     "overview": "Vue d'ensemble",
@@ -56,7 +57,6 @@
   "authentication": {
     "servorError": "Le serveur ne répond pas",
     "teamName": "Nom de l'équipe",
-    "password": "Mot de passe",
     "signIn": "Se connecter",
     "signUp": "S'enregistrer"
   },
@@ -162,7 +162,6 @@
     },
     "pages": {
       "myAccount": "Mon compte",
-      "password": "Mot de passe",
       "appearance": "Apparence"
     },
     "profile": {
@@ -172,7 +171,6 @@
       "deleteAccountWarning2": "Ceci est extrêmement important.",
       "deleteAccountWarning3": "Nous supprimerons immédiatement toutes vos contributions, ainsi que toutes vos soumissions, statistiques et informations privées. Vous n'existerez plus pour personne, y compris pour vous, sur PaperLive. Remplissez ces champs pour confirmer la suppression permanente de votre compte.",
       "teamName": "Nom de l'équipe",
-      "password": "Mot de passe",
       "verificationPrompt": "Pour vérifier, veuillez taper \"SUPPRIMER MON COMPTE\" dans le champ ci-dessous :",
       "accountDeletionText": "SUPPRIMER MON COMPTE",
       "verificationError": "Vérification invalide. Veuillez saisir correctement \"SUPPRIMER MON COMPTE\" pour continuer avec la suppression du compte.",

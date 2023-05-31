@@ -194,7 +194,7 @@ const AccountSettings = () => {
           <Input
             id='password'
             type='password'
-            label={t('settings.profile.password')}
+            label={t('global.password')}
             autoComplete='off'
             small
             value={password}

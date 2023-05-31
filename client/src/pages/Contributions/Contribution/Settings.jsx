@@ -109,7 +109,6 @@ const ContributionSettings = () => {
         navigate('/contributions');
         notifyDelete();
       } catch (error) {
-        //verifier cca
         if (!error?.response) {
           setErrMsg(t('authentication.servorError'));
         } else {
