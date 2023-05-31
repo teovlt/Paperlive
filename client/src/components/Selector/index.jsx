@@ -1,16 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import useSearch from '../../hooks/useSearch';
-import {
-  ChipsButton,
-  ChipsContainer,
-  ChipsValue,
-  Container,
-  Input,
-  Label,
-  SearchResult,
-  SearchResultCaption,
-  SearchResultContainer,
-} from './selectorElements';
+import { Container, Input, Label } from './selectorElements';
 import { HiXMark } from 'react-icons/hi2';
 import { useTranslation } from 'react-i18next';
 
@@ -36,27 +26,15 @@ const Selector = ({ list, id, name, onChange, selected = [], label }) => {
   }, [selectedList]);
 
   return (
-    <Container>
-      {selectedList.length > 0 &&
-        selectedList.map((item, index) => (
-          <ChipsContainer key={index}>
-            <ChipsValue>{item.title}</ChipsValue>
-            <ChipsButton
-              onMouseDown={(e) => {
-                e.preventDefault();
-                setSelectedList((prev) => prev.filter((c) => c._id !== item._id));
-              }}>
-              <HiXMark />
-            </ChipsButton>
-          </ChipsContainer>
-        ))}
+    <Container className={`${isFocused && 'focus'}`}>
       <Input
         ref={inputRef}
         small
         id={id}
         name={name}
-        placeholder={label}
+        placeholder={' '}
         value={searchTerms}
+        autoComplete='off'
         onChange={(e) => setSearchTerms(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
@@ -64,29 +42,6 @@ const Selector = ({ list, id, name, onChange, selected = [], label }) => {
       <Label small htmlFor={id} className={`${list.length > 0 && 'filled'}`}>
         {label}
       </Label>
-      {isFocused && (
-        <SearchResultContainer className='open'>
-          {searchResults.length > 0 ? (
-            searchResults.map((result, index) => (
-              <SearchResult
-                key={index}
-                onMouseDown={(e) => {
-                  e.preventDefault();
-                  setSearchTerms('');
-                  setSelectedList((prev) => {
-                    const newList = [...prev];
-                    newList.push(result);
-                    return newList;
-                  });
-                }}>
-                {result.title}
-              </SearchResult>
-            ))
-          ) : (
-            <SearchResultCaption>{t('contribution.noResults')}</SearchResultCaption>
-          )}
-        </SearchResultContainer>
-      )}
     </Container>
   );
 };

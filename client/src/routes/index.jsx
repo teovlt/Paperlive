@@ -55,7 +55,7 @@ const Routes = () => {
                   <SidebarNavigation
                     template={[
                       {
-                        title: 'Contribution',
+                        title: t('global.contribution'),
                         links: [
                           { label: t('contribution.overview'), to: '' },
                           { label: t('contribution.statistics'), to: 'statistics' },
@@ -75,8 +75,34 @@ const Routes = () => {
 
           <Route path='/contributions/new' element={<NewContribution />} />
 
+          <Route
+            path='/submissions/:id'
+            element={
+              <Layout
+                sidebar={
+                  <SidebarNavigation
+                    template={[
+                      {
+                        title: t('global.submission'),
+                        links: [
+                          // TODO: change translation
+                          { label: t('contribution.overview'), to: '' },
+                          { label: t('contribution.statistics'), to: 'statistics' },
+                          { label: t('contribution.settings'), to: 'settings' },
+                        ],
+                      },
+                    ]}
+                  />
+                }
+                head={<Navigation />}
+              />
+            }>
+            <Route path='' element={<Submission />} />
+            <Route path='statistics' element={<ContributionStatistics />} />
+            <Route path='settings' element={<ContributionSettings />} />
+          </Route>
+
           <Route path='/submissions/new' element={<NewSubmission />} />
-          <Route path='/submissions/:id' element={<Submission />} />
 
           <Route
             path='/settings/'

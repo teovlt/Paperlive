@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../../../hooks/useAuth';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { Heading2 } from '../../../theme/appElements';
 import {
   InfoContainer,
@@ -22,11 +23,27 @@ const Contribution = () => {
   const { t, i18n } = useTranslation();
   const { auth } = useAuth();
   const { id } = useParams();
+  const axiosPrivate = useAxiosPrivate();
 
   const contribution = auth.contributions?.find((c) => c._id === id);
 
+  const handleDownload = async (e) => {
+    e.preventDefault();
+    const res = await axiosPrivate.get(
+      `${import.meta.env.VITE_API_URI}/api/files/${contribution.abstract}`,
+      { responseType: 'blob' }
+    );
+
+    const url = URL.createObjectURL(res.data);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', contribution?.abstract);
+    link.click();
+  };
+
   return (
     <>
+      {/* TODO: translation */}
       <SectionContainer>
         <Heading2>{t('contribution.informations')}</Heading2>
         <InfoContainer>
@@ -65,7 +82,7 @@ const Contribution = () => {
           <InfoContainer>
             <Label>{t('contribution.abstract')}</Label>
             <Value>
-              <Link>{t('global.download')}</Link>
+              <Link onClick={handleDownload}>{t('global.download')}</Link>
             </Value>
           </InfoContainer>
           <InfoContainer>

@@ -8,6 +8,7 @@ export const Container = styled.div`
   flex-flow: row wrap;
   align-items: center;
 
+  border-radius: 0.2rem;
   padding: 0.8rem 1.6rem;
   gap: 0.8rem;
 
@@ -16,6 +17,17 @@ export const Container = styled.div`
 
   &.focus {
     outline: 1px solid var(--accent);
+  }
+
+  &::after {
+    content: '▶︎';
+    font-size: 0.8rem;
+    transform: rotate(90deg);
+    color: var(--black);
+  }
+
+  &.focus::after {
+    transform: rotate(-90deg);
   }
 `;
 
@@ -32,117 +44,47 @@ export const Input = styled.input`
   &::placeholder {
     user-select: none;
   }
+
+  &:focus ~ label {
+    color: var(--accent);
+  }
+
+  &:not(:focus):not(:placeholder-shown) ~ label {
+    color: var(--black-tertiary);
+  }
 `;
 
 export const Label = styled.label`
   position: absolute;
   transform: translateY(-50%);
 
-  user-select: none;
+  top: 50%;
+  left: 1.6rem;
 
-  padding: 0.2rem 0.4rem;
-  border-radius: 0.4rem;
-
-  top: 0;
-  left: 1.2rem;
-
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   line-height: 1.2rem;
 
+  user-select: none;
   cursor: text;
   color: var(--black-tertiary);
-  background: var(--white);
-`;
 
-export const ChipsContainer = styled.span`
-  flex-basis: 0;
-  font-size: 1.5rem;
+  transition: all 0.15s;
 
-  display: flex;
-  column-gap: 0.8rem;
-  align-items: center;
+  input:not(:placeholder-shown) + &,
+  input:focus + & {
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.4rem;
 
-  max-width: calc(25% - 0.8rem);
+    top: 0;
+    left: 1.2rem;
 
-  padding: 0.4rem 0.5rem 0.4rem 1.6rem;
-  border-radius: 1.6rem;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
 
-  outline: 1px solid var(--black-quaternary);
-  outline-offset: -1px;
-`;
-
-export const ChipsValue = styled.span`
-  /* flex: 1; */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-export const ChipsButton = styled.button`
-  flex-shrink: 0;
-  cursor: pointer;
-
-  width: 2.4rem;
-  aspect-ratio: 1/1;
-
-  border-radius: 1.2rem;
-
-  svg {
-    width: 80%;
-    vertical-align: bottom;
-    color: var(--black-tertiary);
-  }
-`;
-
-export const SearchResultContainer = styled.div`
-  position: absolute;
-  width: 100%;
-  padding-block: 0.4rem;
-  top: calc(100% + 0.8rem);
-  left: 0;
-  z-index: 100;
-
-  display: flex;
-  flex-direction: column;
-
-  max-height: 220px;
-  overflow-y: scroll;
-
-  background: var(--white);
-  border: 1px solid var(--black-quaternary);
-  border-radius: 0.2rem;
-  box-shadow: 0 0 10px var(--black-quaternary);
-
-  scrollbar-width: none; /* Firefox */
-
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, IE and Edge */
-  }
-`;
-
-export const SearchResult = styled.div`
-  width: 100%;
-  padding: 8px 12px;
-
-  font-size: 1.5rem;
-  cursor: pointer;
-
-  &:hover {
-    background: var(--accent);
-    color: var(--white);
+    background: var(--white);
   }
 
-  &:not(:last-child) {
-    border-bottom: 1px solid var(--black-quaternary);
+  input:focus + & {
+    color: var(--accent);
   }
-`;
-
-export const SearchResultCaption = styled.div`
-  width: 100%;
-  padding: 8px 12px;
-
-  font-size: 1.5rem;
-
-  color: var(--black-tertiary);
-  font-size: 1.5rem;
 `;
