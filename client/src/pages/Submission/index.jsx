@@ -27,8 +27,18 @@ const Submission = () => {
     .find((c) => c.submissions?.find((c) => c._id === id))
     .submissions.find((c) => c._id === id);
 
-  const handleDownload = async (e) => {
-    //faire
+  const handleDownload = async (e, label) => {
+    e.preventDefault();
+    const res = await axiosPrivate.get(
+      `${import.meta.env.VITE_API_URI}/api/files/${`submission.${label}`}`,
+      { responseType: 'blob' }
+    );
+
+    const url = URL.createObjectURL(res.data);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `submission?.${label}`);
+    link.click();
   };
 
   return (
@@ -70,31 +80,31 @@ const Submission = () => {
         <InfoContainer>
           <Label>{t('submission.abstract')}</Label>
           <Value>
-            <Link onClick={handleDownload}>{t('global.download')}</Link>
+            <Link onClick={handleDownload('abstract')}>{t('global.download')}</Link>
           </Value>
         </InfoContainer>
         <InfoContainer>
           <Label>{t('submission.zipFolder')}</Label>
           <Value>
-            <Link onClick={handleDownload}>{t('global.download')}</Link>
+            <Link onClick={handleDownload('zipfolder')}>{t('global.download')}</Link>
           </Value>
         </InfoContainer>
         <InfoContainer>
           <Label>{t('submission.compiledPDF')}</Label>
           <Value>
-            <Link onClick={handleDownload}>{t('global.download')}</Link>
+            <Link onClick={handleDownload('compiledpdf')}>{t('global.download')}</Link>
           </Value>
         </InfoContainer>
         <InfoContainer>
           <Label>{t('submission.diffPDF')}</Label>
           <Value>
-            <Link onClick={handleDownload}>{t('global.download')}</Link>
+            <Link onClick={handleDownload('diffpdf')}>{t('global.download')}</Link>
           </Value>
         </InfoContainer>
         <InfoContainer>
           <Label>{t('submission.commentsPDF')}</Label>
           <Value>
-            <Link onClick={handleDownload}>{t('global.download')}</Link>
+            <Link onClick={handleDownload('commentpdf')}>{t('global.download')}</Link>
           </Value>
         </InfoContainer>
       </SectionContainer>
