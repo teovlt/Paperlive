@@ -23,27 +23,26 @@ const Table = ({ name, list, fields, defaultSort, searchAttr }) => {
   const navigate = useNavigate();
   const search = useSearch();
 
-  const [sort, setSort] = useState(defaultSort);
+  const [sort, setSort] = useState('');
   const [terms, setTerms] = useState('');
-  const [resultList, setResultList] = useState(null);
+  const [resultList, setResultList] = useState(list);
 
   useEffect(() => {
-    const sortedList = resultList || list;
+    const sortedList = [...resultList];
     sortedList.sort((a, b) => {
       const ValueA = a[sort.attr];
       const ValueB = b[sort.attr];
-
       if (ValueA < ValueB) return sort.direction === 'asc' ? -1 : 1;
       if (ValueA > ValueB) return sort.direction === 'asc' ? 1 : -1;
       return 0;
     });
     setResultList(sortedList);
-  }, [sort, list]);
+  }, [sort]);
 
   useEffect(() => {
     setSort(defaultSort);
     setResultList(search(terms, list, searchAttr));
-  }, [terms]);
+  }, [terms, defaultSort]);
 
   return (
     <Container>
@@ -57,39 +56,35 @@ const Table = ({ name, list, fields, defaultSort, searchAttr }) => {
         </Button>
       </THeader>
       <THead>
-        {fields?.map((field, index) => {
-          return (
-            <Attr
-              key={index}
-              className={`${sort.attr === field.name && 'active'} ${
-                sort.attr === field.name && sort.direction === 'desc' && 'sortDesc'
-              }`}
-              onClick={() =>
-                setSort((prev) => {
-                  if (prev.attr === field.name && prev.direction === 'asc')
-                    return { ...prev, direction: 'desc' };
-                  else if (prev.attr === field.name && prev.direction === 'desc')
-                    return { ...prev, direction: 'asc' };
-                  else return { attr: field.name, direction: 'asc' };
-                })
-              }>
-              {field.icon}
-              {t(`${name.slice(0, -1)}.${field.label.toLowerCase()}`)}
-            </Attr>
-          );
-        })}
+        {fields?.map((field, index) => (
+          <Attr
+            key={index}
+            className={`${sort.attr === field.name && 'active'} ${
+              sort.attr === field.name && sort.direction === 'desc' && 'sortDesc'
+            }`}
+            onClick={() =>
+              setSort((prev) => {
+                if (prev.attr === field.name && prev.direction === 'asc')
+                  return { ...prev, direction: 'desc' };
+                else if (prev.attr === field.name && prev.direction === 'desc')
+                  return { ...prev, direction: 'asc' };
+                else return { attr: field.name, direction: 'asc' };
+              })
+            }>
+            {field.icon}
+            {t(`${name.slice(0, -1)}.${field.label.toLowerCase()}`)}
+          </Attr>
+        ))}
       </THead>
       <TBody>
         {resultList?.length > 0 ? (
           resultList.map((item, index) => (
             <DataRow key={index}>
-              {fields?.map((field, index) => {
-                return (
-                  <DataCell key={index} onClick={() => navigate(`/${name}/${item._id}`)}>
-                    {field.operator(item[field.name]) || item[field.name]}
-                  </DataCell>
-                );
-              })}
+              {fields?.map((field, index) => (
+                <DataCell key={index} onClick={() => navigate(`/${name}/${item._id}`)}>
+                  {field.operator(item[field.name]) || item[field.name]}
+                </DataCell>
+              ))}
             </DataRow>
           ))
         ) : (

@@ -12,13 +12,14 @@ export const Container = styled.div`
 // Header
 export const THeader = styled.div`
   display: flex;
-  border-block: 0.1rem solid var(--black-quaternary);
+  border-bottom: 0.1rem solid var(--black-quaternary);
   margin-bottom: 1.2rem;
 `;
 
 export const Search = styled.input`
   flex: 1;
 
+  margin-bottom: 0.6rem;
   padding: 0.8rem;
   font-size: 1.5rem;
   color: var(--black);
@@ -31,8 +32,8 @@ export const Search = styled.input`
 export const Button = styled.button`
   cursor: pointer;
 
-  margin: 0.6rem 0.8rem;
-  padding: 0.2rem 0.8rem;
+  margin-bottom: 0.6rem;
+  padding-inline: 1.2rem;
   border-radius: 0.4rem;
 
   background: var(--accent);
