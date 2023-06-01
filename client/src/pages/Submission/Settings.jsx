@@ -19,7 +19,7 @@ import { useConfirm } from '../../context/ConfirmContext';
 const SubmissionSettings = () => {
   const { id } = useParams();
   const { auth, setAuth } = useAuth();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
   const { confirm } = useConfirm();
@@ -32,6 +32,10 @@ const SubmissionSettings = () => {
   const [deleting, setDeleting] = useState(false);
   const [errMsg, setErrMsg] = useState('');
   const [submissionName, setSubmissionName] = useState('');
+
+  useEffect(() => {
+    setErrMsg('');
+  }, [t]);
 
   const notifySave = () => {
     toast.success(t('toast.submissionUpdatedSuccess'), {
@@ -92,7 +96,7 @@ const SubmissionSettings = () => {
         //
       }
     } else {
-      setErrMsg(t('le nom de la soumission nest pas le bon'));
+      setErrMsg(t('submission.deleteSubWrongName'));
     }
   };
 
@@ -189,9 +193,7 @@ const SubmissionSettings = () => {
           </SectionContainer>
 
           <SectionContainer>
-            <Heading2>
               <Heading2>{t('submission.files')}</Heading2>
-            </Heading2>{' '}
             <Group inline>
               <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>
                 {t('submission.update')}
