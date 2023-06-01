@@ -103,91 +103,89 @@ const ContributionSettings = () => {
   };
   return (
     <>
+      <SectionContainer>
+        <Heading2>{t('contribution.edit')}</Heading2>
+        <Input
+          small
+          id='title'
+          defaultValue={contribution.title}
+          label={t('contribution.title')}
+          autoComplete='off'
+          onChange={(event) => {
+            const newContributionData = { ...contribution, title: event.target.value };
+            setContributionData(newContributionData);
+          }}
+        />
+        <Input
+          small
+          id='date'
+          type='date'
+          defaultValue={contribution?.startDate}
+          label={t('contribution.startDate')}
+          autoComplete='off'
+          onChange={(event) => {
+            const newContributionData = {
+              ...contribution,
+              startDate: event.target.value,
+            };
+            setContributionData(newContributionData);
+          }}
+        />
+        <RadioGroup
+          name='role'
+          onChange={(event) => {
+            const newContributionData = { ...contribution, teamRole: event.target.value };
+            setContributionData(newContributionData);
+          }}
+          template={{
+            label: t('contribution.teamRole'),
+            radios: [
+              {
+                label: t('contribution.leader'),
+                value: 'leader',
+                defaultChecked: contribution?.teamRole === 'leader',
+              },
+              {
+                label: t('contribution.coLeader'),
+                value: 'coLeader',
+                defaultChecked: contribution?.teamRole === 'coLeader',
+              },
+              {
+                label: t('contribution.guest'),
+                value: 'guest',
+                defaultChecked: contribution?.teamRole === 'guest',
+              },
+            ],
+          }}
+        />
+        <Selector
+          list={auth.contributions.filter((c) => c._id !== id)}
+          id='relatedContributions'
+          name='relatedContributions'
+          label={t('contribution.related')}
+          selected={contribution.relatedContributions}
+          onChange={(list) => {
+            const newContributionData = { ...contributionData, relatedContributions: list };
+            setContributionData(newContributionData);
+          }}
+        />
+        <Heading3>{t('contribution.abstract')}</Heading3>
+        <FileInput
+          name='abstract'
+          file={contribution.abstract}
+          endpoint='files/contribution/abstract'
+          onChange={(file) => setContributionData((prev) => ({ ...prev, filename: file?.name }))}
+        />
+
+        <Group inline>
+          <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>
+            {t('contribution.update')}
+          </Button>
+        </Group>
+      </SectionContainer>
+
       {!deleting ? (
         <>
-          <SectionContainer>
-            <Heading2>{t('contribution.edit')}</Heading2>
-            <Input
-              small
-              id='title'
-              defaultValue={contribution.title}
-              label={t('contribution.title')}
-              autoComplete='off'
-              onChange={(event) => {
-                const newContributionData = { ...contribution, title: event.target.value };
-                setContributionData(newContributionData);
-              }}
-            />
-            <Input
-              small
-              id='date'
-              type='date'
-              defaultValue={contribution?.startDate}
-              label={t('contribution.startDate')}
-              autoComplete='off'
-              onChange={(event) => {
-                const newContributionData = {
-                  ...contribution,
-                  startDate: event.target.value,
-                };
-                setContributionData(newContributionData);
-              }}
-            />
-            <RadioGroup
-              name='role'
-              onChange={(event) => {
-                const newContributionData = { ...contribution, teamRole: event.target.value };
-                setContributionData(newContributionData);
-              }}
-              template={{
-                label: t('contribution.teamRole'),
-                radios: [
-                  {
-                    label: t('contribution.leader'),
-                    value: 'leader',
-                    defaultChecked: contribution?.teamRole === 'leader',
-                  },
-                  {
-                    label: t('contribution.coLeader'),
-                    value: 'coLeader',
-                    defaultChecked: contribution?.teamRole === 'coLeader',
-                  },
-                  {
-                    label: t('contribution.guest'),
-                    value: 'guest',
-                    defaultChecked: contribution?.teamRole === 'guest',
-                  },
-                ],
-              }}
-            />
-            <Selector
-              list={auth.contributions.filter((c) => c._id !== id)}
-              id='relatedContributions'
-              name='relatedContributions'
-              label={t('contribution.related')}
-              selected={contribution.relatedContributions}
-              onChange={(list) => {
-                const newContributionData = { ...contributionData, relatedContributions: list };
-                setContributionData(newContributionData);
-              }}
-            />
-            <Heading3>{t('contribution.abstract')}</Heading3>
-            <FileInput
-              name='abstract'
-              file={contribution.abstract}
-              endpoint='files/contribution/abstract'
-              onChange={(file) =>
-                setContributionData((prev) => ({ ...prev, filename: file?.name }))
-              }
-            />
-
-            <Group inline>
-              <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>
-                {t('contribution.update')}
-              </Button>
-            </Group>
-          </SectionContainer>
-
           <div style={{ display: 'flex', flexDirection: 'column', width: '300px', rowGap: '12px' }}>
             <Heading2 style={{ color: 'var(--negative)' }}> {t('contribution.delete')}</Heading2>
             <Button type='negative' onClick={() => setDeleting(true)} style={{ width: '250px' }}>

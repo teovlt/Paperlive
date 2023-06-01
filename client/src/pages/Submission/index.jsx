@@ -17,28 +17,30 @@ import {
   HiOutlineCurrencyDollar,
   HiOutlineAcademicCap,
 } from 'react-icons/hi2';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 const Submission = () => {
   const { t, i18n } = useTranslation();
   const { id } = useParams();
   const { auth } = useAuth();
+  const axiosPrivate = useAxiosPrivate();
 
   const submission = auth.contributions
     .find((c) => c.submissions?.find((c) => c._id === id))
     .submissions.find((c) => c._id === id);
 
-  const handleDownload = async (e, label) => {
-    e.preventDefault();
-    const res = await axiosPrivate.get(
-      `${import.meta.env.VITE_API_URI}/api/files/${`submission.${label}`}`,
-      { responseType: 'blob' }
-    );
+  const handleDownload = async (label) => {
+    // const res = await axiosPrivate.get(
+    //   `${import.meta.env.VITE_API_URI}/api/files/${`submission.${label}`}`,
+    //   { responseType: 'blob' }
+    // );
 
-    const url = URL.createObjectURL(res.data);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `submission?.${label}`);
-    link.click();
+    // const url = URL.createObjectURL(res.data);
+    // const link = document.createElement('a');
+    // link.href = url;
+    // link.setAttribute('download', `submission?.${label}`);
+    // link.click();
+    console.log(label);
   };
 
   return (

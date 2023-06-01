@@ -102,104 +102,105 @@ const SubmissionSettings = () => {
 
   return (
     <>
+      <SectionContainer>
+        <Heading2>{t('submission.edit')}</Heading2>
+        <Input
+          small
+          id='title'
+          defaultValue={submission.title}
+          label={t('submission.title')}
+          autoComplete='off'
+          onChange={(event) => {
+            const newSubmissionData = { ...submission, title: event.target.value };
+            setSubmissionData(newSubmissionData);
+          }}
+        />
+        <Input
+          small
+          id='date'
+          type='date'
+          defaultValue={submission.date}
+          label={t('submission.date')}
+          autoComplete='off'
+          onChange={(event) => {
+            const newSubmissionData = { ...submission, date: event.target.value };
+            setSubmissionData(newSubmissionData);
+          }}
+        />
+        <RadioGroup
+          name='type'
+          onChange={(event) => {
+            const newSubmissionData = { ...submission, type: event.target.value };
+            setSubmissionData(newSubmissionData);
+          }}
+          template={{
+            label: t('submission.type'),
+            radios: [
+              {
+                label: t('submission.poster'),
+                value: 'poster',
+                defaultChecked: submissionData?.type === 'poster',
+              },
+              {
+                label: t('submission.shortPaper'),
+                value: 'shortPaper',
+                defaultChecked: submissionData?.type === 'shortPaper',
+              },
+              {
+                label: t('global.contribution'),
+                value: 'contribution',
+                defaultChecked: submissionData?.type === 'contribution',
+              },
+            ],
+          }}
+        />
+        <RadioGroup
+          name='state'
+          onChange={(event) => {
+            const newSubmissionData = { ...submission, state: event.target.value };
+            setSubmissionData(newSubmissionData);
+          }}
+          template={{
+            label: t('submission.state'),
+            radios: [
+              {
+                label: t('submission.draft'),
+                value: 'draft',
+                defaultChecked: submissionData?.state === 'draft' || true,
+              },
+              {
+                label: t('submission.submitted'),
+                value: 'submitted',
+                defaultChecked: submissionData?.state === 'submitted',
+              },
+              {
+                label: t('submission.approved'),
+                value: 'approved',
+                defaultChecked: submissionData?.state === 'approved',
+              },
+              {
+                label: t('submission.rejected'),
+                value: 'rejected',
+                defaultChecked: submissionData?.state === 'rejected',
+              },
+            ],
+          }}
+        />
+        <span>selector authors</span>
+        <span>selector venue</span>
+      </SectionContainer>
+
+      <SectionContainer>
+        <Heading2>{t('submission.files')}</Heading2>
+        <Group inline>
+          <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>
+            {t('submission.update')}
+          </Button>
+        </Group>
+      </SectionContainer>
+
       {!deleting ? (
         <>
-          <SectionContainer>
-            <Heading2>{t('submission.edit')}</Heading2>
-            <Input
-              small
-              id='title'
-              defaultValue={submission.title}
-              label={t('submission.title')}
-              autoComplete='off'
-              onChange={(event) => {
-                const newSubmissionData = { ...submission, title: event.target.value };
-                setSubmissionData(newSubmissionData);
-              }}
-            />
-            <Input
-              small
-              id='date'
-              type='date'
-              defaultValue={submission.date}
-              label={t('submission.date')}
-              autoComplete='off'
-              onChange={(event) => {
-                const newSubmissionData = { ...submission, date: event.target.value };
-                setSubmissionData(newSubmissionData);
-              }}
-            />
-            <RadioGroup
-              name='type'
-              onChange={(event) => {
-                const newSubmissionData = { ...submission, type: event.target.value };
-                setSubmissionData(newSubmissionData);
-              }}
-              template={{
-                label: t('submission.type'),
-                radios: [
-                  {
-                    label: t('submission.poster'),
-                    value: 'poster',
-                    defaultChecked: submissionData?.type === 'poster',
-                  },
-                  {
-                    label: t('submission.shortPaper'),
-                    value: 'shortPaper',
-                    defaultChecked: submissionData?.type === 'shortPaper',
-                  },
-                  {
-                    label: t('global.contribution'),
-                    value: 'contribution',
-                    defaultChecked: submissionData?.type === 'contribution',
-                  },
-                ],
-              }}
-            />
-            <RadioGroup
-              name='state'
-              onChange={(event) => {
-                const newSubmissionData = { ...submission, state: event.target.value };
-                setSubmissionData(newSubmissionData);
-              }}
-              template={{
-                label: t('submission.state'),
-                radios: [
-                  {
-                    label: t('submission.draft'),
-                    value: 'draft',
-                    defaultChecked: submissionData?.state === 'draft' || true,
-                  },
-                  {
-                    label: t('submission.submitted'),
-                    value: 'submitted',
-                    defaultChecked: submissionData?.state === 'submitted',
-                  },
-                  {
-                    label: t('submission.approved'),
-                    value: 'approved',
-                    defaultChecked: submissionData?.state === 'approved',
-                  },
-                  {
-                    label: t('submission.rejected'),
-                    value: 'rejected',
-                    defaultChecked: submissionData?.state === 'rejected',
-                  },
-                ],
-              }}
-            />
-            <span>selector authors</span>
-            <span>selector venue</span>
-          </SectionContainer>
-
-          <SectionContainer>
-              <Heading2>{t('submission.files')}</Heading2>
-            <Group inline>
-              <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>
-                {t('submission.update')}
-              </Button>
-            </Group>
-          </SectionContainer>
           <div style={{ display: 'flex', flexDirection: 'column', width: '300px', rowGap: '12px' }}>
             <Heading2 style={{ color: 'var(--negative)' }}> {t('submission.delete')}</Heading2>
             <Button type='negative' onClick={() => setDeleting(true)} style={{ width: '250px' }}>
