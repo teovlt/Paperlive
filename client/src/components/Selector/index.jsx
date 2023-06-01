@@ -1,19 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import useSearch from '../../hooks/useSearch';
+import { useTranslation } from 'react-i18next';
 import {
   Button,
   Container,
   Counter,
   DisplayedListContainer,
+  PillContainer,
+  Pill,
   Search,
   SelectedItemsContainer,
   Toggler,
   Wrapper,
+  PillLabel,
+  PillButton,
+  Placeholder,
 } from './selectorElements';
 import { HiXMark } from 'react-icons/hi2';
 import Checkbox from '../Checkbox';
 
 const Selector = (props) => {
+  const { t } = useTranslation();
   const search = useSearch();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -63,11 +70,35 @@ const Selector = (props) => {
 
   return (
     <Container>
-      <Toggler onClick={() => setIsOpen((prev) => !prev)} className={`${isOpen && 'open'}`}>
-        {props.label}
+      <Toggler
+        onClick={(e) => setIsOpen(!isOpen)}
+        className={`${isOpen && 'open'} ${selectedItems.length > 0 && 'filled'}`}>
+        <Placeholder>{t('contribution.related')}</Placeholder>
+        <PillContainer>
+          {selectedItems.slice(0, 4).map((item) => (
+            <Pill key={item._id}>
+              <PillLabel>{item.title}</PillLabel>
+              <PillButton
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const updatedSelectedItems = selectedItems.filter(
+                    (selectedItem) => selectedItem !== item
+                  );
+                  setSelectedItems(updatedSelectedItems);
+                }}>
+                <HiXMark />
+              </PillButton>
+            </Pill>
+          ))}
+          {selectedItems.length > 4 && '...'}
+        </PillContainer>
         <Wrapper>
           <Counter>{selectedItems.length}</Counter>
-          <Button onClick={() => setSelectedItems([])}>
+          <Button
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedItems([]);
+            }}>
             <HiXMark />
           </Button>
         </Wrapper>
@@ -93,13 +124,14 @@ const Selector = (props) => {
           )}
           {displayedList.length > 0 && (
             <DisplayedListContainer>
-              {displayedList.map((item) => (
+              {displayedList.slice(0, 8).map((item) => (
                 <Checkbox
                   key={item._id}
                   label={item.title}
                   onChange={(checked) => handleChanges(checked, item)}
                 />
               ))}
+              {/* TODO: Search for more resutls */}
             </DisplayedListContainer>
           )}
         </>

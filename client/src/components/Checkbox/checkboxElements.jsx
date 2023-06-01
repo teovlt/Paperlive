@@ -7,9 +7,16 @@ export const Label = styled.label`
   color: var(--black);
   padding: 0.625rem 1.6rem;
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
   column-gap: 1.2rem;
+
+  span {
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 
   position: relative;
 
@@ -22,7 +29,7 @@ export const Label = styled.label`
     display: block;
     content: '';
 
-    width: 1.5rem;
+    min-width: 1.5rem;
     aspect-ratio: 1 / 1;
 
     border: 0.1rem solid var(--black-tertiary);

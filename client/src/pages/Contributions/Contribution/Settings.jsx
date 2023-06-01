@@ -67,9 +67,8 @@ const ContributionSettings = () => {
     await axiosPrivate.put(`/contributions/update/${id}`, {
       ...contributionData,
     });
-    const updatedContributions = auth.contributions.filter((c) => c._id !== id);
-    updatedContributions.push(contributionData);
-    setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
+    const contributions = await axiosPrivate.get('/contributions');
+    setAuth((prev) => ({ ...prev, contributions: contributions.data }));
     notifySave();
     navigate(`/contributions/${id}`);
   }
