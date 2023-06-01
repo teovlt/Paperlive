@@ -17,18 +17,12 @@ const FormStep2 = ({
 
   return (
     <>
-      <Heading3>
-        Abstract
-        <Label>
-          {t('contribution.fileSupported')}: <span>pdf</span>
-        </Label>
-      </Heading3>
-
       <FileInput
-        name='abstract'
+        name={t('contribution.abstract')}
         file={contributionData.filename}
         endpoint='files/contribution/abstract'
         onChange={(file) => setContributionData((prev) => ({ ...prev, filename: file?.name }))}
+        type='pdf'
       />
       {errorMsg && <Chips type='negative'>{errorMsg}</Chips>}
       <LinearContainer>
