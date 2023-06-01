@@ -78,37 +78,53 @@ const Submission = () => {
         </InfoContainer>
       </SectionContainer>
       <SectionContainer>
-        <Heading2>{t('submission.files')}</Heading2>
-        <InfoContainer>
-          <Label>{t('submission.abstract')}</Label>
-          <Value>
-            <Link onClick={handleDownload('abstract')}>{t('global.download')}</Link>
-          </Value>
-        </InfoContainer>
-        <InfoContainer>
-          <Label>{t('submission.zipFolder')}</Label>
-          <Value>
-            <Link onClick={handleDownload('zipfolder')}>{t('global.download')}</Link>
-          </Value>
-        </InfoContainer>
-        <InfoContainer>
-          <Label>{t('submission.compiledPDF')}</Label>
-          <Value>
-            <Link onClick={handleDownload('compiledpdf')}>{t('global.download')}</Link>
-          </Value>
-        </InfoContainer>
-        <InfoContainer>
-          <Label>{t('submission.diffPDF')}</Label>
-          <Value>
-            <Link onClick={handleDownload('diffpdf')}>{t('global.download')}</Link>
-          </Value>
-        </InfoContainer>
-        <InfoContainer>
-          <Label>{t('submission.commentsPDF')}</Label>
-          <Value>
-            <Link onClick={handleDownload('commentpdf')}>{t('global.download')}</Link>
-          </Value>
-        </InfoContainer>
+        {submission.abstract &&
+          submission.zipfolder &&
+          submission.compiledpdf &&
+          submission.diffpdf &&
+          submission.commentspdf && <Heading2>{t('submission.files')}</Heading2>}
+
+        {submission.abstract && (
+          <InfoContainer>
+            <Label>{t('submission.abstract')}</Label>
+            <Value>
+              <Link onClick={handleDownload('abstract')}>{t('global.download')}</Link>
+            </Value>
+          </InfoContainer>
+        )}
+        {submission.zipfolder && (
+          <InfoContainer>
+            <Label>{t('submission.zipFolder')}</Label>
+            <Value>
+              <Link onClick={handleDownload('zipfolder')}>{t('global.download')}</Link>
+            </Value>
+          </InfoContainer>
+        )}
+
+        {submission.compiledpdf && (
+          <InfoContainer>
+            <Label>{t('submission.compiledPDF')}</Label>
+            <Value>
+              <Link onClick={handleDownload('compiledpdf')}>{t('global.download')}</Link>
+            </Value>
+          </InfoContainer>
+        )}
+        {submission.diffpdf && (
+          <InfoContainer>
+            <Label>{t('submission.diffPDF')}</Label>
+            <Value>
+              <Link onClick={handleDownload('diffpdf')}>{t('global.download')}</Link>
+            </Value>
+          </InfoContainer>
+        )}
+        {submission.commentspdf && (
+          <InfoContainer>
+            <Label>{t('submission.commentsPDF')}</Label>
+            <Value>
+              <Link onClick={handleDownload('commentpdf')}>{t('global.download')}</Link>
+            </Value>
+          </InfoContainer>
+        )}
       </SectionContainer>
       <SectionContainer>
         <Heading2>{t('submission.authors')}</Heading2>
