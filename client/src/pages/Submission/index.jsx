@@ -17,11 +17,13 @@ import {
   HiOutlineCurrencyDollar,
   HiOutlineAcademicCap,
 } from 'react-icons/hi2';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 const Submission = () => {
   const { t, i18n } = useTranslation();
   const { id } = useParams();
   const { auth } = useAuth();
+  const axiosPrivate = useAxiosPrivate();
 
   const submission = auth.contributions
     .find((c) => c.submissions?.find((c) => c._id === id))
@@ -33,11 +35,12 @@ const Submission = () => {
       { responseType: 'blob' }
     );
 
-    const url = URL.createObjectURL(res.data);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `submission?.${label}`);
-    link.click();
+    // const url = URL.createObjectURL(res.data);
+    // const link = document.createElement('a');
+    // link.href = url;
+    // link.setAttribute('download', `submission?.${label}`);
+    // link.click();
+    console.log(label);
   };
 
   return (
@@ -61,11 +64,11 @@ const Submission = () => {
         <LineWrapper>
           <InfoContainer>
             <Label>{t('submission.type')}</Label>
-            <Value>{submission.type || '-'}</Value>
+            <Value>{t(`submission.${submission.type}`) || '-'}</Value>
           </InfoContainer>
           <InfoContainer>
             <Label>{t('submission.state')}</Label>
-            <Value>{submission.state || '-'}</Value>
+            <Value> {t(`submission.${submission.state}`) || '-'}</Value>
           </InfoContainer>
         </LineWrapper>
 
