@@ -81,7 +81,7 @@ export const Search = styled.input`
   }
 `;
 
-export const SelectedContainer = styled.div`
+export const SelectedItemsContainer = styled.div`
   border-block: 0.05rem solid var(--black-quaternary);
   border-inline: 0.1rem solid var(--black-quaternary);
 
@@ -93,7 +93,7 @@ export const SelectedContainer = styled.div`
   flex-direction: column;
 `;
 
-export const SearchResultContainer = styled.div`
+export const DisplayedListContainer = styled.div`
   border-block: 0.05rem solid var(--black-quaternary);
   border-inline: 0.1rem solid var(--black-quaternary);
 

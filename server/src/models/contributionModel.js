@@ -15,8 +15,8 @@ const contributionSchema = new mongoose.Schema({
   relatedContributions: {
     type: [
       {
-        _id: mongoose.Schema.Types.ObjectId,
-        title: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Contribution',
       },
     ],
   },

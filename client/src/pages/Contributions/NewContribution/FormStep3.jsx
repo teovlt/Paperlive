@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import useAuth from '../../../hooks/useAuth';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const FormStep3 = ({ contributionData, errorMsg, previous, goTo }) => {
   const navigate = useNavigate();

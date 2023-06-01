@@ -27,8 +27,7 @@ const Submission = () => {
     .find((c) => c.submissions?.find((c) => c._id === id))
     .submissions.find((c) => c._id === id);
 
-  const handleDownload = async (e, label) => {
-    e.preventDefault();
+  const handleDownload = async (label) => {
     const res = await axiosPrivate.get(
       `${import.meta.env.VITE_API_URI}/api/files/${`submission.${label}`}`,
       { responseType: 'blob' }
@@ -72,7 +71,7 @@ const Submission = () => {
 
         <InfoContainer>
           <Label>{t('submission.venue')}</Label>
-          <Value>{submission.venue || '-'}</Value>
+          <Value>{submission.venue.name || '-'}</Value>
         </InfoContainer>
       </SectionContainer>
       <SectionContainer>
