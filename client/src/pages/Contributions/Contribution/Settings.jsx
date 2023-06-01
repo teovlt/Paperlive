@@ -169,13 +169,15 @@ const ContributionSettings = () => {
             setContributionData(newContributionData);
           }}
         />
-        <Heading3>{t('contribution.abstract')}</Heading3>
-        <FileInput
-          name='abstract'
-          file={contribution.abstract}
-          endpoint='files/contribution/abstract'
-          onChange={(file) => setContributionData((prev) => ({ ...prev, filename: file?.name }))}
-        />
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <FileInput
+            name={t('contribution.abstract')}
+            file={contribution.abstract}
+            endpoint='files/contribution/abstract'
+            onChange={(file) => setContributionData((prev) => ({ ...prev, filename: file?.name }))}
+            type='pdf'
+          />
+        </div>
 
         <Group inline>
           <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>

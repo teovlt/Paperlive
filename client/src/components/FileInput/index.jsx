@@ -72,8 +72,7 @@ const FileInput = ({ name, file, endpoint, onChange, type }) => {
   };
 
   return (
-    <label htmlFor={`${name}FileInput`} style={{ cursor: 'pointer' }}>
-      <Container>
+      <Container htmlFor={`${name}FileInput`} style={{ cursor: 'pointer' }}>
         <InputContainer onDrop={handleSubmit} onDragOver={handleDragOver}>
           <Input type='file' id={`${name}FileInput`} accept={'.' + type} onChange={handleSubmit} />
           {isUploading ? (
@@ -104,7 +103,6 @@ const FileInput = ({ name, file, endpoint, onChange, type }) => {
           )}
         </InputContainer>
       </Container>
-    </label>
   );
 };
 

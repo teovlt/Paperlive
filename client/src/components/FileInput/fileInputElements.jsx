@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.label`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  flex: 1;
 `;
 
 export const InputContainer = styled.div`
