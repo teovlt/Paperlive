@@ -81,6 +81,7 @@ describe('GET /api/contributions/:contributionId', () => {
     team = await Team.create({
       name: 'Test Team',
       password: 'password',
+      contributions: [contribution],
     });
   });
 
@@ -106,7 +107,7 @@ describe('GET /api/contributions/:contributionId', () => {
       .set('Authorization', `Bearer ${generateAccessToken(unknownId)}`);
 
     expect(res.status).toBe(404);
-    expect(res.body).toEqual({ error: 'Team not found' });
+    expect(res.body).toEqual({ error: 'Contribution not found' });
   });
 
   it('should return a 500 Invalid ID error if the id of the contribution is unvalid', async () => {
