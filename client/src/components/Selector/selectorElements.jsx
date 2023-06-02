@@ -5,17 +5,38 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
+export const Placeholder = styled.span`
+  color: var(--black-tertiary);
+  font-size: 1.5rem;
+`;
+
 export const Toggler = styled.div`
   border: 1px solid var(--black-quaternary);
-  padding: 0.95rem 3.6rem 0.95rem 1.6rem;
+  padding: 0.9rem 3.6rem 0.9rem 1.6rem;
   border-radius: 0.2rem;
 
+  cursor: pointer;
   user-select: none;
   position: relative;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  &.filled ${Placeholder} {
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.4rem;
+
+    position: absolute;
+    top: 0;
+    left: 1.2rem;
+    transform: translateY(-50%);
+
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+
+    background: var(--white);
+  }
 
   &::after {
     content: '▶︎';
@@ -42,7 +63,7 @@ export const Toggler = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  column-gap: 0.8rem;
+  column-gap: 0.6rem;
 `;
 
 export const Counter = styled.span`
@@ -51,7 +72,7 @@ export const Counter = styled.span`
   background: var(--black);
 
   border-radius: 0.4rem;
-  padding: 0.2rem 0.8rem;
+  padding: 0.275rem 1rem;
 `;
 
 export const Button = styled.button`
@@ -81,26 +102,75 @@ export const Search = styled.input`
   }
 `;
 
-export const SelectedContainer = styled.div`
+export const SelectedItemsContainer = styled.div`
   border-block: 0.05rem solid var(--black-quaternary);
   border-inline: 0.1rem solid var(--black-quaternary);
 
   &:last-child {
     border-bottom-width: 0.1rem;
+    border-radius: 0 0 0.2rem 0.2rem;
   }
 
   display: flex;
   flex-direction: column;
 `;
 
-export const SearchResultContainer = styled.div`
+export const DisplayedListContainer = styled.div`
   border-block: 0.05rem solid var(--black-quaternary);
   border-inline: 0.1rem solid var(--black-quaternary);
 
   &:last-child {
     border-bottom-width: 0.1rem;
+    border-radius: 0 0 0.2rem 0.2rem;
   }
 
   display: flex;
   flex-direction: column;
+`;
+
+export const PillContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  column-gap: 0.8rem;
+  overflow: hidden;
+`;
+
+export const Pill = styled.div`
+  flex: 0 0 auto;
+  max-width: calc(25% - 1.2rem);
+
+  display: inline-flex;
+  align-items: center;
+  column-gap: 1.2rem;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  border-radius: 0.2rem;
+  padding-block: 0.175rem;
+  padding-inline: 0.8rem 1.2rem;
+  background: var(--accent-vibrant);
+  border: 0.1rem solid var(--accent-vibrant);
+`;
+
+export const PillLabel = styled.span`
+  color: var(--black-secondary);
+  font-size: 1.5rem;
+
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+export const PillButton = styled.button`
+  display: flex;
+  color: var(--black-secondary);
+
+  &:hover {
+    cursor: pointer;
+    background: var(--black-quaternary);
+    border-radius: 100px;
+  }
 `;

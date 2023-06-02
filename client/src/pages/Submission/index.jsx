@@ -30,10 +30,10 @@ const Submission = () => {
     .submissions.find((c) => c._id === id);
 
   const handleDownload = async (label) => {
-    // const res = await axiosPrivate.get(
-    //   `${import.meta.env.VITE_API_URI}/api/files/${`submission.${label}`}`,
-    //   { responseType: 'blob' }
-    // );
+    const res = await axiosPrivate.get(
+      `${import.meta.env.VITE_API_URI}/api/files/${`submission.${label}`}`,
+      { responseType: 'blob' }
+    );
 
     // const url = URL.createObjectURL(res.data);
     // const link = document.createElement('a');
@@ -71,17 +71,16 @@ const Submission = () => {
             <Value> {t(`submission.${submission.state}`) || '-'}</Value>
           </InfoContainer>
         </LineWrapper>
-        {submission.venue && (
-          <InfoContainer>
-            <Label>{t('submission.venue')}</Label>
-            <Value>{submission.venue}</Value>
-          </InfoContainer>
-        )}
+
+        <InfoContainer>
+          <Label>{t('submission.venue')}</Label>
+          <Value>{submission.venue.name || '-'}</Value>
+        </InfoContainer>
       </SectionContainer>
       <SectionContainer>
         {submission.abstract &&
           submission.zipfolder &&
-          submission.compiledpdf && 
+          submission.compiledpdf &&
           submission.diffpdf &&
           submission.commentspdf && <Heading2>{t('submission.files')}</Heading2>}
 

@@ -16,7 +16,7 @@ const Checkbox = ({ defaultChecked = false, ...props }) => {
   return (
     <Label className={`${checked && 'checked'}`}>
       <Input type='checkbox' checked={checked} onChange={handleChanges} />
-      {props.label}
+      <span>{props.label}</span>
     </Label>
   );
 };

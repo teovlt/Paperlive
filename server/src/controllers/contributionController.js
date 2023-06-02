@@ -14,7 +14,12 @@ const { removeFilesContainingTerms } = require('../utils/utils');
  */
 module.exports.listContributions = async (req, res) => {
   try {
-    const team = await Team.findOne({ _id: req.teamId }).populate('contributions');
+    const team = await Team.findOne({ _id: req.teamId }).populate({
+      path: 'contributions',
+      populate: {
+        path: 'relatedContributions',
+      },
+    });
     if (!team) return res.status(404).json({ error: 'Team not found' });
 
     return res.status(200).json(team.contributions);
@@ -73,10 +78,7 @@ module.exports.createContribution = async (req, res) => {
     // Save to database
     const contribution = new Contribution({
       _id,
-      title,
-      startDate,
-      teamRole,
-      relatedContributions,
+      ...req.body,
       abstract: abstractFileName,
     });
     await contribution.save();
@@ -149,6 +151,8 @@ module.exports.deleteContribution = async (req, res) => {
     if (!team) return res.status(404).json({ error: 'Contribution not found' });
 
     const contribution = await Contribution.findOne({ _id: contributionId });
+    // Delete every files related to the given contribution
+    removeFilesContainingTerms(contribution._id);
     // Delete every submissions related to the given contribution
     contribution.submissions?.forEach(async (submission) => {
       // Delete every files related to the given submission
