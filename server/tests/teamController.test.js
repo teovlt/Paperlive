@@ -294,8 +294,18 @@ describe('DELETE /api/teams/delete', () => {
       .send({ name: team.name, password: 'password' })
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
-    //expect(res.status).toBe(200);
+    expect(res.status).toBe(200);
     expect(res.body).toEqual({ message: 'Successfully deleted' });
+  });
+
+   it('should delete a team and return 400 error if wrong credentials', async () => {
+    const res = await request(app)
+      .post(`/api/teams/delete`)
+      .send({ name: team.name, password: 'wrongPassword' })
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
+
+    expect(res.status).toBe(400);
+    expect(res.body).toEqual({ error: 'Invalid credentials' });
   });
 
   it('should return a 404 Not Found response with an error message if the team does not exist', async () => {
