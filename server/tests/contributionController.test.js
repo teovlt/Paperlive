@@ -341,7 +341,7 @@ describe('PUT /api/contributions/update/:contributionId', () => {
     expect(res.body).toEqual({ error: `Invalid ID: ${falseId}` });
   });
 
-  it('should return a 500 if the ID is invalid', async () => {
+  it('should handle errors properly', async () => {
     jest.spyOn(Contribution, 'updateOne').mockImplementationOnce(() => {
       throw new Error('Test error');
     });
