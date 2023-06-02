@@ -159,7 +159,6 @@ module.exports.deleteContribution = async (req, res) => {
     await team.updateOne({ $pull: { contributions: contributionId } });
 
     const result = await Contribution.deleteOne({ _id: contributionId });
-    console.log(result);
     if (result.deletedCount > 0) return res.status(200).json({ message: 'Successfully deleted' });
 
     return res.status(400).json({ error: 'Deletion failed' });

@@ -91,7 +91,7 @@ describe('GET /api/submissions/', () => {
   });
 });
 
-describe('GET /api/submissions/:contributionId', () => {
+describe('GET /api/submissions/:submissionId', () => {
   let team;
   let contribution;
   let submission;
@@ -113,13 +113,11 @@ describe('GET /api/submissions/:contributionId', () => {
       title: 'SubmissionTest',
       type: 'shortPaper',
     });
-
-    await team.updateOne({
-      $push: { contributions: contribution._id },
-    });
-
     await contribution.updateOne({
       $push: { submissions: submission._id },
+    });
+    await team.updateOne({
+      $push: { contributions: contribution._id },
     });
   });
 
@@ -129,9 +127,9 @@ describe('GET /api/submissions/:contributionId', () => {
     await Submission.deleteOne({ _id: submission._id });
   });
 
-  it('should return a 200 OK response with a list of the submissions', async () => {
+  it('should return a 200 OK response with a submission', async () => {
     const res = await request(app)
-      .get(`/api/submissions/${contribution._id.toString()}`)
+      .get(`/api/submissions/${submission._id}`)
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
     expect(res.status).toBe(200);
@@ -144,7 +142,7 @@ describe('GET /api/submissions/:contributionId', () => {
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
     expect(res.status).toBe(404);
-    expect(res.body).toEqual({ error: 'Contribution not found' });
+    expect(res.body).toEqual({ error: 'Submission not found' });
   });
 
   it('should return a 500 Internal Error response with an error message', async () => {

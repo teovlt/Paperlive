@@ -94,7 +94,6 @@ module.exports.readSubmission = async (req, res) => {
     const team = await Team.findOne({ _id: req.teamId }).populate('contributions');
     if (!team) return;
 
-    console.log(submissionId);
 
     const contribution = team.contributions?.find((contribution) =>
       contribution.submissions?.some((submission) => submission._id.toString() === submissionId)
