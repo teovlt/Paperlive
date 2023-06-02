@@ -1,5 +1,11 @@
 const Author = require('../models/authorModel');
 
+/**
+ * Get one author
+ * @route GET /api/authors/
+ * @desc Get one author
+ * @access Private
+ */
 module.exports.getAuthors = async (req, res) => {
   const authors = await Author.find();
   return res.status(200).json(authors);
