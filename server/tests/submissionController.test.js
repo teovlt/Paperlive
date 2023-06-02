@@ -237,3 +237,68 @@ describe('DELETE /api/submissions/delete/:submissionId', () => {
     expect(res.body).toEqual({ error: `Invalid ID: ${invalidId}` });
   });
 });
+
+describe('POST /api/submissions/new', () => {
+  let team;
+  let contribution;
+
+  beforeEach(async () => {
+    team = await Team.create({
+      name: 'TestTeam',
+      password: 'password123',
+    });
+
+    contribution = await Contribution.create({
+      title: 'ContributionTest',
+      startDate: '2023-01-01',
+      teamRole: 'leader',
+      abstract: 'contribution-abstract-id.pdf',
+    });
+
+    await team.updateOne({
+      $push: { contributions: contribution._id },
+    });
+  });
+
+  afterEach(async () => {
+    await Team.deleteOne({ _id: team._id });
+    await Contribution.deleteOne({ _id: contribution._id });
+  });
+
+  it('should return a 200 OK response and create a submission', async () => {
+    const res = await request(app)
+      .post(`/api/submissions/new/`)
+      .send({ title: 'SubmissionTest', type: 'shortPaper', contributionId: contribution._id })
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
+
+    expect(res.status).toBe(201);
+    expect(res.body).toEqual({ message: 'Successfully created' });
+  });
+
+  it('should return a 404 error if the team is not found', async () => {
+    const unknownId = new mongoose.Types.ObjectId();
+
+    const res = await request(app)
+      .post(`/api/submissions/new/`)
+      .send({ title: 'SubmissionTest', type: 'shortPaper', contributionId: contribution._id })
+      .set('Authorization', `Bearer ${generateAccessToken(unknownId)}`);
+
+    expect(res.status).toBe(404);
+    expect(res.body).toEqual({ error: 'Team not found' });
+  });
+
+  it('should handle errors properly', async () => {
+    const error = new Error(`Test error`);
+    jest.spyOn(Contribution, 'updateOne').mockImplementationOnce(() => {
+      throw error;
+    });
+
+    const res = await request(app)
+      .post(`/api/submissions/new/`)
+      .send({ title: 'SubmissionTest', type: 'shortPaper', contributionId: contribution._id })
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
+
+    expect(res.status).toBe(500);
+    expect(res.body).toEqual({ error: error.message });
+  });
+});
