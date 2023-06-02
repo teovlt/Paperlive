@@ -206,3 +206,73 @@ describe('DELETE /api/contributions/delete/:contributionId', () => {
     expect(res.body.error).toBeDefined();
   });
 });
+
+describe('POST /api/contributions/new', () => {
+  let team;
+
+  beforeEach(async () => {
+    team = await Team.create({
+      name: 'Test Team',
+      password: 'password',
+    });
+  });
+
+  afterEach(async () => {
+    // Delete the test team from the database*
+    await Team.deleteOne({ _id: team._id });
+  });
+
+  it('should create a contribution and return 201 with a success message', async () => {
+    const res = await request(app)
+      .post('/api/contributions/new')
+      .send({
+        title: 'Test Contribution',
+        startDate: '2023-05-16',
+        relatedContribution: '',
+        abstract: 'abstract.pdf',
+        teamRole: 'leader',
+      })
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
+
+    expect(res.status).toBe(201);
+    expect(res.body).toEqual({ message: `Successfully created` });
+  });
+
+  it('should return a 404 error if the team is not found', async () => {
+    const unknownId = new mongoose.Types.ObjectId();
+
+    const res = await request(app)
+      .post('/api/contributions/new')
+      .send({
+        title: 'Test Contribution',
+        startDate: '2023-05-16',
+        relatedContribution: '',
+        abstract: 'abstract.pdf',
+        teamRole: 'leader',
+      })
+      .set('Authorization', `Bearer ${generateAccessToken(unknownId)}`);
+
+    expect(res.status).toBe(404);
+    expect(res.body).toEqual({ error: `Team not found` });
+  });
+
+  it('should handle errors properly and return a 500 status', async () => {
+    jest.spyOn(Team, 'updateOne').mockImplementationOnce(() => {
+      throw new Error('Test error');
+    });
+
+    const res = await request(app)
+      .post('/api/contributions/new')
+      .send({
+        title: 'Test Contribution',
+        startDate: '2023-05-16',
+        relatedContribution: '',
+        abstract: 'abstract.pdf',
+        teamRole: 'leader',
+      })
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
+
+    expect(res.status).toBe(500);
+    expect(res.body.error).toBeDefined();
+  });
+});
