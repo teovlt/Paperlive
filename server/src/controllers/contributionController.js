@@ -151,6 +151,8 @@ module.exports.deleteContribution = async (req, res) => {
     if (!team) return res.status(404).json({ error: 'Contribution not found' });
 
     const contribution = await Contribution.findOne({ _id: contributionId });
+    // Delete every files related to the given contribution
+    removeFilesContainingTerms(contribution._id);
     // Delete every submissions related to the given contribution
     contribution.submissions?.forEach(async (submission) => {
       // Delete every files related to the given submission
