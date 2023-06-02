@@ -276,3 +276,84 @@ describe('POST /api/contributions/new', () => {
     expect(res.body.error).toBeDefined();
   });
 });
+
+describe('PUT /api/contributions/update/:contributionId', () => {
+  let team;
+  let contribution;
+
+  beforeEach(async () => {
+    contribution = await Contribution.create({
+      title: 'Test Contribution',
+      startDate: '2023-05-16',
+      relatedContribution: '',
+      abstract: 'abstract.pdf',
+      teamRole: 'leader',
+    });
+
+    team = await Team.create({
+      name: 'Test Team',
+      password: 'password',
+      contributions: [contribution],
+    });
+  });
+
+  afterEach(async () => {
+    // Delete the test team from the database*
+    await Team.deleteOne({ _id: team._id });
+    await Contribution.deleteOne({ _id: contribution._id });
+  });
+
+  it('should update a contribution and return 200 with a success message', async () => {
+    const res = await request(app)
+      .put(`/api/contributions/update/${contribution._id}`)
+      .send({
+        title: 'Test Contribution nouveau',
+      })
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ message: `Successfully updated` });
+  });
+
+  it('should return a 404 error if the team doesnt exist', async () => {
+    const unknownId = new mongoose.Types.ObjectId();
+    const res = await request(app)
+      .put(`/api/contributions/update/${contribution._id}`)
+      .send({
+        title: 'Test Contribution nouveau',
+      })
+      .set('Authorization', `Bearer ${generateAccessToken(unknownId)}`);
+
+    expect(res.status).toBe(404);
+    expect(res.body).toEqual({ error: `Contribution not found` });
+  });
+
+  it('should return a 500 if the ID is invalid', async () => {
+    const falseId = 'lalaa';
+    const res = await request(app)
+      .put(`/api/contributions/update/${falseId}`)
+      .send({
+        title: 'Test Contribution nouveau',
+      })
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
+
+    expect(res.status).toBe(500);
+    expect(res.body).toEqual({ error: `Invalid ID: ${falseId}` });
+  });
+
+  it('should return a 500 if the ID is invalid', async () => {
+    jest.spyOn(Contribution, 'updateOne').mockImplementationOnce(() => {
+      throw new Error('Test error');
+    });
+
+    const res = await request(app)
+      .put(`/api/contributions/update/${contribution._id}`)
+      .send({
+        title: 'Test Contribution nouveau',
+      })
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
+
+    expect(res.status).toBe(500);
+    expect(res.body.error).toBeDefined();
+  });
+});
