@@ -1,5 +1,10 @@
 const Author = require('../models/authorModel');
 
+module.exports.getAuthors = async (req, res) => {
+  const authors = await Author.find();
+  return res.status(200).json(authors);
+};
+
 module.exports.createOrUpdateAuthor = async (author) => {
   const { _id, ...authorData } = author;
   if (_id) {

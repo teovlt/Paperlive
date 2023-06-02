@@ -15,6 +15,7 @@ const teamRoutes = require('./routes/teamRoutes');
 const authRoutes = require('./routes/authenticationRoutes');
 const contributionRoutes = require('./routes/contributionRoutes');
 const submissionRoutes = require('./routes/submissionRoutes');
+const authorRoutes = require('./routes/authorRoutes');
 const fileRoutes = require('./routes/fileRoutes');
 
 // Set up middleware to parse JSON, URL-encoded bodies and cookies
@@ -74,6 +75,14 @@ app.use('/api/contributions', contributionRoutes);
  * @access Public
  */
 app.use('/api/submissions', submissionRoutes);
+
+/**
+ * Handle the requests to /api/authors
+ * @route /api/authors
+ * @desc Route to handle authors related requests
+ * @access Public
+ */
+app.use('/api/authors', authorRoutes);
 
 /**
  * Handle the requests to /api/files
