@@ -6,6 +6,7 @@ import {
   InputCaption,
   InputContainer,
   Button,
+  Link,
 } from './fileInputElements';
 import CircularProgressBar from '../CircularProgressBar';
 import { HiOutlineFolder } from 'react-icons/hi2';
@@ -111,10 +112,10 @@ const FileInput = ({ name, file, endpoint, onChange, type, link }) => {
           </InputContainer>
         </Container>
       ) : (
-        <label htmlFor={`${name}FileInput`} style={{ cursor: 'pointer' }}>
+        <Link htmlFor={`${name}FileInput`}>
           {t('fileInput.changeFiles')}
           <Input type='file' id={`${name}FileInput`} accept={'.' + type} onChange={handleSubmit} />
-        </label>
+        </Link>
       )}
     </>
   );

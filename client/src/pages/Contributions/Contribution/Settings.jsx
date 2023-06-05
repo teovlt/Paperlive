@@ -185,18 +185,16 @@ const ContributionSettings = () => {
           <Label>{t('contribution.abstract')}</Label>
           <Value>
             <Link onClick={handleDownload}>{t('global.download')}</Link> /
-            <Link>
-              <FileInput
-                link={true}
-                name={t('contribution.abstract')}
-                file={contribution.abstract}
-                endpoint='files/contribution/abstract'
-                onChange={(file) =>
-                  setContributionData((prev) => ({ ...prev, filename: file?.name }))
-                }
-                type='pdf'
-              />
-            </Link>
+            <FileInput
+              link={true}
+              name={t('contribution.abstract')}
+              file={contribution.abstract}
+              endpoint='files/contribution/abstract'
+              onChange={(file) =>
+                setContributionData((prev) => ({ ...prev, filename: file?.name }))
+              }
+              type='pdf'
+            />
           </Value>
         </InfoContainer>
 
