@@ -1,17 +1,6 @@
 const Venue = require('../models/venueModel');
 const ObjectId = require('mongoose').Types.ObjectId;
 
-// module.exports.createOrUpdateVenue = async (venue) => {
-//   const { _id, ...venueData } = venue;
-//   if (_id) {
-//     const updatedVenue = await Venue.findOne({ _id: _id });
-//     await updatedVenue.updateOne({ $set: { ...venueData } });
-//     return updatedVenue;
-//   } else {
-//     return await Venue.create({ ...venueData });
-//   }
-// };
-
 module.exports.getVenues = async (req, res) => {
   const venues = await Venue.find();
   return res.status(200).json(venues);
