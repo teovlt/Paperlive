@@ -20,7 +20,7 @@ import {
 import { HiXMark } from 'react-icons/hi2';
 import Checkbox from '../Checkbox';
 
-const Selector = ({ list, selected, displayedAttribute, label, onChange }) => {
+const Selector = ({ list, selected, displayedAttribute, label, onChange, unique = false }) => {
   const { t } = useTranslation();
   const search = useSearch();
 
@@ -29,13 +29,17 @@ const Selector = ({ list, selected, displayedAttribute, label, onChange }) => {
 
   const [selectedItems, setSelectedItems] = useState(selected);
   const [displayedList, setDisplayedList] = useState(
-    list.filter((item) => !selected.map((i) => i._id).includes(item._id))
+    list.filter((item) => !selected.includes(item))
   );
 
   const handleChanges = (checked, item) => {
     if (checked) {
-      const updatedSelectedItems = [...selectedItems, item];
-      setSelectedItems(updatedSelectedItems);
+      if (unique) {
+        setSelectedItems([item]); // Only select the current item if unique is true
+      } else {
+        const updatedSelectedItems = [...selectedItems, item];
+        setSelectedItems(updatedSelectedItems);
+      }
     } else {
       const updatedSelectedItems = selectedItems.filter((selectedItem) => selectedItem !== item);
       setSelectedItems(updatedSelectedItems);
@@ -89,7 +93,7 @@ const Selector = ({ list, selected, displayedAttribute, label, onChange }) => {
           {selectedItems.length > 4 && '...'}
         </PillContainer>
         <Wrapper>
-          <Counter>{selectedItems.length}</Counter>
+          {!unique && <Counter>{selectedItems.length}</Counter>}
           <Button
             onClick={(e) => {
               e.stopPropagation();
