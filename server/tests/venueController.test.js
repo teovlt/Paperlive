@@ -47,7 +47,7 @@ describe('POST /api/venues/', () => {
     await team.deleteOne({ _id: team._id });
   });
 
-  it('should create an author', async () => {
+  it('should create an venue', async () => {
     const res = await request(app)
       .post('/api/venues/')
       .send({ name: 'ttc', rank: 'a+' })
