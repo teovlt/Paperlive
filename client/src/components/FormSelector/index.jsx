@@ -110,8 +110,8 @@ const FormSelector = ({
                   <RadioGroup
                     key={index}
                     name={key}
+                    label={schema[key].label}
                     template={{
-                      label: schema[key].label,
                       radios: [
                         {
                           label: 'Yes',

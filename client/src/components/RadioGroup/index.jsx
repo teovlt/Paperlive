@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
 import { Container, Label, RadioButton, RadioInput } from './radioGroupElements';
 
-const RadioGroup = ({ name, onChange = () => {}, template }) => {
+const RadioGroup = ({ name, label, onChange = () => {}, template }) => {
   const handleOnChange = (event) => {
     onChange(event);
   };
 
   return (
     <Container>
-      <Label>{template.label}</Label>
+      <Label>{label}</Label>
       {template.radios.map((radio, index) => (
         <Fragment key={index}>
           <RadioInput

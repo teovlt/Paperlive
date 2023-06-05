@@ -103,10 +103,33 @@ const Routes = () => {
             <Route path='settings' element={<SubmissionSettings />} />
           </Route>
 
-          <Route path='/submissions/new' element={<NewSubmission />} />
+          <Route
+            path='/submissions/new'
+            element={
+              <Layout
+                sidebar={
+                  <SidebarNavigation
+                    template={[
+                      {
+                        title: 'New submission',
+                        links: [
+                          { label: 'Informations', to: 'informations' },
+                          { label: 'Authors', to: 'authors' },
+                          { label: 'Venue', to: 'venue' },
+                          { label: 'Files', to: 'files' },
+                        ],
+                      },
+                    ]}
+                  />
+                }
+              />
+            }>
+            <Route path='' element={<Navigate to='informations' replace />} />
+            <Route path=':step' element={<NewSubmission />} />
+          </Route>
 
           <Route
-            path='/settings/'
+            path='/settings'
             element={
               <Layout
                 sidebar={
@@ -118,7 +141,7 @@ const Routes = () => {
                           {
                             label: t('settings.pages.myAccount'),
                             icon: <HiUserCircle />,
-                            to: '/settings/profile',
+                            to: 'profile',
                           },
                         ],
                       },
@@ -128,7 +151,7 @@ const Routes = () => {
                           {
                             label: t('global.password'),
                             icon: <HiLockClosed />,
-                            to: '/settings/security',
+                            to: 'security',
                           },
                         ],
                       },
@@ -138,7 +161,7 @@ const Routes = () => {
                           {
                             label: t('settings.pages.appearance'),
                             icon: <HiSwatch />,
-                            to: '/settings/appearance',
+                            to: 'appearance',
                           },
                         ],
                       },

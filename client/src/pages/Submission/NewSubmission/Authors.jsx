@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Loading from '../../../components/Loading';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
-import { useTranslation } from 'react-i18next';
+import Loading from '../../../components/Loading';
+import { Group, SectionContainer } from '../submissionElements';
 import FormSelector from '../../../components/FormSelector';
+import { Button } from '../../../theme/appElements';
+import { useNavigate } from 'react-router-dom';
 
-const FormStep3 = ({ submissionData, setSubmissionData, previous, next }) => {
+const Authors = ({ data, setData }) => {
+  const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
-  const { t } = useTranslation();
 
   const [authors, setAuthors] = useState(null);
 
@@ -22,12 +24,15 @@ const FormStep3 = ({ submissionData, setSubmissionData, previous, next }) => {
   if (!authors) return <Loading />;
 
   return (
-    <>
+    <SectionContainer>
       <FormSelector
         list={authors}
-        setList={(list) => setAuthors(list)}
-        selected={[]}
-        setSelected={(selected) => setSubmissionData({ ...submissionData, authors: selected })}
+        setList={setAuthors}
+        selected={data.authors || []}
+        setSelected={(selected) => {
+          const updatedData = { ...data, authors: selected };
+          setData(updatedData);
+        }}
         displayedAttribute='name'
         label='Authors'
         schema={{
@@ -50,7 +55,7 @@ const FormStep3 = ({ submissionData, setSubmissionData, previous, next }) => {
             required: true,
           },
           isMainAuthor: {
-            label: 'Main Author',
+            label: 'Is Main Author',
             type: 'boolean',
             default: false,
             required: true,
@@ -69,8 +74,14 @@ const FormStep3 = ({ submissionData, setSubmissionData, previous, next }) => {
           },
         }}
       />
-    </>
+      <Group inline>
+        <Button type='neutral' onClick={() => navigate('../informations')}>
+          Previous
+        </Button>
+        <Button onClick={() => navigate('../venue')}>Next</Button>
+      </Group>
+    </SectionContainer>
   );
 };
 
-export default FormStep3;
+export default Authors;
