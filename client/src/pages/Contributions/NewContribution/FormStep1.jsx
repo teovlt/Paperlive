@@ -67,11 +67,10 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
         }}
       />
       <Selector
-        list={auth.contributions}
-        id='relatedContributions'
-        name='relatedContributions'
-        selected={contributionData.relatedContributions}
         label={t('contribution.related')}
+        displayedAttribute='title'
+        list={auth.contributions}
+        selected={contributionData.relatedContributions}
         onChange={(list) => {
           const newContributionData = { ...contributionData, relatedContributions: list };
           setContributionData(newContributionData);

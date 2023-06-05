@@ -75,7 +75,7 @@ export const Counter = styled.span`
   padding: 0.275rem 1rem;
 `;
 
-export const Button = styled.button`
+export const ButtonCircle = styled.button`
   display: flex;
   padding: 0.375rem;
 
@@ -128,12 +128,18 @@ export const DisplayedListContainer = styled.div`
   flex-direction: column;
 `;
 
-export const NoResults = styled.div`
+export const ResultsButton = styled.button`
   user-select: none;
 
+  text-align: left;
   font-size: 1.5rem;
   color: var(--black-tertiary);
   padding: 0.625rem 1.6rem;
+
+  &:hover {
+    cursor: pointer;
+    background: var(--black-quaternary);
+  }
 `;
 
 export const PillContainer = styled.div`
@@ -181,4 +187,45 @@ export const PillButton = styled.button`
     background: var(--black-quaternary);
     border-radius: 100px;
   }
+`;
+
+export const ModalBackdrop = styled.div`
+  position: absolute;
+  display: block;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+
+  cursor: default;
+  background: var(--black-tertiary);
+`;
+
+export const ModalContainer = styled.div`
+  position: absolute;
+  display: block;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+
+  width: min(47rem, 80%);
+  padding: 4.8rem 2.4rem;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.6rem;
+
+  background: white;
+`;
+
+export const ModalRowWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 1.6rem;
 `;

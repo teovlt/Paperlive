@@ -30,9 +30,7 @@ module.exports.listSubmissionsBelongToTeam = async (req, res) => {
         contribution &&
           (await Promise.all(
             contribution.submissions?.map(async (c) => {
-              const submission = await Submission.findOne({ _id: c._id }).populate(
-                'authors.author venue'
-              );
+              const submission = await Submission.findOne({ _id: c._id }).populate('venue');
               submissions.push(submission);
             })
           ));
@@ -66,9 +64,7 @@ module.exports.listSubmissionsBelongToContribution = async (req, res) => {
     contribution &&
       (await Promise.all(
         contribution.submissions?.map(async (c) => {
-          const submission = await Submission.findOne({ _id: c._id }).populate(
-            'authors.author venue'
-          );
+          const submission = await Submission.findOne({ _id: c._id }).populate('venue');
           submissions.push(submission);
         })
       ));
@@ -100,9 +96,7 @@ module.exports.readSubmission = async (req, res) => {
 
     if (!contribution) return res.status(404).json({ error: 'Submission not found' });
 
-    const submission = await Submission.findOne({ _id: submissionId }).populate(
-      'authors.author venue'
-    );
+    const submission = await Submission.findOne({ _id: submissionId }).populate('venue');
 
     return res.status(200).json(submission);
   } catch (error) {
@@ -181,22 +175,8 @@ module.exports.createSubmission = async (req, res) => {
       );
     }
 
-    if (authors) {
-      await Promise.all(
-        authors.map(async (c, index) => {
-          authors[index]['author'] = await createOrUpdateAuthor(c.author);
-        })
-      );
-    }
-
-    if (venue) {
-      venue = await createOrUpdateVenue(venue);
-    }
-
     const submission = new Submission({
       _id,
-      venue,
-      authors,
       ...submissionData,
     });
     await submission.save();

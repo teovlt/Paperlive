@@ -8,9 +8,13 @@ const Checkbox = ({ defaultChecked = false, ...props }) => {
     setChecked(defaultChecked);
   }, [defaultChecked]);
 
-  const handleChanges = () => {
-    props.onChange(!checked);
-    setChecked(!checked);
+  const handleChanges = (event) => {
+    if (props.onClick) {
+      props.onClick(event);
+    } else {
+      props.onChange(!checked);
+      setChecked(!checked);
+    }
   };
 
   return (

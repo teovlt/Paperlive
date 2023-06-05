@@ -99,7 +99,7 @@ const FileInput = ({ name, file, endpoint, onChange, type, link }) => {
                   }}>
                   {filename}
                 </span>
-                <Button htmlFor={`${name}FileInput`}> {t('fileInput.changeFiles')}</Button>
+                <Button htmlFor={`${name}FileInput`}>{t('fileInput.changeFiles')}</Button>
               </InputCaption>
             ) : (
               <InputCaption>

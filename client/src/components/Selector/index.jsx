@@ -15,22 +15,21 @@ import {
   PillLabel,
   PillButton,
   Placeholder,
+  NoResults,
 } from './selectorElements';
 import { HiXMark } from 'react-icons/hi2';
 import Checkbox from '../Checkbox';
 
-const Selector = (props) => {
+const Selector = ({ list, selected, displayedAttribute, label, onChange }) => {
   const { t } = useTranslation();
   const search = useSearch();
 
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const [selectedItems, setSelectedItems] = useState(props.selected);
+  const [selectedItems, setSelectedItems] = useState(selected);
   const [displayedList, setDisplayedList] = useState(
-    props.list.filter((item) =>
-      props.list.filter((item) => !props.selected.map((i) => i._id).includes(item._id))
-    )
+    list.filter((item) => !selected.map((i) => i._id).includes(item._id))
   );
 
   const handleChanges = (checked, item) => {
@@ -44,12 +43,12 @@ const Selector = (props) => {
   };
 
   useEffect(() => {
-    props.onChange(selectedItems);
+    onChange(selectedItems);
     setDisplayedList(
-      props.list.filter(
+      list.filter(
         (item) =>
           !selectedItems.map((c) => c._id).includes(item._id) &&
-          search(searchQuery, props.list, 'title')
+          search(searchQuery, list, displayedAttribute)
             .map((c) => c._id)
             .includes(item._id)
       )
@@ -58,10 +57,10 @@ const Selector = (props) => {
 
   useEffect(() => {
     setDisplayedList(
-      props.list.filter(
+      list.filter(
         (item) =>
           !selectedItems.map((c) => c._id).includes(item._id) &&
-          search(searchQuery, props.list, 'title')
+          search(searchQuery, list, displayedAttribute)
             .map((c) => c._id)
             .includes(item._id)
       )
@@ -71,20 +70,17 @@ const Selector = (props) => {
   return (
     <Container>
       <Toggler
-        onClick={(e) => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen(!isOpen)}
         className={`${isOpen && 'open'} ${selectedItems.length > 0 && 'filled'}`}>
-        <Placeholder>{t('contribution.related')}</Placeholder>
+        <Placeholder>{label}</Placeholder>
         <PillContainer>
-          {selectedItems.slice(0, 4).map((item) => (
-            <Pill key={item._id}>
-              <PillLabel>{item.title}</PillLabel>
+          {selectedItems.slice(0, 4).map((item, index) => (
+            <Pill key={item._id || index}>
+              <PillLabel>{item[displayedAttribute]}</PillLabel>
               <PillButton
                 onClick={(e) => {
                   e.stopPropagation();
-                  const updatedSelectedItems = selectedItems.filter(
-                    (selectedItem) => selectedItem !== item
-                  );
-                  setSelectedItems(updatedSelectedItems);
+                  setSelectedItems((prev) => prev.filter((i) => i !== item));
                 }}>
                 <HiXMark />
               </PillButton>
@@ -112,28 +108,31 @@ const Selector = (props) => {
           />
           {selectedItems.length > 0 && (
             <SelectedItemsContainer>
-              {selectedItems.map((item) => (
+              {selectedItems.map((item, index) => (
                 <Checkbox
-                  key={item._id}
-                  label={item.title}
+                  key={item._id || index}
+                  label={item[displayedAttribute]}
                   onChange={(checked) => handleChanges(checked, item)}
                   defaultChecked={true}
                 />
               ))}
             </SelectedItemsContainer>
           )}
-          {displayedList.length > 0 && (
-            <DisplayedListContainer>
-              {displayedList.slice(0, 8).map((item) => (
-                <Checkbox
-                  key={item._id}
-                  label={item.title}
-                  onChange={(checked) => handleChanges(checked, item)}
-                />
-              ))}
-              {/* TODO: Search for more resutls */}
-            </DisplayedListContainer>
-          )}
+          <DisplayedListContainer>
+            {displayedList.length > 0 ? (
+              displayedList
+                .slice(0, 8)
+                .map((item) => (
+                  <Checkbox
+                    key={item._id}
+                    label={item[displayedAttribute]}
+                    onChange={(checked) => handleChanges(checked, item)}
+                  />
+                ))
+            ) : (
+              <NoResults>{t('contribution.noResults')}</NoResults>
+            )}
+          </DisplayedListContainer>
         </>
       )}
     </Container>
