@@ -45,8 +45,8 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
           const newContributionData = { ...contributionData, teamRole: event.target.value };
           setContributionData(newContributionData);
         }}
+        label={t('contribution.teamRole')}
         template={{
-          label: t('contribution.teamRole'),
           radios: [
             {
               label: t('contribution.leader'),

@@ -104,8 +104,8 @@ const AccountSettings = () => {
             <DivLeftInfos>
               <RadioGroup
                 name='visibility'
+                label={t('sideBar.visibility')}
                 template={{
-                  label: t('sideBar.visibility'),
                   radios: [
                     {
                       label: t('sideBar.private'),

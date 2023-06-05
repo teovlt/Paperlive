@@ -150,8 +150,8 @@ const ContributionSettings = () => {
             const newContributionData = { ...contribution, teamRole: event.target.value };
             setContributionData(newContributionData);
           }}
+          label={t('contribution.teamRole')}
           template={{
-            label: t('contribution.teamRole'),
             radios: [
               {
                 label: t('contribution.leader'),
