@@ -161,7 +161,8 @@
     "success": "Imported file",
     "drag": "Drag and drop your file here",
     "or": "or",
-    "browse": "Browse files"
+    "browse": "Browse files",
+    "changeFiles": "Change file"
   },
   "settings": {
     "sections": {

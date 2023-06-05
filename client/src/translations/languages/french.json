@@ -162,7 +162,8 @@
     "success": "Fichier importé ",
     "drag": "Faites glisser votre fichier ici",
     "or": "ou",
-    "browse": "Parcourir les fichiers"
+    "browse": "Parcourir les fichiers",
+    "changeFiles": "Changer le fichier"
   },
   "settings": {
     "sections": {
