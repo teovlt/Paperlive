@@ -1,4 +1,4 @@
-const Author = require('../src/models/authorModel');
+const Venue = require('../src/models/venueModel');
 const mongoose = require('mongoose');
 const Team = require('../src/models/teamModel');
 const request = require('supertest');
@@ -16,7 +16,7 @@ afterAll(async () => {
   await mongoose.disconnect();
 });
 
-describe('GET /api/authors/', () => {
+describe('GET /api/venues/', () => {
   let team;
 
   beforeEach(async () => {
@@ -24,16 +24,35 @@ describe('GET /api/authors/', () => {
   });
 
   afterEach(async () => {
-    await team.deleteOne();
+    await team.deleteOne({ _id: team._id });
   });
 
-  it('should give me an author with a 200 response', async () => {
+  it('should return all the venues with a 200 response', async () => {
     const res = await request(app)
-      .get('/api/authors/')
+      .get('/api/venues/')
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
     expect(res.status).toBe(200);
   });
 });
 
+describe('POST /api/venues/', () => {
+  let team;
 
+  beforeEach(async () => {
+    team = await new Team({ name: 'TestTeam', password: 'password' });
+  });
+
+  afterEach(async () => {
+    await team.deleteOne({ _id: team._id });
+  });
+
+  it('should create an venue', async () => {
+    const res = await request(app)
+      .post('/api/venues/')
+      .send({ name: 'ttc', rank: 'a+' })
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
+
+    expect(res.status).toBe(200);
+  });
+});

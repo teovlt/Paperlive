@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { Group, SectionContainer } from './contributionElements';
+import { Group, SectionContainer, InfoContainer, Value, Label, Link } from './contributionElements';
 import { Button, Heading2, Heading3, Caption } from '../../../theme/appElements';
 
 import Input from '../../../components/Input';
@@ -23,7 +23,6 @@ const ContributionSettings = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
-  const { confirm } = useConfirm();
 
   const contribution = auth.contributions?.find((c) => c._id === id);
   const [contributionData, setContributionData] = useState({ ...contribution });
@@ -100,6 +99,21 @@ const ContributionSettings = () => {
       setErrMsg(t('contribution.deleteContWrongName'));
     }
   };
+
+  const handleDownload = async (e) => {
+    e.preventDefault();
+    const res = await axiosPrivate.get(
+      `${import.meta.env.VITE_API_URI}/api/files/${contribution.abstract}`,
+      { responseType: 'blob' }
+    );
+
+    const url = URL.createObjectURL(res.data);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', contribution?.abstract);
+    link.click();
+  };
+
   return (
     <>
       <SectionContainer>
@@ -157,7 +171,7 @@ const ContributionSettings = () => {
             ],
           }}
         />
-        <Selector
+        {/* <Selector
           label={t('contribution.related')}
           displayedAttribute='title'
           list={auth.contributions.filter((c) => c._id !== id)}
@@ -166,16 +180,23 @@ const ContributionSettings = () => {
             const newContributionData = { ...contributionData, relatedContributions: list };
             setContributionData(newContributionData);
           }}
-        />
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <FileInput
-            name={t('contribution.abstract')}
-            file={contribution.abstract}
-            endpoint='files/contribution/abstract'
-            onChange={(file) => setContributionData((prev) => ({ ...prev, filename: file?.name }))}
-            type='pdf'
-          />
-        </div>
+        /> */}
+        <InfoContainer>
+          <Label>{t('contribution.abstract')}</Label>
+          <Value>
+            <Link onClick={handleDownload}>{t('global.download')}</Link> /
+            <FileInput
+              link={true}
+              name={t('contribution.abstract')}
+              file={contribution.abstract}
+              endpoint='files/contribution/abstract'
+              onChange={(file) =>
+                setContributionData((prev) => ({ ...prev, filename: file?.name }))
+              }
+              type='pdf'
+            />
+          </Value>
+        </InfoContainer>
 
         <Group inline>
           <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>

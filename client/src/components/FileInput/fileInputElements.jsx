@@ -62,3 +62,11 @@ export const Button = styled.label`
     cursor: pointer;
   }
 `;
+
+export const Link = styled.label`
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  color: var(--accent);
+`;
