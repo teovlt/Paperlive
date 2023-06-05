@@ -4,6 +4,6 @@ const { authenticateAccessToken } = require('../middlewares/authenticationMiddle
 
 Router.get('/', authenticateAccessToken, venueController.getVenues);
 Router.post('/', authenticateAccessToken, venueController.createVenue);
-Router.put('/:authorId', authenticateAccessToken, venueController.updateVenue);
+Router.put('/:venueId', authenticateAccessToken, venueController.updateVenue);
 
 module.exports = Router;
