@@ -22,7 +22,7 @@ import {
 const NewSubmission = () => {
   const { t } = useTranslation();
 
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(2);
   const [errorMsg, setErrorMsg] = useState('');
   const [submissionData, setSubmissionData] = useState({
     title: '',

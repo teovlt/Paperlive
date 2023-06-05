@@ -158,10 +158,9 @@ const ContributionSettings = () => {
           }}
         />
         <Selector
-          list={auth.contributions.filter((c) => c._id !== id)}
-          id='relatedContributions'
-          name='relatedContributions'
           label={t('contribution.related')}
+          displayedAttribute='title'
+          list={auth.contributions.filter((c) => c._id !== id)}
           selected={contribution.relatedContributions}
           onChange={(list) => {
             const newContributionData = { ...contributionData, relatedContributions: list };

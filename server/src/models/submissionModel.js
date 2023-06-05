@@ -25,10 +25,9 @@ const submissionSchema = new mongoose.Schema({
   },
   authors: [
     {
-      author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Author',
-      },
+      name: {},
+      grade: {},
+      country: {},
       isMainAuthor: {
         type: Boolean,
         default: false,
