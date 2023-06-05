@@ -30,6 +30,7 @@ module.exports.updateAuthor = async (req, res) => {
     { $set: { ...req.body } },
     { new: true }
   );
+  
   if (!author) return res.status(404).json({ error: 'Author not found' });
   return res.status(200).json(author);
 };
