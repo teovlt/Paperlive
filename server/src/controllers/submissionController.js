@@ -90,8 +90,6 @@ module.exports.readSubmission = async (req, res) => {
     const team = await Team.findOne({ _id: req.teamId }).populate('contributions');
     if (!team) return;
 
-    console.log(submissionId);
-
     const contribution = team.contributions?.find((contribution) =>
       contribution.submissions?.some((submission) => submission._id.toString() === submissionId)
     );
@@ -120,7 +118,7 @@ module.exports.createSubmission = async (req, res) => {
     let venue = v;
 
     const team = await Team.findOne({ _id: req.teamId, contributions: { $in: [contributionId] } });
-    if (!team) return res.status(404).json({ error: 'Contribution not found' });
+    if (!team) return res.status(404).json({ error: 'Team not found' });
 
     if (
       fs.existsSync(
@@ -319,7 +317,7 @@ module.exports.deleteSubmission = async (req, res) => {
       return res.status(500).json({ error: `Invalid ID: ${submissionId}` });
 
     const team = await Team.findOne({ _id: req.teamId }).populate('contributions');
-    if (!team) return;
+    if (!team) return res.status(404).json({ error: 'Team not found' });
 
     const contribution = team.contributions?.find((contribution) =>
       contribution.submissions?.some((submission) => submission._id.toString() === submissionId)

@@ -8,13 +8,13 @@ import {
   Button,
 } from './fileInputElements';
 import CircularProgressBar from '../CircularProgressBar';
-import { IoMdCloudUpload } from 'react-icons/io';
+import { HiOutlineFolder } from 'react-icons/hi2';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useTranslation } from 'react-i18next';
 import Chips from '../Chips';
 import { toast } from 'react-toastify';
 
-const FileInput = ({ name, file, endpoint, onChange }) => {
+const FileInput = ({ name, file, endpoint, onChange, type }) => {
   const axiosPrivate = useAxiosPrivate();
 
   const [filename, setFilename] = useState(file);
@@ -72,29 +72,37 @@ const FileInput = ({ name, file, endpoint, onChange }) => {
   };
 
   return (
-    <Container>
-      <InputContainer onDrop={handleSubmit} onDragOver={handleDragOver}>
-        <Input type='file' id={`${name}FileInput`} accept='.pdf' onChange={handleSubmit} />
-        {isUploading ? (
-          <InputCaption>
-            <CircularProgressBar progress={progress} />
-            Uploading...
-          </InputCaption>
-        ) : (
-          <InputCaption>
-            <IoMdCloudUpload />
-            <CaptionHeading>{t('fileInput.drag')}</CaptionHeading>
-            <span style={{ color: 'var(--black-secondary)' }}>{t('fileInput.or')}</span>
-            <Button htmlFor={`${name}FileInput`}>{t('fileInput.browse')}</Button>
-          </InputCaption>
-        )}
-      </InputContainer>
-      {file && !isUploading && (
-        <Chips type='positive'>
-          {t('fileInput.success')}: {filename}
-        </Chips>
-      )}
-    </Container>
+      <Container htmlFor={`${name}FileInput`} style={{ cursor: 'pointer' }}>
+        <InputContainer onDrop={handleSubmit} onDragOver={handleDragOver}>
+          <Input type='file' id={`${name}FileInput`} accept={'.' + type} onChange={handleSubmit} />
+          {isUploading ? (
+            <InputCaption>
+              <CircularProgressBar progress={progress} />
+              Uploading...
+            </InputCaption>
+          ) : file && !isUploading ? (
+            <InputCaption>
+              {name}
+              <span
+                style={{
+                  whiteSpace: 'nowrap',
+                  textOverflow: 'ellipsis',
+                  width: '180px',
+                  overflow: 'hidden',
+                }}>
+                {filename}
+              </span>
+              <Button htmlFor={`${name}FileInput`}>Change file</Button>
+            </InputCaption>
+          ) : (
+            <InputCaption>
+              {name}
+              <HiOutlineFolder />
+              <strong>{type.toUpperCase()}</strong>
+            </InputCaption>
+          )}
+        </InputContainer>
+      </Container>
   );
 };
 

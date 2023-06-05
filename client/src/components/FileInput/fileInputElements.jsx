@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.label`
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -14,9 +14,8 @@ export const InputContainer = styled.div`
 
   user-select: none;
 
-  padding: 24px;
-  width: 100%;
-  aspect-ratio: 2/1;
+  width: 200px;
+  aspect-ratio: 1/1;
 
   /* background: var(--black-quaternary); */
   border: 1px dashed var(--black-tertiary);
@@ -53,12 +52,13 @@ export const CaptionHeading = styled.p`
 `;
 
 export const Button = styled.label`
-  cursor: pointer;
-  padding: 8px 16px;
   border-radius: 0.2rem;
 
-  /* border: 2px solid var(--accent); */
-  background: var(--accent);
-  color: var(--white);
+  color: var(--accent);
   font-weight: 400;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;

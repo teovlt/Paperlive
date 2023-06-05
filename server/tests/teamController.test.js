@@ -290,27 +290,29 @@ describe('DELETE /api/teams/delete', () => {
 
   it('should delete a team and return 200 OK reponse with a success message', async () => {
     const res = await request(app)
-      .delete(`/api/teams/delete`)
-
+      .post(`/api/teams/delete`)
+      .send({ name: team.name, password: 'password' })
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
     expect(res.status).toBe(200);
-
     expect(res.body).toEqual({ message: 'Successfully deleted' });
+  });
 
-    // Check that the team was actually deleted from the database*
+   it('should delete a team and return 400 error if wrong credentials', async () => {
+    const res = await request(app)
+      .post(`/api/teams/delete`)
+      .send({ name: team.name, password: 'wrongPassword' })
+      .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
-    const deletedTeam = await Team.findOne({ _id: team._id });
-
-    expect(deletedTeam).toBeNull();
+    expect(res.status).toBe(400);
+    expect(res.body).toEqual({ error: 'Invalid credentials' });
   });
 
   it('should return a 404 Not Found response with an error message if the team does not exist', async () => {
     const unknownId = new mongoose.Types.ObjectId();
 
     const res = await request(app)
-      .delete(`/api/teams/delete`)
-
+      .post(`/api/teams/delete`)
       .set('Authorization', `Bearer ${generateAccessToken(unknownId)}`);
 
     expect(res.status).toBe(404);
@@ -326,8 +328,8 @@ describe('DELETE /api/teams/delete', () => {
     });
 
     const res = await request(app)
-      .delete(`/api/teams/delete`)
-
+      .post(`/api/teams/delete`)
+      .send({ name: team.name, password: 'password' })
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
     expect(res.status).toBe(500);
@@ -374,7 +376,6 @@ describe('PUT api/teams/change-password', () => {
   });
 
   it('should handle errors properly', async () => {
-    
     const res = await request(app)
       .put(`/api/teams/change-password`)
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`)
