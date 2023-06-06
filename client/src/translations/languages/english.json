@@ -228,5 +228,13 @@
     "saveChanges": "Save changes",
     "saveChangesAdd": "Save changes and add",
     "createAdd": "Create and add"
+  },
+  "authors": {
+    "name": "Full name",
+    "grade": "Grade",
+    "country": "Country",
+    "isMainAuthor": "Is main author?",
+    "workTime": "Work time",
+    "hourlyCost": "Hourly cost"
   }
 }

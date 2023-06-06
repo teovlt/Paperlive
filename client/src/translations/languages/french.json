@@ -229,5 +229,13 @@
     "saveChanges": "Sauvegarder les changements",
     "saveChangesAdd": "Sauvegarder et ajouter",
     "createAdd": "Créer et ajouter"
+  },
+  "authors": {
+    "name": "Nom complet",
+    "grade": "Grade",
+    "country": "Pays",
+    "isMainAuthor": "Est auteur principal ?",
+    "workTime": "Temps de travail",
+    "hourlyCost": "Coût par heure"
   }
 }
