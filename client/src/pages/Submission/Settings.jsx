@@ -157,7 +157,7 @@ const SubmissionSettings = () => {
                 defaultChecked: submissionData?.type === 'shortPaper',
               },
               {
-                label: t('global.contribution'),
+                label: t('submission.contribution'),
                 value: 'contribution',
                 defaultChecked: submissionData?.type === 'contribution',
               },
