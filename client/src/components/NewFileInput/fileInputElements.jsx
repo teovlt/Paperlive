@@ -25,7 +25,7 @@ export const Container = styled.div`
 
     background-color: var(--accent);
 
-    transition: width 1s;
+    transition: width 0.5s ease-in-out;
   }
 `;
 
