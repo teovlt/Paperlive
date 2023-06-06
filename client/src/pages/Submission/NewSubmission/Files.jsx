@@ -35,7 +35,7 @@ const Files = ({ data, setData }) => {
       <FileInput
         name={t('submission.commentsPDF')}
         MIMEType='pdf'
-        setData={(file) => setData((prev) => ({ ...prev, commentsPdf: file }))}
+        setData={(file) => setData((prev) => ({ ...prev, commentPdf: file }))}
       />
       <Group inline>
         <Button type='neutral' onClick={() => navigate('../venue')}>
