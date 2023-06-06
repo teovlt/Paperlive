@@ -164,7 +164,9 @@
     "errorMsg": "Please fill in the following field(s): ",
 
     "newauthor": "New author",
-    "newvenue": "New venue"
+    "newvenue": "New venue",
+
+    "related": "Related contributions"
   },
   "fileInput": {
     "success": "Imported file",
