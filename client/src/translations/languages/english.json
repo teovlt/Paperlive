@@ -240,7 +240,7 @@
     "hourlyCost": "Hourly cost"
   },
   "venue": {
-    "name": "Nom",
+    "name": "Name",
     "rank": "Rank"
   }
 }

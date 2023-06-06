@@ -101,7 +101,7 @@ const FormSelector = ({
         <>
           <ModalBackdrop onClick={() => setModal({ isOpen: false, item: defaultItem })} />
           <ModalContainer>
-            <Heading2>{t(`submission.${label.toLowerCase()}`)}</Heading2>
+            <Heading2>{label}</Heading2>
             {Object.keys(schema).map((key, index) => {
               if (schema[key].type === 'boolean')
                 return (
@@ -176,7 +176,7 @@ const FormSelector = ({
         <Toggler
           onClick={() => setIsOpen(!isOpen)}
           className={`${isOpen && 'open'} ${selectedItems.length > 0 && 'filled'}`}>
-          <Placeholder>{t(`submission.${label.toLowerCase()}`)}</Placeholder>
+          <Placeholder>{label}</Placeholder>
           <PillContainer>
             {selectedItems.map((item, index) => (
               <Pill key={item._id || index}>
@@ -230,10 +230,7 @@ const FormSelector = ({
                 />
               ))}
               <ResultsButton onClick={() => setModal({ isOpen: true, item: defaultItem })}>
-                +{' '}
-                {t(
-                  `submission.new${unique ? label.toLowerCase() : label.slice(0, -1).toLowerCase()}`
-                )}
+                + {t(`submission.new${unique ? modelName : modelName.slice(0, -1)}`)}
               </ResultsButton>
             </DisplayedListContainer>
           </>
