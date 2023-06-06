@@ -41,37 +41,37 @@ const Authors = ({ data, setData }) => {
         modelName='authors'
         schema={{
           name: {
-            label: t('authors.name'),
+            label: t('author.name'),
             type: 'text',
             default: '',
             required: true,
           },
           grade: {
-            label: t('authors.grade'),
+            label: t('author.grade'),
             type: 'text',
             default: '',
             required: true,
           },
           country: {
-            label: t('authors.country'),
+            label: t('author.country'),
             type: 'text',
             default: '',
             required: true,
           },
           isMainAuthor: {
-            label: t('authors.isMainAuthor'),
+            label: t('author.isMainAuthor'),
             type: 'boolean',
             default: false,
             required: true,
           },
           workTime: {
-            label: t('authors.workTime'),
+            label: t('author.workTime'),
             type: 'number',
             default: '',
             required: true,
           },
           hourlyCost: {
-            label: t('authors.hourlyCost'),
+            label: t('author.hourlyCost'),
             type: 'number',
             default: '',
             required: true,

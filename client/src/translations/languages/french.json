@@ -232,7 +232,7 @@
     "saveChangesAdd": "Sauvegarder et ajouter",
     "createAdd": "Créer et ajouter"
   },
-  "authors": {
+  "author": {
     "name": "Nom complet",
     "grade": "Grade",
     "country": "Pays",
