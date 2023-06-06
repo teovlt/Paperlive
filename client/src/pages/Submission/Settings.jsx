@@ -64,6 +64,7 @@ const SubmissionSettings = () => {
   };
 
   const handleSaveChanges = async () => {
+    // FIXME: update submission
     await axiosPrivate.put(`/submissions/update/${id}`, {
       ...submissionData,
     });
@@ -83,11 +84,20 @@ const SubmissionSettings = () => {
         await axiosPrivate.delete(`/submissions/delete/${id}`, {
           ...submission,
         });
-        // const updatedContributions = auth.contributions.filter((c) => c._id !== id);
-        // setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
-        navigate('/contributions');
+        const contribution = auth.contributions.find((contribution) =>
+          contribution.submissions?.map((submission) => submission._id).includes(id)
+        );
+
+        const updatedContributions = [
+          ...auth.contributions.filter((c) => c._id !== contribution._id),
+          { ...contribution, submissions: [contribution.submissions?.filter((s) => s._id !== id)] },
+        ];
+
+        setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
+        navigate(`/contributions/${contribution._id}`);
         notifyDelete();
       } catch (error) {
+        console.log(error);
         if (!error?.response) {
           setErrMsg(t('authentication.servorError'));
         } else {

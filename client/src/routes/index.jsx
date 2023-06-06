@@ -117,6 +117,7 @@ const Routes = () => {
                           { label: 'Authors', to: 'authors' },
                           { label: 'Venue', to: 'venue' },
                           { label: 'Files', to: 'files' },
+                          { label: 'Summary', to: 'summary' },
                         ],
                       },
                     ]}

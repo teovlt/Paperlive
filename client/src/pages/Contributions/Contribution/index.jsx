@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
+import Loading from '../../../components/Loading';
 import { Heading2 } from '../../../theme/appElements';
 import {
   InfoContainer,
@@ -26,8 +28,12 @@ const Contribution = () => {
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
 
-  const contribution = auth.contributions?.find((c) => c._id === id);
-  if (!contribution) navigate('/');
+  const [contribution, setContribution] = useState(null);
+
+  useEffect(() => {
+    console.log('contributions');
+    setContribution(auth.contributions?.find((c) => c._id === id));
+  }, [auth.contributions]);
 
   const handleDownload = async (e) => {
     e.preventDefault();
@@ -42,6 +48,8 @@ const Contribution = () => {
     link.setAttribute('download', contribution?.abstract);
     link.click();
   };
+
+  if (!contribution) return <Loading />;
 
   return (
     <>
@@ -111,11 +119,13 @@ const Contribution = () => {
               label: 'Date',
               icon: <HiOutlineClock />,
               operator: (value) =>
-                new Intl.DateTimeFormat(i18n.language, {
-                  day: '2-digit',
-                  month: '2-digit',
-                  year: 'numeric',
-                }).format(new Date(value)),
+                value
+                  ? new Intl.DateTimeFormat(i18n.language, {
+                      day: '2-digit',
+                      month: '2-digit',
+                      year: 'numeric',
+                    }).format(new Date(value))
+                  : '-',
             },
             {
               name: 'state',

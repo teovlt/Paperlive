@@ -35,6 +35,7 @@ const Authors = ({ data, setData }) => {
         }}
         displayedAttribute='name'
         label='Authors'
+        modelName='authors'
         schema={{
           name: {
             label: 'Name',

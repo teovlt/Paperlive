@@ -25,11 +25,38 @@ const Venue = ({ data, setData }) => {
 
   return (
     <SectionContainer>
+      <FormSelector
+        unique
+        list={venues}
+        setList={setVenues}
+        selected={data.venue ? [data.venue] : []}
+        setSelected={(selected) => {
+          const updatedData = { ...data, venue: selected[0] };
+          setData(updatedData);
+        }}
+        displayedAttribute='name'
+        label='Venue'
+        modelName='venues'
+        schema={{
+          name: {
+            label: 'Name',
+            type: 'text',
+            default: '',
+            required: true,
+          },
+          rank: {
+            label: 'Rank',
+            type: 'text',
+            default: '',
+            required: true,
+          },
+        }}
+      />
       <Group inline>
-        <Button type='neutral' onClick={() => navigate('../informations')}>
+        <Button type='neutral' onClick={() => navigate('../authors')}>
           Previous
         </Button>
-        <Button onClick={() => navigate('../venue')}>Next</Button>
+        <Button onClick={() => navigate('../files')}>Next</Button>
       </Group>
     </SectionContainer>
   );

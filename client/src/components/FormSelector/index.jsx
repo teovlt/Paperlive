@@ -33,7 +33,9 @@ const FormSelector = ({
   setSelected,
   displayedAttribute,
   label,
+  modelName,
   schema,
+  unique = false,
 }) => {
   const search = useSearch();
   const axiosPrivate = useAxiosPrivate();
@@ -50,34 +52,27 @@ const FormSelector = ({
   const [selectedItems, setSelectedItems] = useState(selected);
   const [displayedList, setDisplayedList] = useState(null);
 
-  const handleChanges = (checked, item) => {
-    if (checked) {
-      const updatedSelectedItems = [...selectedItems, item];
-      setSelectedItems(updatedSelectedItems);
-    } else {
-      const updatedSelectedItems = selectedItems.filter((selectedItem) => selectedItem !== item);
-      setSelectedItems(updatedSelectedItems);
-    }
-  };
-
   const handleSave = async (item) => {
     if (!Object.keys(defaultItem).some((key) => item[key] === '' || item[key] === undefined)) {
       if (item._id) {
-        const res = await axiosPrivate.put(`/${label}/${item._id}`, item);
-        setSelectedItems((prev) => [
-          ...prev.filter((i) => i._id !== item._id),
-          { ...res.data, ...item },
-        ]);
+        const res = await axiosPrivate.put(`/${modelName}/${item._id}`, item);
+        if (unique) setSelectedItems([{ ...res.data, ...item }]);
+        else
+          setSelectedItems((prev) => [
+            ...prev.filter((i) => i._id !== item._id),
+            { ...res.data, ...item },
+          ]);
       } else {
-        const res = await axiosPrivate.post(`/${label}`, item);
-        setSelectedItems((prev) => [...prev, { ...res.data, ...item }]);
+        const res = await axiosPrivate.post(`/${modelName}`, item);
+        if (unique) setSelectedItems([{ ...res.data, ...item }]);
+        else setSelectedItems((prev) => [...prev, { ...res.data, ...item }]);
       }
       setModal({ isOpen: false, item: defaultItem });
     }
   };
 
   useEffect(() => {
-    setDisplayedList(list.filter((i) => !selectedItems.includes(i)));
+    setDisplayedList(list.filter((item) => !selectedItems.map((i) => i._id).includes(item._id)));
   }, [list]);
 
   useEffect(() => {
@@ -103,7 +98,7 @@ const FormSelector = ({
         <>
           <ModalBackdrop onClick={() => setModal({ isOpen: false, item: defaultItem })} />
           <ModalContainer>
-            <Heading2>Author</Heading2>
+            <Heading2>{label}</Heading2>
             {Object.keys(schema).map((key, index) => {
               if (schema[key].type === 'boolean')
                 return (
@@ -194,7 +189,7 @@ const FormSelector = ({
             ))}
           </PillContainer>
           <Wrapper>
-            <Counter>{selectedItems.length}</Counter>
+            {!unique && <Counter>{selectedItems.length}</Counter>}
             <ButtonCircle
               onClick={(e) => {
                 e.stopPropagation();
@@ -218,7 +213,6 @@ const FormSelector = ({
                     key={item._id || index}
                     label={item[displayedAttribute]}
                     onClick={() => setModal({ isOpen: true, item: item })}
-                    onChange={(checked) => handleChanges(checked, item)}
                     defaultChecked={true}
                   />
                 ))}
@@ -230,11 +224,10 @@ const FormSelector = ({
                   key={item._id || index}
                   label={item[displayedAttribute]}
                   onClick={() => setModal({ isOpen: true, item: { ...item, isMainAuthor: false } })}
-                  onChange={(checked) => handleChanges(checked, item)}
                 />
               ))}
               <ResultsButton onClick={() => setModal({ isOpen: true, item: defaultItem })}>
-                + New author
+                + New {unique ? label.toLowerCase() : label.slice(0, -1).toLowerCase()}
               </ResultsButton>
             </DisplayedListContainer>
           </>
