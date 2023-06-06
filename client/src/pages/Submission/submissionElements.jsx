@@ -20,6 +20,8 @@ export const InfoContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
+  /* overflow-x: hidden; */
+
   font-size: 1.5rem;
   border-bottom: 1px solid var(--black-quaternary);
   align-items: center;

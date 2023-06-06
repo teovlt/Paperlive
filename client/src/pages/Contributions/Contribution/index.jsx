@@ -31,7 +31,6 @@ const Contribution = () => {
   const [contribution, setContribution] = useState(null);
 
   useEffect(() => {
-    console.log('contributions');
     setContribution(auth.contributions?.find((c) => c._id === id));
   }, [auth.contributions]);
 
