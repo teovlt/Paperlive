@@ -6,6 +6,12 @@ export const Container = styled.div`
   margin-inline: auto;
 `;
 
+export const SectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+`;
+
 export const Button = styled.button`
   user-select: none;
   cursor: pointer;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { Group, SectionContainer } from './submissionElements';
+import { Group, SectionContainer } from '../../theme/appElements';
 import { Button, Heading2, Heading3, Caption } from '../../theme/appElements';
 
 import Input from '../../components/Input';
@@ -74,23 +74,29 @@ const SubmissionSettings = () => {
     notifySave();
     navigate(`/submission/${id}`);
   };
+
   const handleCancelDelete = () => {
     setDeleting(false);
     setContributionName('');
   };
+
   const handleDeleteSubmission = async () => {
     if (submissionName === submission.title) {
       try {
         await axiosPrivate.delete(`/submissions/delete/${id}`, {
           ...submission,
         });
+
         const contribution = auth.contributions.find((contribution) =>
           contribution.submissions?.map((submission) => submission._id).includes(id)
         );
 
         const updatedContributions = [
           ...auth.contributions.filter((c) => c._id !== contribution._id),
-          { ...contribution, submissions: [contribution.submissions?.filter((s) => s._id !== id)] },
+          {
+            ...contribution,
+            submissions: [...contribution.submissions?.filter((s) => s._id !== id)],
+          },
         ];
 
         setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
@@ -103,7 +109,6 @@ const SubmissionSettings = () => {
         } else {
           setErrMsg(t('contribution.deleteContError'));
         }
-        //
       }
     } else {
       setErrMsg(t('submission.deleteSubWrongName'));

@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 import { Link as AppLink } from '../../theme/appElements';
 
-export const SectionContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 24px;
-`;
-
 export const LineWrapper = styled.div`
   display: flex;
   gap: 32px;

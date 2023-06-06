@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-
-import { Group, SectionContainer, InfoContainer, Value, Label, Link } from './contributionElements';
-import { Button, Heading2, Heading3, Caption } from '../../../theme/appElements';
+import { Group, InfoContainer, Value, Label, Link } from './contributionElements';
+import { Button, Heading2, SectionContainer, Caption } from '../../../theme/appElements';
 
 import Input from '../../../components/Input';
 import RadioGroup from '../../../components/RadioGroup';

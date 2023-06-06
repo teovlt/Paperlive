@@ -1,7 +1,7 @@
 import React from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
-import { Heading2 } from '../../theme/appElements';
+import { Heading2, SectionContainer } from '../../theme/appElements';
 import Table from '../../components/Table';
 import {
   HiOutlineClock,
@@ -10,7 +10,6 @@ import {
   HiOutlineUsers,
 } from 'react-icons/hi2';
 import i18n from '../../translations/i18n';
-import { SectionContainer } from './contributionsElements';
 
 function Contributions() {
   const { t } = useTranslation();

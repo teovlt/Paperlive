@@ -52,7 +52,8 @@ const Summary = ({ data }) => {
       try {
         await axiosPrivate.post('/submissions/new', submission);
         const contributions = await axiosPrivate.get('/contributions');
-        setAuth((prev) => ({ ...prev, contributions: contributions.data }));
+        console.log(contributions.data);
+        setAuth((prev) => ({ ...prev, contributions: [...contributions.data] }));
         notify();
         navigate(`/contributions/${data.contribution._id}`);
       } catch (error) {}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Group, SectionContainer } from '../submissionElements';
-import { Button, Heading2 } from '../../../theme/appElements';
+import { Group } from '../submissionElements';
+import { Button, Heading2, SectionContainer } from '../../../theme/appElements';
 import FileInput from '../../../components/FileInput';
 import { useTranslation } from 'react-i18next';
 
