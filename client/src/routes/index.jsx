@@ -111,7 +111,7 @@ const Routes = () => {
                   <SidebarNavigation
                     template={[
                       {
-                        title: 'New submission',
+                        title: t('submission.newSubmission'),
                         links: [
                           { label: t('submission.informations'), to: 'informations' },
                           { label: t('submission.authors'), to: 'authors' },
