@@ -1,9 +1,12 @@
 import React from 'react';
-import { SectionContainer } from '../submissionElements';
+import { useNavigate } from 'react-router-dom';
+import { Group, SectionContainer } from '../submissionElements';
+import { Button, Heading2 } from '../../../theme/appElements';
 import FileInput from '../../../components/NewFileInput';
-import { Heading2 } from '../../../theme/appElements';
 
 const Files = ({ data, setData }) => {
+  const navigate = useNavigate();
+
   return (
     <SectionContainer>
       <Heading2>Files</Heading2>
@@ -32,6 +35,12 @@ const Files = ({ data, setData }) => {
         MIMEType='pdf'
         setData={(file) => setData((prev) => ({ ...prev, commentsPdf: file }))}
       />
+      <Group inline>
+        <Button type='neutral' onClick={() => navigate('../venue')}>
+          Previous
+        </Button>
+        <Button onClick={() => navigate('../summary')}>Next</Button>
+      </Group>
     </SectionContainer>
   );
 };
