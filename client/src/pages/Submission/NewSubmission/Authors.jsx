@@ -37,7 +37,7 @@ const Authors = ({ data, setData }) => {
           setData(updatedData);
         }}
         displayedAttribute='name'
-        label='Authors'
+        label={t('submission.authors')}
         modelName='authors'
         schema={{
           name: {

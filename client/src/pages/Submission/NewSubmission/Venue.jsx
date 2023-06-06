@@ -38,8 +38,8 @@ const Venue = ({ data, setData }) => {
           setData(updatedData);
         }}
         displayedAttribute='name'
-        label='Venue'
-        modelName='venues'
+        label={t('submission.venue')}
+        modelName='venue'
         schema={{
           name: {
             label: t('venue.name'),
