@@ -14,7 +14,10 @@
     "confirm": "Confirm",
     "beta": "Beta",
     "accueil": "Home",
-    "password": "Password"
+    "password": "Password",
+    "remove": "Remove",
+    "yes": "Yes",
+    "no": "No"
   },
   "navigation": {
     "overview": "Overview",
@@ -129,6 +132,8 @@
     "newSubmission": "New submission",
     "informations": "Information",
     "files": "Files",
+    "recap": "Summary",
+    "contribution": "Contribution",
     "title": "Title",
     "date": "Date",
     "type": "Type",
@@ -155,7 +160,10 @@
     "submissionName": "Name of the submission",
     "deleteSubWarning1": "The submission is about to be delete of this contribution, there will be no way to get it back, please be aware of what you are doing!",
     "deleteSubWarning2": "To confirm the deletion of this submission, please enter below the title of the submission:",
-    "deleteSubWrongName": "The name in your input does not accord to the name of the submission, please try again."
+    "deleteSubWrongName": "The name in your input does not accord to the name of the submission, please try again.",
+
+    "newauthor": "New author",
+    "newvenue": "New venue"
   },
   "fileInput": {
     "success": "Imported file",
@@ -215,5 +223,22 @@
     "unsavedChangements": "Unsaved changements",
     "submissionUpdatedSuccess": "Submission updated successfully",
     "submissionDeletedSuccess": "Submission deleted successfully"
+  },
+  "selector": {
+    "saveChanges": "Save changes",
+    "saveChangesAdd": "Save changes and add",
+    "createAdd": "Create and add"
+  },
+  "authors": {
+    "name": "Full name",
+    "grade": "Grade",
+    "country": "Country",
+    "isMainAuthor": "Is main author?",
+    "workTime": "Work time",
+    "hourlyCost": "Hourly cost"
+  },
+  "venue": {
+    "name": "Nom",
+    "rank": "Rank"
   }
 }

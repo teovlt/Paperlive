@@ -5,10 +5,12 @@ import { Group, SectionContainer } from '../submissionElements';
 import FormSelector from '../../../components/FormSelector';
 import { Button, Heading2 } from '../../../theme/appElements';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Authors = ({ data, setData }) => {
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
+  const { t } = useTranslation();
 
   const [authors, setAuthors] = useState(null);
 
@@ -25,7 +27,7 @@ const Authors = ({ data, setData }) => {
 
   return (
     <SectionContainer>
-      <Heading2>Authors</Heading2>
+      <Heading2>{t('submission.authors')}</Heading2>
       <FormSelector
         list={authors}
         setList={setAuthors}
@@ -39,37 +41,37 @@ const Authors = ({ data, setData }) => {
         modelName='authors'
         schema={{
           name: {
-            label: 'Name',
+            label: t('authors.name'),
             type: 'text',
             default: '',
             required: true,
           },
           grade: {
-            label: 'Grade',
+            label: t('authors.grade'),
             type: 'text',
             default: '',
             required: true,
           },
           country: {
-            label: 'Country',
+            label: t('authors.country'),
             type: 'text',
             default: '',
             required: true,
           },
           isMainAuthor: {
-            label: 'Is Main Author',
+            label: t('authors.isMainAuthor'),
             type: 'boolean',
             default: false,
             required: true,
           },
           workTime: {
-            label: 'Work Time',
+            label: t('authors.workTime'),
             type: 'number',
             default: '',
             required: true,
           },
           hourlyCost: {
-            label: 'Hourly Cost',
+            label: t('authors.hourlyCost'),
             type: 'number',
             default: '',
             required: true,
@@ -78,9 +80,9 @@ const Authors = ({ data, setData }) => {
       />
       <Group inline>
         <Button type='neutral' onClick={() => navigate('../informations')}>
-          Previous
+          {t('global.previous')}
         </Button>
-        <Button onClick={() => navigate('../venue')}>Next</Button>
+        <Button onClick={() => navigate('../venue')}> {t('global.next')}</Button>
       </Group>
     </SectionContainer>
   );

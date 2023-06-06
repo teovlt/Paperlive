@@ -76,7 +76,7 @@ const Selector = ({ list, selected, displayedAttribute, label, onChange, unique 
       <Toggler
         onClick={() => setIsOpen(!isOpen)}
         className={`${isOpen && 'open'} ${selectedItems.length > 0 && 'filled'}`}>
-        <Placeholder>{label}</Placeholder>
+        <Placeholder>{t(`submission.${label.toLowerCase()}`)}</Placeholder>
         <PillContainer>
           {selectedItems.slice(0, 4).map((item, index) => (
             <Pill key={item._id || index}>
@@ -106,7 +106,7 @@ const Selector = ({ list, selected, displayedAttribute, label, onChange, unique 
       {isOpen && (
         <>
           <Search
-            placeholder='Rechercher...'
+            placeholder={t('global.search') + '...'}
             value={searchQuery}
             onInput={(e) => setSearchQuery(e.target.value)}
           />

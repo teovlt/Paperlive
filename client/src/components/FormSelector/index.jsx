@@ -25,6 +25,7 @@ import {
 import { Button, Heading2 } from '../../theme/appElements';
 import { HiXMark } from 'react-icons/hi2';
 import Checkbox from '../Checkbox';
+import { useTranslation } from 'react-i18next';
 
 const FormSelector = ({
   list,
@@ -39,6 +40,8 @@ const FormSelector = ({
 }) => {
   const search = useSearch();
   const axiosPrivate = useAxiosPrivate();
+
+  const { t } = useTranslation();
 
   const defaultItem = Object.keys(schema).reduce((acc, key) => {
     acc[key] = schema[key].default;
@@ -98,7 +101,7 @@ const FormSelector = ({
         <>
           <ModalBackdrop onClick={() => setModal({ isOpen: false, item: defaultItem })} />
           <ModalContainer>
-            <Heading2>{label}</Heading2>
+            <Heading2>{t(`submission.${label.toLowerCase()}`)}</Heading2>
             {Object.keys(schema).map((key, index) => {
               if (schema[key].type === 'boolean')
                 return (
@@ -109,12 +112,12 @@ const FormSelector = ({
                     template={{
                       radios: [
                         {
-                          label: 'Yes',
+                          label: t('global.yes'),
                           value: true,
                           defaultChecked: schema[key].default === true,
                         },
                         {
-                          label: 'No',
+                          label: t('global.no'),
                           value: false,
                           defaultChecked: schema[key].default === false,
                         },
@@ -156,14 +159,14 @@ const FormSelector = ({
                     setModal({ isOpen: false, item: defaultItem });
                   } else setModal({ isOpen: false, item: defaultItem });
                 }}>
-                {selectedItems.includes(modal.item) ? 'Remove' : 'Cancel'}
+                {selectedItems.includes(modal.item) ? t('global.remove') : t('global.cancel')}
               </Button>
               <Button onClick={() => handleSave(modal.item)}>
                 {modal.item._id
                   ? selectedItems.includes(modal.item)
-                    ? 'Save changes'
-                    : 'Save changes and add'
-                  : 'Create and add'}
+                    ? t('selector.saveChanges')
+                    : t('selector.saveChangesAdd')
+                  : t('selector.createAdd')}
               </Button>
             </ModalRowWrapper>
           </ModalContainer>
@@ -173,7 +176,7 @@ const FormSelector = ({
         <Toggler
           onClick={() => setIsOpen(!isOpen)}
           className={`${isOpen && 'open'} ${selectedItems.length > 0 && 'filled'}`}>
-          <Placeholder>{label}</Placeholder>
+          <Placeholder>{t(`submission.${label.toLowerCase()}`)}</Placeholder>
           <PillContainer>
             {selectedItems.map((item, index) => (
               <Pill key={item._id || index}>
@@ -203,7 +206,7 @@ const FormSelector = ({
           <>
             <Search
               value={searchQuery}
-              placeholder='Rechercher...'
+              placeholder={t('global.search') + '...'}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
             {selectedItems.length > 0 && (
@@ -227,7 +230,10 @@ const FormSelector = ({
                 />
               ))}
               <ResultsButton onClick={() => setModal({ isOpen: true, item: defaultItem })}>
-                + New {unique ? label.toLowerCase() : label.slice(0, -1).toLowerCase()}
+                +{' '}
+                {t(
+                  `submission.new${unique ? label.toLowerCase() : label.slice(0, -1).toLowerCase()}`
+                )}
               </ResultsButton>
             </DisplayedListContainer>
           </>

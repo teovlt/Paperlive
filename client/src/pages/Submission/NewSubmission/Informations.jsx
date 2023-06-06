@@ -5,19 +5,22 @@ import Input from '../../../components/Input';
 import RadioGroup from '../../../components/RadioGroup';
 import { Button, Heading2 } from '../../../theme/appElements';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Informations = ({ data, setData }) => {
   const { auth } = useAuth();
   const navigate = useNavigate();
 
+  const { t } = useTranslation();
+
   return (
     <SectionContainer>
-      <Heading2>Informations</Heading2>
+      <Heading2>{t('submission.informations')}</Heading2>
       <Selector
         unique
         list={auth.contributions}
         selected={data.contribution ? [data.contribution] : []}
-        label='Contribution'
+        label='contribution'
         displayedAttribute='title'
         onChange={(selected) => {
           const updatedData = { ...data, contribution: selected[0] };
@@ -28,7 +31,7 @@ const Informations = ({ data, setData }) => {
         small
         type='text'
         id='title'
-        label='Title'
+        label={t('submission.title')}
         value={data.title}
         onChange={(e) => {
           const updatedData = { ...data, title: e.target.value };
@@ -39,7 +42,7 @@ const Informations = ({ data, setData }) => {
         small
         type='date'
         id='date'
-        label='Submission date'
+        label={t('submission.date')}
         value={data.submissionDate}
         onChange={(e) => {
           const updatedData = { ...data, submissionDate: e.target.value };
@@ -48,12 +51,12 @@ const Informations = ({ data, setData }) => {
       />
       <RadioGroup
         name='type'
-        label='Type'
+        label={t('submission.type')}
         template={{
           radios: [
-            { label: 'Poster', value: 'poster' },
-            { label: 'ShortPaper', value: 'shortPaper' },
-            { label: 'Contribution', value: 'contribution' },
+            { label: t('submission.poster'), value: 'poster' },
+            { label: t('submission.shortPaper'), value: 'shortPaper' },
+            { label: t('submission.contribution'), value: 'contribution' },
           ],
         }}
         onChange={(e) => {
@@ -63,13 +66,13 @@ const Informations = ({ data, setData }) => {
       />
       <RadioGroup
         name='state'
-        label='State'
+        label={t('submission.state')}
         template={{
           radios: [
-            { label: 'Draft', value: 'draft', defaultChecked: true },
-            { label: 'Submitted', value: 'submitted' },
-            { label: 'Approved', value: 'approved' },
-            { label: 'Rejected', value: 'rejected' },
+            { label: t('submission.draft'), value: 'draft', defaultChecked: true },
+            { label: t('submission.submitted'), value: 'submitted' },
+            { label: t('submission.approved'), value: 'approved' },
+            { label: t('submission.rejected'), value: 'rejected' },
           ],
         }}
         onChange={(e) => {
@@ -79,9 +82,9 @@ const Informations = ({ data, setData }) => {
       />
       <Group inline>
         <Button type='neutral' onClick={() => navigate('/')}>
-          Cancel
+          {t('global.cancel')}
         </Button>
-        <Button onClick={() => navigate('../authors')}>Next</Button>
+        <Button onClick={() => navigate('../authors')}> {t('global.next')}</Button>
       </Group>
     </SectionContainer>
   );
