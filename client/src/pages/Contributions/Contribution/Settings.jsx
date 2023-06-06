@@ -170,8 +170,8 @@ const ContributionSettings = () => {
             ],
           }}
         />
-        {/* <Selector
-          label={t('contribution.related')}
+        <Selector
+          label='related'
           displayedAttribute='title'
           list={auth.contributions.filter((c) => c._id !== id)}
           selected={contribution.relatedContributions}
@@ -179,23 +179,14 @@ const ContributionSettings = () => {
             const newContributionData = { ...contributionData, relatedContributions: list };
             setContributionData(newContributionData);
           }}
-        /> */}
-        <InfoContainer>
-          <Label>{t('contribution.abstract')}</Label>
-          <Value>
-            <Link onClick={handleDownload}>{t('global.download')}</Link> /
-            <FileInput
-              link={true}
-              name={t('contribution.abstract')}
-              file={contribution.abstract}
-              endpoint='files/contribution/abstract'
-              onChange={(file) =>
-                setContributionData((prev) => ({ ...prev, filename: file?.name }))
-              }
-              type='pdf'
-            />
-          </Value>
-        </InfoContainer>
+        />
+
+        <FileInput
+          name={contribution.abstract}
+          collection='contribution'
+          MIMEType='pdf'
+          setData={(file) => setContributionData((prev) => ({ ...prev, filename: file?.name }))}
+        />
 
         <Group inline>
           <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>
