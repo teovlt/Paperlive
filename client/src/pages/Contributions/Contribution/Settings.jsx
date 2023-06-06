@@ -35,6 +35,8 @@ const ContributionSettings = () => {
     setErrMsg('');
   }, [contributionName]);
 
+  console.log(contribution);
+
   const notifySave = () => {
     toast.success(t('toast.contributionUpdatedSuccess'), {
       position: 'bottom-right',
@@ -182,10 +184,16 @@ const ContributionSettings = () => {
         />
 
         <FileInput
-          name={contribution.abstract}
+          name='abstract'
           collection='contribution'
           MIMEType='pdf'
-          setData={(file) => setContributionData((prev) => ({ ...prev, filename: file?.name }))}
+          data={contribution}
+          setData={(file) =>
+            setContributionData((prev) => ({
+              ...prev,
+              abstract: { name: file.name, size: file.size },
+            }))
+          }
         />
 
         <Group inline>

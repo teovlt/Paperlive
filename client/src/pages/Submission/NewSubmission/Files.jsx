@@ -16,31 +16,46 @@ const Files = ({ data, setData }) => {
         name='abstract'
         collection='submission'
         MIMEType='pdf'
-        setData={(file) => setData((prev) => ({ ...prev, abstract: file }))}
+        data={data}
+        setData={(file) =>
+          setData((prev) => ({ ...prev, abstract: { name: file.name, size: file.size } }))
+        }
       />
       <FileInput
         name='zipFolder'
         collection='submission'
         MIMEType='zip'
-        setData={(file) => setData((prev) => ({ ...prev, zipFolder: file }))}
+        data={data}
+        setData={(file) =>
+          setData((prev) => ({ ...prev, zipFolder: { name: file.name, size: file.size } }))
+        }
       />
       <FileInput
         name='compiledPDF'
         collection='submission'
         MIMEType='pdf'
-        setData={(file) => setData((prev) => ({ ...prev, compiledPDF: file }))}
+        data={data}
+        setData={(file) =>
+          setData((prev) => ({ ...prev, compiledPDF: { name: file.name, size: file.size } }))
+        }
       />
       <FileInput
         name='diffPDF'
         collection='submission'
         MIMEType='pdf'
-        setData={(file) => setData((prev) => ({ ...prev, diffPDF: file }))}
+        data={data}
+        setData={(file) =>
+          setData((prev) => ({ ...prev, diffPDF: { name: file.name, size: file.size } }))
+        }
       />
       <FileInput
         name='commentPDF'
         collection='submission'
         MIMEType='pdf'
-        setData={(file) => setData((prev) => ({ ...prev, commentPDF: file }))}
+        data={data}
+        setData={(file) =>
+          setData((prev) => ({ ...prev, commentPDF: { name: file.name, size: file.size } }))
+        }
       />
       <Group inline>
         <Button type='neutral' onClick={() => navigate('../venue')}>

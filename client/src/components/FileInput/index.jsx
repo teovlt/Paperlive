@@ -5,12 +5,12 @@ import { Container, IconContainer, InfoContainer, Input, Label } from './fileInp
 import { HiOutlineDocumentArrowUp } from 'react-icons/hi2';
 import { useTranslation } from 'react-i18next';
 
-const FileInput = ({ name, collection, MIMEType, setData }) => {
+const FileInput = ({ name, collection, MIMEType, data, setData }) => {
   const { t } = useTranslation();
   const axiosPrivate = useAxiosPrivate();
 
   const [id, setId] = useState(null);
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState(data[name]);
   const [upload, setUpload] = useState({});
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const FileInput = ({ name, collection, MIMEType, setData }) => {
       } catch (error) {}
     }
 
-    file && uploadFile();
+    file && data[name] !== file && uploadFile();
   }, [file]);
 
   return (

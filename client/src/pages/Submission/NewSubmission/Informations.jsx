@@ -8,10 +8,9 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const Informations = ({ data, setData }) => {
+  const { t } = useTranslation();
   const { auth } = useAuth();
   const navigate = useNavigate();
-
-  const { t } = useTranslation();
 
   return (
     <SectionContainer>
@@ -54,9 +53,21 @@ const Informations = ({ data, setData }) => {
         label={t('submission.type')}
         template={{
           radios: [
-            { label: t('submission.poster'), value: 'poster' },
-            { label: t('submission.shortPaper'), value: 'shortPaper' },
-            { label: t('submission.contribution'), value: 'contribution' },
+            {
+              label: t('submission.poster'),
+              value: 'poster',
+              defaultChecked: data.type === 'poster',
+            },
+            {
+              label: t('submission.shortPaper'),
+              value: 'shortPaper',
+              defaultChecked: data.type === 'shortPaper',
+            },
+            {
+              label: t('submission.contribution'),
+              value: 'contribution',
+              defaultChecked: data.type === 'contribution',
+            },
           ],
         }}
         onChange={(e) => {
@@ -69,10 +80,26 @@ const Informations = ({ data, setData }) => {
         label={t('submission.state')}
         template={{
           radios: [
-            { label: t('submission.draft'), value: 'draft', defaultChecked: true },
-            { label: t('submission.submitted'), value: 'submitted' },
-            { label: t('submission.approved'), value: 'approved' },
-            { label: t('submission.rejected'), value: 'rejected' },
+            {
+              label: t('submission.draft'),
+              value: 'draft',
+              defaultChecked: data.state === 'draft',
+            },
+            {
+              label: t('submission.submitted'),
+              value: 'submitted',
+              defaultChecked: data.state === 'submitted',
+            },
+            {
+              label: t('submission.approved'),
+              value: 'approved',
+              defaultChecked: data.state === 'approved',
+            },
+            {
+              label: t('submission.rejected'),
+              value: 'rejected',
+              defaultChecked: data.state === 'rejected',
+            },
           ],
         }}
         onChange={(e) => {

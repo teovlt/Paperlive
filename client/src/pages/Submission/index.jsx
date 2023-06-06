@@ -14,15 +14,16 @@ const Submission = () => {
   const contribution = auth.contributions.find((c) => c.submissions?.find((s) => s._id === id));
   const submission = contribution.submissions?.find((c) => c._id === id);
 
-  const handleDownload = async (label) => {
-    const res = await axiosPrivate.get(`${import.meta.env.VITE_API_URI}/api/files/${label}`, {
-      responseType: 'blob',
-    });
+  const handleDownload = async (name) => {
+    const res = await axiosPrivate.get(
+      `${import.meta.env.VITE_API_URI}/api/files/submission-${name}-${id}.pdf`,
+      { responseType: 'blob' }
+    );
 
     const url = URL.createObjectURL(res.data);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `submission?.${label}`);
+    link.setAttribute('download', `submission-${name}-${id}.pdf`);
     link.click();
   };
 
@@ -88,7 +89,7 @@ const Submission = () => {
         <InfoContainer>
           <Label>{t('submission.abstract')}</Label>
           {submission.abstract ? (
-            <Link onClick={() => handleDownload(submission.abstract)}>Download</Link>
+            <Link onClick={() => handleDownload('abstract')}>Download</Link>
           ) : (
             <Value>-</Value>
           )}
@@ -97,7 +98,7 @@ const Submission = () => {
         <InfoContainer>
           <Label>{t('submission.zipFolder')}</Label>
           {submission.zipFolder ? (
-            <Link onClick={() => handleDownload(submission.zipFolder)}>Download</Link>
+            <Link onClick={() => handleDownload('zipfolder')}>Download</Link>
           ) : (
             <Value>-</Value>
           )}
@@ -106,7 +107,7 @@ const Submission = () => {
         <InfoContainer>
           <Label>{t('submission.compiledPDF')}</Label>
           {submission.compiledPDF ? (
-            <Link onClick={() => handleDownload(submission.compiledPDF)}>Download</Link>
+            <Link onClick={() => handleDownload('compiledpdf')}>Download</Link>
           ) : (
             <Value>-</Value>
           )}
@@ -115,7 +116,7 @@ const Submission = () => {
         <InfoContainer>
           <Label>{t('submission.diffPDF')}</Label>
           {submission.diffPDF ? (
-            <Link onClick={() => handleDownload(submission.diffPDF)}>Download</Link>
+            <Link onClick={() => handleDownload('diffpdf')}>Download</Link>
           ) : (
             <Value>-</Value>
           )}
@@ -124,7 +125,7 @@ const Submission = () => {
         <InfoContainer>
           <Label>{t('submission.commentPDF')}</Label>
           {submission.commentPDF ? (
-            <Link onClick={() => handleDownload(submission.commentPDF)}>Download</Link>
+            <Link onClick={() => handleDownload('commentpdf')}>Download</Link>
           ) : (
             <Value>-</Value>
           )}

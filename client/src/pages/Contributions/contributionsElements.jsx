@@ -1,242 +1,50 @@
 import styled from 'styled-components';
-import {
-  Container as AppContainer,
-  Caption,
-  Button as AppButton,
-  Link as AppLink,
-} from '../../theme/appElements';
+import { Link as AppLink } from '../../theme/appElements';
 
-export const Container = styled(AppContainer)`
-  display: grid;
-  grid-template-columns: 296px 1fr;
-  grid-template-rows: 56px 1fr;
-
-  height: calc(100vh - 40px);
-  overflow-y: hidden;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 96px;
-    left: 0;
-
-    width: 100vw;
-    height: 1px;
-    border-radius: 2px 2px 0 0;
-
-    background: var(--black-quaternary);
-  }
+export const LineWrapper = styled.div`
+  display: flex;
+  gap: 32px;
 `;
 
-export const SideHeader = styled.div`
-  grid-area: 1 / 1 / 2 / 2;
-  height: 100%;
+export const InfoContainer = styled.div`
+  width: 100%;
+  padding-bottom: 8px;
+  height: 35px;
 
   display: flex;
-  align-items: center;
-`;
+  justify-content: space-between;
 
-export const MainHeader = styled.div`
-  margin-left: 72px;
-  grid-area: 1 / 2 / 2 / 2;
-
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-`;
-
-export const Main = styled.div`
-  margin-left: 72px;
-  grid-area: 2 / 2 / 3 / 3;
-
-  max-width: calc(100% - 72px);
-
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding-block: 32px;
-  gap: 24px;
-
-  overflow-x: hidden;
-  overflow-y: auto;
-
-  scrollbar-width: none; /* Firefox */
-
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, IE and Edge */
-  }
-`;
-
-export const Sidebar = styled.div`
-  grid-area: 2 / 1 / 3 / 2;
-  display: flex;
-  flex-direction: column;
-  padding-block: 32px;
-  gap: 24px;
-`;
-
-export const FormNavigation = styled.nav`
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  padding-block: 32px;
-  row-gap: 32px;
-
-  &::after {
-    content: '';
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 1px;
-    height: 100%;
-
-    background: var(--black-quaternary);
-  }
-`;
-
-export const MainWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 12px;
-`;
-
-export const StepCaption = styled(Caption)`
-  color: var(--black-secondary);
-  align-self: flex-end;
-`;
-
-export const LinearContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 24px;
-`;
-
-export const NavLink = styled.a`
-  position: relative;
+  /* overflow-x: hidden; */
 
   font-size: 1.5rem;
-  line-height: 2.2rem;
+  border-bottom: 1px solid var(--black-quaternary);
+  align-items: center;
+`;
 
-  padding-left: 16px;
-  padding-block: 5px;
+export const Label = styled.span`
+  user-select: none;
   color: var(--black-tertiary);
+  margin-right: 3.2rem;
 
-  &.active {
-    color: var(--accent);
-  }
-
-  &.active::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 3px;
-    height: 100%;
-
-    background: var(--accent);
-  }
+  white-space: nowrap;
 `;
 
-export const Link = styled.p`
-  font-size: 1.5rem;
-  color: var(--accent);
-  text-decoration: underline;
-  cursor: pointer;
+export const Value = styled.span`
+  text-align: right;
+  color: var(--black);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;
 
-export const RelatedContributionLink = styled(AppLink)`
+export const Link = styled(AppLink)`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-`;
-
-export const SectionMain = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-`;
-
-export const DivRecherche = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  input {
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-`;
-
-export const RelatedContributionSearchContainer = styled.div`
-  position: relative;
-`;
-
-export const RelatedContributionSearchResultContainer = styled.div`
-  position: absolute;
-  width: 100%;
-  padding-block: 0.4rem;
-  top: calc(100% + 0.8rem);
-  z-index: 100;
-
-  display: flex;
-  flex-direction: column;
-
-  background: var(--white);
-  border: 1px solid var(--black-quaternary);
-  border-radius: 0.2rem;
-  box-shadow: 0 0 10px var(--black-quaternary);
-`;
-
-export const RelatedContributionSearchResult = styled.div`
-  width: 100%;
-  padding: 4px 12px;
-
-  font-size: 1.5rem;
-  cursor: pointer;
-
-  &:hover {
-    background: var(--accent);
-    color: var(--white);
-  }
-`;
-
-export const Button = styled(AppButton)`
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  font-size: 1.5rem;
-  padding: 16px;
-
-  white-space: nowrap;
-`;
-
-export const ContributionInfosContainer = styled.div`
-  margin-left: 72px;
-  grid-area: 2 / 2 / 3 / 3;
-
-  display: flex;
-  flex-direction: column;
-  padding-block: 32px;
-  row-gap: 24px;
-
-  overflow-y: auto;
-
-  scrollbar-width: none; /* Firefox */
-
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, IE and Edge */
-  }
 `;
 
 export const Group = styled.div`

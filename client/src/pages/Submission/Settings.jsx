@@ -24,9 +24,8 @@ const SubmissionSettings = () => {
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
 
-  const submission = auth.contributions
-    .find((c) => c.submissions?.find((c) => c._id === id))
-    .submissions.find((c) => c._id === id);
+  const contribution = auth.contributions.find((c) => c.submissions?.find((s) => s._id === id));
+  const submission = contribution.submissions?.find((c) => c._id === id);
 
   const [submissionData, setSubmissionData] = useState({ ...submission });
   const [deleting, setDeleting] = useState(false);
@@ -37,42 +36,43 @@ const SubmissionSettings = () => {
     setErrMsg('');
   }, [t]);
 
+  const notifyOptions = {
+    position: 'bottom-right',
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'colored',
+  };
+
   const notifySave = () => {
-    toast.success(t('toast.submissionUpdatedSuccess'), {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'colored',
-    });
+    toast.success(t('toast.submissionUpdatedSuccess'), notifyOptions);
   };
 
   const notifyDelete = () => {
-    toast.success(t('toast.submissionDeletedSuccess'), {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'colored',
-    });
+    toast.success(t('toast.submissionDeletedSuccess'), notifyOptions);
   };
 
   const handleSaveChanges = async () => {
     // FIXME: update submission
-    await axiosPrivate.put(`/submissions/update/${id}`, {
-      ...submissionData,
-    });
-    // const updatedContributions = auth.contributions.filter((c) => c._id !== id);
-    // updatedContributions.push(contributionData);
-    // setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
+    await axiosPrivate.put(`/submissions/${id}`, submissionData);
+
+    const updatedContributions = [
+      ...auth.contributions.filter((c) => c._id !== contribution._id),
+      {
+        ...contribution,
+        submissions: [
+          ...contribution.submissions?.filter((s) => s._id !== submission._id),
+          submissionData,
+        ],
+      },
+    ];
+
+    setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
     notifySave();
-    navigate(`/submission/${id}`);
+    navigate(`/submissions/${id}`);
   };
 
   const handleCancelDelete = () => {
@@ -159,7 +159,7 @@ const SubmissionSettings = () => {
           label={t('submission.date')}
           autoComplete='off'
           onChange={(event) => {
-            const newSubmissionData = { ...submission, date: event.target.value };
+            const newSubmissionData = { ...submission, submissionDate: event.target.value };
             setSubmissionData(newSubmissionData);
           }}
         />
@@ -202,7 +202,7 @@ const SubmissionSettings = () => {
               {
                 label: t('submission.draft'),
                 value: 'draft',
-                defaultChecked: submissionData?.state === 'draft' || true,
+                defaultChecked: submissionData?.state === 'draft',
               },
               {
                 label: t('submission.submitted'),
@@ -222,114 +222,66 @@ const SubmissionSettings = () => {
             ],
           }}
         />
-        {/* <FormSelector
-          list={authors}
-          setList={setAuthors}
-          selected={submission.authors || []}
-          setSelected={(selected) => {
-            const newSubmissionData = { ...submission, authors: selected };
-            setSubmissionData(newSubmissionData);
-          }}
-          displayedAttribute='name'
-          label={t('submission.authors')}
-          modelName='authors'
-          schema={{
-            name: {
-              label: t('author.name'),
-              type: 'text',
-              default: '',
-              required: true,
-            },
-            grade: {
-              label: t('author.grade'),
-              type: 'text',
-              default: '',
-              required: true,
-            },
-            country: {
-              label: t('author.country'),
-              type: 'text',
-              default: '',
-              required: true,
-            },
-            isMainAuthor: {
-              label: t('author.isMainAuthor'),
-              type: 'boolean',
-              default: false,
-              required: true,
-            },
-            workTime: {
-              label: t('author.workTime'),
-              type: 'number',
-              default: '',
-              required: true,
-            },
-            hourlyCost: {
-              label: t('author.hourlyCost'),
-              type: 'number',
-              default: '',
-              required: true,
-            },
-          }}
-        />
-        <FormSelector
-          unique
-          list={venues}
-          setList={setVenues}
-          selected={submission.venue ? [submission.venue] : []}
-          setSelected={(selected) => {
-            const newSubmissionData = { ...submission, venue: selected[0] };
-            setSubmissionData(newSubmissionData);
-          }}
-          displayedAttribute='name'
-          label={t('submission.venue')}
-          modelName='venue'
-          schema={{
-            name: {
-              label: t('venue.name'),
-              type: 'text',
-              default: '',
-              required: true,
-            },
-            rank: {
-              label: t('venue.rank'),
-              type: 'text',
-              default: '',
-              required: true,
-            },
-          }}
-        /> */}
-        {/* 
         <FileInput
           name='abstract'
           collection='submission'
           MIMEType='pdf'
-          setData={(file) => setSubmissionData((prev) => ({ ...prev, abstract: file }))}
+          data={submission}
+          setData={(file) =>
+            setSubmissionData((prev) => ({
+              ...prev,
+              abstract: { name: file.name, size: file.size },
+            }))
+          }
         />
         <FileInput
           name='zipFolder'
           collection='submission'
-          MIMEType='pdf'
-          setData={(file) => setSubmissionData((prev) => ({ ...prev, zipfolder: file }))}
+          MIMEType='zip'
+          data={submission}
+          setData={(file) =>
+            setSubmissionData((prev) => ({
+              ...prev,
+              zipFolder: { name: file.name, size: file.size },
+            }))
+          }
         />
         <FileInput
-          name='submissicompiledPDF'
+          name='compiledPDF'
           collection='submission'
           MIMEType='pdf'
-          setData={(file) => setSubmissionData((prev) => ({ ...prev, compiledPdf: file }))}
+          data={submission}
+          setData={(file) =>
+            setSubmissionData((prev) => ({
+              ...prev,
+              compiledPDF: { name: file.name, size: file.size },
+            }))
+          }
         />
         <FileInput
           name='diffPDF'
           collection='submission'
           MIMEType='pdf'
-          setData={(file) => setSubmissionData((prev) => ({ ...prev, diffPdf: file }))}
+          data={submission}
+          setData={(file) =>
+            setSubmissionData((prev) => ({
+              ...prev,
+              diffPDF: { name: file.name, size: file.size },
+            }))
+          }
         />
         <FileInput
           name='commentPDF'
           collection='submission'
           MIMEType='pdf'
-          setData={(file) => setSubmissionData((prev) => ({ ...prev, commentPdf: file }))}
-        /> */}
+          data={submission}
+          setData={(file) =>
+            setSubmissionData((prev) => ({
+              ...prev,
+              commentPDF: { name: file.name, size: file.size },
+            }))
+          }
+        />
 
         <Group inline>
           <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>

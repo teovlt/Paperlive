@@ -29,14 +29,14 @@ const Contribution = () => {
   const handleDownload = async (e) => {
     e.preventDefault();
     const res = await axiosPrivate.get(
-      `${import.meta.env.VITE_API_URI}/api/files/${contribution.abstract}`,
+      `${import.meta.env.VITE_API_URI}/api/files/contribution-abstract-${contribution._id}.pdf`,
       { responseType: 'blob' }
     );
 
     const url = URL.createObjectURL(res.data);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', contribution?.abstract);
+    link.setAttribute('download', `contribution-abstract-${contribution._id}.pdf`);
     link.click();
   };
 

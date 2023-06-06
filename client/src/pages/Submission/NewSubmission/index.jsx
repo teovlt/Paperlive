@@ -1,10 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+
 import Informations from './Informations';
 import Authors from './Authors';
 import Venue from './Venue';
-import Summary from './Summary';
 import Files from './Files';
+import Summary from './Summary';
 
 const NewSubmission = () => {
   const { step } = useParams();
@@ -17,11 +18,11 @@ const NewSubmission = () => {
     type: '',
     authors: [],
     venue: '',
-    abstract: {},
-    zipFolder: {},
-    compiledPDF: {},
-    diffPDF: {},
-    commentPDF: {},
+    abstract: null,
+    zipFolder: null,
+    compiledPDF: null,
+    diffPDF: null,
+    commentPDF: null,
   });
 
   switch (step) {

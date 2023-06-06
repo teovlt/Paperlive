@@ -74,7 +74,29 @@ const Routes = () => {
             <Route path='settings' element={<ContributionSettings />} />
           </Route>
 
-          <Route path='/contributions/new' element={<NewContribution />} />
+          <Route
+            path='/contributions/new'
+            element={
+              <Layout
+                sidebar={
+                  <SidebarNavigation
+                    template={[
+                      {
+                        title: t('contribution.newContribution'),
+                        links: [
+                          { label: t('submission.informations'), to: 'informations' },
+                          { label: t('submission.files'), to: 'files' },
+                          { label: t('submission.recap'), to: 'summary' },
+                        ],
+                      },
+                    ]}
+                  />
+                }
+              />
+            }>
+            <Route path='' element={<Navigate to='informations' replace />} />
+            <Route path=':step' element={<NewContribution />} />
+          </Route>
 
           <Route
             path='/submissions/:id'
@@ -86,7 +108,6 @@ const Routes = () => {
                       {
                         title: t('global.submission'),
                         links: [
-                          // TODO: change translation
                           { label: t('contribution.overview'), to: '' },
                           { label: t('contribution.statistics'), to: 'statistics' },
                           { label: t('contribution.settings'), to: 'settings' },
