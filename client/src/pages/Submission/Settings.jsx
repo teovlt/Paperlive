@@ -143,8 +143,8 @@ const SubmissionSettings = () => {
             const newSubmissionData = { ...submission, type: event.target.value };
             setSubmissionData(newSubmissionData);
           }}
+          label={t('submission.type')}
           template={{
-            label: t('submission.type'),
             radios: [
               {
                 label: t('submission.poster'),
@@ -170,8 +170,8 @@ const SubmissionSettings = () => {
             const newSubmissionData = { ...submission, state: event.target.value };
             setSubmissionData(newSubmissionData);
           }}
+          label={t('submission.state')}
           template={{
-            label: t('submission.state'),
             radios: [
               {
                 label: t('submission.draft'),

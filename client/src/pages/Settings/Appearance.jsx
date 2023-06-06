@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Heading2 } from '../../theme/appElements';
 import { AccentContext } from '../../App';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import RadioGroup from '../../components/RadioGroup';
 import { useTranslation } from 'react-i18next';
 
@@ -35,8 +35,8 @@ const AppearanceSettings = () => {
 
       <RadioGroup
         name='accent'
+        label={t('settings.accessibility.accentColor')}
         template={{
-          label: t('settings.accessibility.accentColor'),
           radios: [
             {
               label: t('settings.accessibility.munsellBlue'),
