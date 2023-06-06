@@ -161,6 +161,7 @@
     "deleteSubWarning1": "La soumission va être supprimée de cette contribution, il n'y aura aucun moyen de la récupérer, soyez sûr de ce que vous faites !",
     "deleteSubWarning2": "Pour confirmer la suppression de cette soumission, veuillez entrer son titre exact ci-dessous : ",
     "deleteSubWrongName": "Le titre de la soumission ne correspond pas au texte que vous avez saisi, réessayer s'il vous plait.",
+    "errorMsg": "Merci de remplir le(s) champ(s) suivant(s) :",
 
     "newauthor": "Nouvel auteur",
     "newvenue": "Nouvelle revue"
@@ -223,7 +224,8 @@
     "contributionCreatedSucess": "Contribution créée avec succès",
     "unsavedChangements": "Changements non sauvegardés",
     "submissionUpdatedSuccess": "Soumission mise à jour avec succès",
-    "submissionDeletedSuccess": "Soumission supprimée avec succès"
+    "submissionDeletedSuccess": "Soumission supprimée avec succès",
+    "submissionCreatedSucess": "Soumission créée avec succès"
   },
   "selector": {
     "saveChanges": "Sauvegarder les changements",

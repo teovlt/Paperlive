@@ -53,12 +53,12 @@ const Summary = ({ data }) => {
         await axiosPrivate.post('/submissions/new', submission);
         const contributions = await axiosPrivate.get('/contributions');
         setAuth((prev) => ({ ...prev, contributions: contributions.data }));
-        navigate(`/contributions/${data.contribution._id}`);
         notify();
+        navigate(`/contributions/${data.contribution._id}`);
       } catch (error) {}
     } else
       setErrMsg(
-        `Missing fields: ${Object.keys(data)
+        `${t('submission.errorMsg')} ${Object.keys(data)
           .filter(
             (key) => (key === 'contribution' && !data[key]) || (key === 'title' && !data[key])
           )
@@ -73,18 +73,18 @@ const Summary = ({ data }) => {
 
   return (
     <SectionContainer>
-      <Heading2>Summary</Heading2>
+      <Heading2>{t('submission.recap')}</Heading2>
       <InfoContainer>
-        <Label>Contribution</Label>
+        <Label>{t('submission.contribution')}</Label>
         <Value>{data.contribution?.title || '-'}</Value>
       </InfoContainer>
       <InfoContainer>
-        <Label>Title</Label>
+        <Label>{t('submission.title')}</Label>
         <Value>{data.title || '-'}</Value>
       </InfoContainer>
       <LineWrapper>
         <InfoContainer>
-          <Label>Submission Date</Label>
+          <Label>{t('submission.date')}</Label>
           <Value>
             {/* {data.submissionDate
               ? new Intl.DateTimeFormat(i18n.language, {
@@ -96,50 +96,50 @@ const Summary = ({ data }) => {
           </Value>
         </InfoContainer>
         <InfoContainer>
-          <Label>Venue</Label>
+          <Label>{t('submission.venue')}</Label>
           <Value>{data.venue?.name || '-'}</Value>
         </InfoContainer>
       </LineWrapper>
       <LineWrapper>
         <InfoContainer>
-          <Label>Type</Label>
+          <Label>{t('submission.type')}</Label>
           <Value>{data.type || '-'}</Value>
         </InfoContainer>
         <InfoContainer>
-          <Label>State</Label>
+          <Label>{t('submission.state')}</Label>
           <Value>{data.state || '-'}</Value>
         </InfoContainer>
       </LineWrapper>
       <InfoContainer>
-        <Label>Authors</Label>
+        <Label>{t('submission.authors')}</Label>
         <Value>{data.authors?.map((author) => author.name).join(', ') || '-'}</Value>
       </InfoContainer>
       <InfoContainer>
-        <Label>Documents</Label>
+        <Label>{t('submission.zipFolder')}</Label>
         <Value>{data.zipFolder?.name || '-'}</Value>
       </InfoContainer>
       <InfoContainer>
-        <Label>Abstract</Label>
+        <Label>{t('submission.abstract')}</Label>
         <Value>{data.abstract?.name || '-'}</Value>
       </InfoContainer>
       <InfoContainer>
-        <Label>File</Label>
+        <Label>{t('submission.compiledPDF')}</Label>
         <Value>{data.compiledPdf?.name || '-'}</Value>
       </InfoContainer>
       <InfoContainer>
-        <Label>Difference</Label>
+        <Label>{t('submission.diffPDF')}</Label>
         <Value>{data.diffPdf?.name || '-'}</Value>
       </InfoContainer>
       <InfoContainer>
-        <Label>Comments</Label>
+        <Label>{t('submission.commentsPDF')}</Label>
         <Value>{data.commentPdf?.name || '-'}</Value>
       </InfoContainer>
       {errMsg && <Chips type='negative'>{errMsg}</Chips>}
       <Group inline>
         <Button type='neutral' onClick={() => navigate('../files')}>
-          Previous
+          {t('global.previous')}
         </Button>
-        <Button onClick={handleSave}>Save</Button>
+        <Button onClick={handleSave}> {t('global.save')}</Button>
       </Group>
     </SectionContainer>
   );
