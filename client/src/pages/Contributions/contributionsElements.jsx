@@ -28,6 +28,12 @@ export const Container = styled(AppContainer)`
   }
 `;
 
+export const SectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+`;
+
 export const SideHeader = styled.div`
   grid-area: 1 / 1 / 2 / 2;
   height: 100%;

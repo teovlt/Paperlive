@@ -12,8 +12,16 @@ const NewSubmission = () => {
   const [data, setData] = useState({
     contribution: '',
     title: '',
+    submissionDate: '',
     state: 'draft',
     type: '',
+    authors: [],
+    venue: {},
+    abstract: {},
+    zipFolder: {},
+    compiledPDF: {},
+    diffPDF: {},
+    commentPDF: {},
   });
 
   switch (step) {

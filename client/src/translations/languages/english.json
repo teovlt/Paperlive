@@ -149,7 +149,7 @@
     "zipFolder": "Zip Folder",
     "compiledPDF": "Compiled file",
     "diffPDF": "Difference file",
-    "commentsPDF": "Comment file",
+    "commentPDF": "Comment file",
 
     "authors": "Authors",
     "venue": "Venue",
@@ -162,7 +162,6 @@
     "deleteSubWarning2": "To confirm the deletion of this submission, please enter below the title of the submission:",
     "deleteSubWrongName": "The name in your input does not accord to the name of the submission, please try again.",
     "errorMsg": "Please fill in the following field(s): ",
-
 
     "newauthor": "New author",
     "newvenue": "New venue"

@@ -23,6 +23,9 @@ const submissionSchema = new mongoose.Schema({
   diffPDF: {
     type: String,
   },
+  commentPDF: {
+    type: String,
+  },
   authors: [
     {
       _id: {

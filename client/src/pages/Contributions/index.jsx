@@ -10,6 +10,7 @@ import {
   HiOutlineUsers,
 } from 'react-icons/hi2';
 import i18n from '../../translations/i18n';
+import { SectionContainer } from './contributionsElements';
 
 function Contributions() {
   const { t } = useTranslation();
@@ -17,44 +18,46 @@ function Contributions() {
 
   return (
     <>
-      <Heading2>{t('global.contributions')}</Heading2>
-      <Table
-        name='contributions'
-        list={auth.contributions}
-        searchAttr='title'
-        defaultSort={{ attr: 'startDate', direction: 'desc' }}
-        fields={[
-          {
-            name: 'title',
-            label: 'Title',
-            icon: <HiOutlineDocumentText />,
-            operator: (value) => value,
-          },
-          {
-            name: 'startDate',
-            label: 'Date',
-            icon: <HiOutlineClock />,
-            operator: (value) =>
-              new Intl.DateTimeFormat(i18n.language, {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-              }).format(new Date(value)),
-          },
-          {
-            name: 'teamRole',
-            label: 'Role',
-            icon: <HiOutlineUsers />,
-            operator: (value) => t(`contribution.${value}`),
-          },
-          {
-            name: 'state',
-            label: 'State',
-            icon: <HiOutlineSparkles />,
-            operator: (value) => t(`contribution.${value}`),
-          },
-        ]}
-      />
+      <SectionContainer>
+        <Heading2>{t('global.contributions')}</Heading2>
+        <Table
+          name='contributions'
+          list={auth.contributions}
+          searchAttr='title'
+          defaultSort={{ attr: 'startDate', direction: 'desc' }}
+          fields={[
+            {
+              name: 'title',
+              label: 'Title',
+              icon: <HiOutlineDocumentText />,
+              operator: (value) => value,
+            },
+            {
+              name: 'startDate',
+              label: 'Date',
+              icon: <HiOutlineClock />,
+              operator: (value) =>
+                new Intl.DateTimeFormat(i18n.language, {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric',
+                }).format(new Date(value)),
+            },
+            {
+              name: 'teamRole',
+              label: 'Role',
+              icon: <HiOutlineUsers />,
+              operator: (value) => t(`contribution.${value}`),
+            },
+            {
+              name: 'state',
+              label: 'State',
+              icon: <HiOutlineSparkles />,
+              operator: (value) => t(`contribution.${value}`),
+            },
+          ]}
+        />
+      </SectionContainer>{' '}
     </>
   );
 }
