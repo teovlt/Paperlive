@@ -6,6 +6,8 @@ import { Button, Heading2, Caption, SectionContainer } from '../../theme/appElem
 import Input from '../../components/Input';
 import RadioGroup from '../../components/RadioGroup';
 import Chips from '../../components/Chips';
+import FormSelector from '../../components/FormSelector';
+import FileInput from '../../components/FileInput';
 
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +15,7 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useNavigate } from 'react-router-dom';
 import { useConfirm } from '../../context/ConfirmContext';
+import Loading from '../../components/Loading';
 
 const SubmissionSettings = () => {
   const { id } = useParams();
@@ -112,6 +115,27 @@ const SubmissionSettings = () => {
     }
   };
 
+  const [authors, setAuthors] = useState(null);
+  const [venues, setVenues] = useState(null);
+
+  useEffect(() => {
+    async function fetchAuthors() {
+      const response = await axiosPrivate.get('/authors');
+      setAuthors(response.data);
+    }
+
+    fetchAuthors();
+    async function fetchVenues() {
+      const response = await axiosPrivate.get('/venues');
+      setVenues(response.data);
+    }
+
+    fetchVenues();
+  }, []);
+
+  if (!authors) return <Loading />;
+  if (!venues) return <Loading />;
+
   return (
     <>
       <SectionContainer>
@@ -198,12 +222,115 @@ const SubmissionSettings = () => {
             ],
           }}
         />
-        <span>selector authors</span>
-        <span>selector venue</span>
-      </SectionContainer>
+        {/* <FormSelector
+          list={authors}
+          setList={setAuthors}
+          selected={submission.authors || []}
+          setSelected={(selected) => {
+            const newSubmissionData = { ...submission, authors: selected };
+            setSubmissionData(newSubmissionData);
+          }}
+          displayedAttribute='name'
+          label={t('submission.authors')}
+          modelName='authors'
+          schema={{
+            name: {
+              label: t('author.name'),
+              type: 'text',
+              default: '',
+              required: true,
+            },
+            grade: {
+              label: t('author.grade'),
+              type: 'text',
+              default: '',
+              required: true,
+            },
+            country: {
+              label: t('author.country'),
+              type: 'text',
+              default: '',
+              required: true,
+            },
+            isMainAuthor: {
+              label: t('author.isMainAuthor'),
+              type: 'boolean',
+              default: false,
+              required: true,
+            },
+            workTime: {
+              label: t('author.workTime'),
+              type: 'number',
+              default: '',
+              required: true,
+            },
+            hourlyCost: {
+              label: t('author.hourlyCost'),
+              type: 'number',
+              default: '',
+              required: true,
+            },
+          }}
+        />
+        <FormSelector
+          unique
+          list={venues}
+          setList={setVenues}
+          selected={submission.venue ? [submission.venue] : []}
+          setSelected={(selected) => {
+            const newSubmissionData = { ...submission, venue: selected[0] };
+            setSubmissionData(newSubmissionData);
+          }}
+          displayedAttribute='name'
+          label={t('submission.venue')}
+          modelName='venue'
+          schema={{
+            name: {
+              label: t('venue.name'),
+              type: 'text',
+              default: '',
+              required: true,
+            },
+            rank: {
+              label: t('venue.rank'),
+              type: 'text',
+              default: '',
+              required: true,
+            },
+          }}
+        /> */}
+        {/* 
+        <FileInput
+          name='abstract'
+          collection='submission'
+          MIMEType='pdf'
+          setData={(file) => setSubmissionData((prev) => ({ ...prev, abstract: file }))}
+        />
+        <FileInput
+          name='zipFolder'
+          collection='submission'
+          MIMEType='pdf'
+          setData={(file) => setSubmissionData((prev) => ({ ...prev, zipfolder: file }))}
+        />
+        <FileInput
+          name='submissicompiledPDF'
+          collection='submission'
+          MIMEType='pdf'
+          setData={(file) => setSubmissionData((prev) => ({ ...prev, compiledPdf: file }))}
+        />
+        <FileInput
+          name='diffPDF'
+          collection='submission'
+          MIMEType='pdf'
+          setData={(file) => setSubmissionData((prev) => ({ ...prev, diffPdf: file }))}
+        />
+        <FileInput
+          name='commentPDF'
+          collection='submission'
+          MIMEType='pdf'
+          setData={(file) => setSubmissionData((prev) => ({ ...prev, commentPdf: file }))}
+        /> */}
 
-      <SectionContainer>
-        <Heading2>{t('submission.files')}</Heading2>
         <Group inline>
           <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>
             {t('submission.update')}
