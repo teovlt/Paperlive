@@ -59,8 +59,6 @@ module.exports.readContribution = async (req, res) => {
  */
 module.exports.createContribution = async (req, res) => {
   try {
-    const { title, startDate, teamRole, relatedContributions } = req.body;
-
     const _id = new ObjectId();
     const abstractFileName = `contribution-abstract-${_id}.pdf`;
 
@@ -164,7 +162,6 @@ module.exports.deleteContribution = async (req, res) => {
 
     const result = await Contribution.deleteOne({ _id: contributionId });
     if (result.deletedCount > 0) return res.status(200).json({ message: 'Successfully deleted' });
-
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

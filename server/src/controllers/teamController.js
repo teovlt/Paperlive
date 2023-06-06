@@ -40,22 +40,7 @@ module.exports.me = async (req, res) => {
       .select('-password')
       .populate({
         path: 'contributions',
-        populate: [
-          {
-            path: 'relatedContributions',
-          },
-          {
-            path: 'submissions',
-            populate: [
-              {
-                path: 'authors.author',
-              },
-              {
-                path: 'venue',
-              },
-            ],
-          },
-        ],
+        populate: [{ path: 'relatedContributions' }, { path: 'submissions' }],
       });
     if (!team) return res.status(404).json({ error: 'Team not found' });
 

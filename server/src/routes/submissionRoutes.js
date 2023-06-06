@@ -11,6 +11,10 @@ Router.get(
 Router.get('/:submissionId', authenticateAccessToken, submissionController.readSubmission);
 Router.post('/new', authenticateAccessToken, submissionController.createSubmission);
 Router.put('/:submissionId', authenticateAccessToken, submissionController.updateSubmission);
-Router.delete('/delete/:submissionId', authenticateAccessToken, submissionController.deleteSubmission);
+Router.delete(
+  '/delete/:submissionId',
+  authenticateAccessToken,
+  submissionController.deleteSubmission
+);
 
 module.exports = Router;

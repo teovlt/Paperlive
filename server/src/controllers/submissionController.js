@@ -114,8 +114,7 @@ module.exports.readSubmission = async (req, res) => {
 module.exports.createSubmission = async (req, res) => {
   try {
     const _id = new ObjectId();
-    const { contributionId, authors, venue: v, ...submissionData } = req.body;
-    let venue = v;
+    const { contributionId, ...submissionData } = req.body;
 
     const team = await Team.findOne({ _id: req.teamId, contributions: { $in: [contributionId] } });
     if (!team) return res.status(404).json({ error: 'Team not found' });

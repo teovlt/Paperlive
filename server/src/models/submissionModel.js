@@ -25,32 +25,45 @@ const submissionSchema = new mongoose.Schema({
   },
   authors: [
     {
-      name: {},
-      grade: {},
-      country: {},
+      _id: {
+        type: mongoose.Schema.Types.ObjectId,
+      },
+      name: {
+        type: String,
+      },
+      grade: {
+        type: String,
+      },
+      country: {
+        type: String,
+      },
       isMainAuthor: {
         type: Boolean,
-        default: false,
       },
       workTime: {
         type: Number,
-        required: true,
       },
       hourlyCost: {
         type: Number,
-        required: true,
       },
     },
   ],
   venue: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Venue',
+    _id: {
+      type: mongoose.Schema.Types.ObjectId,
+    },
+    name: {
+      type: String,
+    },
+    rank: {
+      type: String,
+    },
   },
   type: {
     type: String,
-    required: true,
     validate: {
       validator: function (v) {
+        if (!v) return true;
         return types.includes(v);
       },
       message: (props) => `${props.value} is not a valid type!`,

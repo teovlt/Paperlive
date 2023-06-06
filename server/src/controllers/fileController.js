@@ -76,6 +76,7 @@ module.exports.uploadContributionAbstract = (req, res) => {
   const upload = multer({ storage: contributionAbstractStorage });
   upload.single('file')(req, res, async (err) => {
     if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
+    return res.json({ message: 'File uploaded successfully' });
   });
 };
 
@@ -89,6 +90,7 @@ module.exports.uploadSubmissionAbstract = (req, res) => {
   const upload = multer({ storage: submissionAbstractStorage });
   upload.single('file')(req, res, async (err) => {
     if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
+    return res.json({ message: 'File uploaded successfully' });
   });
 };
 
@@ -102,6 +104,7 @@ module.exports.uploadSubmissionZipfolder = (req, res) => {
   const upload = multer({ storage: submissionZipfolderStorage });
   upload.single('file')(req, res, async (err) => {
     if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
+    return res.json({ message: 'File uploaded successfully' });
   });
 };
 /**
@@ -114,6 +117,7 @@ module.exports.uploadSubmissionCompiledPDF = (req, res) => {
   const upload = multer({ storage: submissionCompiledPDFStorage });
   upload.single('file')(req, res, async (err) => {
     if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
+    return res.json({ message: 'File uploaded successfully' });
   });
 };
 
@@ -127,6 +131,7 @@ module.exports.uploadSubmissionDiffPDF = (req, res) => {
   const upload = multer({ storage: submissionDiffPDFStorage });
   upload.single('file')(req, res, async (err) => {
     if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
+    return res.json({ message: 'File uploaded successfully' });
   });
 };
 
@@ -140,5 +145,6 @@ module.exports.uploadSubmissionCommentPDF = (req, res) => {
   const upload = multer({ storage: submissionCommentPDFStorage });
   upload.single('file')(req, res, async (err) => {
     if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
+    return res.json({ message: 'File uploaded successfully' });
   });
 };
