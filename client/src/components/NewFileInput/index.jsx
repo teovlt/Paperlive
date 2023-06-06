@@ -88,11 +88,11 @@ const FileInput = ({ name, MIMEType, setData }) => {
         ) : (
           <>
             <p>{`${name.substr(0, 1).toUpperCase()}${name.substr(1, name.length - 1)}`}</p>
-            <Label htmlFor={id}>Browse files</Label>
+            <Label htmlFor={id}>{t('fileInput.browse')}</Label>
           </>
         )}
       </InfoContainer>
-      {file && <Label htmlFor={id}>Browse files</Label>}
+      {file && <Label htmlFor={id}>{t('fileInput.browse')}</Label>}
       <Input
         type='file'
         name={name}
