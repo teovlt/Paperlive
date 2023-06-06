@@ -21,7 +21,10 @@ const contributionSchema = new mongoose.Schema({
     ],
   },
   abstract: {
-    type: String,
+    type: {
+      name: String,
+      size: Number,
+    },
     required: true,
   },
   teamRole: {

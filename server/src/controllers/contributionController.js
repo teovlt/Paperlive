@@ -60,24 +60,24 @@ module.exports.readContribution = async (req, res) => {
 module.exports.createContribution = async (req, res) => {
   try {
     const _id = new ObjectId();
-    const abstractFileName = `contribution-abstract-${_id}.pdf`;
 
     // Update file
     if (
       fs.existsSync(
         `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`
       )
-    )
+    ) {
+      req.body.abstract = { ...req.body.abstract, name: `contribution-abstract-${_id}.pdf` };
       fs.renameSync(
         `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`,
         `${__dirname}/../../uploads/contribution/abstract/contribution-abstract-${_id}.pdf`
       );
+    }
 
     // Save to database
     const contribution = new Contribution({
       _id,
       ...req.body,
-      abstract: abstractFileName,
     });
     await contribution.save();
 

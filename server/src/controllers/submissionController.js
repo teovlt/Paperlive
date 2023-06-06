@@ -124,7 +124,6 @@ module.exports.createSubmission = async (req, res) => {
         `${__dirname}/../../uploads/submission/abstract/temp-submission-abstract-${req.teamId}.pdf`
       )
     ) {
-      submissionData.abstract = `submission-abstract-${_id}.pdf`;
       fs.renameSync(
         `${__dirname}/../../uploads/submission/abstract/temp-submission-abstract-${req.teamId}.pdf`,
         `${__dirname}/../../uploads/submission/abstract/submission-abstract-${_id}.pdf`
@@ -136,7 +135,6 @@ module.exports.createSubmission = async (req, res) => {
         `${__dirname}/../../uploads/submission/zipfolder/temp-submission-zipfolder-${req.teamId}.zip`
       )
     ) {
-      submissionData.zipFolder = `submission-zipfolder-${_id}.zip`;
       fs.renameSync(
         `${__dirname}/../../uploads/submission/zipfolder/temp-submission-zipfolder-${req.teamId}.zip`,
         `${__dirname}/../../uploads/submission/zipfolder/submission-zipfolder-${_id}.zip`
@@ -148,7 +146,6 @@ module.exports.createSubmission = async (req, res) => {
         `${__dirname}/../../uploads/submission/compiledpdf/temp-submission-compiledpdf-${req.teamId}.pdf`
       )
     ) {
-      submissionData.compiledPDF = `submission-compiledpdf-${_id}.pdf`;
       fs.renameSync(
         `${__dirname}/../../uploads/submission/compiledpdf/temp-submission-compiledpdf-${req.teamId}.pdf`,
         `${__dirname}/../../uploads/submission/compiledpdf/submission-compiledpdf-${_id}.pdf`
@@ -160,7 +157,6 @@ module.exports.createSubmission = async (req, res) => {
         `${__dirname}/../../uploads/submission/diffpdf/temp-submission-diffpdf-${req.teamId}.pdf`
       )
     ) {
-      submissionData.diffPDF = `submission-diffpdf-${_id}.pdf`;
       fs.renameSync(
         `${__dirname}/../../uploads/submission/diffpdf/temp-submission-diffpdf-${req.teamId}.pdf`,
         `${__dirname}/../../uploads/submission/diffpdf/submission-diffpdf-${_id}.pdf`
@@ -172,7 +168,6 @@ module.exports.createSubmission = async (req, res) => {
         `${__dirname}/../../uploads/submission/commentpdf/temp-submission-commentpdf-${req.teamId}.pdf`
       )
     ) {
-      submissionData.commentPDF = `submission-commentpdf-${_id}.pdf`;
       fs.renameSync(
         `${__dirname}/../../uploads/submission/commentpdf/temp-submission-commentpdf-${req.teamId}.pdf`,
         `${__dirname}/../../uploads/submission/commentpdf/submission-commentpdf-${_id}.pdf`
@@ -210,8 +205,7 @@ module.exports.createSubmission = async (req, res) => {
 module.exports.updateSubmission = async (req, res) => {
   try {
     const { submissionId } = req.params;
-    const { authors, venue: v, ...submissionData } = req.body;
-    let venue = v;
+    const { ...submissionData } = req.body;
 
     const team = await Team.findOne({ _id: req.teamId }).populate('contributions');
 
@@ -233,66 +227,52 @@ module.exports.updateSubmission = async (req, res) => {
 
     if (
       fs.existsSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-zipfolder-${req.teamId}.zip`
+        `${__dirname}/../../uploads/submission/zipfolder/temp-submission-zipfolder-${req.teamId}.zip`
       )
     ) {
       fs.renameSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-zipfolder-${req.teamId}.zip`,
-        `${__dirname}/../../uploads/submission/abstract/submission-zipfolder-${submissionId}.zip`
+        `${__dirname}/../../uploads/submission/zipfolder/temp-submission-zipfolder-${req.teamId}.zip`,
+        `${__dirname}/../../uploads/submission/zipfolder/submission-zipfolder-${submissionId}.zip`
       );
     }
 
     if (
       fs.existsSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-compiledpdf-${req.teamId}.pdf`
+        `${__dirname}/../../uploads/submission/compiledpdf/temp-submission-compiledpdf-${req.teamId}.pdf`
       )
     ) {
       fs.renameSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-compiledpdf-${req.teamId}.pdf`,
-        `${__dirname}/../../uploads/submission/abstract/submission-compiledpdf-${submissionId}.pdf`
+        `${__dirname}/../../uploads/submission/compiledpdf/temp-submission-compiledpdf-${req.teamId}.pdf`,
+        `${__dirname}/../../uploads/submission/compiledpdf/submission-compiledpdf-${submissionId}.pdf`
       );
     }
 
     if (
       fs.existsSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-diffpdf-${req.teamId}.pdf`
+        `${__dirname}/../../uploads/submission/diffpdf/temp-submission-diffpdf-${req.teamId}.pdf`
       )
     ) {
       fs.renameSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-diffpdf-${req.teamId}.pdf`,
-        `${__dirname}/../../uploads/submission/abstract/submission-diffpdf-${submissionId}.pdf`
+        `${__dirname}/../../uploads/submission/diffpdf/temp-submission-diffpdf-${req.teamId}.pdf`,
+        `${__dirname}/../../uploads/submission/diffpdf/submission-diffpdf-${submissionId}.pdf`
       );
     }
 
     if (
       fs.existsSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-commentpdf-${req.teamId}.pdf`
+        `${__dirname}/../../uploads/submission/commentpdf/temp-submission-commentpdf-${req.teamId}.pdf`
       )
     ) {
       fs.renameSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-commentpdf-${req.teamId}.pdf`,
-        `${__dirname}/../../uploads/submission/abstract/submission-commentpdf-${submissionId}.pdf`
+        `${__dirname}/../../uploads/submission/commentpdf/temp-submission-commentpdf-${req.teamId}.pdf`,
+        `${__dirname}/../../uploads/submission/commentpdf/submission-commentpdf-${submissionId}.pdf`
       );
-    }
-
-    if (authors) {
-      await Promise.all(
-        authors.map(async (c, index) => {
-          authors[index]['author'] = await createOrUpdateAuthor(c.author);
-        })
-      );
-    }
-
-    if (venue) {
-      venue = await createOrUpdateVenue(venue);
     }
 
     const result = await Submission.updateOne(
       { _id: submissionId },
       {
         $set: {
-          venue,
-          authors,
           ...submissionData,
         },
       }

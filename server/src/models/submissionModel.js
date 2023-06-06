@@ -12,19 +12,34 @@ const submissionSchema = new mongoose.Schema({
     type: String,
   },
   abstract: {
-    type: String,
+    type: {
+      name: String,
+      size: Number,
+    },
   },
   zipFolder: {
-    type: String,
+    type: {
+      name: String,
+      size: Number,
+    },
   },
   compiledPDF: {
-    type: String,
+    type: {
+      name: String,
+      size: Number,
+    },
   },
   diffPDF: {
-    type: String,
+    type: {
+      name: String,
+      size: Number,
+    },
   },
   commentPDF: {
-    type: String,
+    type: {
+      name: String,
+      size: Number,
+    },
   },
   authors: [
     {
