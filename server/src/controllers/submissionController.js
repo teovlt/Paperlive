@@ -132,45 +132,45 @@ module.exports.createSubmission = async (req, res) => {
 
     if (
       fs.existsSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-zipfolder-${req.teamId}.zip`
+        `${__dirname}/../../uploads/submission/zipfolder/temp-submission-zipfolder-${req.teamId}.zip`
       )
     ) {
       fs.renameSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-zipfolder-${req.teamId}.zip`,
-        `${__dirname}/../../uploads/submission/abstract/submission-zipfolder-${_id}.zip`
+        `${__dirname}/../../uploads/submission/zipfolder/temp-submission-zipfolder-${req.teamId}.zip`,
+        `${__dirname}/../../uploads/submission/zipfolder/submission-zipfolder-${_id}.zip`
       );
     }
 
     if (
       fs.existsSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-compiledpdf-${req.teamId}.pdf`
+        `${__dirname}/../../uploads/submission/compiledpdf/temp-submission-compiledpdf-${req.teamId}.pdf`
       )
     ) {
       fs.renameSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-compiledpdf-${req.teamId}.pdf`,
-        `${__dirname}/../../uploads/submission/abstract/submission-compiledpdf-${_id}.pdf`
+        `${__dirname}/../../uploads/submission/compiledpdf/temp-submission-compiledpdf-${req.teamId}.pdf`,
+        `${__dirname}/../../uploads/submission/compiledpdf/submission-compiledpdf-${_id}.pdf`
       );
     }
 
     if (
       fs.existsSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-diffpdf-${req.teamId}.pdf`
+        `${__dirname}/../../uploads/submission/diffpdf/temp-submission-diffpdf-${req.teamId}.pdf`
       )
     ) {
       fs.renameSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-diffpdf-${req.teamId}.pdf`,
-        `${__dirname}/../../uploads/submission/abstract/submission-diffpdf-${_id}.pdf`
+        `${__dirname}/../../uploads/submission/diffpdf/temp-submission-diffpdf-${req.teamId}.pdf`,
+        `${__dirname}/../../uploads/submission/diffpdf/submission-diffpdf-${_id}.pdf`
       );
     }
 
     if (
       fs.existsSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-commentpdf-${req.teamId}.pdf`
+        `${__dirname}/../../uploads/submission/commentpdf/temp-submission-commentpdf-${req.teamId}.pdf`
       )
     ) {
       fs.renameSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-commentpdf-${req.teamId}.pdf`,
-        `${__dirname}/../../uploads/submission/abstract/submission-commentpdf-${_id}.pdf`
+        `${__dirname}/../../uploads/submission/commentpdf/temp-submission-commentpdf-${req.teamId}.pdf`,
+        `${__dirname}/../../uploads/submission/commentpdf/submission-commentpdf-${_id}.pdf`
       );
     }
 
