@@ -229,7 +229,7 @@
     "saveChangesAdd": "Save changes and add",
     "createAdd": "Create and add"
   },
-  "authors": {
+  "author": {
     "name": "Full name",
     "grade": "Grade",
     "country": "Country",

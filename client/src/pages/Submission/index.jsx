@@ -51,16 +51,25 @@ const Submission = () => {
           <Label>{t('submission.title')}</Label>
           <Value>{submission.title}</Value>
         </InfoContainer>
-        <InfoContainer>
-          <Label>{t('submission.date')}</Label>
-          <Value>
-            {new Intl.DateTimeFormat(i18n.language, {
-              day: '2-digit',
-              month: '2-digit',
-              year: 'numeric',
-            }).format(new Date(submission.date ?? 0)) || '-'}
-          </Value>
-        </InfoContainer>
+        <LineWrapper>
+          <InfoContainer>
+            <Label>{t('submission.date')}</Label>
+            <Value>
+              {submission.submissionDate
+                ? new Intl.DateTimeFormat(i18n.language, {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                  }).format(new Date(submission.submissionDate))
+                : '-'}
+            </Value>
+          </InfoContainer>
+          <InfoContainer>
+            <Label>{t('submission.venue')}</Label>
+            <Value>{submission.venue?.name || '-'}</Value>
+          </InfoContainer>
+        </LineWrapper>
+
         <LineWrapper>
           <InfoContainer>
             <Label>{t('submission.type')}</Label>
@@ -71,11 +80,6 @@ const Submission = () => {
             <Value> {t(`submission.${submission.state}`) || '-'}</Value>
           </InfoContainer>
         </LineWrapper>
-
-        <InfoContainer>
-          <Label>{t('submission.venue')}</Label>
-          <Value>{submission.venue.name || '-'}</Value>
-        </InfoContainer>
       </SectionContainer>
       <SectionContainer>
         {submission.abstract &&
@@ -128,38 +132,6 @@ const Submission = () => {
       </SectionContainer>
       <SectionContainer>
         <Heading2>{t('submission.authors')}</Heading2>
-        <Table
-          name='authors'
-          list={submission.authors}
-          searchAttr='name'
-          defaultSort={{ attr: 'workTime', direction: 'desc' }}
-          fields={[
-            {
-              name: 'name',
-              label: 'Name',
-              icon: <HiOutlineUser />,
-              operator: (value) => value,
-            },
-            {
-              name: 'workTime',
-              label: 'workTime',
-              icon: <HiOutlineClock />,
-              operator: (value) => value,
-            },
-            {
-              name: 'hourlyCost',
-              label: 'hourlyCost',
-              icon: <HiOutlineCurrencyDollar />,
-              operator: (value) => value,
-            },
-            {
-              name: 'isMainAuthor',
-              label: 'Main author',
-              icon: <HiOutlineAcademicCap />,
-              operator: (value) => value,
-            },
-          ]}
-        />
       </SectionContainer>
     </>
   );
