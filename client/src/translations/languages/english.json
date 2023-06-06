@@ -236,5 +236,9 @@
     "isMainAuthor": "Is main author?",
     "workTime": "Work time",
     "hourlyCost": "Hourly cost"
+  },
+  "venue": {
+    "name": "Nom",
+    "rank": "Rank"
   }
 }

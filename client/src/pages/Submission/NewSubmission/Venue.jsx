@@ -5,10 +5,12 @@ import { Group, SectionContainer } from '../submissionElements';
 import FormSelector from '../../../components/FormSelector';
 import { Button, Heading2 } from '../../../theme/appElements';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Venue = ({ data, setData }) => {
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
+  const { t } = useTranslation();
 
   const [venues, setVenues] = useState(null);
 
@@ -25,7 +27,7 @@ const Venue = ({ data, setData }) => {
 
   return (
     <SectionContainer>
-      <Heading2>Venue</Heading2>
+      <Heading2>{t('submission.venue')}</Heading2>
       <FormSelector
         unique
         list={venues}
@@ -40,13 +42,13 @@ const Venue = ({ data, setData }) => {
         modelName='venues'
         schema={{
           name: {
-            label: 'Name',
+            label: t('venue.name'),
             type: 'text',
             default: '',
             required: true,
           },
           rank: {
-            label: 'Rank',
+            label: t('venue.rank'),
             type: 'text',
             default: '',
             required: true,
@@ -55,9 +57,9 @@ const Venue = ({ data, setData }) => {
       />
       <Group inline>
         <Button type='neutral' onClick={() => navigate('../authors')}>
-          Previous
+          {t('global.previous')}
         </Button>
-        <Button onClick={() => navigate('../files')}>Next</Button>
+        <Button onClick={() => navigate('../files')}> {t('global.next')}</Button>
       </Group>
     </SectionContainer>
   );

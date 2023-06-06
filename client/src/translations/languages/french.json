@@ -237,5 +237,9 @@
     "isMainAuthor": "Est auteur principal ?",
     "workTime": "Temps de travail",
     "hourlyCost": "Coût par heure"
+  },
+  "venue": {
+    "name": "Nom",
+    "rank": "Prestige"
   }
 }
