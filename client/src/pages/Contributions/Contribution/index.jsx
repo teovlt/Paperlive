@@ -1,18 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import Loading from '../../../components/Loading';
-import { Heading2 } from '../../../theme/appElements';
-import {
-  InfoContainer,
-  Label,
-  LineWrapper,
-  Link,
-  SectionContainer,
-  Value,
-} from './contributionElements';
+import { Heading2, SectionContainer } from '../../../theme/appElements';
+import { InfoContainer, Label, LineWrapper, Link, Value } from './contributionElements';
 import Table from '../../../components/Table';
 import {
   HiOutlineClock,

@@ -16,7 +16,7 @@ const NewSubmission = () => {
     state: 'draft',
     type: '',
     authors: [],
-    venue: {},
+    venue: '',
     abstract: {},
     zipFolder: {},
     compiledPDF: {},

@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Heading2 } from '../../theme/appElements';
+import React, { useContext } from 'react';
+import { Heading2, SectionContainer } from '../../theme/appElements';
 import { AccentContext } from '../../App';
 import { toast } from 'react-toastify';
 import RadioGroup from '../../components/RadioGroup';
@@ -28,7 +28,7 @@ const AppearanceSettings = () => {
   };
 
   return (
-    <>
+    <SectionContainer>
       <Heading2 style={{ borderBottom: `1px solid var(--black-quaternary)` }}>
         {t('settings.pages.appearance')}
       </Heading2>
@@ -62,7 +62,7 @@ const AppearanceSettings = () => {
         }}
         onChange={changeAccentColor}
       />
-    </>
+    </SectionContainer>
   );
 };
 

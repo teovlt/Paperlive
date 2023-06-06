@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Heading2 } from '../../theme/appElements';
+import { Button, Heading2, SectionContainer } from '../../theme/appElements';
 import Input from '../../components/Input';
 import Chips from '../../components/Chips';
 import { useTranslation } from 'react-i18next';
@@ -77,7 +77,7 @@ const SecuritySettings = () => {
   };
 
   return (
-    <>
+    <SectionContainer>
       <Heading2 style={{ borderBottom: '1px solid var(--black-quaternary)' }}>
         Password and authentification
       </Heading2>
@@ -112,7 +112,7 @@ const SecuritySettings = () => {
       <Button type='neutral' onClick={handleSubmit}>
         Change password
       </Button>
-    </>
+    </SectionContainer>
   );
 };
 

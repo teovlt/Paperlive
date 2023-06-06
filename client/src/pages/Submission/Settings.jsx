@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { Group, SectionContainer } from '../../theme/appElements';
-import { Button, Heading2, Heading3, Caption } from '../../theme/appElements';
+import { Group } from './submissionElements';
+import { Button, Heading2, Caption, SectionContainer } from '../../theme/appElements';
 
 import Input from '../../components/Input';
 import RadioGroup from '../../components/RadioGroup';
-import FileInput from '../../components/FileInput';
-import Selector from '../../components/Selector';
 import Chips from '../../components/Chips';
 
 import { useParams } from 'react-router-dom';
@@ -22,7 +20,6 @@ const SubmissionSettings = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
-  const { confirm } = useConfirm();
 
   const submission = auth.contributions
     .find((c) => c.submissions?.find((c) => c._id === id))

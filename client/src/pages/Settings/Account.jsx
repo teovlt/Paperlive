@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Heading2, Button, Caption, Small } from '../../theme/appElements';
+import { Heading2, SectionContainer, Button, Caption } from '../../theme/appElements';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Input from '../../components/Input';
@@ -13,7 +13,6 @@ import {
   DivLeftInfos,
   DivDeleteAccountBtns,
   DivConfirmDelete,
-  SectionContainer,
 } from './settingsElements';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';

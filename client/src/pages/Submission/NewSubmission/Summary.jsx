@@ -2,17 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
-import { Button, Heading2 } from '../../../theme/appElements';
+import { Button, Heading2, SectionContainer } from '../../../theme/appElements';
 import { toast } from 'react-toastify';
 import Chips from '../../../components/Chips';
-import {
-  Group,
-  InfoContainer,
-  Label,
-  LineWrapper,
-  SectionContainer,
-  Value,
-} from '../submissionElements';
+import { Group, InfoContainer, Label, LineWrapper, Value } from '../submissionElements';
 import useAuth from '../../../hooks/useAuth';
 
 const Summary = ({ data }) => {

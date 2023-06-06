@@ -1,14 +1,7 @@
 import { useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import {
-  InfoContainer,
-  Label,
-  LineWrapper,
-  SectionContainer,
-  Value,
-  Link,
-} from './submissionElements';
-import { Heading2 } from '../../theme/appElements';
+import { InfoContainer, Label, LineWrapper, Value, Link } from './submissionElements';
+import { Heading2, SectionContainer } from '../../theme/appElements';
 import { useTranslation } from 'react-i18next';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
