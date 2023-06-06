@@ -67,7 +67,7 @@ const FormStep1 = ({ contributionData, setContributionData, errorMsg, setErrorMs
         }}
       />
       <Selector
-        label={t('contribution.related')}
+        label='related'
         displayedAttribute='title'
         list={auth.contributions}
         selected={contributionData.relatedContributions}

@@ -164,7 +164,9 @@
     "errorMsg": "Merci de remplir le(s) champ(s) suivant(s) :",
 
     "newauthor": "Nouvel auteur",
-    "newvenue": "Nouvelle revue"
+    "newvenue": "Nouvelle revue",
+
+    "related": "Contributions en lien"
   },
 
   "fileInput": {

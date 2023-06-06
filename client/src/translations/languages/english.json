@@ -163,9 +163,10 @@
     "deleteSubWrongName": "The name in your input does not accord to the name of the submission, please try again.",
     "errorMsg": "Please fill in the following field(s): ",
 
-
     "newauthor": "New author",
-    "newvenue": "New venue"
+    "newvenue": "New venue",
+
+    "related": "Related contributions"
   },
   "fileInput": {
     "success": "Imported file",
