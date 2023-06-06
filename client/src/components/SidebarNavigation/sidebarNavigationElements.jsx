@@ -7,6 +7,8 @@ export const Container = styled.div`
   flex-direction: column;
   padding-block: 32px;
   gap: 24px;
+
+  user-select: none;
 `;
 
 export const Section = styled.div`
