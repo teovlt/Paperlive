@@ -124,7 +124,7 @@ module.exports.createSubmission = async (req, res) => {
         `${__dirname}/../../uploads/submission/abstract/temp-submission-abstract-${req.teamId}.pdf`
       )
     ) {
-      req.body.abstract = `submission-abstract-${_id}.pdf`;
+      submissionData.abstract = `submission-abstract-${_id}.pdf`;
       fs.renameSync(
         `${__dirname}/../../uploads/submission/abstract/temp-submission-abstract-${req.teamId}.pdf`,
         `${__dirname}/../../uploads/submission/abstract/submission-abstract-${_id}.pdf`
@@ -136,7 +136,7 @@ module.exports.createSubmission = async (req, res) => {
         `${__dirname}/../../uploads/submission/zipfolder/temp-submission-zipfolder-${req.teamId}.zip`
       )
     ) {
-      req.body.zipFolder = `submission-zipfolder-${_id}.zip`;
+      submissionData.zipFolder = `submission-zipfolder-${_id}.zip`;
       fs.renameSync(
         `${__dirname}/../../uploads/submission/zipfolder/temp-submission-zipfolder-${req.teamId}.zip`,
         `${__dirname}/../../uploads/submission/zipfolder/submission-zipfolder-${_id}.zip`
@@ -148,7 +148,7 @@ module.exports.createSubmission = async (req, res) => {
         `${__dirname}/../../uploads/submission/compiledpdf/temp-submission-compiledpdf-${req.teamId}.pdf`
       )
     ) {
-      req.body.compiledPDF = `submission-compiledpdf-${_id}.pdf`;
+      submissionData.compiledPDF = `submission-compiledpdf-${_id}.pdf`;
       fs.renameSync(
         `${__dirname}/../../uploads/submission/compiledpdf/temp-submission-compiledpdf-${req.teamId}.pdf`,
         `${__dirname}/../../uploads/submission/compiledpdf/submission-compiledpdf-${_id}.pdf`
@@ -160,7 +160,7 @@ module.exports.createSubmission = async (req, res) => {
         `${__dirname}/../../uploads/submission/diffpdf/temp-submission-diffpdf-${req.teamId}.pdf`
       )
     ) {
-      req.body.diffPDF = `submission-diffpdf-${_id}.pdf`;
+      submissionData.diffPDF = `submission-diffpdf-${_id}.pdf`;
       fs.renameSync(
         `${__dirname}/../../uploads/submission/diffpdf/temp-submission-diffpdf-${req.teamId}.pdf`,
         `${__dirname}/../../uploads/submission/diffpdf/submission-diffpdf-${_id}.pdf`
@@ -172,7 +172,7 @@ module.exports.createSubmission = async (req, res) => {
         `${__dirname}/../../uploads/submission/commentpdf/temp-submission-commentpdf-${req.teamId}.pdf`
       )
     ) {
-      req.body.commentPDF = `submission-commentpdf-${_id}.pdf`;
+      submissionData.commentPDF = `submission-commentpdf-${_id}.pdf`;
       fs.renameSync(
         `${__dirname}/../../uploads/submission/commentpdf/temp-submission-commentpdf-${req.teamId}.pdf`,
         `${__dirname}/../../uploads/submission/commentpdf/submission-commentpdf-${_id}.pdf`

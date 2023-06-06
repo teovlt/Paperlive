@@ -17,7 +17,7 @@ module.exports.listContributions = async (req, res) => {
     const team = await Team.findOne({ _id: req.teamId }).populate({
       path: 'contributions',
       populate: {
-        path: 'relatedContributions',
+        path: 'submissions relatedContributions',
       },
     });
     if (!team) return res.status(404).json({ error: 'Team not found' });

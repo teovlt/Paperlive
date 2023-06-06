@@ -31,11 +31,3 @@ export const DivConfirmDelete = styled.div`
   flex-direction: column;
   row-gap: 12px;
 `;
-
-
-
-export const SectionContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 24px;
-`;

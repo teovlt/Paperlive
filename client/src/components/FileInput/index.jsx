@@ -1,32 +1,21 @@
-import React, { useState } from 'react';
-import {
-  CaptionHeading,
-  Container,
-  Input,
-  InputCaption,
-  InputContainer,
-  Button,
-  Link,
-} from './fileInputElements';
-import CircularProgressBar from '../CircularProgressBar';
-import { HiOutlineFolder } from 'react-icons/hi2';
+import React, { useEffect, useState } from 'react';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import { useTranslation } from 'react-i18next';
-import Chips from '../Chips';
 import { toast } from 'react-toastify';
+import { Container, IconContainer, InfoContainer, Input, Label } from './fileInputElements';
+import { HiOutlineDocumentArrowUp } from 'react-icons/hi2';
+import { useTranslation } from 'react-i18next';
 
-const FileInput = ({ name, file, endpoint, onChange, type, link }) => {
+const FileInput = ({ name, collection, MIMEType, setData }) => {
+  const { t } = useTranslation();
   const axiosPrivate = useAxiosPrivate();
 
-  const [filename, setFilename] = useState(file);
-  const [progress, setProgress] = useState(0);
-  const [isUploading, setIsUploading] = useState(false);
+  const [id, setId] = useState(null);
+  const [file, setFile] = useState(null);
+  const [upload, setUpload] = useState({});
 
-  const { t } = useTranslation();
-
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
+  useEffect(() => {
+    setId(Math.random().toString(36).substr(2, 9)); // Generate a random id
+  }, []);
 
   const notify = () => {
     toast.success(t('toast.fileUploadSucess'), {
@@ -41,83 +30,77 @@ const FileInput = ({ name, file, endpoint, onChange, type, link }) => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (e.dataTransfer?.files?.length > 0 || e.target?.files?.length > 0) {
-      setIsUploading(true);
-      onChange && onChange(e.dataTransfer?.files[0] || e.target?.files[0]);
-      setFilename(e.dataTransfer?.files[0]?.name || e.target?.files[0]?.name);
-
-      const data = new FormData();
-      data.append('file', e.dataTransfer?.files[0] || e.target?.files[0]);
-
-      axiosPrivate
-        .post(endpoint, data, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          onUploadProgress: (progressEvent) => {
-            const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            if (percentCompleted === 100) {
-              setIsUploading(false);
-              setProgress(0);
-              notify();
-            } else setProgress(percentCompleted);
-          },
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+  const formatSize = (size) => {
+    if (size < 1024) {
+      return size + ' B';
+    } else if (size < 1024 * 1024) {
+      const sizeKB = (size / 1024).toFixed(2);
+      return sizeKB + ' KB';
+    } else if (size < 1024 * 1024 * 1024) {
+      const sizeMB = (size / (1024 * 1024)).toFixed(2);
+      return sizeMB + ' MB';
+    } else {
+      const sizeGB = (size / (1024 * 1024 * 1024)).toFixed(2);
+      return sizeGB + ' GB';
     }
   };
 
+  useEffect(() => {
+    async function uploadFile() {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        await axiosPrivate.post(`/files/${collection}/${name}`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+          onUploadProgress: (e) => {
+            setUpload((prev) => ({
+              ...prev,
+              loaded: e.loaded,
+              progress: Math.round((e.loaded / e.total) * 100),
+            }));
+          },
+        });
+        notify();
+        setData(file);
+      } catch (error) {}
+    }
+
+    file && uploadFile();
+  }, [file]);
+
   return (
-    <>
-      {!link ? (
-        <Container htmlFor={`${name}FileInput`} style={{ cursor: 'pointer' }}>
-          <InputContainer onDrop={handleSubmit} onDragOver={handleDragOver}>
-            <Input
-              type='file'
-              id={`${name}FileInput`}
-              accept={'.' + type}
-              onChange={handleSubmit}
-            />
-            {isUploading ? (
-              <InputCaption>
-                <CircularProgressBar progress={progress} />
-                Uploading...
-              </InputCaption>
-            ) : file && !isUploading ? (
-              <InputCaption>
-                {name}
-                <span
-                  style={{
-                    whiteSpace: 'nowrap',
-                    textOverflow: 'ellipsis',
-                    width: '180px',
-                    overflow: 'hidden',
-                  }}>
-                  {filename}
-                </span>
-                <Button htmlFor={`${name}FileInput`}>{t('fileInput.changeFiles')}</Button>
-              </InputCaption>
-            ) : (
-              <InputCaption>
-                {name}
-                <HiOutlineFolder />
-                <strong>{type.toUpperCase()}</strong>
-              </InputCaption>
-            )}
-          </InputContainer>
-        </Container>
-      ) : (
-        <Link htmlFor={`${name}FileInput`}>
-          {t('fileInput.changeFiles')}
-          <Input type='file' id={`${name}FileInput`} accept={'.' + type} onChange={handleSubmit} />
-        </Link>
-      )}
-    </>
+    <Container progress={upload?.progress}>
+      <IconContainer>
+        <HiOutlineDocumentArrowUp />
+        <span>{MIMEType}</span>
+      </IconContainer>
+      <InfoContainer>
+        {file ? (
+          <>
+            <p>{file.name}</p>
+            <span>
+              {upload.progress < 100
+                ? `${formatSize(upload.loaded)} / ${formatSize(file.size)}`
+                : formatSize(file.size)}
+            </span>
+          </>
+        ) : (
+          <>
+            <p>{t(`${collection}.${name}`)}</p>
+            <Label htmlFor={id}>{t('fileInput.browse')}</Label>
+          </>
+        )}
+      </InfoContainer>
+      {file && <Label htmlFor={id}>{t('fileInput.browse')}</Label>}
+      <Input
+        type='file'
+        name={name}
+        id={id}
+        accept={`.${MIMEType}`}
+        onChange={(e) => e.target.files[0] && setFile(e.target.files[0])}
+      />
+    </Container>
   );
 };
 

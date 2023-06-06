@@ -1,9 +1,9 @@
 import useAuth from '../../../hooks/useAuth';
-import { Group, SectionContainer } from '../submissionElements';
+import { Group } from '../submissionElements';
 import Selector from '../../../components/Selector';
 import Input from '../../../components/Input';
 import RadioGroup from '../../../components/RadioGroup';
-import { Button, Heading2 } from '../../../theme/appElements';
+import { Button, Heading2, SectionContainer } from '../../../theme/appElements';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 

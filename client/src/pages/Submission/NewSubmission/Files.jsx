@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Group, SectionContainer } from '../submissionElements';
-import { Button, Heading2 } from '../../../theme/appElements';
-import FileInput from '../../../components/NewFileInput';
+import { Group } from '../submissionElements';
+import { Button, Heading2, SectionContainer } from '../../../theme/appElements';
+import FileInput from '../../../components/FileInput';
 import { useTranslation } from 'react-i18next';
 
 const Files = ({ data, setData }) => {
@@ -13,29 +13,34 @@ const Files = ({ data, setData }) => {
     <SectionContainer>
       <Heading2>{t('submission.files')}</Heading2>
       <FileInput
-        name={t('submission.abstract')}
+        name='abstract'
+        collection='submission'
         MIMEType='pdf'
         setData={(file) => setData((prev) => ({ ...prev, abstract: file }))}
       />
       <FileInput
-        name={t('submission.zipFolder')}
+        name='zipFolder'
+        collection='submission'
         MIMEType='zip'
         setData={(file) => setData((prev) => ({ ...prev, zipFolder: file }))}
       />
       <FileInput
-        name={t('submission.compiledPDF')}
+        name='compiledPDF'
+        collection='submission'
         MIMEType='pdf'
-        setData={(file) => setData((prev) => ({ ...prev, compiledPdf: file }))}
+        setData={(file) => setData((prev) => ({ ...prev, compiledPDF: file }))}
       />
       <FileInput
-        name={t('submission.diffPDF')}
+        name='diffPDF'
+        collection='submission'
         MIMEType='pdf'
-        setData={(file) => setData((prev) => ({ ...prev, diffPdf: file }))}
+        setData={(file) => setData((prev) => ({ ...prev, diffPDF: file }))}
       />
       <FileInput
-        name={t('submission.commentsPDF')}
+        name='commentPDF'
+        collection='submission'
         MIMEType='pdf'
-        setData={(file) => setData((prev) => ({ ...prev, commentPdf: file }))}
+        setData={(file) => setData((prev) => ({ ...prev, commentPDF: file }))}
       />
       <Group inline>
         <Button type='neutral' onClick={() => navigate('../venue')}>

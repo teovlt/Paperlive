@@ -46,13 +46,14 @@ const Summary = ({ data }) => {
       delete submission.contribution;
       delete submission.abstract;
       delete submission.zipFolder;
-      delete submission.compiledPdf;
-      delete submission.diffPdf;
-      delete submission.commentPdf;
+      delete submission.compiledPDF;
+      delete submission.diffPDF;
+      delete submission.commentPDF;
       try {
         await axiosPrivate.post('/submissions/new', submission);
         const contributions = await axiosPrivate.get('/contributions');
-        setAuth((prev) => ({ ...prev, contributions: contributions.data }));
+        console.log(contributions.data);
+        setAuth((prev) => ({ ...prev, contributions: [...contributions.data] }));
         notify();
         navigate(`/contributions/${data.contribution._id}`);
       } catch (error) {}
@@ -124,15 +125,15 @@ const Summary = ({ data }) => {
       </InfoContainer>
       <InfoContainer>
         <Label>{t('submission.compiledPDF')}</Label>
-        <Value>{data.compiledPdf?.name || '-'}</Value>
+        <Value>{data.compiledPDF?.name || '-'}</Value>
       </InfoContainer>
       <InfoContainer>
         <Label>{t('submission.diffPDF')}</Label>
-        <Value>{data.diffPdf?.name || '-'}</Value>
+        <Value>{data.diffPDF?.name || '-'}</Value>
       </InfoContainer>
       <InfoContainer>
-        <Label>{t('submission.commentsPDF')}</Label>
-        <Value>{data.commentPdf?.name || '-'}</Value>
+        <Label>{t('submission.commentPDF')}</Label>
+        <Value>{data.commentPDF?.name || '-'}</Value>
       </InfoContainer>
       {errMsg && <Chips type='negative'>{errMsg}</Chips>}
       <Group inline>

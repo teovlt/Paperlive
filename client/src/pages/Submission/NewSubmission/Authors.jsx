@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import Loading from '../../../components/Loading';
-import { Group, SectionContainer } from '../submissionElements';
+import { Group } from '../submissionElements';
 import FormSelector from '../../../components/FormSelector';
-import { Button, Heading2 } from '../../../theme/appElements';
+import { Button, SectionContainer, Heading2 } from '../../../theme/appElements';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 

@@ -26,7 +26,6 @@ const Contribution = () => {
   const { auth } = useAuth();
   const { id } = useParams();
   const axiosPrivate = useAxiosPrivate();
-  const navigate = useNavigate();
 
   const [contribution, setContribution] = useState(null);
 
@@ -130,13 +129,13 @@ const Contribution = () => {
               name: 'state',
               label: 'State',
               icon: <HiOutlineSparkles />,
-              operator: (value) => value,
+              operator: (value) => t(`submission.${value}`),
             },
             {
               name: 'venue',
               label: 'Venue',
               icon: <HiOutlineMicrophone />,
-              operator: (value) => value?.name,
+              operator: (value) => value?.name || '-',
             },
           ]}
         />

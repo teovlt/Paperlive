@@ -1,72 +1,84 @@
 import styled from 'styled-components';
 
-export const Container = styled.label`
+export const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-
-export const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
 
-  user-select: none;
+  padding: 1.6rem 2.4rem;
 
-  width: 200px;
-  aspect-ratio: 1/1;
-
-  /* background: var(--black-quaternary); */
-  border: 1px dashed var(--black-tertiary);
-  border-radius: 0.8rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--black-quaternary);
 
   position: relative;
+  overflow: hidden;
 
-  font-size: 1.6rem;
-  line-height: 2.2rem;
-  text-align: center;
-  color: var(--black);
+  &::after {
+    content: '';
+
+    width: ${({ progress }) => progress + '%'};
+    height: 0.5rem;
+
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    background-color: var(--accent);
+
+    transition: width 0.5s ease-in-out;
+  }
+`;
+
+export const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  svg {
+    font-size: 5rem;
+    stroke-width: 0.1rem;
+    margin-bottom: -0.4rem;
+  }
+
+  span {
+    user-select: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+`;
+
+export const InfoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  padding: 0 2.4rem;
+  flex: 1;
+
+  p {
+    font-size: 1.5rem;
+  }
+
+  span {
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    user-select: none;
+  }
+`;
+
+export const Label = styled.label`
+  color: var(--accent);
+  text-decoration: underline;
+
+  font-size: 1.4rem;
+
+  cursor: pointer;
+  user-select: none;
 `;
 
 export const Input = styled.input`
   display: none;
-`;
-
-export const InputCaption = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-
-  svg {
-    color: var(--accent);
-    display: block;
-    font-size: 6rem;
-  }
-`;
-
-export const CaptionHeading = styled.p`
-  font-size: 1.6rem;
-  font-weight: 500;
-`;
-
-export const Button = styled.label`
-  border-radius: 0.2rem;
-
-  color: var(--accent);
-  font-weight: 400;
-
-  &:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-`;
-
-export const Link = styled.label`
-  &:hover {
-    cursor: pointer;
-    text-decoration: underline;
-  }
-  color: var(--accent);
 `;
