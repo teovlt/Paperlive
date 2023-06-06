@@ -113,11 +113,11 @@ const Routes = () => {
                       {
                         title: 'New submission',
                         links: [
-                          { label: 'Informations', to: 'informations' },
-                          { label: 'Authors', to: 'authors' },
-                          { label: 'Venue', to: 'venue' },
-                          { label: 'Files', to: 'files' },
-                          { label: 'Summary', to: 'summary' },
+                          { label: t('submission.informations'), to: 'informations' },
+                          { label: t('submission.authors'), to: 'authors' },
+                          { label: t('submission.venue'), to: 'venue' },
+                          { label: t('submission.files'), to: 'files' },
+                          { label: t('submission.recap'), to: 'summary' },
                         ],
                       },
                     ]}

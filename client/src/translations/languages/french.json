@@ -15,9 +15,9 @@
     "beta": "Bêta",
     "accueil": "Accueil",
     "password": "Mot de passe",
-    "remove" : "Retirer",
-    "yes" : "Oui",
-    "no" : "Non"
+    "remove": "Retirer",
+    "yes": "Oui",
+    "no": "Non"
   },
   "navigation": {
     "overview": "Vue d'ensemble",
@@ -132,6 +132,7 @@
     "newSubmission": "Nouvelle soumission",
     "informations": "Informations",
     "files": "Documents",
+    "recap": "Récapitulatif",
     "title": "Titre",
     "date": "Date",
     "type": "Type",
