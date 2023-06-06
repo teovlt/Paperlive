@@ -3,7 +3,7 @@ import { Group, SectionContainer } from '../submissionElements';
 import Selector from '../../../components/Selector';
 import Input from '../../../components/Input';
 import RadioGroup from '../../../components/RadioGroup';
-import { Button } from '../../../theme/appElements';
+import { Button, Heading2 } from '../../../theme/appElements';
 import { useNavigate } from 'react-router-dom';
 
 const Informations = ({ data, setData }) => {
@@ -12,6 +12,7 @@ const Informations = ({ data, setData }) => {
 
   return (
     <SectionContainer>
+      <Heading2>Informations</Heading2>
       <Selector
         unique
         list={auth.contributions}

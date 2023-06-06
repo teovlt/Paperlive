@@ -3,7 +3,7 @@ import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import Loading from '../../../components/Loading';
 import { Group, SectionContainer } from '../submissionElements';
 import FormSelector from '../../../components/FormSelector';
-import { Button } from '../../../theme/appElements';
+import { Button, Heading2 } from '../../../theme/appElements';
 import { useNavigate } from 'react-router-dom';
 
 const Authors = ({ data, setData }) => {
@@ -25,6 +25,7 @@ const Authors = ({ data, setData }) => {
 
   return (
     <SectionContainer>
+      <Heading2>Authors</Heading2>
       <FormSelector
         list={authors}
         setList={setAuthors}
