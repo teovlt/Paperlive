@@ -14,7 +14,10 @@
     "confirm": "Confirmer",
     "beta": "Bêta",
     "accueil": "Accueil",
-    "password": "Mot de passe"
+    "password": "Mot de passe",
+    "remove" : "Retirer",
+    "yes" : "Oui",
+    "no" : "Non"
   },
   "navigation": {
     "overview": "Vue d'ensemble",
@@ -155,7 +158,10 @@
     "submissionName": "Nom de la soumission",
     "deleteSubWarning1": "La soumission va être supprimée de cette contribution, il n'y aura aucun moyen de la récupérer, soyez sûr de ce que vous faites !",
     "deleteSubWarning2": "Pour confirmer la suppression de cette soumission, veuillez entrer son titre exact ci-dessous : ",
-    "deleteSubWrongName": "Le titre de la soumission ne correspond pas au texte que vous avez saisi, réessayer s'il vous plait."
+    "deleteSubWrongName": "Le titre de la soumission ne correspond pas au texte que vous avez saisi, réessayer s'il vous plait.",
+
+    "newauthor": "Nouvel auteur",
+    "newvenue": "Nouvelle revue"
   },
 
   "fileInput": {
@@ -216,5 +222,10 @@
     "unsavedChangements": "Changements non sauvegardés",
     "submissionUpdatedSuccess": "Soumission mise à jour avec succès",
     "submissionDeletedSuccess": "Soumission supprimée avec succès"
+  },
+  "selector": {
+    "saveChanges": "Sauvegarder les changements",
+    "saveChangesAdd": "Sauvegarder et ajouter",
+    "createAdd": "Créer et ajouter"
   }
 }
