@@ -140,6 +140,7 @@
     "type": "Type",
     "poster": "Poster",
     "shortPaper": "Article court",
+    "longPaper" : "Article long",
     "state": "Etat",
     "draft": "Brouillon",
     "submitted": "Soumise",

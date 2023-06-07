@@ -64,9 +64,9 @@ const Informations = ({ data, setData }) => {
               defaultChecked: data.type === 'shortPaper',
             },
             {
-              label: t('submission.contribution'),
-              value: 'contribution',
-              defaultChecked: data.type === 'contribution',
+              label: t('submission.longPaper'),
+              value: 'longPaper',
+              defaultChecked: data.type === 'longPaper',
             },
           ],
         }}

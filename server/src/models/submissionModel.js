@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const states = ['draft', 'submitted', 'approved', 'rejected'];
-const types = ['poster', 'shortPaper', 'contribution'];
+const types = ['poster', 'shortPaper', 'longPaper'];
 
 const submissionSchema = new mongoose.Schema({
   title: {

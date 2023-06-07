@@ -181,9 +181,9 @@ const SubmissionSettings = () => {
                 defaultChecked: submissionData?.type === 'shortPaper',
               },
               {
-                label: t('submission.contribution'),
-                value: 'contribution',
-                defaultChecked: submissionData?.type === 'contribution',
+                label: t('submission.longPaper'),
+                value: 'longPaper',
+                defaultChecked: submissionData?.type === 'longPaper',
               },
             ],
           }}

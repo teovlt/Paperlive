@@ -140,6 +140,7 @@
     "type": "Type",
     "poster": "Poster",
     "shortPaper": "ShortPaper",
+    "longPaper": "LongPaper",
     "state": "State",
     "draft": "Draft",
     "submitted": "Submitted",
