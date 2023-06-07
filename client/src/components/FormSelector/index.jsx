@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import useSearch from '../../hooks/useSearch';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RadioGroup from '../RadioGroup';
@@ -55,6 +55,8 @@ const FormSelector = ({
   const [selectedItems, setSelectedItems] = useState(selected);
   const [displayedList, setDisplayedList] = useState(null);
 
+  const selectorRef = useRef(null);
+
   const handleSave = async (item) => {
     if (!Object.keys(defaultItem).some((key) => item[key] === '' || item[key] === undefined)) {
       if (item._id) {
@@ -73,6 +75,30 @@ const FormSelector = ({
       setModal({ isOpen: false, item: defaultItem });
     }
   };
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      }
+    }
+
+    function handleClickOutside(e) {
+      if (selectorRef.current && !selectorRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen === true) {
+      document.addEventListener('click', handleClickOutside);
+      document.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     setDisplayedList(list.filter((item) => !selectedItems.map((i) => i._id).includes(item._id)));
@@ -172,7 +198,7 @@ const FormSelector = ({
           </ModalContainer>
         </>
       )}
-      <Container>
+      <Container ref={selectorRef}>
         <Toggler
           onClick={() => setIsOpen(!isOpen)}
           className={`${isOpen && 'open'} ${selectedItems.length > 0 && 'filled'}`}>

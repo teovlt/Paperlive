@@ -32,6 +32,8 @@ const Selector = ({ list, selected, displayedAttribute, label, onChange, unique 
     list.filter((item) => !selected.includes(item))
   );
 
+  const selectorRef = useRef(null);
+
   const handleChanges = (checked, item) => {
     if (checked) {
       if (unique) {
@@ -45,6 +47,30 @@ const Selector = ({ list, selected, displayedAttribute, label, onChange, unique 
       setSelectedItems(updatedSelectedItems);
     }
   };
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      }
+    }
+
+    function handleClickOutside(e) {
+      if (selectorRef.current && !selectorRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen === true) {
+      document.addEventListener('click', handleClickOutside);
+      document.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     onChange(selectedItems);
@@ -72,7 +98,7 @@ const Selector = ({ list, selected, displayedAttribute, label, onChange, unique 
   }, [searchQuery]);
 
   return (
-    <Container>
+    <Container ref={selectorRef}>
       <Toggler
         onClick={() => setIsOpen(!isOpen)}
         className={`${isOpen && 'open'} ${selectedItems.length > 0 && 'filled'}`}>
