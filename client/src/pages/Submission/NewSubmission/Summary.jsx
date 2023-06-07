@@ -37,15 +37,9 @@ const Summary = ({ data }) => {
         ...data,
       };
       delete submission.contribution;
-      delete submission.abstract;
-      delete submission.zipFolder;
-      delete submission.compiledPDF;
-      delete submission.diffPDF;
-      delete submission.commentPDF;
       try {
         await axiosPrivate.post('/submissions/new', submission);
         const contributions = await axiosPrivate.get('/contributions');
-        console.log(contributions.data);
         setAuth((prev) => ({ ...prev, contributions: [...contributions.data] }));
         notify();
         navigate(`/contributions/${data.contribution._id}`);

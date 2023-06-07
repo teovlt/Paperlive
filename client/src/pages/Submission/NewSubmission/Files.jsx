@@ -17,7 +17,7 @@ const Files = ({ data, setData }) => {
         collection='submission'
         MIMEType='pdf'
         data={data}
-        setData={(file) =>
+        callback={(file) =>
           setData((prev) => ({ ...prev, abstract: { name: file.name, size: file.size } }))
         }
       />
@@ -26,7 +26,7 @@ const Files = ({ data, setData }) => {
         collection='submission'
         MIMEType='zip'
         data={data}
-        setData={(file) =>
+        callback={(file) =>
           setData((prev) => ({ ...prev, zipFolder: { name: file.name, size: file.size } }))
         }
       />
@@ -35,7 +35,7 @@ const Files = ({ data, setData }) => {
         collection='submission'
         MIMEType='pdf'
         data={data}
-        setData={(file) =>
+        callback={(file) =>
           setData((prev) => ({ ...prev, compiledPDF: { name: file.name, size: file.size } }))
         }
       />
@@ -44,7 +44,7 @@ const Files = ({ data, setData }) => {
         collection='submission'
         MIMEType='pdf'
         data={data}
-        setData={(file) =>
+        callback={(file) =>
           setData((prev) => ({ ...prev, diffPDF: { name: file.name, size: file.size } }))
         }
       />
@@ -53,7 +53,7 @@ const Files = ({ data, setData }) => {
         collection='submission'
         MIMEType='pdf'
         data={data}
-        setData={(file) =>
+        callback={(file) =>
           setData((prev) => ({ ...prev, commentPDF: { name: file.name, size: file.size } }))
         }
       />
