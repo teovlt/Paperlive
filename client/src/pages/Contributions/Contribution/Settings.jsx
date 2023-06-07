@@ -188,9 +188,9 @@ const ContributionSettings = () => {
           collection='contribution'
           MIMEType='pdf'
           data={contribution}
-          setData={(file) =>
-            setContributionData((prev) => ({
-              ...prev,
+          callback={(file) =>
+            setContributionData((data) => ({
+              ...data,
               abstract: { name: file.name, size: file.size },
             }))
           }

@@ -16,8 +16,8 @@ const Files = ({ data, setData }) => {
         collection='contribution'
         MIMEType='pdf'
         data={data}
-        setData={(file) =>
-          setData((prev) => ({ ...prev, abstract: { name: file.name, size: file.size } }))
+        callback={(file) =>
+          setData((data) => ({ ...data, abstract: { name: file.name, size: file.size } }))
         }
       />
       <LineWrapper>

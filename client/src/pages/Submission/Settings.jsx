@@ -227,9 +227,9 @@ const SubmissionSettings = () => {
           collection='submission'
           MIMEType='pdf'
           data={submission}
-          setData={(file) =>
-            setSubmissionData((prev) => ({
-              ...prev,
+          callback={(file) =>
+            setSubmissionData((data) => ({
+              ...data,
               abstract: { name: file.name, size: file.size },
             }))
           }
@@ -239,9 +239,9 @@ const SubmissionSettings = () => {
           collection='submission'
           MIMEType='zip'
           data={submission}
-          setData={(file) =>
-            setSubmissionData((prev) => ({
-              ...prev,
+          callback={(file) =>
+            setSubmissionData((data) => ({
+              ...data,
               zipFolder: { name: file.name, size: file.size },
             }))
           }
@@ -251,9 +251,9 @@ const SubmissionSettings = () => {
           collection='submission'
           MIMEType='pdf'
           data={submission}
-          setData={(file) =>
-            setSubmissionData((prev) => ({
-              ...prev,
+          callback={(file) =>
+            setSubmissionData((data) => ({
+              ...data,
               compiledPDF: { name: file.name, size: file.size },
             }))
           }
@@ -263,9 +263,9 @@ const SubmissionSettings = () => {
           collection='submission'
           MIMEType='pdf'
           data={submission}
-          setData={(file) =>
-            setSubmissionData((prev) => ({
-              ...prev,
+          callback={(file) =>
+            setSubmissionData((data) => ({
+              ...data,
               diffPDF: { name: file.name, size: file.size },
             }))
           }
@@ -275,9 +275,9 @@ const SubmissionSettings = () => {
           collection='submission'
           MIMEType='pdf'
           data={submission}
-          setData={(file) =>
-            setSubmissionData((prev) => ({
-              ...prev,
+          callback={(file) =>
+            setSubmissionData((data) => ({
+              ...data,
               commentPDF: { name: file.name, size: file.size },
             }))
           }

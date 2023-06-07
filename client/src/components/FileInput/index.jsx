@@ -5,7 +5,7 @@ import { Container, IconContainer, InfoContainer, Input, Label } from './fileInp
 import { HiOutlineDocumentArrowUp } from 'react-icons/hi2';
 import { useTranslation } from 'react-i18next';
 
-const FileInput = ({ name, collection, MIMEType, data, setData }) => {
+const FileInput = ({ name, collection, MIMEType, data, callback }) => {
   const { t } = useTranslation();
   const axiosPrivate = useAxiosPrivate();
 
@@ -62,7 +62,7 @@ const FileInput = ({ name, collection, MIMEType, data, setData }) => {
           },
         });
         notify();
-        setData(file);
+        callback(file);
       } catch (error) {}
     }
 
