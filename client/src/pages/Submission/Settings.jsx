@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { Group } from './submissionElements';
+import { Group, LineWrapper } from './submissionElements';
 import { Button, Heading2, Caption, SectionContainer } from '../../theme/appElements';
 
 import Input from '../../components/Input';
@@ -290,21 +290,18 @@ const SubmissionSettings = () => {
         </Group>
       </SectionContainer>
 
-      {!deleting ? (
-        <>
-          <div style={{ display: 'flex', flexDirection: 'column', width: '300px', rowGap: '12px' }}>
-            <Heading2 style={{ color: 'var(--negative)' }}> {t('submission.delete')}</Heading2>
-            <Button type='negative' onClick={() => setDeleting(true)} style={{ width: '250px' }}>
-              {t('submission.delete')}
-            </Button>
-          </div>
-        </>
-      ) : (
-        <SectionContainer>
-          <Chips type='notice'>{t('settings.profile.deleteAccountWarning2')}</Chips>
-          <Caption>{t('submission.deleteSubWarning1')}</Caption>
+      <SectionContainer>
+        <Heading2 style={{ color: 'var(--negative)' }}> {t('submission.delete')}</Heading2>
+        {!deleting && (
+          <Button type='negative' onClick={() => setDeleting(true)} style={{ width: '250px' }}>
+            {t('submission.delete')}
+          </Button>
+        )}
+        {deleting && (
+          <>
+            <Chips type='notice'>{t('settings.profile.deleteAccountWarning2')}</Chips>
+            <Caption>{t('submission.deleteSubWarning1')}</Caption>
 
-          <div style={{ display: 'flex', flexDirection: 'column', rowGap: '12px' }}>
             <Caption>{t('submission.deleteSubWarning2')}</Caption>
             <Input
               id='contributionName'
@@ -314,19 +311,19 @@ const SubmissionSettings = () => {
               value={submissionName}
               onChange={(e) => setSubmissionName(e.target.value)}
             />
-          </div>
 
-          {errMsg && <Chips type='negative'>{errMsg}</Chips>}
-          <div style={{ width: '100%', display: 'flex', columnGap: '24px' }}>
-            <Button style={{ width: '250px' }} type='neutral' onClick={handleCancelDelete}>
-              {t('global.cancel')}
-            </Button>
-            <Button type='negative' style={{ width: '250px' }} onClick={handleDeleteSubmission}>
-              {t('submission.delete')}
-            </Button>
-          </div>
-        </SectionContainer>
-      )}
+            {errMsg && <Chips type='negative'>{errMsg}</Chips>}
+            <LineWrapper>
+              <Button style={{ width: '250px' }} type='neutral' onClick={handleCancelDelete}>
+                {t('global.cancel')}
+              </Button>
+              <Button type='negative' style={{ width: '250px' }} onClick={handleDeleteSubmission}>
+                {t('submission.delete')}
+              </Button>
+            </LineWrapper>
+          </>
+        )}
+      </SectionContainer>
     </>
   );
 };

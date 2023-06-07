@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { Group, InfoContainer, Value, Label, Link } from './contributionElements';
+import { Group, InfoContainer, Value, Label, Link, LineWrapper } from './contributionElements';
 import { Button, Heading2, SectionContainer, Caption } from '../../../theme/appElements';
 
 import { useParams } from 'react-router-dom';
@@ -28,50 +28,56 @@ const ContributionSettings = () => {
   const [contributionData, setContributionData] = useState(contribution);
 
   const [deleting, setDeleting] = useState(false);
-  const [errMsg, setErrMsg] = useState('');
+  const [saveErrMsg, setSaveErrMsg] = useState('');
+  const [deleteErrMsg, setDeleteErrMsg] = useState('');
 
   const [contributionName, setContributionName] = useState('');
 
   useEffect(() => {
-    setErrMsg('');
+    setDeleteErrMsg('');
+    setSaveErrMsg('');
   }, [contributionName]);
 
-  console.log(contribution);
+  const notifyOptions = {
+    position: 'bottom-right',
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'colored',
+  };
 
   const notifySave = () => {
-    toast.success(t('toast.contributionUpdatedSuccess'), {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'colored',
-    });
+    toast.success(t('toast.contributionUpdatedSuccess'), notifyOptions);
   };
 
   const notifyDelete = () => {
-    toast.success(t('toast.contributionDeletedSuccess'), {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'colored',
-    });
+    toast.success(t('toast.contributionDeletedSuccess'), notifyOptions);
   };
 
   async function handleSaveChanges() {
-    await axiosPrivate.put(`/contributions/update/${id}`, {
-      ...contributionData,
-    });
-    const contributions = await axiosPrivate.get('/contributions');
-    setAuth((prev) => ({ ...prev, contributions: contributions.data }));
-    notifySave();
-    navigate(`/contributions/${id}`);
+    console.log(Object.keys(contribution));
+    const undefinedKeys = Object.keys(contribution).filter(
+      (key) => !contributionData[key] && key !== 'relatedContributions' && key !== '__v'
+    );
+
+    if (undefinedKeys.length > 0) {
+      setSaveErrMsg(
+        `${t('contribution.errorMsg')} ${undefinedKeys
+          .map((key) => t(`contribution.${key}`))
+          .join(', ')}`
+      );
+    } else {
+      await axiosPrivate.put(`/contributions/update/${id}`, {
+        ...contributionData,
+      });
+      const contributions = await axiosPrivate.get('/contributions');
+      setAuth((prev) => ({ ...prev, contributions: contributions.data }));
+      notifySave();
+      navigate(`/contributions/${id}`);
+    }
   }
 
   const handleCancelDelete = () => {
@@ -91,14 +97,14 @@ const ContributionSettings = () => {
         notifyDelete();
       } catch (error) {
         if (!error?.response) {
-          setErrMsg(t('authentication.servorError'));
+          setDeleteErrMsg(t('authentication.servorError'));
         } else {
-          setErrMsg(t('contribution.deleteContError'));
+          setDeleteErrMsg(t('contribution.deleteContError'));
         }
         //
       }
     } else {
-      setErrMsg(t('contribution.deleteContWrongName'));
+      setDeleteErrMsg(t('contribution.deleteContWrongName'));
     }
   };
 
@@ -217,6 +223,8 @@ const ContributionSettings = () => {
           }
         />
 
+        {saveErrMsg && <Chips type='negative'>{saveErrMsg}</Chips>}
+
         <Group inline>
           <Button type='neutral' onClick={handleSaveChanges} style={{ width: '100%' }}>
             {t('contribution.update')}
@@ -224,21 +232,18 @@ const ContributionSettings = () => {
         </Group>
       </SectionContainer>
 
-      {!deleting ? (
-        <>
-          <div style={{ display: 'flex', flexDirection: 'column', width: '300px', rowGap: '12px' }}>
-            <Heading2 style={{ color: 'var(--negative)' }}> {t('contribution.delete')}</Heading2>
-            <Button type='negative' onClick={() => setDeleting(true)} style={{ width: '250px' }}>
-              {t('contribution.delete')}
-            </Button>
-          </div>
-        </>
-      ) : (
-        <SectionContainer>
-          <Chips type='notice'>{t('settings.profile.deleteAccountWarning2')}</Chips>
-          <Caption>{t('contribution.deleteContWarning1')}</Caption>
+      <SectionContainer>
+        <Heading2 style={{ color: 'var(--negative)' }}> {t('contribution.delete')}</Heading2>
+        {!deleting && (
+          <Button type='negative' onClick={() => setDeleting(true)} style={{ width: '250px' }}>
+            {t('contribution.delete')}
+          </Button>
+        )}
+        {deleting && (
+          <>
+            <Chips type='notice'>{t('settings.profile.deleteAccountWarning2')}</Chips>
+            <Caption>{t('contribution.deleteContWarning1')}</Caption>
 
-          <div style={{ display: 'flex', flexDirection: 'column', rowGap: '12px' }}>
             <Caption>{t('contribution.deleteContWarning2')}</Caption>
             <Input
               id='contributionName'
@@ -248,19 +253,19 @@ const ContributionSettings = () => {
               value={contributionName}
               onChange={(e) => setContributionName(e.target.value)}
             />
-          </div>
 
-          {errMsg && <Chips type='negative'>{errMsg}</Chips>}
-          <div style={{ width: '100%', display: 'flex', columnGap: '24px' }}>
-            <Button style={{ width: '250px' }} type='neutral' onClick={handleCancelDelete}>
-              {t('global.cancel')}
-            </Button>
-            <Button type='negative' style={{ width: '250px' }} onClick={handleDeleteContribution}>
-              {t('contribution.delete')}
-            </Button>
-          </div>
-        </SectionContainer>
-      )}
+            {deleteErrMsg && <Chips type='negative'>{deleteErrMsg}</Chips>}
+            <LineWrapper>
+              <Button style={{ width: '250px' }} type='neutral' onClick={handleCancelDelete}>
+                {t('global.cancel')}
+              </Button>
+              <Button type='negative' style={{ width: '250px' }} onClick={handleDeleteContribution}>
+                {t('contribution.delete')}
+              </Button>
+            </LineWrapper>
+          </>
+        )}
+      </SectionContainer>
     </>
   );
 };

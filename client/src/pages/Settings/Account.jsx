@@ -168,9 +168,6 @@ const AccountSettings = () => {
           {t('settings.profile.updateProfile')}
         </Button>
       </SectionContainer>
-      {/*  */}
-      {/*  */}
-      {/*  */}
       <SectionContainer>
         <Heading2
           style={{
@@ -181,12 +178,14 @@ const AccountSettings = () => {
         </Heading2>
         <Caption>{t('settings.profile.deleteAccountWarning1')}</Caption>
 
-        <Button
-          type='negative'
-          style={{ width: '250px' }}
-          onClick={() => setDeleteConfirmation(true)}>
-          {t('settings.profile.deleteAccount')}
-        </Button>
+        {!deleteConfirmation && (
+          <Button
+            type='negative'
+            style={{ width: '250px' }}
+            onClick={() => setDeleteConfirmation(true)}>
+            {t('settings.profile.deleteAccount')}
+          </Button>
+        )}
         {deleteConfirmation && (
           <>
             <Chips type='notice'>{t('settings.profile.deleteAccountWarning2')}</Chips>
