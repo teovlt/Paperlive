@@ -79,7 +79,7 @@ const SecuritySettings = () => {
   return (
     <SectionContainer>
       <Heading2 style={{ borderBottom: '1px solid var(--black-quaternary)' }}>
-        Password and authentification
+        {t('settings.pages.password')}
       </Heading2>
       <Input
         id='oldPassword'
