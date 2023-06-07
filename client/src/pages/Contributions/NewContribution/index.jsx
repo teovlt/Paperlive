@@ -11,6 +11,7 @@ const NewContribution = () => {
   const [data, setData] = useState({
     title: '',
     startDate: '',
+    scientificField: '',
     teamRole: '',
     relatedContributions: [],
     abstract: null,

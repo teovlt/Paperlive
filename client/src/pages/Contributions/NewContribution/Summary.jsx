@@ -49,6 +49,11 @@ const Summary = ({ data }) => {
       </InfoContainer>
 
       <InfoContainer>
+        <Label>{t('contribution.scientificField')}</Label>
+        <Value>{data.scientificField || '-'}</Value>
+      </InfoContainer>
+
+      <InfoContainer>
         <Label>{t('contribution.related')}</Label>
         {data.relatedContributions.length > 0
           ? data.relatedContributions.map((contribution) => <Link>{contribution.title}</Link>)

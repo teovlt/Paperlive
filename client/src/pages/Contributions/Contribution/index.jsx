@@ -51,6 +51,10 @@ const Contribution = () => {
           <Value>{contribution.title}</Value>
         </InfoContainer>
         <InfoContainer>
+          <Label>{t('contribution.scientificField')}</Label>
+          <Value>{contribution.scientificField}</Value>
+        </InfoContainer>
+        <InfoContainer>
           <Label>{t('contribution.related')}</Label>
           <Value>
             {contribution.relatedContributions?.length > 0

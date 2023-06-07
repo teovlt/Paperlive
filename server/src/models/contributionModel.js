@@ -12,6 +12,10 @@ const contributionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  scientificField: {
+    type: String,
+    required: true,
+  },
   relatedContributions: {
     type: [
       {

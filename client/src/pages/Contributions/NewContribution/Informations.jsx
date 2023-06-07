@@ -28,6 +28,17 @@ const Informations = ({ data, setData }) => {
       />
       <Input
         small
+        type='text'
+        id='scientificField'
+        label={t('contribution.scientificField')}
+        value={data.scientificField}
+        onChange={(e) => {
+          const updatedData = { ...data, scientificField: e.target.value };
+          setData(updatedData);
+        }}
+      />
+      <Input
+        small
         type='date'
         id='startDate'
         label={t('contribution.startDate')}

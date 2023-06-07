@@ -50,20 +50,18 @@ const FileInput = ({ name, collection, MIMEType, data, callback }) => {
       const formData = new FormData();
       formData.append('file', file);
 
-      try {
-        await axiosPrivate.post(`/files/${collection}/${name}`, formData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-          onUploadProgress: (e) => {
-            setUpload((prev) => ({
-              ...prev,
-              loaded: e.loaded,
-              progress: Math.round((e.loaded / e.total) * 100),
-            }));
-          },
-        });
-        notify();
-        callback(file);
-      } catch (error) {}
+      await axiosPrivate.post(`/files/${collection}/${name}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        onUploadProgress: (e) => {
+          setUpload((prev) => ({
+            ...prev,
+            loaded: e.loaded,
+            progress: Math.round((e.loaded / e.total) * 100),
+          }));
+        },
+      });
+      callback(file);
+      notify();
     }
 
     file && data[name] !== file && uploadFile();
