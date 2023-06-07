@@ -74,8 +74,8 @@ const ContributionSettings = () => {
       });
       const contributions = await axiosPrivate.get('/contributions');
       setAuth((prev) => ({ ...prev, contributions: contributions.data }));
-      notifySave();
       navigate(`/contributions/${id}`);
+      notifySave();
     }
   }
 
@@ -90,8 +90,8 @@ const ContributionSettings = () => {
         await axiosPrivate.delete(`/contributions/delete/${id}`, {
           ...contributionData,
         });
-        const updatedContributions = auth.contributions.filter((c) => c._id !== id);
-        setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
+        const contributions = await axiosPrivate.get('/contributions');
+        setAuth((prev) => ({ ...prev, contributions: contributions.data }));
         navigate('/contributions');
         notifyDelete();
       } catch (error) {
