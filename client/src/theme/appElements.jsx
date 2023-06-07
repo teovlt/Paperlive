@@ -134,6 +134,7 @@ export const Small = styled.small`
 export const Link = styled(NavLink)`
   font-size: inherit;
   color: var(--accent);
+  white-space: nowrap;
 
   &:hover {
     text-decoration: underline;

@@ -1,4 +1,4 @@
-fixconst Team = require('../models/teamModel');
+const Team = require('../models/teamModel');
 const Contribution = require('../models/contributionModel');
 const Submission = require('../models/submissionModel');
 const Author = require('../models/authorModel');
