@@ -108,7 +108,7 @@ const Contribution = () => {
         <InfoContainer>
           <Label>{t('contribution.link')}</Label>
           {contribution.link ? (
-            <Link to={`https://${contribution.link}`} target='_blank'>
+            <Link targer='_blank' to={`//${contribution.link.split('//').pop()}`} target='_blank'>
               {contribution.link}
             </Link>
           ) : (

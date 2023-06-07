@@ -50,12 +50,8 @@ const SidebarProfile = () => {
     setIsEditing(false);
 
     if (profilData !== auth) {
-      const updatedProfilData = { ...profilData };
-      updatedProfilData.website &&
-        (updatedProfilData.website = updatedProfilData.website.replace(/^https?:\/\//i, ''));
-
-      await axiosPrivate.put('/teams/update', { ...updatedProfilData });
-      setAuth((prev) => ({ ...prev, ...updatedProfilData }));
+      await axiosPrivate.put('/teams/update', profilData);
+      setAuth((prev) => ({ ...prev, ...profilData }));
       notify();
     }
   }
@@ -94,7 +90,7 @@ const SidebarProfile = () => {
             {auth.website && (
               <LabelInfos>
                 <HiOutlineLink />
-                <Link to={`https://${auth.website}`} target='_blank'>
+                <Link targer='_blank' to={`//${auth.website.split('//').pop()}`} target='_blank'>
                   {auth.website}
                 </Link>
               </LabelInfos>
