@@ -291,6 +291,18 @@ const SubmissionSettings = () => {
             },
           }}
         />
+        <Input
+          small
+          id='link'
+          type='text'
+          defaultValue={submission.link}
+          label={t('submission.link')}
+          autoComplete='off'
+          onChange={(event) => {
+            const newSubmissionData = { ...submission, link: event.target.value };
+            setSubmissionData(newSubmissionData);
+          }}
+        />
         <FileInput
           name='abstract'
           collection='submission'

@@ -107,6 +107,17 @@ const Informations = ({ data, setData }) => {
           setData(updatedData);
         }}
       />
+      <Input
+        small
+        type='text'
+        id='link'
+        label={t('submission.link')}
+        value={data.link}
+        onChange={(e) => {
+          const updatedData = { ...data, link: e.target.value };
+          setData(updatedData);
+        }}
+      />
       <Group inline>
         <Button type='neutral' onClick={() => navigate('/')}>
           {t('global.cancel')}

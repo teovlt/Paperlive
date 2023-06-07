@@ -96,6 +96,16 @@ const Submission = () => {
               : '-'}
           </Value>
         </InfoContainer>
+        <InfoContainer>
+          <Label>{t('submission.link')}</Label>
+          {submission.link ? (
+            <Link targer='_blank' to={`//${submission.link.split('//').pop()}`} target='_blank'>
+              {submission.link}
+            </Link>
+          ) : (
+            <Value>-</Value>
+          )}
+        </InfoContainer>
       </SectionContainer>
       <SectionContainer>
         <Heading2>{t('submission.files')}</Heading2>
