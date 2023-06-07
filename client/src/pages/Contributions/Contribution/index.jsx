@@ -24,7 +24,7 @@ const Contribution = () => {
 
   useEffect(() => {
     setContribution(auth.contributions?.find((c) => c._id === id));
-  }, [auth.contributions]);
+  }, [auth.contributions, id]);
 
   const handleDownload = async (e) => {
     e.preventDefault();
