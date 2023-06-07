@@ -60,6 +60,10 @@ const contributionSchema = new mongoose.Schema({
       message: (props) => `${props.value} is not a valid state!`,
     },
   },
+  link: {
+    type: String,
+    required: false,
+  },
 });
 
 const contribution = new mongoose.model('Contribution', contributionSchema);

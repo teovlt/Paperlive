@@ -127,7 +127,8 @@
     "deleteContWrongName": "The name in your input does not accord to the name of the contribution, please try again.",
     "deleteContError": "Error: deletion failed",
     "contributionName": "Name of the contribution",
-    "update": "Update the contribution"
+    "update": "Update the contribution",
+    "link": "Extra link"
   },
   "submission": {
     "newSubmission": "New submission",
@@ -140,6 +141,7 @@
     "type": "Type",
     "poster": "Poster",
     "shortPaper": "ShortPaper",
+    "longPaper": "LongPaper",
     "state": "State",
     "draft": "Draft",
     "submitted": "Submitted",
