@@ -13,7 +13,10 @@ const contributionSchema = new mongoose.Schema({
     required: true,
   },
   scientificField: {
-    type: String,
+    type: {
+      _id: mongoose.Schema.Types.ObjectId,
+      label: String,
+    },
     required: true,
   },
   relatedContributions: {

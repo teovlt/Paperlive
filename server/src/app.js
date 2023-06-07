@@ -99,7 +99,7 @@ app.use('/api/venues', venueRoutes);
  * @desc Route to handle scientific fields related requests
  * @access Public
  */
-app.use('/api/scientific-fields', scitificFieldRoutes);
+app.use('/api/scientificfields', scitificFieldRoutes);
 
 /**
  * Handle the requests to /api/files

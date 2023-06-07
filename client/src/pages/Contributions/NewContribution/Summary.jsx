@@ -50,7 +50,7 @@ const Summary = ({ data }) => {
 
       <InfoContainer>
         <Label>{t('contribution.scientificField')}</Label>
-        <Value>{data.scientificField || '-'}</Value>
+        <Value>{data.scientificField.label || '-'}</Value>
       </InfoContainer>
 
       <InfoContainer>
@@ -67,7 +67,7 @@ const Summary = ({ data }) => {
         </InfoContainer>
         <InfoContainer>
           <Label>{t('contribution.teamRole')}</Label>
-          <Value>{t(`contribution.${data.teamRole}`) || '-'}</Value>
+          <Value>{data.teamRole ? t(`contribution.${data.teamRole}`) : '-'}</Value>
         </InfoContainer>
       </LineWrapper>
 

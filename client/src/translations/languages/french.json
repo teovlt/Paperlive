@@ -164,9 +164,6 @@
     "deleteSubWrongName": "Le titre de la soumission ne correspond pas au texte que vous avez saisi, réessayer s'il vous plait.",
     "errorMsg": "Merci de remplir le(s) champ(s) suivant(s) :",
 
-    "newauthor": "Nouvel auteur",
-    "newvenue": "Nouvelle revue",
-
     "related": "Contributions en lien"
   },
 
@@ -233,7 +230,10 @@
   "selector": {
     "saveChanges": "Sauvegarder les changements",
     "saveChangesAdd": "Sauvegarder et ajouter",
-    "createAdd": "Créer et ajouter"
+    "createAdd": "Créer et ajouter",
+    "newauthor": "Nouvel auteur",
+    "newvenue": "Nouvelle revue",
+    "newscientificField": "Nouveau domaine scientifique"
   },
   "author": {
     "name": "Nom complet",
