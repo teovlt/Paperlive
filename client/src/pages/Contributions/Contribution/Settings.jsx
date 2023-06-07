@@ -3,18 +3,19 @@ import { toast } from 'react-toastify';
 import { Group, InfoContainer, Value, Label, Link } from './contributionElements';
 import { Button, Heading2, SectionContainer, Caption } from '../../../theme/appElements';
 
-import Input from '../../../components/Input';
-import RadioGroup from '../../../components/RadioGroup';
-import FileInput from '../../../components/FileInput';
-import Selector from '../../../components/Selector';
-import Chips from '../../../components/Chips';
-
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { useNavigate } from 'react-router-dom';
-import { useConfirm } from '../../../context/ConfirmContext';
+
+import Input from '../../../components/Input';
+import RadioGroup from '../../../components/RadioGroup';
+import FileInput from '../../../components/FileInput';
+import Selector from '../../../components/Selector';
+import Chips from '../../../components/Chips';
+import Loading from '../../../components/Loading';
+import FormSelector from '../../../components/FormSelector';
 
 const ContributionSettings = () => {
   const { id } = useParams();
@@ -24,7 +25,7 @@ const ContributionSettings = () => {
   const axiosPrivate = useAxiosPrivate();
 
   const contribution = auth.contributions?.find((c) => c._id === id);
-  const [contributionData, setContributionData] = useState({ ...contribution });
+  const [contributionData, setContributionData] = useState(contribution);
 
   const [deleting, setDeleting] = useState(false);
   const [errMsg, setErrMsg] = useState('');
@@ -82,7 +83,7 @@ const ContributionSettings = () => {
     if (contributionName === contribution.title) {
       try {
         await axiosPrivate.delete(`/contributions/delete/${id}`, {
-          ...contribution,
+          ...contributionData,
         });
         const updatedContributions = auth.contributions.filter((c) => c._id !== id);
         setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
@@ -101,19 +102,18 @@ const ContributionSettings = () => {
     }
   };
 
-  const handleDownload = async (e) => {
-    e.preventDefault();
-    const res = await axiosPrivate.get(
-      `${import.meta.env.VITE_API_URI}/api/files/${contribution.abstract}`,
-      { responseType: 'blob' }
-    );
+  const [scientificFields, setScientificFields] = useState(null);
 
-    const url = URL.createObjectURL(res.data);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', contribution?.abstract);
-    link.click();
-  };
+  useEffect(() => {
+    async function fetchScientificFields() {
+      const response = await axiosPrivate.get('/scientificfields');
+      setScientificFields(response.data);
+    }
+
+    fetchScientificFields();
+  }, []);
+
+  if (!scientificFields) return <Loading />;
 
   return (
     <>
@@ -126,8 +126,29 @@ const ContributionSettings = () => {
           label={t('contribution.title')}
           autoComplete='off'
           onChange={(event) => {
-            const newContributionData = { ...contribution, title: event.target.value };
+            const newContributionData = { ...contributionData, title: event.target.value };
             setContributionData(newContributionData);
+          }}
+        />
+        <FormSelector
+          list={scientificFields}
+          setList={setScientificFields}
+          selected={contribution.scientificField ? [contribution.scientificField] : []}
+          setSelected={(selected) => {
+            const newContributionData = { ...contributionData, scientificField: selected[0] };
+            setContributionData(newContributionData);
+          }}
+          label={t('contribution.scientificField')}
+          modelName='scientificFields'
+          unique
+          displayedAttribute='label'
+          schema={{
+            label: {
+              label: 'Label',
+              type: 'text',
+              default: '',
+              required: true,
+            },
           }}
         />
         <Input
@@ -139,7 +160,7 @@ const ContributionSettings = () => {
           autoComplete='off'
           onChange={(event) => {
             const newContributionData = {
-              ...contribution,
+              ...contributionData,
               startDate: event.target.value,
             };
             setContributionData(newContributionData);
@@ -148,7 +169,7 @@ const ContributionSettings = () => {
         <RadioGroup
           name='role'
           onChange={(event) => {
-            const newContributionData = { ...contribution, teamRole: event.target.value };
+            const newContributionData = { ...contributionData, teamRole: event.target.value };
             setContributionData(newContributionData);
           }}
           label={t('contribution.teamRole')}
