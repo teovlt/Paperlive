@@ -96,7 +96,9 @@ const Contribution = () => {
             <Value
               style={{
                 color: `var(--${
-                  { submitted: 'notice', rejected: 'negative', approved: 'positive' }['approved']
+                  { inProgress: 'notice', rejected: 'negative', approved: 'positive' }[
+                    contribution.state
+                  ]
                 })`,
               }}>
               {t(`contribution.${contribution.state}`)}
