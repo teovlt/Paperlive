@@ -6,7 +6,6 @@ import { Button, Heading2, Caption, SectionContainer } from '../../theme/appElem
 import Input from '../../components/Input';
 import RadioGroup from '../../components/RadioGroup';
 import Chips from '../../components/Chips';
-import FormSelector from '../../components/FormSelector';
 import FileInput from '../../components/FileInput';
 
 import { useParams } from 'react-router-dom';
@@ -14,8 +13,8 @@ import { useTranslation } from 'react-i18next';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useNavigate } from 'react-router-dom';
-import { useConfirm } from '../../context/ConfirmContext';
 import Loading from '../../components/Loading';
+import FormSelector from '../../components/FormSelector';
 
 const SubmissionSettings = () => {
   const { id } = useParams();
@@ -26,6 +25,24 @@ const SubmissionSettings = () => {
 
   const contribution = auth.contributions.find((c) => c.submissions?.find((s) => s._id === id));
   const submission = contribution.submissions?.find((c) => c._id === id);
+
+  const [authors, setAuthors] = useState(null);
+  const [venues, setVenues] = useState(null);
+
+  useEffect(() => {
+    async function fetchAuthors() {
+      const response = await axiosPrivate.get('/authors');
+      setAuthors(response.data);
+    }
+
+    fetchAuthors();
+    async function fetchVenues() {
+      const response = await axiosPrivate.get('/venues');
+      setVenues(response.data);
+    }
+
+    fetchVenues();
+  }, []);
 
   const [submissionData, setSubmissionData] = useState({ ...submission });
   const [deleting, setDeleting] = useState(false);
@@ -56,7 +73,6 @@ const SubmissionSettings = () => {
   };
 
   const handleSaveChanges = async () => {
-    // FIXME: update submission
     await axiosPrivate.put(`/submissions/${id}`, submissionData);
 
     const updatedContributions = [
@@ -114,24 +130,6 @@ const SubmissionSettings = () => {
       setErrMsg(t('submission.deleteSubWrongName'));
     }
   };
-
-  const [authors, setAuthors] = useState(null);
-  const [venues, setVenues] = useState(null);
-
-  useEffect(() => {
-    async function fetchAuthors() {
-      const response = await axiosPrivate.get('/authors');
-      setAuthors(response.data);
-    }
-
-    fetchAuthors();
-    async function fetchVenues() {
-      const response = await axiosPrivate.get('/venues');
-      setVenues(response.data);
-    }
-
-    fetchVenues();
-  }, []);
 
   if (!authors) return <Loading />;
   if (!venues) return <Loading />;
@@ -220,6 +218,77 @@ const SubmissionSettings = () => {
                 defaultChecked: submissionData?.state === 'rejected',
               },
             ],
+          }}
+        />
+        <FormSelector
+          list={authors}
+          setList={setAuthors}
+          selected={submissionData.authors || []}
+          setSelected={(selected) => setSubmissionData((data) => ({ ...data, authors: selected }))}
+          label={t('submission.authors')}
+          displayedAttribute='name'
+          modelName='authors'
+          schema={{
+            name: {
+              label: t('author.name'),
+              type: 'text',
+              default: '',
+              required: true,
+            },
+            grade: {
+              label: t('author.grade'),
+              type: 'text',
+              default: '',
+              required: true,
+            },
+            country: {
+              label: t('author.country'),
+              type: 'text',
+              default: '',
+              required: true,
+            },
+            isMainAuthor: {
+              label: t('author.isMainAuthor'),
+              type: 'boolean',
+              default: false,
+              required: true,
+            },
+            workTime: {
+              label: t('author.workTime'),
+              type: 'number',
+              default: '',
+              required: true,
+            },
+            hourlyCost: {
+              label: t('author.hourlyCost'),
+              type: 'number',
+              default: '',
+              required: true,
+            },
+          }}
+        />
+        <FormSelector
+          list={venues}
+          setList={setVenues}
+          selected={submissionData.venue ? [submissionData.venue] : []}
+          setSelected={(selected) => setSubmissionData((data) => ({ ...data, venue: selected[0] }))}
+          unique
+          label={t('submission.venue')}
+          displayedAttribute='name'
+          modelName='venues'
+          schema={{
+            name: {
+              label: t('venue.name'),
+              type: 'text',
+              default: '',
+              required: true,
+            },
+            rank: {
+              label: t('venue.rank'),
+              type: 'text',
+              default: '',
+              required: true,
+            },
           }}
         />
         <FileInput

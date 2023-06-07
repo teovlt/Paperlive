@@ -56,7 +56,11 @@ const Submission = () => {
           </InfoContainer>
           <InfoContainer>
             <Label>{t('submission.venue')}</Label>
-            <Value>{submission.venue?.name || '-'}</Value>
+            {submission.venue ? (
+              <Link to={`/venues/${submission.venue._id}`}>{submission.venue.name}</Link>
+            ) : (
+              <Value>-</Value>
+            )}
           </InfoContainer>
         </LineWrapper>
 
