@@ -89,7 +89,7 @@ const FormSelector = ({
       }
     }
 
-    if (isOpen === true) {
+    if (isOpen && !modal.isOpen) {
       document.addEventListener('click', handleClickOutside);
       document.addEventListener('keydown', handleKeyDown);
     }
@@ -98,7 +98,7 @@ const FormSelector = ({
       document.removeEventListener('click', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen]);
+  }, [isOpen, modal.isOpen]);
 
   useEffect(() => {
     setDisplayedList(list.filter((item) => !selectedItems.map((i) => i._id).includes(item._id)));
@@ -256,7 +256,7 @@ const FormSelector = ({
                 />
               ))}
               <ResultsButton onClick={() => setModal({ isOpen: true, item: defaultItem })}>
-                + {t(`submission.new${unique ? modelName : modelName.slice(0, -1)}`)}
+                + {t(`selector.new${modelName.slice(0, -1)}`)}
               </ResultsButton>
             </DisplayedListContainer>
           </>
