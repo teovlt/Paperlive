@@ -10,7 +10,7 @@ import useAuth from '../../../hooks/useAuth';
 
 const Summary = ({ data }) => {
   const { t, i18n } = useTranslation();
-  const { setAuth } = useAuth();
+  const { setAuth, auth } = useAuth();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
 
@@ -32,6 +32,9 @@ const Summary = ({ data }) => {
           .join(', ')}`
       );
     } else {
+      const updatedContributionData = { ...data };
+      data.link && (data.link = updatedContributionData.link.replace(/^https?:\/\//i, ''));
+
       await axiosPrivate.post('/contributions/new', data);
       const contributions = await axiosPrivate.get('/contributions');
       setAuth((prev) => ({ ...prev, contributions: contributions.data }));
@@ -68,6 +71,19 @@ const Summary = ({ data }) => {
         <InfoContainer>
           <Label>{t('contribution.teamRole')}</Label>
           <Value>{data.teamRole ? t(`contribution.${data.teamRole}`) : '-'}</Value>
+        </InfoContainer>
+      </LineWrapper>
+
+      <LineWrapper>
+        <InfoContainer>
+          <Label>{t('contribution.link')}</Label>
+          {data.link ? (
+            <Link to={`https://${data.link}`} target='_blank'>
+              {data.link}
+            </Link>
+          ) : (
+            <Value>-</Value>
+          )}
         </InfoContainer>
       </LineWrapper>
 

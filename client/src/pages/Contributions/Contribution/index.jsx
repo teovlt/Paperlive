@@ -96,6 +96,16 @@ const Contribution = () => {
             <Value>{t(`contribution.${contribution.state}`)}</Value>
           </InfoContainer>
         </LineWrapper>
+        <InfoContainer>
+          <Label>{t('contribution.link')}</Label>
+          {contribution.link ? (
+            <Link to={`https://${contribution.link}`} target='_blank'>
+              {contribution.link}
+            </Link>
+          ) : (
+            <Value>-</Value>
+          )}
+        </InfoContainer>
       </SectionContainer>
       <SectionContainer>
         <Heading2>{t('global.submissions')}</Heading2>

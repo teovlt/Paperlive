@@ -109,6 +109,17 @@ const Informations = ({ data, setData }) => {
           setData(updatedData);
         }}
       />
+      <Input
+        small
+        type='text'
+        id='link'
+        label={t('contribution.link')}
+        value={data.link}
+        onChange={(e) => {
+          const updatedData = { ...data, link: e.target.value };
+          setData(updatedData);
+        }}
+      />
       <LineWrapper>
         <Button type='neutral' onClick={() => navigate('/')}>
           {t('global.cancel')}

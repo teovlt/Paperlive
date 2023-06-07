@@ -127,7 +127,8 @@
     "deleteContWrongName": "Le titre de la contribution ne correspond pas au texte que vous avez saisi",
     "deleteContError": "Erreur : suppresion echouée",
     "contributionName": "Nom de la contribution",
-    "update": "Mettre à jour la contribution"
+    "update": "Mettre à jour la contribution",
+    "link": "Lien supplémentaire"
   },
   "submission": {
     "newSubmission": "Nouvelle soumission",

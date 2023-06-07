@@ -58,7 +58,6 @@ const ContributionSettings = () => {
   };
 
   async function handleSaveChanges() {
-    console.log(Object.keys(contribution));
     const undefinedKeys = Object.keys(contribution).filter(
       (key) => !contributionData[key] && key !== 'relatedContributions' && key !== '__v'
     );
@@ -221,6 +220,22 @@ const ContributionSettings = () => {
               abstract: { name: file.name, size: file.size },
             }))
           }
+        />
+
+        <Input
+          small
+          id='text'
+          type='link'
+          defaultValue={contribution?.link}
+          label={t('contribution.link')}
+          autoComplete='off'
+          onChange={(event) => {
+            const newContributionData = {
+              ...contributionData,
+              link: event.target.value,
+            };
+            setContributionData(newContributionData);
+          }}
         />
 
         {saveErrMsg && <Chips type='negative'>{saveErrMsg}</Chips>}
