@@ -128,7 +128,7 @@
     "deleteContError": "Erreur : suppresion echouée",
     "contributionName": "Nom de la contribution",
     "update": "Mettre à jour la contribution",
-    "link": "Lien supplémentaire"
+    "link": "Lien"
   },
   "submission": {
     "newSubmission": "Nouvelle soumission",
@@ -141,7 +141,7 @@
     "type": "Type",
     "poster": "Poster",
     "shortPaper": "Article court",
-    "longPaper" : "Article long",
+    "longPaper": "Article long",
     "state": "Etat",
     "draft": "Brouillon",
     "submitted": "Soumise",
