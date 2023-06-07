@@ -80,11 +80,16 @@ const Table = ({ name, list, fields, defaultSort, searchAttr }) => {
         {resultList?.length > 0 ? (
           resultList.map((item, index) => (
             <DataRow key={index}>
-              {fields?.map((field, index) => (
-                <DataCell key={index} onClick={() => navigate(`/${name}/${item._id}`)}>
-                  {field.operator(item[field.name]) || item[field.name]}
-                </DataCell>
-              ))}
+              {fields?.map((field, index) => {
+                return (
+                  <DataCell
+                    key={index}
+                    style={{ color: `var(--${{ ...field.style }[item[field.name]]})` }}
+                    onClick={() => navigate(`/${name}/${item._id}`)}>
+                    {field.operator(item[field.name]) || item[field.name]}
+                  </DataCell>
+                );
+              })}
             </DataRow>
           ))
         ) : (

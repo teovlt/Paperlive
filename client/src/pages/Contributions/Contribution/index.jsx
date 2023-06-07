@@ -93,7 +93,14 @@ const Contribution = () => {
           </InfoContainer>
           <InfoContainer>
             <Label>{t('contribution.state')}</Label>
-            <Value>{t(`contribution.${contribution.state}`)}</Value>
+            <Value
+              style={{
+                color: `var(--${
+                  { submitted: 'notice', rejected: 'negative', approved: 'positive' }['approved']
+                })`,
+              }}>
+              {t(`contribution.${contribution.state}`)}
+            </Value>
           </InfoContainer>
         </LineWrapper>
       </SectionContainer>
@@ -127,6 +134,7 @@ const Contribution = () => {
             {
               name: 'state',
               label: 'State',
+              style: { submitted: 'notice', rejected: 'negative', approved: 'positive' },
               icon: <HiOutlineSparkles />,
               operator: (value) => t(`submission.${value}`),
             },

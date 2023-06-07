@@ -51,12 +51,13 @@ function Contributions() {
             {
               name: 'state',
               label: 'State',
+              style: { rejected: 'negative', inProgress: 'notice', approved: 'positive' },
               icon: <HiOutlineSparkles />,
               operator: (value) => t(`contribution.${value}`),
             },
           ]}
         />
-      </SectionContainer>{' '}
+      </SectionContainer>
     </>
   );
 }

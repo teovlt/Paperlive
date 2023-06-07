@@ -71,7 +71,16 @@ const Submission = () => {
           </InfoContainer>
           <InfoContainer>
             <Label>{t('submission.state')}</Label>
-            <Value> {t(`submission.${submission.state}`) || '-'}</Value>
+            <Value
+              style={{
+                color: `var(--${
+                  { submitted: 'notice', rejected: 'negative', approved: 'positive' }[
+                    submission.state
+                  ]
+                })`,
+              }}>
+              {t(`submission.${submission.state}`) || '-'}
+            </Value>
           </InfoContainer>
         </LineWrapper>
 
