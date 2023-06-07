@@ -77,7 +77,8 @@
     "logout": "Déconnexion",
     "settings": "Paramètres",
     "newContribution": "Nouvelle contribution",
-    "newSubmission": "Nouvelle soumission"
+    "newSubmission": "Nouvelle soumission",
+    "about": "A propos"
   },
   "home": {
     "desc": "À propos de nous",
@@ -250,5 +251,13 @@
   "venue": {
     "name": "Nom",
     "rank": "Prestige"
+  },
+  "about": {
+    "aboutPaperLive": "A propos de PaperLive",
+    "par1": "PaperLive est une plateforme de suivi de cycle de vie de contributions scientifiques dédiée à simplifier et améliorer le processus de soumission, de révision et de publication des articles scientifiques. Notre objectif est de fournir une plateforme conviviale et efficace pour les chercheurs et les auteurs du monde entier.",
+    "par2": "Nous sommes les développeurs de PaperLive, Téo VILLET et Gabriel HALUS. Forts de notre passion pour la technologie et de notre expérience dans le développement web, nous avons travaillé avec détermination sous la direction de M. Alain Tchana pour concevoir et créer cette plateforme innovante.",
+    "par3": "L'application PaperLive a été développée au sein du Laboratoire d'Informatique de Grenoble (LIG), une institution de renommée internationale dans le domaine de la recherche en informatique. Le LIG est composé de chercheurs et d'experts passionnés qui travaillent sur divers aspects de l'informatique, y compris le développement d'applications innovantes pour soutenir la recherche scientifique. Grâce à notre collaboration avec le LIG, nous avons pu bénéficier de ressources et d'expertise supplémentaires pour concevoir et réaliser PaperLive, en veillant à ce qu'il réponde aux normes de qualité et aux meilleures pratiques de l'industrie. Nous sommes fiers de cette association fructueuse et reconnaissants envers le LIG pour son soutien tout au long du développement de PaperLive.",
+    "par4": "Si vous avez des questions, des suggestions ou des demandes d'assistance, n'hésitez pas à nous contacter :",
+    "par5": "Nous sommes ravis de vous accompagner dans votre expérience avec PaperLive et nous nous engageons à vous offrir une assistance de qualité pour toutes vos préoccupations."
   }
 }

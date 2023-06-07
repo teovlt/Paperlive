@@ -82,9 +82,17 @@ const NavBar = () => {
       {
         actions: [
           {
+            label: t('dropDown.about'),
+            onClick: () => navigate('/about'),
+          },
+          {
             label: t('dropDown.settings'),
             onClick: () => navigate('/settings/profile'),
           },
+        ],
+      },
+      {
+        actions: [
           {
             label: t('dropDown.logout'),
             onClick: signOut,

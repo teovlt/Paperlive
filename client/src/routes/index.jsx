@@ -28,6 +28,7 @@ import SidebarProfile from '../components/SidebarProfile';
 import SidebarNavigation from '../components/SidebarNavigation';
 import Navigation from '../components/Navigation';
 import { HiLockClosed, HiSwatch, HiUserCircle } from 'react-icons/hi2';
+import About from '../pages/About';
 
 const Routes = () => {
   const { t } = useTranslation();
@@ -46,6 +47,7 @@ const Routes = () => {
             <Route path='' element={<Home />} />
             <Route path='contributions' element={<Contributions />} />
             <Route path='statistics' element={<Statistics />} />
+            <Route path='about' element={<About />} />
           </Route>
 
           <Route
