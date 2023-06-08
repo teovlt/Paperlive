@@ -152,7 +152,7 @@ const SubmissionSettings = () => {
           small
           id='date'
           type='date'
-          defaultValue={submission.date}
+          defaultValue={submission.submissionDate}
           label={t('submission.date')}
           autoComplete='off'
           onChange={(event) => {
