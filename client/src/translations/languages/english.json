@@ -250,7 +250,10 @@
   },
   "venue": {
     "name": "Name",
-    "rank": "Rank"
+    "rank": "Rank",
+    "type": "Type",
+    "journal" : "Journal",
+    "conference" : "Conference"
   },
   "about": {
     "aboutPaperLive": "About PaperLive",

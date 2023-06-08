@@ -251,7 +251,10 @@
   },
   "venue": {
     "name": "Nom",
-    "rank": "Prestige"
+    "rank": "Prestige",
+    "type": "Type",
+    "journal": "Journal",
+    "conference": "Conférence"
   },
   "about": {
     "aboutPaperLive": "A propos de PaperLive",
