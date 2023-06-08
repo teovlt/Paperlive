@@ -65,7 +65,7 @@ const Authors = ({ data, setData }) => {
             required: true,
           },
           workTime: {
-            label: t('author.workTime'),
+            label: t('author.workTimeMonth'),
             type: 'number',
             default: '',
             required: true,

@@ -246,6 +246,7 @@
     "country": "Pays",
     "isMainAuthor": "Est auteur principal ?",
     "workTime": "Temps de travail",
+    "workTimeMonth": "Temps de travail (en mois)",
     "hourlyCost": "Coût par heure"
   },
   "venue": {
