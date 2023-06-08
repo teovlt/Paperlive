@@ -74,13 +74,13 @@ const Summary = ({ data }) => {
         <InfoContainer>
           <Label>{t('submission.date')}</Label>
           <Value>
-            {/* {data.submissionDate
+            {data.submissionDate
               ? new Intl.DateTimeFormat(i18n.language, {
                   day: '2-digit',
                   month: '2-digit',
                   year: 'numeric',
-                }).format(data.submissionDate)
-              : '-'} */}
+                }).format(new Date(data.submissionDate))
+              : '-'}
           </Value>
         </InfoContainer>
         <InfoContainer>
