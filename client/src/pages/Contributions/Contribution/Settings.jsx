@@ -209,19 +209,6 @@ const ContributionSettings = () => {
           }}
         />
 
-        <FileInput
-          name='abstract'
-          collection='contribution'
-          MIMEType='pdf'
-          data={contribution}
-          callback={(file) =>
-            setContributionData((data) => ({
-              ...data,
-              abstract: { name: file.name, size: file.size },
-            }))
-          }
-        />
-
         <Input
           small
           id='text'
@@ -236,6 +223,19 @@ const ContributionSettings = () => {
             };
             setContributionData(newContributionData);
           }}
+        />
+
+        <FileInput
+          name='abstract'
+          collection='contribution'
+          MIMEType='pdf'
+          data={contribution}
+          callback={(file) =>
+            setContributionData((data) => ({
+              ...data,
+              abstract: { name: file.name, size: file.size },
+            }))
+          }
         />
 
         {saveErrMsg && <Chips type='negative'>{saveErrMsg}</Chips>}
