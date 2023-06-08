@@ -97,6 +97,10 @@ const submissionSchema = new mongoose.Schema({
       message: (props) => `${props.value} is not a valid state!`,
     },
   },
+  link: {
+    type: String,
+    required: false,
+  },
 });
 
 const submission = new mongoose.model('Submission', submissionSchema);

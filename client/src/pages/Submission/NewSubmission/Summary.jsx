@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
-import { Button, Heading2, SectionContainer } from '../../../theme/appElements';
+import { Button, Heading2, SectionContainer, Link } from '../../../theme/appElements';
 import { toast } from 'react-toastify';
 import Chips from '../../../components/Chips';
 import { Group, InfoContainer, Label, LineWrapper, Value } from '../submissionElements';
@@ -101,6 +101,16 @@ const Summary = ({ data }) => {
       <InfoContainer>
         <Label>{t('submission.authors')}</Label>
         <Value>{data.authors?.map((author) => author.name).join(', ') || '-'}</Value>
+      </InfoContainer>
+      <InfoContainer>
+        <Label>{t('contribution.link')}</Label>
+        {data.link ? (
+          <Link targer='_blank' to={`//${data.link.split('//').pop()}`} target='_blank'>
+            {data.link}
+          </Link>
+        ) : (
+          <Value>-</Value>
+        )}
       </InfoContainer>
       <InfoContainer>
         <Label>{t('submission.zipFolder')}</Label>

@@ -3,6 +3,7 @@ import useSearch from '../../hooks/useSearch';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import RadioGroup from '../RadioGroup';
 import Input from '../Input';
+import Chips from '../Chips';
 import {
   Container,
   DisplayedListContainer,
@@ -41,7 +42,7 @@ const FormSelector = ({
   const search = useSearch();
   const axiosPrivate = useAxiosPrivate();
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const defaultItem = Object.keys(schema).reduce((acc, key) => {
     acc[key] = schema[key].default;
@@ -56,8 +57,26 @@ const FormSelector = ({
   const [displayedList, setDisplayedList] = useState(null);
 
   const selectorRef = useRef(null);
+  const [errMsg, setErrMsg] = useState(null);
+
+  useEffect(() => {
+    console.log(modal.item);
+    setErrMsg('');
+  }, [modal.isOpen]);
 
   const handleSave = async (item) => {
+    const undefinedKeys = Object.keys(schema).filter(
+      (key) => modal.item[key] === '' || modal.item[key] === undefined
+    );
+    console.log(undefinedKeys);
+
+    if (undefinedKeys.length > 0) {
+      setErrMsg(
+        `${t('contribution.errorMsg')} ${undefinedKeys
+          .map((key) => t(`${modelName.slice(0, -1)}.${key}`))
+          .join(', ')}`
+      );
+    }
     if (!Object.keys(defaultItem).some((key) => item[key] === '' || item[key] === undefined)) {
       if (item._id) {
         const res = await axiosPrivate.put(`/${modelName}/${item._id}`, item);
@@ -195,6 +214,7 @@ const FormSelector = ({
                   : t('selector.createAdd')}
               </Button>
             </ModalRowWrapper>
+            {errMsg && <Chips type='negative'>{errMsg}</Chips>}
           </ModalContainer>
         </>
       )}

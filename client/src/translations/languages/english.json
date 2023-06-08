@@ -77,7 +77,8 @@
     "logout": "Logout",
     "settings": "Settings",
     "newContribution": "New contribution",
-    "newSubmission": "New submission"
+    "newSubmission": "New submission",
+    "about": "About"
   },
   "home": {
     "desc": "About us",
@@ -147,6 +148,7 @@
     "submitted": "Submitted",
     "approved": "Approved",
     "rejected": "Rejected",
+    "link": "Link",
 
     "abstract": "Abstract",
     "zipFolder": "Zip Folder",
@@ -243,10 +245,19 @@
     "country": "Country",
     "isMainAuthor": "Is main author?",
     "workTime": "Work time",
+    "workTimeMonth": "Work time (in months)",
     "hourlyCost": "Hourly cost"
   },
   "venue": {
     "name": "Name",
     "rank": "Rank"
+  },
+  "about": {
+    "aboutPaperLive": "About PaperLive",
+    "par1": "PaperLive is a scientific contribution lifecycle tracking platform dedicated to simplifying and enhancing the process of submission, review, and publication of scientific articles. Our goal is to provide a user-friendly and efficient platform for researchers and authors worldwide.",
+    "par2": "We are the developers of PaperLive, Téo VILLET and Gabriel HALUS. With our passion for technology and our experience in web development, we have worked diligently under the guidance of Mr. Alain Tchana to design and create this innovative platform.",
+    "par3": "The PaperLive application was developed within the Laboratoire d'Informatique de Grenoble (LIG), an internationally renowned institution in the field of computer science research. The LIG consists of passionate researchers and experts who work on various aspects of computer science, including the development of innovative applications to support scientific research. Through our collaboration with the LIG, we were able to benefit from additional resources and expertise to design and build PaperLive, ensuring that it meets industry standards and best practices. We are proud of this successful partnership and grateful to the LIG for their support throughout the development of PaperLive.",
+    "par4": "If you have any questions, suggestions, or need assistance, please don't hesitate to contact us:",
+    "par5": "We are delighted to support you in your experience with PaperLive, and we are committed to providing you with quality assistance for all your concerns."
   }
 }
