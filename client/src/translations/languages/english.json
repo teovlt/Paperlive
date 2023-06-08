@@ -225,7 +225,7 @@
     "languageChangementSucess": "Language changed successfully",
     "contributionUpdatedSuccess": "Contribution updated successfully",
     "contributionDeletedSuccess": "Contribution deleted successfully",
-    "contributionCreatedSucess": "Contribution created successfully",
+    "contributionCreatedSuccess": "Contribution created successfully",
     "unsavedChangements": "Unsaved changements",
     "submissionUpdatedSuccess": "Submission updated successfully",
     "submissionDeletedSuccess": "Submission deleted successfully",
@@ -252,8 +252,8 @@
     "name": "Name",
     "rank": "Rank",
     "type": "Type",
-    "journal" : "Journal",
-    "conference" : "Conference"
+    "journal": "Journal",
+    "conference": "Conference"
   },
   "about": {
     "aboutPaperLive": "About PaperLive",

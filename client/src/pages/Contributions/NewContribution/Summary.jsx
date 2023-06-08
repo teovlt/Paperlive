@@ -7,6 +7,7 @@ import { Group, InfoContainer, Label, LineWrapper, Value } from '../contribution
 import { Link } from '../contributionsElements';
 import Chips from '../../../components/Chips';
 import useAuth from '../../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const Summary = ({ data }) => {
   const { t, i18n } = useTranslation();
@@ -15,6 +16,19 @@ const Summary = ({ data }) => {
   const axiosPrivate = useAxiosPrivate();
 
   const [errMsg, setErrMsg] = useState(null);
+
+  const notify = () => {
+    toast.success(t('toast.contributionCreatedSuccess'), {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  };
 
   useEffect(() => {
     setErrMsg(null);
