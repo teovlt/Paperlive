@@ -246,11 +246,14 @@
     "isMainAuthor": "Is main author?",
     "workTime": "Work time",
     "workTimeMonth": "Work time (in months)",
-    "hourlyCost": "Hourly cost"
+    "hourlyCost": "Hourly cost (€)"
   },
   "venue": {
     "name": "Name",
-    "rank": "Rank"
+    "rank": "Rank",
+    "type": "Type",
+    "journal" : "Journal",
+    "conference" : "Conference"
   },
   "about": {
     "aboutPaperLive": "About PaperLive",

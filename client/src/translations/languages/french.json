@@ -247,11 +247,14 @@
     "isMainAuthor": "Est auteur principal ?",
     "workTime": "Temps de travail",
     "workTimeMonth": "Temps de travail (en mois)",
-    "hourlyCost": "Coût par heure"
+    "hourlyCost": "Coût par heure (€)"
   },
   "venue": {
     "name": "Nom",
-    "rank": "Prestige"
+    "rank": "Prestige",
+    "type": "Type",
+    "journal": "Journal",
+    "conference": "Conférence"
   },
   "about": {
     "aboutPaperLive": "A propos de PaperLive",
