@@ -34,17 +34,21 @@ function Statistics() {
     return acc;
   }, {});
 
-  const data = [
-    { title: 'Contribution 1', value: 10 },
-    { title: 'Contribution 2', value: 15 },
-    { title: 'Contribution 3', value: 20 },
-    { title: 'Contribution 4', value: 30 },
-  ];
+  const authors = submissions.map((submission) => submission.authors);
+  const hourlyCost = authors.map((author) => author.map((au) => au.hourlyCost));
+  const workTime = authors.map((author) => author.map((au) => au.workTime));
 
-  const sum = data.reduce((acc, obj) => (acc += obj.value), 0);
-  const average = sum / data.length;
+  const venues = submissions.map((submission) => submission.venue);
 
-  console.log(average);
+  const average = (list) => {
+    let av = 0;
+    for (let i = 0; i < list.length; i++) {
+      const element = list[i];
+      av += parseFloat(element);
+    }
+    av /= list.length;
+    return av;
+  };
 
   return (
     <SectionContainer>
@@ -54,21 +58,30 @@ function Statistics() {
           <Label>Contributions</Label>
           <Value>{contributions.length}</Value>
         </InfoContainer>
-
         <InfoContainer>
           <Label>Submissions</Label>
           <Value>{submissions.length}</Value>
         </InfoContainer>
       </LineWrapper>
 
+      <InfoContainer>
+        <Label>Acceptation rate</Label>
+        <Value>{`${Math.floor(
+          (countByState.approved /
+            submissions.filter((s) => ['approved', 'rejected'].includes(s.state)).length) *
+            100
+        )}%`}</Value>
+      </InfoContainer>
+
+      <Heading2>Authors Statistics</Heading2>
       <LineWrapper>
         <InfoContainer>
-          <Label>Acceptation rate</Label>
-          <Value>{`${Math.floor(
-            (countByState.approved /
-              submissions.filter((s) => ['approved', 'rejected'].includes(s.state)).length) *
-              100
-          )}%`}</Value>
+          <Label>Average workTime by author</Label>
+          <Value>{`${average(workTime)}`}</Value>
+        </InfoContainer>
+        <InfoContainer>
+          <Label>Average hourlyCost by author</Label>
+          <Value>{`${average(hourlyCost)}`}</Value>
         </InfoContainer>
       </LineWrapper>
     </SectionContainer>

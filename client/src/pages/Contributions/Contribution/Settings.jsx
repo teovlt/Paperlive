@@ -100,7 +100,6 @@ const ContributionSettings = () => {
         } else {
           setDeleteErrMsg(t('contribution.deleteContError'));
         }
-        //
       }
     } else {
       setDeleteErrMsg(t('contribution.deleteContWrongName'));
