@@ -13,6 +13,7 @@ const NewContribution = () => {
     startDate: '',
     scientificField: '',
     teamRole: '',
+    link: '',
     relatedContributions: [],
     abstract: null,
   });

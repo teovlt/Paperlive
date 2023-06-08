@@ -72,6 +72,17 @@ const Informations = ({ data, setData }) => {
           setData(updatedData);
         }}
       />
+      <Input
+        small
+        type='text'
+        id='link'
+        label={t('contribution.link')}
+        value={data.link}
+        onChange={(e) => {
+          const updatedData = { ...data, link: e.target.value };
+          setData(updatedData);
+        }}
+      />
       <RadioGroup
         name='teamRole'
         label={t('contribution.teamRole')}
@@ -133,17 +144,6 @@ const Informations = ({ data, setData }) => {
         label='related'
         onChange={(selected) => {
           const updatedData = { ...data, relatedContributions: selected };
-          setData(updatedData);
-        }}
-      />
-      <Input
-        small
-        type='text'
-        id='link'
-        label={t('contribution.link')}
-        value={data.link}
-        onChange={(e) => {
-          const updatedData = { ...data, link: e.target.value };
           setData(updatedData);
         }}
       />

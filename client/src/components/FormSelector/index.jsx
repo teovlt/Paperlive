@@ -60,7 +60,6 @@ const FormSelector = ({
   const [errMsg, setErrMsg] = useState(null);
 
   useEffect(() => {
-    console.log(modal.item);
     setErrMsg('');
   }, [modal.isOpen]);
 
@@ -68,7 +67,6 @@ const FormSelector = ({
     const undefinedKeys = Object.keys(schema).filter(
       (key) => modal.item[key] === '' || modal.item[key] === undefined
     );
-    console.log(undefinedKeys);
 
     if (undefinedKeys.length > 0) {
       setErrMsg(
