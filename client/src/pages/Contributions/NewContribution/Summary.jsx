@@ -51,10 +51,16 @@ const Summary = ({ data }) => {
         <Value>{data.title || '-'}</Value>
       </InfoContainer>
 
-      <InfoContainer>
-        <Label>{t('contribution.scientificField')}</Label>
-        <Value>{data.scientificField.label || '-'}</Value>
-      </InfoContainer>
+      <LineWrapper>
+        <InfoContainer>
+          <Label>{t('contribution.scientificField')}</Label>
+          <Value>{data.scientificField.label || '-'}</Value>
+        </InfoContainer>
+        <InfoContainer>
+          <Label>{t('contribution.startDate')}</Label>
+          <Value>{data.startDate || '-'}</Value>
+        </InfoContainer>
+      </LineWrapper>
 
       <InfoContainer>
         <Label>{t('contribution.related')}</Label>
@@ -65,8 +71,15 @@ const Summary = ({ data }) => {
 
       <LineWrapper>
         <InfoContainer>
-          <Label>{t('contribution.startDate')}</Label>
-          <Value>{data.startDate || '-'}</Value>
+          <Label>{t('contribution.state')}</Label>
+          <Value
+            style={{
+              color: `var(--${
+                { inProgress: 'notice', dropped: 'negative', approved: 'positive' }[data.state]
+              })`,
+            }}>
+            {data.state}
+          </Value>
         </InfoContainer>
         <InfoContainer>
           <Label>{t('contribution.teamRole')}</Label>

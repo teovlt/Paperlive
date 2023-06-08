@@ -198,6 +198,33 @@ const ContributionSettings = () => {
             ],
           }}
         />
+        <RadioGroup
+          name='state'
+          onChange={(event) => {
+            const newContributionData = { ...contributionData, state: event.target.value };
+            setContributionData(newContributionData);
+          }}
+          label={t('contribution.state')}
+          template={{
+            radios: [
+              {
+                label: t('contribution.inProgress'),
+                value: 'inProgress',
+                defaultChecked: contribution?.state === 'inProgress',
+              },
+              {
+                label: t('contribution.approved'),
+                value: 'approved',
+                defaultChecked: contribution?.state === 'approved',
+              },
+              {
+                label: t('contribution.dropped'),
+                value: 'dropped',
+                defaultChecked: contribution?.state === 'dropped',
+              },
+            ],
+          }}
+        />
         <Selector
           label='related'
           displayedAttribute='title'
