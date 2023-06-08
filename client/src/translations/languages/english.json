@@ -246,7 +246,7 @@
     "isMainAuthor": "Is main author?",
     "workTime": "Work time",
     "workTimeMonth": "Work time (in months)",
-    "hourlyCost": "Hourly cost"
+    "hourlyCost": "Hourly cost (€)"
   },
   "venue": {
     "name": "Name",
