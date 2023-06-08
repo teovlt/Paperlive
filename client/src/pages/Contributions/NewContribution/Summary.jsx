@@ -58,7 +58,15 @@ const Summary = ({ data }) => {
         </InfoContainer>
         <InfoContainer>
           <Label>{t('contribution.startDate')}</Label>
-          <Value>{data.startDate || '-'}</Value>
+          <Value>
+            {data.startDate
+              ? new Intl.DateTimeFormat(i18n.language, {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric',
+                }).format(new Date(data.startDate))
+              : '-'}
+          </Value>
         </InfoContainer>
       </LineWrapper>
 
