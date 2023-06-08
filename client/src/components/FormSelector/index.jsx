@@ -146,7 +146,28 @@ const FormSelector = ({
           <ModalContainer>
             <Heading2>{label}</Heading2>
             {Object.keys(schema).map((key, index) => {
-              if (schema[key].type === 'boolean')
+              if (schema[key].type === 'select')
+                return (
+                  <RadioGroup
+                    key={index}
+                    name={key}
+                    label={schema[key].label}
+                    template={{
+                      radios: schema[key].values.map((value) => ({
+                        label: value.label,
+                        value: value.value,
+                        defaultChecked: schema[key].default == value,
+                      })),
+                    }}
+                    onChange={(e) =>
+                      setModal((prev) => ({
+                        ...prev,
+                        item: { ...prev.item, [key]: e.target.value },
+                      }))
+                    }
+                  />
+                );
+              else if (schema[key].type === 'boolean')
                 return (
                   <RadioGroup
                     key={index}
@@ -157,21 +178,21 @@ const FormSelector = ({
                         {
                           label: t('global.yes'),
                           value: true,
-                          defaultChecked: schema[key].default === true,
+                          defaultChecked: modal.item[key] === true,
                         },
                         {
                           label: t('global.no'),
                           value: false,
-                          defaultChecked: schema[key].default === false,
+                          defaultChecked: !modal.item[key],
                         },
                       ],
                     }}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       setModal((prev) => ({
                         ...prev,
                         item: { ...prev.item, [key]: JSON.parse(e.target.value) },
-                      }))
-                    }
+                      }));
+                    }}
                   />
                 );
               else
@@ -270,7 +291,12 @@ const FormSelector = ({
                 <Checkbox
                   key={item._id || index}
                   label={item[displayedAttribute]}
-                  onClick={() => setModal({ isOpen: true, item: { ...item, isMainAuthor: false } })}
+                  onClick={() =>
+                    setModal({
+                      isOpen: true,
+                      item: { ...item, isMainAuthor: item.isMainAuthor || false },
+                    })
+                  }
                 />
               ))}
               <ResultsButton onClick={() => setModal({ isOpen: true, item: defaultItem })}>

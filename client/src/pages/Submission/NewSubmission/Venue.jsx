@@ -47,6 +47,16 @@ const Venue = ({ data, setData }) => {
             default: '',
             required: true,
           },
+          type: {
+            label: t('venue.type'),
+            type: 'select',
+            default: '',
+            required: true,
+            values: [
+              { label: t('venue.journal'), value: 'journal' },
+              { label: t('venue.conference'), value: 'conference' },
+            ],
+          },
           rank: {
             label: t('venue.rank'),
             type: 'text',

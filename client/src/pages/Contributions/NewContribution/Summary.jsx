@@ -22,7 +22,7 @@ const Summary = ({ data }) => {
 
   const handleSave = async () => {
     const undefinedKeys = Object.keys(data).filter(
-      (key) => !data[key] && key !== 'relatedContributions'
+      (key) => !data[key] && !['relatedContributions', 'link'].includes(key)
     );
 
     if (undefinedKeys.length > 0) {
