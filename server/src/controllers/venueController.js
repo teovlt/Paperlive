@@ -11,7 +11,7 @@ module.exports.createVenue = async (req, res) => {
     ...req.body,
   });
   await venue.save();
-  return res.status(200).json(venue);
+  return res.status(201).json(venue);
 };
 
 module.exports.updateVenue = async (req, res) => {

@@ -53,7 +53,7 @@ describe('POST /api/authors/', () => {
       .send({ name: 'jean', grade: 'student', country: 'france' })
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(201);
   });
 });
 

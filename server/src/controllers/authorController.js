@@ -17,7 +17,7 @@ module.exports.createAuthor = async (req, res) => {
     ...req.body,
   });
   await author.save();
-  return res.status(200).json(author);
+  return res.status(201).json(author);
 };
 
 module.exports.updateAuthor = async (req, res) => {

@@ -53,7 +53,7 @@ describe('POST /api/venues/', () => {
       .send({ name: 'ttc', rank: 'a+' })
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(201);
   });
 });
 
