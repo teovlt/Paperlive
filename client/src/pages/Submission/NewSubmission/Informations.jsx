@@ -48,6 +48,17 @@ const Informations = ({ data, setData }) => {
           setData(updatedData);
         }}
       />
+      <Input
+        small
+        type='text'
+        id='link'
+        label={t('submission.link')}
+        value={data.link}
+        onChange={(e) => {
+          const updatedData = { ...data, link: e.target.value };
+          setData(updatedData);
+        }}
+      />
       <RadioGroup
         name='type'
         label={t('submission.type')}
@@ -104,17 +115,6 @@ const Informations = ({ data, setData }) => {
         }}
         onChange={(e) => {
           const updatedData = { ...data, state: e.target.value };
-          setData(updatedData);
-        }}
-      />
-      <Input
-        small
-        type='text'
-        id='link'
-        label={t('submission.link')}
-        value={data.link}
-        onChange={(e) => {
-          const updatedData = { ...data, link: e.target.value };
           setData(updatedData);
         }}
       />

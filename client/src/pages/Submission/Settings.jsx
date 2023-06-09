@@ -160,6 +160,18 @@ const SubmissionSettings = () => {
             setSubmissionData(newSubmissionData);
           }}
         />
+        <Input
+          small
+          id='link'
+          type='text'
+          defaultValue={submission.link}
+          label={t('submission.link')}
+          autoComplete='off'
+          onChange={(event) => {
+            const newSubmissionData = { ...submission, link: event.target.value };
+            setSubmissionData(newSubmissionData);
+          }}
+        />
         <RadioGroup
           name='type'
           onChange={(event) => {
@@ -298,18 +310,6 @@ const SubmissionSettings = () => {
               default: '',
               required: true,
             },
-          }}
-        />
-        <Input
-          small
-          id='link'
-          type='text'
-          defaultValue={submission.link}
-          label={t('submission.link')}
-          autoComplete='off'
-          onChange={(event) => {
-            const newSubmissionData = { ...submission, link: event.target.value };
-            setSubmissionData(newSubmissionData);
           }}
         />
         <FileInput
