@@ -160,6 +160,18 @@ const SubmissionSettings = () => {
             setSubmissionData(newSubmissionData);
           }}
         />
+        <Input
+          small
+          type='number'
+          id='materialCost'
+          label={t('submission.materialCost')}
+          defaultValue={submission.materialCost}
+          autoComplete='off'
+          onChange={(event) => {
+            const newSubmissionData = { ...submission, materialCost: event.target.value };
+            setSubmissionData(newSubmissionData);
+          }}
+        />
         <RadioGroup
           name='type'
           onChange={(event) => {

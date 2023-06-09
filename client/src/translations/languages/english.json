@@ -149,6 +149,7 @@
     "approved": "Approved",
     "rejected": "Rejected",
     "link": "Link",
+    "materialCost": "Material cost (€)",
 
     "abstract": "Abstract",
     "zipFolder": "Zip Folder",

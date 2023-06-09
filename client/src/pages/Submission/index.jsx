@@ -84,6 +84,23 @@ const Submission = () => {
           </InfoContainer>
         </LineWrapper>
 
+        <LineWrapper>
+          {' '}
+          <InfoContainer>
+            <Label>{t('submission.link')}</Label>
+            {submission.link ? (
+              <Link targer='_blank' to={`//${submission.link.split('//').pop()}`} target='_blank'>
+                {submission.link}
+              </Link>
+            ) : (
+              <Value>-</Value>
+            )}
+          </InfoContainer>
+          <InfoContainer>
+            <Label>{t('submission.materialCost')}</Label>
+            <Value>{submission.materialCost ? submission.materialCost + ' €' : '-'}</Value>
+          </InfoContainer>
+        </LineWrapper>
         <InfoContainer>
           <Label>{t('submission.authors')}</Label>
           <Value>
@@ -95,16 +112,6 @@ const Submission = () => {
                 ))
               : '-'}
           </Value>
-        </InfoContainer>
-        <InfoContainer>
-          <Label>{t('submission.link')}</Label>
-          {submission.link ? (
-            <Link targer='_blank' to={`//${submission.link.split('//').pop()}`} target='_blank'>
-              {submission.link}
-            </Link>
-          ) : (
-            <Value>-</Value>
-          )}
         </InfoContainer>
       </SectionContainer>
       <SectionContainer>

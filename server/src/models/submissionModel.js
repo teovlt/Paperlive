@@ -102,7 +102,9 @@ const submissionSchema = new mongoose.Schema({
   },
   link: {
     type: String,
-    required: false,
+  },
+  materialCost: {
+    type: Number,
   },
 });
 

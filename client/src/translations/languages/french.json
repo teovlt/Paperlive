@@ -149,6 +149,7 @@
     "approved": "Approuvée",
     "rejected": "Rejetée",
     "link": "Lien",
+    "materialCost": "Côut matériel (€)",
 
     "abstract": "Abstract",
     "zipFolder": "Dossier Zip",
@@ -267,6 +268,6 @@
   "404": {
     "notFound": "Page non trouvée",
     "error": "L'URL demandée n'a pas été trouvée sur ce serveur.",
-    "back" : "Retour à PaperLive"
+    "back": "Retour à PaperLive"
   }
 }

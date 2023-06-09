@@ -98,19 +98,25 @@ const Summary = ({ data }) => {
           <Value>{data.state || '-'}</Value>
         </InfoContainer>
       </LineWrapper>
+      <LineWrapper>
+        <InfoContainer>
+          <Label>{t('contribution.link')}</Label>
+          {data.link ? (
+            <Link targer='_blank' to={`//${data.link.split('//').pop()}`} target='_blank'>
+              {data.link}
+            </Link>
+          ) : (
+            <Value>-</Value>
+          )}
+        </InfoContainer>
+        <InfoContainer>
+          <Label>{t('submission.materialCost')}</Label>
+          <Value>{data.materialCost ? data.materialCost + ' €' : '-'}</Value>
+        </InfoContainer>
+      </LineWrapper>
       <InfoContainer>
         <Label>{t('submission.authors')}</Label>
         <Value>{data.authors?.map((author) => author.name).join(', ') || '-'}</Value>
-      </InfoContainer>
-      <InfoContainer>
-        <Label>{t('contribution.link')}</Label>
-        {data.link ? (
-          <Link targer='_blank' to={`//${data.link.split('//').pop()}`} target='_blank'>
-            {data.link}
-          </Link>
-        ) : (
-          <Value>-</Value>
-        )}
       </InfoContainer>
       <InfoContainer>
         <Label>{t('submission.zipFolder')}</Label>
