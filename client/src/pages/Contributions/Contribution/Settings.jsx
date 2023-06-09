@@ -59,7 +59,8 @@ const ContributionSettings = () => {
 
   async function handleSaveChanges() {
     const undefinedKeys = Object.keys(contribution).filter(
-      (key) => !contributionData[key] && key !== 'relatedContributions' && key !== '__v'
+      (key) =>
+        !contributionData[key] && !['relatedContributions', 'link'].includes(key) && key !== '__v'
     );
 
     if (undefinedKeys.length > 0) {

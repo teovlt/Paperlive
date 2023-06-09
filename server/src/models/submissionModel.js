@@ -73,6 +73,9 @@ const submissionSchema = new mongoose.Schema({
     name: {
       type: String,
     },
+    type: {
+      type: String,
+    },
     rank: {
       type: String,
     },
