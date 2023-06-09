@@ -2,16 +2,18 @@ import React from 'react';
 import { Container, Img, Title, DivError, ButtonBack } from './notFoundElements';
 import { Heading1, Heading2 } from '../../theme/appElements';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const NotFound = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   return (
     <>
       <Container>
         <DivError>
-          <Title>PAGE NOT FOUND</Title>
-          <Heading1>The requested url was not found on this server.</Heading1>
-          <ButtonBack onClick={() => navigate('/')}>Back to homePage</ButtonBack>
+          <Title>{t('404.notFound')}</Title>
+          <Heading1>{t('404.error')}</Heading1>
+          <ButtonBack onClick={() => navigate('/')}>{t('404.back')}</ButtonBack>
         </DivError>
         <Img src='../../../public/images/404.svg' alt='image404' />
       </Container>

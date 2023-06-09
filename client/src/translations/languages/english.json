@@ -262,5 +262,10 @@
     "par3": "The PaperLive application was developed within the Laboratoire d'Informatique de Grenoble (LIG), an internationally renowned institution in the field of computer science research. The LIG consists of passionate researchers and experts who work on various aspects of computer science, including the development of innovative applications to support scientific research. Through our collaboration with the LIG, we were able to benefit from additional resources and expertise to design and build PaperLive, ensuring that it meets industry standards and best practices. We are proud of this successful partnership and grateful to the LIG for their support throughout the development of PaperLive.",
     "par4": "If you have any questions, suggestions, or need assistance, please don't hesitate to contact us:",
     "par5": "We are delighted to support you in your experience with PaperLive, and we are committed to providing you with quality assistance for all your concerns."
+  },
+  "404": {
+    "notFound": "Page not found",
+    "error": "The requested url was not found on this server.",
+    "back": "Back to PaperLive"
   }
 }

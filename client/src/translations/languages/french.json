@@ -263,5 +263,10 @@
     "par3": "L'application PaperLive a été développée au sein du Laboratoire d'Informatique de Grenoble (LIG), une institution de renommée internationale dans le domaine de la recherche en informatique. Le LIG est composé de chercheurs et d'experts passionnés qui travaillent sur divers aspects de l'informatique, y compris le développement d'applications innovantes pour soutenir la recherche scientifique. Grâce à notre collaboration avec le LIG, nous avons pu bénéficier de ressources et d'expertise supplémentaires pour concevoir et réaliser PaperLive, en veillant à ce qu'il réponde aux normes de qualité et aux meilleures pratiques de l'industrie. Nous sommes fiers de cette association fructueuse et reconnaissants envers le LIG pour son soutien tout au long du développement de PaperLive.",
     "par4": "Si vous avez des questions, des suggestions ou des demandes d'assistance, n'hésitez pas à nous contacter :",
     "par5": "Nous sommes ravis de vous accompagner dans votre expérience avec PaperLive et nous nous engageons à vous offrir une assistance de qualité pour toutes vos préoccupations."
+  },
+  "404": {
+    "notFound": "Page non trouvée",
+    "error": "L'URL demandée n'a pas été trouvée sur ce serveur.",
+    "back" : "Retour à PaperLive"
   }
 }
