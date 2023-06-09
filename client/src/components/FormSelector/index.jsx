@@ -150,13 +150,13 @@ const FormSelector = ({
                 return (
                   <RadioGroup
                     key={index}
-                    name={key}
+                    name={key + Math.random().toString(36).substr(2, 9)}
                     label={schema[key].label}
                     template={{
-                      radios: schema[key].values.map((value) => ({
-                        label: value.label,
-                        value: value.value,
-                        defaultChecked: schema[key].default == value,
+                      radios: schema[key].values.map(({ label, value }) => ({
+                        label: label,
+                        value: value,
+                        defaultChecked: modal.item[key] === value,
                       })),
                     }}
                     onChange={(e) =>
