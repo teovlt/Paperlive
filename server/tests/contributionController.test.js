@@ -6,6 +6,7 @@ const Team = require('../src/models/teamModel');
 const Contribution = require('../src/models/contributionModel');
 
 const { generateAccessToken } = require('../src/controllers/authenticationController');
+const ScientificField = require('../src/models/scientificFieldModel');
 
 beforeAll(async () => {
   await mongoose.connect('mongodb://db:27017/paperlive_test', {
@@ -67,16 +68,23 @@ describe('GET /api/contributions', () => {
 describe('GET /api/contributions/:contributionId', () => {
   let team;
   let contribution;
+  let scientificField;
+  let abstract;
 
   beforeEach(async () => {
     // Create a team for testing*
+
+    scientificField = await ScientificField.create({
+      label: 'test',
+    });
 
     contribution = await Contribution.create({
       title: 'Test Contribution',
       startDate: '2023-05-16',
       relatedContribution: '',
-      abstract: 'abstract.pdf',
+      abstract: { name: 'abstract.pdf', size: 10 },
       teamRole: 'leader',
+      scientificField: scientificField,
     });
     team = await Team.create({
       name: 'Test Team',
@@ -89,6 +97,7 @@ describe('GET /api/contributions/:contributionId', () => {
     // Delete the test team from the database*
     await Team.deleteOne({ _id: team._id });
     await Contribution.deleteOne({ _id: contribution._id });
+    await ScientificField.deleteOne({ _id: scientificField._id });
   });
 
   it('should read a contribution and return 200 status', async () => {
@@ -139,15 +148,22 @@ describe('DELETE /api/contributions/delete/:contributionId', () => {
   let team;
   let contribution;
 
+  let scientificField;
+
   beforeEach(async () => {
     // Create a team for testing*
+
+    scientificField = await ScientificField.create({
+      label: 'test',
+    });
 
     contribution = await Contribution.create({
       title: 'Test Contribution',
       startDate: '2023-05-16',
       relatedContribution: '',
-      abstract: 'abstract.pdf',
+      abstract: { name: 'abstract.pdf', size: 10 },
       teamRole: 'leader',
+      scientificField: scientificField,
     });
     team = await Team.create({
       name: 'Test Team',
@@ -160,6 +176,7 @@ describe('DELETE /api/contributions/delete/:contributionId', () => {
     // Delete the test team from the database*
     await Team.deleteOne({ _id: team._id });
     await Contribution.deleteOne({ _id: contribution._id });
+    await ScientificField.deleteOne({ _id: scientificField._id });
   });
 
   it('should return a 200 OK response with a success message and delete the contribution', async () => {
@@ -209,17 +226,22 @@ describe('DELETE /api/contributions/delete/:contributionId', () => {
 
 describe('POST /api/contributions/new', () => {
   let team;
+  let scientificField;
 
   beforeEach(async () => {
     team = await Team.create({
       name: 'Test Team',
       password: 'password',
     });
+    scientificField = await ScientificField.create({
+      label: 'test',
+    });
   });
 
   afterEach(async () => {
     // Delete the test team from the database*
     await Team.deleteOne({ _id: team._id });
+    await ScientificField.deleteOne({ _id: scientificField._id });
   });
 
   it('should create a contribution and return 201 with a success message', async () => {
@@ -229,8 +251,9 @@ describe('POST /api/contributions/new', () => {
         title: 'Test Contribution',
         startDate: '2023-05-16',
         relatedContribution: '',
-        abstract: 'abstract.pdf',
+        abstract: { name: 'abstract.pdf', size: 10 },
         teamRole: 'leader',
+        scientificField: scientificField,
       })
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
@@ -247,8 +270,9 @@ describe('POST /api/contributions/new', () => {
         title: 'Test Contribution',
         startDate: '2023-05-16',
         relatedContribution: '',
-        abstract: 'abstract.pdf',
+        abstract: { name: 'abstract.pdf', size: 10 },
         teamRole: 'leader',
+        scientificField: scientificField,
       })
       .set('Authorization', `Bearer ${generateAccessToken(unknownId)}`);
 
@@ -267,8 +291,9 @@ describe('POST /api/contributions/new', () => {
         title: 'Test Contribution',
         startDate: '2023-05-16',
         relatedContribution: '',
-        abstract: 'abstract.pdf',
+        abstract: { name: 'abstract.pdf', size: 10 },
         teamRole: 'leader',
+        scientificField: scientificField,
       })
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
@@ -280,14 +305,20 @@ describe('POST /api/contributions/new', () => {
 describe('PUT /api/contributions/update/:contributionId', () => {
   let team;
   let contribution;
+  let scientificField;
 
   beforeEach(async () => {
+    scientificField = await ScientificField.create({
+      label: 'test',
+    });
+
     contribution = await Contribution.create({
       title: 'Test Contribution',
       startDate: '2023-05-16',
       relatedContribution: '',
-      abstract: 'abstract.pdf',
+      abstract: { name: 'abstract.pdf', size: 10 },
       teamRole: 'leader',
+      scientificField: scientificField,
     });
 
     team = await Team.create({
@@ -301,6 +332,7 @@ describe('PUT /api/contributions/update/:contributionId', () => {
     // Delete the test team from the database*
     await Team.deleteOne({ _id: team._id });
     await Contribution.deleteOne({ _id: contribution._id });
+    await ScientificField.deleteOne({ _id: scientificField._id });
   });
 
   it('should update a contribution and return 200 with a success message', async () => {

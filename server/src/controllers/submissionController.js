@@ -44,38 +44,6 @@ module.exports.listSubmissionsBelongToTeam = async (req, res) => {
 };
 
 /**
- * Get a list of all submissions belong to a contribution
- * @route GET /api/submissions/:contributionId
- * @group Submissions
- * @access Private
- */
-module.exports.listSubmissionsBelongToContribution = async (req, res) => {
-  try {
-    const { contributionId } = req.params;
-    if (!ObjectId.isValid(contributionId))
-      return res.status(500).json({ error: `Invalid ID: ${contributionId}` });
-
-    const team = await Team.findOne({ _id: req.teamId, contributions: { $in: [contributionId] } });
-    if (!team) return res.status(404).json({ error: 'Contribution not found' });
-
-    let submissions = [];
-    const contribution = await Contribution.findOne({ _id: contributionId });
-
-    contribution &&
-      (await Promise.all(
-        contribution.submissions?.map(async (c) => {
-          const submission = await Submission.findOne({ _id: c._id }).populate('venue');
-          submissions.push(submission);
-        })
-      ));
-
-    return res.status(200).json(submissions);
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
-};
-
-/**
  * Get a submission by ID
  * @route GET /api/submissions/:submissionId
  * @group Submissions

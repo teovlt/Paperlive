@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { NavContainer, Actions, Logo } from './navbarElements';
-import { HiGlobeAlt, HiUserGroup, HiPlus, HiMoon, HiOutlineMoon } from 'react-icons/hi2';
+import { NavContainer, Actions, Logo, Input, Recherche } from './navbarElements';
+import { HiGlobeAlt, HiUserGroup, HiPlus, HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import i18n from '../../translations/i18n';
 import { useTranslation } from 'react-i18next';
 import useLogout from '../../hooks/useLogout';
@@ -140,7 +140,10 @@ const NavBar = () => {
     <>
       <NavContainer>
         <Logo to='/'>PaperLive</Logo>
-
+        {/* <Recherche>
+          <HiOutlineMagnifyingGlass />
+          <Input placeholder='Search PaperLive'></Input>
+        </Recherche> */}
         <Actions>
           <DropdownMenu template={actionDropdownTemplate} />
           <DropdownMenu template={languagesDropdownTemplate} />

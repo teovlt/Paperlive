@@ -8,7 +8,7 @@ module.exports.getScientificFields = async (req, res) => {
 
 module.exports.createScientificField = async (req, res) => {
   const scientificField = await ScientificField.create(req.body);
-  return res.json(scientificField);
+  return res.json(scientificField).status(201);
 };
 
 module.exports.updateScientificField = async (req, res) => {

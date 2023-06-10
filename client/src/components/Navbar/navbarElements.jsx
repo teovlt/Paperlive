@@ -27,3 +27,29 @@ export const Logo = styled(NavLink)`
   font-size: 2rem;
   font-weight: 500;
 `;
+
+export const Recherche = styled.div`
+  border: 1px solid #cac1c1;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+
+  svg {
+    color: #cac1c1;
+    width: 18px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`;
+
+export const Input = styled.input`
+  color: #ffffff;
+  padding: 5px;
+
+  :focus {
+    background-color: white;
+    color: black;
+  }
+`;

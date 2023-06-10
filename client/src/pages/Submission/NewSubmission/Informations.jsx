@@ -59,6 +59,17 @@ const Informations = ({ data, setData }) => {
           setData(updatedData);
         }}
       />
+      <Input
+        small
+        type='number'
+        id='materialCost'
+        label={t('submission.materialCost')}
+        value={data.materialCost}
+        onChange={(e) => {
+          const updatedData = { ...data, materialCost: e.target.value };
+          setData(updatedData);
+        }}
+      />
       <RadioGroup
         name='type'
         label={t('submission.type')}
