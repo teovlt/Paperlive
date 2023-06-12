@@ -61,19 +61,6 @@ module.exports.createContribution = async (req, res) => {
   try {
     const _id = new ObjectId();
 
-    // Update file
-    if (
-      fs.existsSync(
-        `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`
-      )
-    ) {
-      req.body.abstract = { ...req.body.abstract, name: `contribution-abstract-${_id}.pdf` };
-      fs.renameSync(
-        `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`,
-        `${__dirname}/../../uploads/contribution/abstract/contribution-abstract-${_id}.pdf`
-      );
-    }
-
     // Save to database
     const contribution = new Contribution({
       _id,
@@ -111,15 +98,6 @@ module.exports.updateContribution = async (req, res) => {
     const team = await Team.findOne({ _id: req.teamId, contributions: { $in: [contributionId] } });
     if (!team) return res.status(404).json({ error: 'Contribution not found' });
 
-    if (
-      fs.existsSync(
-        `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`
-      )
-    )
-      fs.renameSync(
-        `${__dirname}/../../uploads/contribution/abstract/temp-contribution-abstract-${req.teamId}.pdf`,
-        `${__dirname}/../../uploads/contribution/abstract/contribution-abstract-${contributionId}.pdf`
-      );
 
     const result = await Contribution.updateOne({ _id: contributionId }, { $set: req.body });
     if (result.matchedCount > 0) {
@@ -155,14 +133,6 @@ module.exports.deleteContribution = async (req, res) => {
       { $pull: { relatedContributions: contributionId } },
       { new: true }
     );
-    // Delete every files related to the given contribution
-    removeFilesContainingTerms(contribution._id);
-    // Delete every submissions related to the given contribution
-    contribution.submissions?.forEach(async (submission) => {
-      // Delete every files related to the given submission
-      removeFilesContainingTerms(submission._id);
-      await Submission.deleteOne({ _id: submission._id });
-    });
 
     await team.updateOne({ $pull: { contributions: contributionId } });
 

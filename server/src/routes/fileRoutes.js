@@ -7,12 +7,6 @@ Router.get('/:filename', authenticateAccessToken, fileController.downloadFile);
 Router.post('/team/picture', authenticateAccessToken, fileController.uploadTeamPicture);
 
 Router.post(
-  '/contribution/abstract',
-  authenticateAccessToken,
-  fileController.uploadContributionAbstract
-);
-
-Router.post(
   '/submission/abstract',
   authenticateAccessToken,
   fileController.uploadSubmissionAbstract
