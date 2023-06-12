@@ -52,9 +52,7 @@ const Contribution = () => {
         </InfoContainer>
         <InfoContainer>
           <Label>{t('contribution.scientificField')}</Label>
-          <Link to={`/scientific-fields/${contribution.scientificField._id}`}>
-            {contribution.scientificField.label}
-          </Link>
+          <Value>{contribution.scientificField.label}</Value>
         </InfoContainer>
         <InfoContainer>
           <Label>{t('contribution.related')}</Label>
