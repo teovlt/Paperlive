@@ -138,14 +138,13 @@ const ContributionSettings = () => {
         <FormSelector
           list={scientificFields}
           setList={setScientificFields}
-          selected={contribution.scientificField ? [contribution.scientificField] : []}
+          selected={contribution.scientificFields}
           setSelected={(selected) => {
-            const newContributionData = { ...contributionData, scientificField: selected[0] };
+            const newContributionData = { ...contributionData, scientificFields: selected };
             setContributionData(newContributionData);
           }}
-          label={t('contribution.scientificField')}
+          label={t('contribution.scientificFields')}
           modelName='scientificFields'
-          unique
           displayedAttribute='label'
           schema={{
             label: {

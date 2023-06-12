@@ -46,11 +46,10 @@ const Informations = ({ data, setData }) => {
       <FormSelector
         list={scientificFields}
         setList={setScientificFields}
-        selected={data.scientificField ? [data.scientificField] : []}
-        setSelected={(selected) => setData((data) => ({ ...data, scientificField: selected[0] }))}
-        label={t('contribution.scientificField')}
+        selected={data.scientificFields}
+        setSelected={(selected) => setData((data) => ({ ...data, scientificFields: selected }))}
+        label={t('contribution.scientificFields')}
         modelName='scientificFields'
-        unique
         displayedAttribute='label'
         schema={{
           label: {

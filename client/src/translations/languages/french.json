@@ -106,7 +106,7 @@
     "coLeader": "Co-meneur",
     "guest": "Invité",
     "startDate": "Date de départ",
-    "scientificField": "Domaine scientifique",
+    "scientificFields": "Domaines scientifique",
     "related": "Contributions en lien",
     "noRelated": "Aucune contribution n'est liée à cette contribution",
     "teamRole": "Rôle de l'équipe",
