@@ -1,8 +1,5 @@
 const authenticationController = require('../controllers/authenticationController');
-const {
-  authenticateRefreshToken,
-  authenticateAccessToken,
-} = require('../middlewares/authenticationMiddleware');
+const { authenticateRefreshToken } = require('../middlewares/authenticationMiddleware');
 const Router = require('express').Router();
 
 Router.post('/register', authenticationController.signUp);
