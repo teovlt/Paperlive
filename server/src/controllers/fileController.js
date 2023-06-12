@@ -67,20 +67,6 @@ module.exports.uploadTeamPicture = async (req, res) => {
 };
 
 /**
- * Upload a submission abstract.
- * @route POST /api/files/submission/abstract
- * @desc Upload a submission abstract file.
- * @access Private
- */
-module.exports.uploadSubmissionAbstract = (req, res) => {
-  const upload = multer({ storage: submissionAbstractStorage });
-  upload.single('file')(req, res, async (err) => {
-    if (err) return res.status(400).json({ message: 'Error uploading file', error: err });
-    return res.json({ message: 'File uploaded successfully' });
-  });
-};
-
-/**
  * Upload a submission zipfolder.
  * @route POST /api/files/submission/zipfolder
  * @desc Upload a submission zipfolder file.

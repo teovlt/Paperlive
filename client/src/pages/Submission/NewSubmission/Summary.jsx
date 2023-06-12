@@ -60,84 +60,89 @@ const Summary = ({ data }) => {
   }, [i18n.language]);
 
   return (
-    <SectionContainer>
-      <Heading2>{t('submission.recap')}</Heading2>
-      <InfoContainer>
-        <Label>{t('submission.contribution')}</Label>
-        <Value>{data.contribution?.title || '-'}</Value>
-      </InfoContainer>
-      <InfoContainer>
-        <Label>{t('submission.title')}</Label>
-        <Value>{data.title || '-'}</Value>
-      </InfoContainer>
-      <LineWrapper>
+    <>
+      <SectionContainer>
+        <Heading2>{t('submission.recap')}</Heading2>
         <InfoContainer>
-          <Label>{t('submission.date')}</Label>
-          <Value>
-            {data.submissionDate
-              ? new Intl.DateTimeFormat(i18n.language, {
-                  day: '2-digit',
-                  month: '2-digit',
-                  year: 'numeric',
-                }).format(new Date(data.submissionDate))
-              : '-'}
-          </Value>
+          <Label>{t('submission.contribution')}</Label>
+          <Value>{data.contribution?.title || '-'}</Value>
         </InfoContainer>
         <InfoContainer>
-          <Label>{t('submission.venue')}</Label>
-          <Value>{data.venue?.name || '-'}</Value>
+          <Label>{t('submission.title')}</Label>
+          <Value>{data.title || '-'}</Value>
         </InfoContainer>
-      </LineWrapper>
-      <LineWrapper>
+        <LineWrapper>
+          <InfoContainer>
+            <Label>{t('submission.date')}</Label>
+            <Value>
+              {data.submissionDate
+                ? new Intl.DateTimeFormat(i18n.language, {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                  }).format(new Date(data.submissionDate))
+                : '-'}
+            </Value>
+          </InfoContainer>
+          <InfoContainer>
+            <Label>{t('submission.venue')}</Label>
+            <Value>{data.venue?.name || '-'}</Value>
+          </InfoContainer>
+        </LineWrapper>
+        <LineWrapper>
+          <InfoContainer>
+            <Label>{t('submission.type')}</Label>
+            <Value>{data.type || '-'}</Value>
+          </InfoContainer>
+          <InfoContainer>
+            <Label>{t('submission.state')}</Label>
+            <Value>{data.state || '-'}</Value>
+          </InfoContainer>
+        </LineWrapper>
+        <LineWrapper>
+          <InfoContainer>
+            <Label>{t('contribution.link')}</Label>
+            {data.link ? (
+              <Link targer='_blank' to={`//${data.link.split('//').pop()}`} target='_blank'>
+                {data.link}
+              </Link>
+            ) : (
+              <Value>-</Value>
+            )}
+          </InfoContainer>
+          <InfoContainer>
+            <Label>{t('submission.materialCost')}</Label>
+            <Value>{data.materialCost ? data.materialCost + ' €' : '-'}</Value>
+          </InfoContainer>
+        </LineWrapper>
         <InfoContainer>
-          <Label>{t('submission.type')}</Label>
-          <Value>{data.type || '-'}</Value>
+          <Label>{t('submission.authors')}</Label>
+          <Value>{data.authors?.map((author) => author.name).join(', ') || '-'}</Value>
         </InfoContainer>
         <InfoContainer>
-          <Label>{t('submission.state')}</Label>
-          <Value>{data.state || '-'}</Value>
+          <Label>{t('submission.zipFolder')}</Label>
+          <Value>{data.zipFolder?.name || '-'}</Value>
         </InfoContainer>
-      </LineWrapper>
-      <LineWrapper>
+
         <InfoContainer>
-          <Label>{t('contribution.link')}</Label>
-          {data.link ? (
-            <Link targer='_blank' to={`//${data.link.split('//').pop()}`} target='_blank'>
-              {data.link}
-            </Link>
-          ) : (
-            <Value>-</Value>
-          )}
+          <Label>{t('submission.compiledPDF')}</Label>
+          <Value>{data.compiledPDF?.name || '-'}</Value>
         </InfoContainer>
         <InfoContainer>
-          <Label>{t('submission.materialCost')}</Label>
-          <Value>{data.materialCost ? data.materialCost + ' €' : '-'}</Value>
+          <Label>{t('submission.diffPDF')}</Label>
+          <Value>{data.diffPDF?.name || '-'}</Value>
         </InfoContainer>
-      </LineWrapper>
-      <InfoContainer>
-        <Label>{t('submission.authors')}</Label>
-        <Value>{data.authors?.map((author) => author.name).join(', ') || '-'}</Value>
-      </InfoContainer>
-      <InfoContainer>
-        <Label>{t('submission.zipFolder')}</Label>
-        <Value>{data.zipFolder?.name || '-'}</Value>
-      </InfoContainer>
-      <InfoContainer>
-        <Label>{t('submission.abstract')}</Label>
-        <Value>{data.abstract?.name || '-'}</Value>
-      </InfoContainer>
-      <InfoContainer>
-        <Label>{t('submission.compiledPDF')}</Label>
-        <Value>{data.compiledPDF?.name || '-'}</Value>
-      </InfoContainer>
-      <InfoContainer>
-        <Label>{t('submission.diffPDF')}</Label>
-        <Value>{data.diffPDF?.name || '-'}</Value>
-      </InfoContainer>
-      <InfoContainer>
-        <Label>{t('submission.commentPDF')}</Label>
-        <Value>{data.commentPDF?.name || '-'}</Value>
-      </InfoContainer>
+        <InfoContainer>
+          <Label>{t('submission.commentPDF')}</Label>
+          <Value>{data.commentPDF?.name || '-'}</Value>
+        </InfoContainer>
+      </SectionContainer>
+      <SectionContainer>
+        <Heading2>{t('submission.abstract')}</Heading2>
+        <Value style={{ textAlign: 'justify ', whiteSpace: 'pre-wrap' }}>
+          {data?.abstract || '-'}
+        </Value>
+      </SectionContainer>
       {errMsg && <Chips type='negative'>{errMsg}</Chips>}
       <Group inline>
         <Button type='neutral' onClick={() => navigate('../files')}>
@@ -145,7 +150,7 @@ const Summary = ({ data }) => {
         </Button>
         <Button onClick={handleSave}> {t('global.save')}</Button>
       </Group>
-    </SectionContainer>
+    </>
   );
 };
 

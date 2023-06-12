@@ -9,15 +9,6 @@ module.exports.teamPictureStorage = multer.diskStorage({
   },
 });
 
-module.exports.submissionAbstractStorage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/submission/abstract/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, 'temp-submission-abstract-' + req.teamId + '.pdf');
-  },
-});
-
 module.exports.submissionZipfolderStorage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/submission/zipfolder/');

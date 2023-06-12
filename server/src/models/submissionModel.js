@@ -12,10 +12,7 @@ const submissionSchema = new mongoose.Schema({
     type: String,
   },
   abstract: {
-    type: {
-      name: String,
-      size: Number,
-    },
+    type: String,
   },
   zipFolder: {
     type: {
