@@ -3,7 +3,7 @@ import React from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-import { Caption, Heading2, SectionContainer } from '../../theme/appElements';
+import { Caption, Heading1, Heading2, SectionContainer } from '../../theme/appElements';
 import { Bar, BarChart, CartesianGrid, Label, Legend, Tooltip, XAxis, YAxis } from 'recharts';
 
 const Statistics = () => {
@@ -105,7 +105,10 @@ const Statistics = () => {
 
   return (
     <SectionContainer>
-      <Heading2>Statistics</Heading2>
+      <Heading1>Statistics</Heading1>
+      <Heading2>
+        Number of differents roles for each rank with approved longPaper contribution
+      </Heading2>
       <BarChart
         width={752}
         height={500}
@@ -129,6 +132,7 @@ const Statistics = () => {
         <Bar dataKey='coLeader' fill='#2ec4b6' />
         <Bar dataKey='guest' fill='#ff3366' />
       </BarChart>
+      <Heading2>Time for each contribution to be accepted</Heading2>
 
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data2}>
         <CartesianGrid strokeDasharray='3 3' />
@@ -145,7 +149,7 @@ const Statistics = () => {
           onClick={(value) => navigate(`/contributions/${value.id}`)}
         />
       </BarChart>
-
+      <Heading2>The total cost for a contribution</Heading2>
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data3}>
         <CartesianGrid strokeDasharray='3 3' />
         {/* <Tooltip /> */}
