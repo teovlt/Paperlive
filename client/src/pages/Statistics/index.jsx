@@ -141,13 +141,14 @@ const Statistics = () => {
 
         <Bar
           dataKey='monthDiff'
-          fill='#20a4f3'
+          fill='var(--accent)'
           onClick={(value) => navigate(`/contributions/${value.id}`)}
         />
       </BarChart>
 
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data3}>
         <CartesianGrid strokeDasharray='3 3' />
+        {/* <Tooltip /> */}
 
         <XAxis dataKey='title' tick={{ fontSize: 12 }} />
 
@@ -157,7 +158,7 @@ const Statistics = () => {
 
         <Bar
           dataKey='cost'
-          fill='#20a4f3'
+          fill='var(--accent)'
           onClick={(value) => navigate(`/contributions/${value.id}`)}
         />
       </BarChart>

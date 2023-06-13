@@ -12,12 +12,18 @@ const contributionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  scientificField: {
-    type: {
-      _id: mongoose.Schema.Types.ObjectId,
-      label: String,
-    },
+  scientificFields: {
+    type: [
+      {
+        _id: mongoose.Schema.Types.ObjectId,
+        label: String,
+      },
+    ],
     required: true,
+  },
+  keywords: {
+    type: [String],
+    default: [],
   },
   relatedContributions: {
     type: [
