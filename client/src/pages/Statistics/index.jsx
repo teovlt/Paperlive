@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-import { Caption, Heading1, Heading2, SectionContainer } from '../../theme/appElements';
+import { Button, Caption, Heading1, Heading2, SectionContainer } from '../../theme/appElements';
 import { Bar, BarChart, CartesianGrid, Label, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import RadioGroup from '../../components/RadioGroup';
 
 const Statistics = () => {
   const { auth } = useAuth();
@@ -12,6 +13,33 @@ const Statistics = () => {
 
   const contributions = auth.contributions;
   const submissions = auth.contributions.reduce((acc, curr) => acc.concat(curr.submissions), []);
+  const [typeFilter, setTypeFilter] = useState('conference');
+
+  const data7 = Object.entries(
+    submissions.reduce((acc, s) => {
+      const { type } = s.venue;
+      const year = new Date(s.submissionDate).getFullYear();
+
+      if (type === typeFilter) {
+        if (!acc[year]) {
+          acc[year] = { approved: 0, rejected: 0 };
+        }
+
+        switch (s.state) {
+          case 'approved':
+            acc[year].approved += 1;
+            break;
+          case 'rejected':
+            acc[year].rejected += 1;
+            break;
+          default:
+            break;
+        }
+      }
+
+      return acc;
+    }, {})
+  ).map(([year, counts]) => ({ year, ...counts }));
 
   const data = Object.entries(
     contributions
@@ -105,6 +133,49 @@ const Statistics = () => {
 
   return (
     <SectionContainer>
+      <RadioGroup
+        name='type'
+        label='type de venue'
+        template={{
+          radios: [
+            {
+              label: 'conference',
+              value: 'conference',
+              defaultChecked: typeFilter === 'conference',
+            },
+            {
+              label: 'journal',
+              value: 'journal',
+              defaultChecked: typeFilter === 'journal',
+            },
+          ],
+        }}
+        onChange={(e) => {
+          setTypeFilter(e.target.value);
+        }}
+      />
+      <BarChart
+        width={752}
+        height={500}
+        margin={{
+          top: 15,
+        }}
+        data={data7}>
+        <CartesianGrid strokeDasharray='3 3' />
+        <XAxis dataKey='year' tick={{ fontSize: 12 }} />
+        <YAxis interval={1} tick={{ fontSize: 12 }}>
+          <Label
+            value='Nombre de rejet/acceptation'
+            offset={20}
+            angle={-90}
+            fontSize={12}
+            textAnchor='middle'
+          />
+        </YAxis>
+        <Legend />
+        <Bar dataKey='approved' fill='#20a4f3' />
+        <Bar dataKey='rejected' fill='#ff3366' />
+      </BarChart>
       <Heading1>Statistics</Heading1>
       <Heading2>
         Number of differents roles for each rank with approved longPaper contribution
