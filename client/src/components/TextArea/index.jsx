@@ -27,7 +27,8 @@ const TextArea = (props) => {
           {props.label}
         </TextAreaLabel>
         <CharacterCounter>
-          {props.value ? props.value.length : 0}/{props.maxLength}
+          {props.value ? props.value.length : 0}
+          {props.maxLength && `/${props.maxLength}`}
         </CharacterCounter>
       </TextAreaContainer>
     </Container>
