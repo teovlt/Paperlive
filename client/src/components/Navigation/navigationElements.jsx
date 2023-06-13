@@ -44,8 +44,8 @@ export const Link = styled(NavLink)`
     &::after {
       content: '';
       width: 100%;
-      height: 4px;
-      border-radius: 2px 2px 0 0;
+      height: 2.5px;
+      border-radius: 2px;
 
       position: absolute;
       left: 0;

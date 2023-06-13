@@ -63,6 +63,43 @@ const Statistics = () => {
     .map(([id, data]) => ({ id, ...data }))
     .sort((a, b) => b.monthDiff - a.monthDiff);
 
+  const data3 = Object.entries(
+    contributions
+      .filter((c) => c.state === 'approved')
+      .reduce((acc, c) => {
+        c.submissions.flatMap((s) => {
+          const { _id: id, title } = c;
+          const { materialCost, authors } = s;
+
+          if (acc[id]) {
+            acc[id] = {
+              ...acc[id],
+              cost:
+                acc[id].cost +
+                materialCost +
+                authors.reduce(
+                  (acc, curr) => (acc += curr.hourlyCost * curr.workTime * 21.67 * 7),
+                  0
+                ),
+            };
+          } else {
+            acc[id] = {
+              title,
+              cost:
+                materialCost +
+                authors.reduce(
+                  (acc, curr) => (acc += curr.hourlyCost * curr.workTime * 21.67 * 7),
+                  0
+                ),
+            };
+          }
+        });
+        return acc;
+      }, {})
+  )
+    .map(([id, data]) => ({ id, ...data }))
+    .sort((a, b) => b.cost - a.cost);
+
   if (contributions.length <= 0 || submissions.length <= 0)
     return <Caption>Missing data for statistics </Caption>;
 
@@ -104,6 +141,22 @@ const Statistics = () => {
 
         <Bar
           dataKey='monthDiff'
+          fill='#20a4f3'
+          onClick={(value) => navigate(`/contributions/${value.id}`)}
+        />
+      </BarChart>
+
+      <BarChart width={752} height={500} margin={{ top: 15 }} data={data3}>
+        <CartesianGrid strokeDasharray='3 3' />
+
+        <XAxis dataKey='title' tick={{ fontSize: 12 }} />
+
+        <YAxis dataKey='cost' tick={{ fontSize: 12 }}>
+          <Label value='Coût (€)' offset={20} angle={-90} fontSize={12} textAnchor='middle' />
+        </YAxis>
+
+        <Bar
+          dataKey='cost'
           fill='#20a4f3'
           onClick={(value) => navigate(`/contributions/${value.id}`)}
         />
