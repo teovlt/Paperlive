@@ -67,8 +67,12 @@ const Summary = ({ data }) => {
 
       <LineWrapper>
         <InfoContainer>
-          <Label>{t('contribution.scientificField')}</Label>
-          <Value>{data.scientificField.label || '-'}</Value>
+          <Label>{t('contribution.scientificFields')}</Label>
+          <Value>
+            {data.scientificFields.length > 0
+              ? data.scientificFields.flatMap((scientificField) => scientificField.label).join(', ')
+              : '-'}
+          </Value>
         </InfoContainer>
         <InfoContainer>
           <Label>{t('contribution.startDate')}</Label>
