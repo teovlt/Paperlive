@@ -26,8 +26,6 @@ const Contribution = () => {
     setContribution(auth.contributions?.find((c) => c._id === id));
   }, [auth.contributions, id]);
 
-
-
   if (!contribution) return <Loading />;
 
   return (
@@ -95,12 +93,15 @@ const Contribution = () => {
           )}
         </InfoContainer>
       </SectionContainer>
-      <SectionContainer>
-        <Heading2>{t('contribution.abstract')}</Heading2>
-        <Value style={{ textAlign: 'justify ', whiteSpace: 'pre-wrap' }}>
-          {contribution.abstract}
-        </Value>
-      </SectionContainer>
+      {contribution.abstract && (
+        <SectionContainer>
+          <Heading2>{t('contribution.abstract')}</Heading2>
+          <Value style={{ textAlign: 'justify ', whiteSpace: 'pre-wrap' }}>
+            {contribution.abstract}
+          </Value>
+        </SectionContainer>
+      )}
+
       <SectionContainer>
         <Heading2>{t('global.submissions')}</Heading2>
         <Table
