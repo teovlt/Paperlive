@@ -1,7 +1,17 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import { InfoContainer, Label, LineWrapper, Value, Link } from './submissionElements';
-import { Heading2, SectionContainer } from '../../theme/appElements';
+import {
+  InfoContainer,
+  Label,
+  LineWrapper,
+  Value,
+  Link,
+  LinkModal,
+  Modal,
+  BackModal,
+} from './submissionElements';
+import { Button, Heading2, SectionContainer } from '../../theme/appElements';
 import { useTranslation } from 'react-i18next';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
@@ -13,6 +23,9 @@ const Submission = () => {
 
   const contribution = auth.contributions.find((c) => c.submissions?.find((s) => s._id === id));
   const submission = contribution.submissions?.find((c) => c._id === id);
+  const [isOpenAuthor, setIsOpenAuthor] = useState(false);
+  const [isOpenVenue, setIsOpenVenue] = useState(false);
+  const [authorDisplay, setAuthorDisplay] = useState(null);
 
   const handleDownload = async (name) => {
     const res = await axiosPrivate.get(
@@ -68,7 +81,7 @@ const Submission = () => {
           <InfoContainer>
             <Label>{t('submission.venue')}</Label>
             {submission.venue ? (
-              <Link to={`/venues/${submission.venue._id}`}>{submission.venue.name}</Link>
+              <LinkModal onClick={() => setIsOpenVenue(true)}>{submission.venue.name}</LinkModal>
             ) : (
               <Value>-</Value>
             )}
@@ -117,9 +130,14 @@ const Submission = () => {
           <Value>
             {submission.authors.length > 0
               ? submission.authors.map((author, index) => (
-                  <Link key={index} to={`/authors/${author._id}`}>
+                  <LinkModal
+                    key={index}
+                    onClick={() => {
+                      setIsOpenAuthor(true);
+                      setAuthorDisplay(author);
+                    }}>
                     {author.name}
-                  </Link>
+                  </LinkModal>
                 ))
               : '-'}
           </Value>
@@ -173,6 +191,57 @@ const Submission = () => {
           )}
         </InfoContainer>
       </SectionContainer>
+      {isOpenAuthor && (
+        <BackModal onClick={() => setIsOpenAuthor(false)}>
+          <Modal>
+            <SectionContainer>
+              <InfoContainer>
+                <Label>{t('author.name')}</Label>
+                <Value>{authorDisplay.name}</Value>
+              </InfoContainer>
+              <InfoContainer>
+                <Label>{t('author.grade')}</Label>
+                <Value>{authorDisplay.grade}</Value>
+              </InfoContainer>
+              <InfoContainer>
+                <Label>{t('author.country')}</Label>
+                <Value>{authorDisplay.country}</Value>
+              </InfoContainer>
+              <InfoContainer>
+                <Label>{t('author.workTimeMonth')}</Label>
+                <Value>{authorDisplay.workTime}</Value>
+              </InfoContainer>{' '}
+              <InfoContainer>
+                <Label>{t('author.hourlyCost')}</Label>
+                <Value>{authorDisplay.hourlyCost}</Value>
+              </InfoContainer>
+              <Button onClick={() => setIsOpenAuthor(false)}>{t('global.back')}</Button>
+            </SectionContainer>
+          </Modal>
+        </BackModal>
+      )}
+      {isOpenVenue && (
+        <BackModal onClick={() => setIsOpenVenue(false)}>
+          <Modal>
+            <SectionContainer>
+              <InfoContainer>
+                <Label>{t('venue.name')}</Label>
+                <Value>{submission.venue.name}</Value>
+              </InfoContainer>
+              <InfoContainer>
+                <Label>{t('venue.type')}</Label>
+                <Value>{submission.venue.type}</Value>
+              </InfoContainer>
+              <InfoContainer>
+                <Label>{t('venue.rank')}</Label>
+                <Value>{submission.venue.rank}</Value>
+              </InfoContainer>
+
+              <Button onClick={() => setIsOpenVenue(false)}>{t('global.back')}</Button>
+            </SectionContainer>
+          </Modal>
+        </BackModal>
+      )}
     </>
   );
 };

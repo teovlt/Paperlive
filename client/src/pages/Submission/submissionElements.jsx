@@ -53,3 +53,31 @@ export const Group = styled.div`
   gap: ${(props) => (props.inline ? '8px' : '4px')};
   width: 100%;
 `;
+
+export const LinkModal = styled(Value)`
+  color: var(--accent);
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+
+export const Modal = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  background-color: var(--white);
+  padding: 50px;
+`;
+
+export const BackModal = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100vh;
+  width: 100%;
+  background-color: var(--black-secondary);
+`;
