@@ -90,7 +90,6 @@ export const Heading3 = styled.h3`
   font-size: 1.6rem;
   line-height: 2rem;
   color: var(--black);
-  text-transform: uppercase;
 `;
 
 export const Paragraph = styled.p`

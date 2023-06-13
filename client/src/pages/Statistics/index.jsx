@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, Caption, Heading1, Heading2, SectionContainer } from '../../theme/appElements';
+import { Button, Heading1, Heading2, Heading3, SectionContainer } from '../../theme/appElements';
 import { Bar, BarChart, CartesianGrid, Label, Legend, Tooltip, XAxis, YAxis } from 'recharts';
 import RadioGroup from '../../components/RadioGroup';
 
@@ -62,10 +62,6 @@ const Statistics = () => {
         return acc;
       }, {})
   ).map(([rank, grades]) => ({ rank, ...grades }));
-
-  const filters = {
-    period: { startingDate: 2000, endingDate: 2025 },
-  };
 
   const data2 = Object.entries(
     contributions
@@ -128,11 +124,11 @@ const Statistics = () => {
     .map(([id, data]) => ({ id, ...data }))
     .sort((a, b) => b.cost - a.cost);
 
-  if (contributions.length <= 0 || submissions.length <= 0)
-    return <Caption>Missing data for statistics </Caption>;
-
   return (
     <SectionContainer>
+      <Heading2>Statistics</Heading2>
+      <Heading3>Number of reject and acceptation per year and per type of venue</Heading3>
+
       <RadioGroup
         name='type'
         label='type de venue'
@@ -176,10 +172,7 @@ const Statistics = () => {
         <Bar dataKey='approved' fill='#20a4f3' />
         <Bar dataKey='rejected' fill='#ff3366' />
       </BarChart>
-      <Heading1>Statistics</Heading1>
-      <Heading2>
-        Number of differents roles for each rank with approved longPaper contribution
-      </Heading2>
+      <Heading3>Distribution of Approved Long Papers per Venue Rank and Team Roles</Heading3>
       <BarChart
         width={752}
         height={500}
@@ -203,12 +196,15 @@ const Statistics = () => {
         <Bar dataKey='coLeader' fill='#2ec4b6' />
         <Bar dataKey='guest' fill='#ff3366' />
       </BarChart>
-      <Heading2>Time for each contribution to be accepted</Heading2>
+      <Heading3>
+        Production Time for Contributions: Longest Approval Time by Contribution and Duration
+      </Heading3>
 
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data2}>
         <CartesianGrid strokeDasharray='3 3' />
+        <Tooltip cursor={{ fill: 'transparent' }} />
 
-        <XAxis dataKey='title' tick={{ fontSize: 12 }} />
+        <XAxis dataKey='title' tick={null} />
 
         <YAxis dataKey='monthDiff' tick={{ fontSize: 12 }}>
           <Label value='Durée (mois)' offset={20} angle={-90} fontSize={12} textAnchor='middle' />
@@ -217,15 +213,18 @@ const Statistics = () => {
         <Bar
           dataKey='monthDiff'
           fill='var(--accent)'
-          onClick={(value) => navigate(`/contributions/${value.id}`)}
+          cursor='pointer'
+          onClick={(data) => navigate(`/contributions/${data.id}`)}
         />
       </BarChart>
-      <Heading2>The total cost for a contribution</Heading2>
+      <Heading3>
+        Production Cost for Contributions: Cost Analysis by Contribution and Expense Amount
+      </Heading3>
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data3}>
         <CartesianGrid strokeDasharray='3 3' />
-        {/* <Tooltip /> */}
+        <Tooltip cursor={{ fill: 'transparent' }} />
 
-        <XAxis dataKey='title' tick={{ fontSize: 12 }} />
+        <XAxis dataKey='title' tick={null} />
 
         <YAxis dataKey='cost' tick={{ fontSize: 12 }}>
           <Label value='Coût (€)' offset={20} angle={-90} fontSize={12} textAnchor='middle' />
@@ -234,7 +233,8 @@ const Statistics = () => {
         <Bar
           dataKey='cost'
           fill='var(--accent)'
-          onClick={(value) => navigate(`/contributions/${value.id}`)}
+          cursor='pointer'
+          onClick={(data) => navigate(`/contributions/${data.id}`)}
         />
       </BarChart>
     </SectionContainer>
