@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 import { Caption, Heading2, SectionContainer } from '../../theme/appElements';
-import { Bar, BarChart, CartesianGrid, Label, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, Cell, Label, Legend, Tooltip, XAxis, YAxis } from 'recharts';
 
 const Statistics = () => {
   const { auth } = useAuth();
   const navigate = useNavigate();
 
   const contributions = auth.contributions;
-  const submissions = auth.contributions.reduce((acc, curr) => acc.concat(curr.submissions), []);
 
   const data = Object.entries(
     contributions
@@ -34,10 +33,6 @@ const Statistics = () => {
         return acc;
       }, {})
   ).map(([rank, grades]) => ({ rank, ...grades }));
-
-  const filters = {
-    period: { startingDate: 2000, endingDate: 2025 },
-  };
 
   const data2 = Object.entries(
     contributions
@@ -100,9 +95,6 @@ const Statistics = () => {
     .map(([id, data]) => ({ id, ...data }))
     .sort((a, b) => b.cost - a.cost);
 
-  if (contributions.length <= 0 || submissions.length <= 0)
-    return <Caption>Missing data for statistics </Caption>;
-
   return (
     <SectionContainer>
       <Heading2>Statistics</Heading2>
@@ -132,8 +124,9 @@ const Statistics = () => {
 
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data2}>
         <CartesianGrid strokeDasharray='3 3' />
+        <Tooltip cursor={{ fill: 'transparent' }} />
 
-        <XAxis dataKey='title' tick={{ fontSize: 12 }} />
+        <XAxis dataKey='title' tick={null} />
 
         <YAxis dataKey='monthDiff' tick={{ fontSize: 12 }}>
           <Label value='Durée (mois)' offset={20} angle={-90} fontSize={12} textAnchor='middle' />
@@ -142,15 +135,16 @@ const Statistics = () => {
         <Bar
           dataKey='monthDiff'
           fill='var(--accent)'
-          onClick={(value) => navigate(`/contributions/${value.id}`)}
+          cursor='pointer'
+          onClick={(data) => navigate(`/contributions/${data.id}`)}
         />
       </BarChart>
 
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data3}>
         <CartesianGrid strokeDasharray='3 3' />
-        {/* <Tooltip /> */}
+        <Tooltip cursor={{ fill: 'transparent' }} />
 
-        <XAxis dataKey='title' tick={{ fontSize: 12 }} />
+        <XAxis dataKey='title' tick={null} />
 
         <YAxis dataKey='cost' tick={{ fontSize: 12 }}>
           <Label value='Coût (€)' offset={20} angle={-90} fontSize={12} textAnchor='middle' />
@@ -159,7 +153,8 @@ const Statistics = () => {
         <Bar
           dataKey='cost'
           fill='var(--accent)'
-          onClick={(value) => navigate(`/contributions/${value.id}`)}
+          cursor='pointer'
+          onClick={(data) => navigate(`/contributions/${data.id}`)}
         />
       </BarChart>
     </SectionContainer>
