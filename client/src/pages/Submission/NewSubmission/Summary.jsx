@@ -137,12 +137,12 @@ const Summary = ({ data }) => {
           <Value>{data.commentPDF?.name || '-'}</Value>
         </InfoContainer>
       </SectionContainer>
-      <SectionContainer>
-        <Heading2>{t('submission.abstract')}</Heading2>
-        <Value style={{ textAlign: 'justify ', whiteSpace: 'pre-wrap' }}>
-          {data?.abstract || '-'}
-        </Value>
-      </SectionContainer>
+      {data.abstract && (
+        <SectionContainer>
+          <Heading2>{t('submission.abstract')}</Heading2>
+          <Value style={{ textAlign: 'justify ', whiteSpace: 'pre-wrap' }}>{data.abstract}</Value>
+        </SectionContainer>
+      )}
       {errMsg && <Chips type='negative'>{errMsg}</Chips>}
       <Group inline>
         <Button type='neutral' onClick={() => navigate('../files')}>
