@@ -26,19 +26,7 @@ const Contribution = () => {
     setContribution(auth.contributions?.find((c) => c._id === id));
   }, [auth.contributions, id]);
 
-  const handleDownload = async (e) => {
-    e.preventDefault();
-    const res = await axiosPrivate.get(
-      `${import.meta.env.VITE_API_URI}/api/files/contribution-abstract-${contribution._id}.pdf`,
-      { responseType: 'blob' }
-    );
 
-    const url = URL.createObjectURL(res.data);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `contribution-abstract-${contribution._id}.pdf`);
-    link.click();
-  };
 
   if (!contribution) return <Loading />;
 
@@ -82,27 +70,20 @@ const Contribution = () => {
             <Value>{t(`contribution.${contribution.teamRole}`)}</Value>
           </InfoContainer>
         </LineWrapper>
-        <LineWrapper>
-          <InfoContainer>
-            <Label>{t('contribution.abstract')}</Label>
-            <Value>
-              <Link onClick={handleDownload}>{t('global.download')}</Link>
-            </Value>
-          </InfoContainer>
-          <InfoContainer>
-            <Label>{t('contribution.state')}</Label>
-            <Value
-              style={{
-                color: `var(--${
-                  { inProgress: 'notice', dropped: 'negative', approved: 'positive' }[
-                    contribution.state
-                  ]
-                })`,
-              }}>
-              {t(`contribution.${contribution.state}`)}
-            </Value>
-          </InfoContainer>
-        </LineWrapper>
+
+        <InfoContainer>
+          <Label>{t('contribution.state')}</Label>
+          <Value
+            style={{
+              color: `var(--${
+                { inProgress: 'notice', dropped: 'negative', approved: 'positive' }[
+                  contribution.state
+                ]
+              })`,
+            }}>
+            {t(`contribution.${contribution.state}`)}
+          </Value>
+        </InfoContainer>
         <InfoContainer>
           <Label>{t('contribution.link')}</Label>
           {contribution.link ? (
@@ -113,6 +94,12 @@ const Contribution = () => {
             <Value>-</Value>
           )}
         </InfoContainer>
+      </SectionContainer>
+      <SectionContainer>
+        <Heading2>{t('contribution.abstract')}</Heading2>
+        <Value style={{ textAlign: 'justify ', whiteSpace: 'pre-wrap' }}>
+          {contribution.abstract}
+        </Value>
       </SectionContainer>
       <SectionContainer>
         <Heading2>{t('global.submissions')}</Heading2>

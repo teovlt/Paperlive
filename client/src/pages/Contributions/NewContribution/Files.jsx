@@ -3,7 +3,7 @@ import { Button, SectionContainer } from '../../../theme/appElements';
 import { LineWrapper } from '../contributionsElements';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import FileInput from '../../../components/FileInput';
+import TextArea from '../../../components/TextArea';
 
 const Files = ({ data, setData }) => {
   const { t } = useTranslation();
@@ -11,14 +11,16 @@ const Files = ({ data, setData }) => {
 
   return (
     <SectionContainer>
-      <FileInput
-        name='abstract'
-        collection='contribution'
-        MIMEType='pdf'
-        data={data}
-        callback={(file) =>
-          setData((data) => ({ ...data, abstract: { name: file.name, size: file.size } }))
-        }
+      <TextArea
+        id='abstract'
+        label={t('contribution.abstract')}
+        autoComplete='off'
+        small
+        value={data.abstract}
+        onChange={(e) => {
+          const newProfilData = { ...data, abstract: e.target.value };
+          setData(newProfilData);
+        }}
       />
       <LineWrapper>
         <Button type='neutral' onClick={() => navigate('../informations')}>

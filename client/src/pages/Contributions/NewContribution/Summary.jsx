@@ -58,21 +58,12 @@ const Summary = ({ data }) => {
   };
 
   return (
-    <SectionContainer>
-      <Heading2>{t('contribution.recap')}</Heading2>
-      <InfoContainer>
-        <Label>{t('contribution.title')}</Label>
-        <Value>{data.title || '-'}</Value>
-      </InfoContainer>
-
-      <LineWrapper>
+    <>
+      <SectionContainer>
+        <Heading2>{t('contribution.recap')}</Heading2>
         <InfoContainer>
-          <Label>{t('contribution.scientificFields')}</Label>
-          <Value>
-            {data.scientificFields.length > 0
-              ? data.scientificFields.flatMap((scientificField) => scientificField.label).join(', ')
-              : '-'}
-          </Value>
+          <Label>{t('contribution.title')}</Label>
+          <Value>{data.title || '-'}</Value>
         </InfoContainer>
         <InfoContainer>
           <Label>{t('contribution.startDate')}</Label>
@@ -86,57 +77,54 @@ const Summary = ({ data }) => {
               : '-'}
           </Value>
         </InfoContainer>
-      </LineWrapper>
-
-      <InfoContainer>
-        <Label>{`${t('contribution.keywords')}*`}</Label>
-        <Value>{data.keywords.length > 0 ? data.keywords.join(', ') : '-'}</Value>
-      </InfoContainer>
-
-      <InfoContainer>
-        <Label>{`${t('contribution.related')}*`}</Label>
-        {data.relatedContributions.length > 0
-          ? data.relatedContributions.map((contribution) => <Link>{contribution.title}</Link>)
-          : '-'}
-      </InfoContainer>
-
-      <LineWrapper>
         <InfoContainer>
-          <Label>{t('contribution.state')}</Label>
-          <Value
-            style={{
-              color: `var(--${
-                { inProgress: 'notice', dropped: 'negative', approved: 'positive' }[data.state]
-              })`,
-            }}>
-            {data.state}
-          </Value>
+          <Label>{`${t('contribution.keywords')}*`}</Label>
+          <Value>{data.keywords.length > 0 ? data.keywords.join(', ') : '-'}</Value>
         </InfoContainer>
         <InfoContainer>
-          <Label>{t('contribution.teamRole')}</Label>
-          <Value>{data.teamRole ? t(`contribution.${data.teamRole}`) : '-'}</Value>
+          <Label>{`${t('contribution.related')}*`}</Label>
+          {data.relatedContributions.length > 0
+            ? data.relatedContributions.map((contribution) => <Link>{contribution.title}</Link>)
+            : '-'}
         </InfoContainer>
-      </LineWrapper>
+        <LineWrapper>
+          <InfoContainer>
+            <Label>{t('contribution.state')}</Label>
+            <Value
+              style={{
+                color: `var(--${
+                  { inProgress: 'notice', dropped: 'negative', approved: 'positive' }[data.state]
+                })`,
+              }}>
+              {data.state}
+            </Value>
+          </InfoContainer>
+          <InfoContainer>
+            <Label>{t('contribution.teamRole')}</Label>
+            <Value>{data.teamRole ? t(`contribution.${data.teamRole}`) : '-'}</Value>
+          </InfoContainer>
+        </LineWrapper>
+        <LineWrapper>
+          <InfoContainer>
+            <Label>{`${t('contribution.link')}*`}</Label>
+            {data.link ? (
+              <Link to={`https://${data.link}`} target='_blank'>
+                {data.link}
+              </Link>
+            ) : (
+              <Value>-</Value>
+            )}
+          </InfoContainer>
+        </LineWrapper>{' '}
+      </SectionContainer>
 
-      <LineWrapper>
-        <InfoContainer>
-          <Label>{`${t('contribution.link')}*`}</Label>
-          {data.link ? (
-            <Link to={`https://${data.link}`} target='_blank'>
-              {data.link}
-            </Link>
-          ) : (
-            <Value>-</Value>
-          )}
-        </InfoContainer>
-      </LineWrapper>
+      <SectionContainer>
+        <Heading2>{t('contribution.abstract')}</Heading2>
 
-      <LineWrapper>
-        <InfoContainer>
-          <Label>{t('contribution.abstract')}</Label>
-          <Value>{data.abstract?.name || '-'}</Value>
-        </InfoContainer>
-      </LineWrapper>
+        <Value style={{ textAlign: 'justify ', whiteSpace: 'pre-wrap' }}>
+          {data?.abstract || '-'}
+        </Value>
+      </SectionContainer>
 
       {errMsg && <Chips type='negative'>{errMsg}</Chips>}
 
@@ -146,7 +134,7 @@ const Summary = ({ data }) => {
         </Button>
         <Button onClick={handleSave}>{t('global.save')}</Button>
       </Group>
-    </SectionContainer>
+    </>
   );
 };
 

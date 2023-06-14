@@ -87,16 +87,6 @@ module.exports.createSubmission = async (req, res) => {
     const team = await Team.findOne({ _id: req.teamId, contributions: { $in: [contributionId] } });
     if (!team) return res.status(404).json({ error: 'Team not found' });
 
-    if (
-      fs.existsSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-abstract-${req.teamId}.pdf`
-      )
-    ) {
-      fs.renameSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-abstract-${req.teamId}.pdf`,
-        `${__dirname}/../../uploads/submission/abstract/submission-abstract-${_id}.pdf`
-      );
-    }
 
     if (
       fs.existsSync(
@@ -181,17 +171,6 @@ module.exports.updateSubmission = async (req, res) => {
       contribution.submissions?.some((submission) => submission._id.toString() === submissionId)
     );
     if (!contribution) return res.status(404).json({ error: 'Contribution not found' });
-
-    if (
-      fs.existsSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-abstract-${req.teamId}.pdf`
-      )
-    ) {
-      fs.renameSync(
-        `${__dirname}/../../uploads/submission/abstract/temp-submission-abstract-${req.teamId}.pdf`,
-        `${__dirname}/../../uploads/submission/abstract/submission-abstract-${submissionId}.pdf`
-      );
-    }
 
     if (
       fs.existsSync(

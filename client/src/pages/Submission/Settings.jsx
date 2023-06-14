@@ -15,6 +15,7 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../components/Loading';
 import FormSelector from '../../components/FormSelector';
+import TextArea from '../../components/TextArea';
 
 const SubmissionSettings = () => {
   const { id } = useParams();
@@ -330,18 +331,7 @@ const SubmissionSettings = () => {
             },
           }}
         />
-        <FileInput
-          name='abstract'
-          collection='submission'
-          MIMEType='pdf'
-          data={submission}
-          callback={(file) =>
-            setSubmissionData((data) => ({
-              ...data,
-              abstract: { name: file.name, size: file.size },
-            }))
-          }
-        />
+
         <FileInput
           name='zipFolder'
           collection='submission'
@@ -389,6 +379,18 @@ const SubmissionSettings = () => {
               commentPDF: { name: file.name, size: file.size },
             }))
           }
+        />
+
+        <TextArea
+          id='abstract'
+          label={t('submission.abstract')}
+          autoComplete='off'
+          small
+          defaultValue={submission.abstract}
+          onChange={(e) => {
+            const newProfilData = { ...submissionData, abstract: e.target.value };
+            setSubmissionData(newProfilData);
+          }}
         />
 
         <Group inline>

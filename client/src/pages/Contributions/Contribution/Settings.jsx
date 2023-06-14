@@ -16,6 +16,7 @@ import Selector from '../../../components/Selector';
 import Chips from '../../../components/Chips';
 import Loading from '../../../components/Loading';
 import FormSelector from '../../../components/FormSelector';
+import TextArea from '../../../components/TextArea';
 import InputSelector from '../../../components/InputSelector';
 
 const ContributionSettings = () => {
@@ -239,18 +240,16 @@ const ContributionSettings = () => {
             setContributionData(newContributionData);
           }}
         />
-
-        <FileInput
-          name='abstract'
-          collection='contribution'
-          MIMEType='pdf'
-          data={contribution}
-          callback={(file) =>
-            setContributionData((data) => ({
-              ...data,
-              abstract: { name: file.name, size: file.size },
-            }))
-          }
+        <TextArea
+          id='abstract'
+          label={t('contribution.abstract')}
+          autoComplete='off'
+          small
+          defaultValue={contribution.abstract}
+          onChange={(e) => {
+            const newProfilData = { ...contributionData, abstract: e.target.value };
+            setContributionData(newProfilData);
+          }}
         />
 
         {saveErrMsg && <Chips type='negative'>{saveErrMsg}</Chips>}
