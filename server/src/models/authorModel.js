@@ -5,6 +5,10 @@ const authorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+    required: true,
+  },
   grade: {
     type: String,
     required: true,

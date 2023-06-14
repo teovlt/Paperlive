@@ -258,6 +258,12 @@ const SubmissionSettings = () => {
               default: '',
               required: true,
             },
+            email: {
+              label: t('author.email'),
+              type: 'email',
+              default: '',
+              required: true,
+            },
             grade: {
               label: t('author.grade'),
               type: 'text',

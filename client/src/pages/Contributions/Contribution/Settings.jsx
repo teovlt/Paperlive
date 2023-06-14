@@ -16,6 +16,7 @@ import Selector from '../../../components/Selector';
 import Chips from '../../../components/Chips';
 import Loading from '../../../components/Loading';
 import FormSelector from '../../../components/FormSelector';
+import InputSelector from '../../../components/InputSelector';
 
 const ContributionSettings = () => {
   const { id } = useParams();
@@ -135,24 +136,12 @@ const ContributionSettings = () => {
             setContributionData(newContributionData);
           }}
         />
-        <FormSelector
-          list={scientificFields}
-          setList={setScientificFields}
-          selected={contribution.scientificFields}
-          setSelected={(selected) => {
-            const newContributionData = { ...contributionData, scientificFields: selected };
-            setContributionData(newContributionData);
-          }}
-          label={t('contribution.scientificFields')}
-          modelName='scientificFields'
-          displayedAttribute='label'
-          schema={{
-            label: {
-              label: 'Label',
-              type: 'text',
-              default: '',
-              required: true,
-            },
+        <InputSelector
+          label={`${t('contribution.keywords')}*`}
+          selected={contributionData.keywords}
+          callback={(list) => {
+            const updatedData = { ...contributionData, keywords: list };
+            setContributionData(updatedData);
           }}
         />
         <Input

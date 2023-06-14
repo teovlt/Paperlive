@@ -10,6 +10,7 @@ import Selector from '../../../components/Selector';
 import useAuth from '../../../hooks/useAuth';
 import FormSelector from '../../../components/FormSelector';
 import Loading from '../../../components/Loading';
+import InputSelector from '../../../components/InputSelector';
 
 const Informations = ({ data, setData }) => {
   const { t } = useTranslation();
@@ -43,21 +44,12 @@ const Informations = ({ data, setData }) => {
           setData(updatedData);
         }}
       />
-      <FormSelector
-        list={scientificFields}
-        setList={setScientificFields}
-        selected={data.scientificFields}
-        setSelected={(selected) => setData((data) => ({ ...data, scientificFields: selected }))}
-        label={t('contribution.scientificFields')}
-        modelName='scientificFields'
-        displayedAttribute='label'
-        schema={{
-          label: {
-            label: 'Label',
-            type: 'text',
-            default: '',
-            required: true,
-          },
+      <InputSelector
+        label={`${t('contribution.keywords')}*`}
+        selected={data.keywords}
+        callback={(list) => {
+          const updatedData = { ...data, keywords: list };
+          setData(updatedData);
         }}
       />
       <Input
@@ -75,7 +67,7 @@ const Informations = ({ data, setData }) => {
         small
         type='text'
         id='link'
-        label={t('contribution.link')}
+        label={`${t('contribution.link')}*`}
         value={data.link}
         onChange={(e) => {
           const updatedData = { ...data, link: e.target.value };
@@ -140,7 +132,7 @@ const Informations = ({ data, setData }) => {
         list={auth.contributions}
         selected={data.relatedContributions}
         displayedAttribute='title'
-        label='related'
+        label={`${t('contribution.related')}*`}
         onChange={(selected) => {
           const updatedData = { ...data, relatedContributions: selected };
           setData(updatedData);

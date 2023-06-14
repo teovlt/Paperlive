@@ -51,14 +51,8 @@ const Contribution = () => {
           <Value>{contribution.title}</Value>
         </InfoContainer>
         <InfoContainer>
-          <Label>{t('contribution.scientificFields')}</Label>
-          <Value>
-            {contribution.scientificFields.length > 0
-              ? contribution.scientificFields
-                  .flatMap((scientificField) => scientificField.label)
-                  .join(', ')
-              : '-'}
-          </Value>
+          <Label>{t('contribution.keywords')}</Label>
+          <Value>{contribution.keywords.length > 0 ? contribution.keywords.join(', ') : '-'}</Value>
         </InfoContainer>
         <InfoContainer>
           <Label>{t('contribution.related')}</Label>

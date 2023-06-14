@@ -102,7 +102,7 @@ const Selector = ({ list, selected, displayedAttribute, label, onChange, unique 
       <Toggler
         onClick={() => setIsOpen(!isOpen)}
         className={`${isOpen && 'open'} ${selectedItems.length > 0 && 'filled'}`}>
-        <Placeholder>{t(`submission.${label.toLowerCase()}`)}</Placeholder>
+        <Placeholder>{label}</Placeholder>
         <PillContainer>
           {selectedItems.slice(0, 4).map((item, index) => (
             <Pill key={item._id || index}>

@@ -36,7 +36,7 @@ const Summary = ({ data }) => {
 
   const handleSave = async () => {
     const undefinedKeys = Object.keys(data).filter(
-      (key) => !data[key] && !['relatedContributions', 'link'].includes(key)
+      (key) => !data[key] && !['keywords', 'relatedContributions', 'link'].includes(key)
     );
 
     if (undefinedKeys.length > 0) {
@@ -89,7 +89,12 @@ const Summary = ({ data }) => {
       </LineWrapper>
 
       <InfoContainer>
-        <Label>{t('contribution.related')}</Label>
+        <Label>{`${t('contribution.keywords')}*`}</Label>
+        <Value>{data.keywords.length > 0 ? data.keywords.join(', ') : '-'}</Value>
+      </InfoContainer>
+
+      <InfoContainer>
+        <Label>{`${t('contribution.related')}*`}</Label>
         {data.relatedContributions.length > 0
           ? data.relatedContributions.map((contribution) => <Link>{contribution.title}</Link>)
           : '-'}
@@ -115,7 +120,7 @@ const Summary = ({ data }) => {
 
       <LineWrapper>
         <InfoContainer>
-          <Label>{t('contribution.link')}</Label>
+          <Label>{`${t('contribution.link')}*`}</Label>
           {data.link ? (
             <Link to={`https://${data.link}`} target='_blank'>
               {data.link}

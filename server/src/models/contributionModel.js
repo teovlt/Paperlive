@@ -12,15 +12,6 @@ const contributionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  scientificFields: {
-    type: [
-      {
-        _id: mongoose.Schema.Types.ObjectId,
-        label: String,
-      },
-    ],
-    required: true,
-  },
   keywords: {
     type: [String],
     default: [],
