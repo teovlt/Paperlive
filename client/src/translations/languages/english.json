@@ -269,5 +269,13 @@
     "notFound": "Page not found",
     "error": "The requested url was not found on this server.",
     "back": "Back to PaperLive"
+  },
+  "statistics": {
+    "data2": {
+      "title": " Production Time for Contributions: Longest Approval Time by Contribution and Duration",
+      "label": "Duration (months)",
+      "bar": "Production time"
+    },
+    "months": "months"
   }
 }

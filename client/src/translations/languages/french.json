@@ -270,5 +270,13 @@
     "notFound": "Page non trouvée",
     "error": "L'URL demandée n'a pas été trouvée sur ce serveur.",
     "back": "Retour à PaperLive"
+  },
+  "statistics": {
+    "data2": {
+      "title": "Temps de production pour les contributions : Temps d'approbation le plus long par contribution et durée",
+      "label": "Durée (mois)",
+      "bar": "Temps de production"
+    },
+    "months": "mois"
   }
 }

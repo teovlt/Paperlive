@@ -2,9 +2,20 @@ import React, { useState } from 'react';
 
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Button, Heading1, Heading2, Heading3, SectionContainer } from '../../theme/appElements';
-import { Bar, BarChart, CartesianGrid, Label, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Label,
+  Legend,
+  Tooltip,
+  XAxis,
+  YAxis,
+  LabelList,
+} from 'recharts';
 import RadioGroup from '../../components/RadioGroup';
 
 function getRandomColor() {
@@ -14,6 +25,7 @@ function getRandomColor() {
 const Statistics = () => {
   const { auth } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const contributions = auth.contributions;
   const submissions = contributions.flatMap((c) => c.submissions);
@@ -281,9 +293,7 @@ const Statistics = () => {
         <Legend />
       </BarChart>
 
-      <Heading3>
-        Production Time for Contributions: Longest Approval Time by Contribution and Duration
-      </Heading3>
+      <Heading3>{t('statistics.data2.title')}</Heading3>
 
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data2}>
         <CartesianGrid strokeDasharray='3 3' />
@@ -292,11 +302,19 @@ const Statistics = () => {
         <XAxis dataKey='title' tick={null} />
 
         <YAxis dataKey='monthDiff' tick={{ fontSize: 12 }}>
-          <Label value='Durée (mois)' offset={20} angle={-90} fontSize={12} textAnchor='middle' />
+          <Label
+            value={t('statistics.data2.label')}
+            offset={20}
+            angle={-90}
+            fontSize={12}
+            textAnchor='middle'
+          />
         </YAxis>
 
         <Bar
           dataKey='monthDiff'
+          name={t('statistics.data2.bar')}
+          formatter={(value) => `${value} ${t('statistics.months')}`}
           fill='var(--accent)'
           cursor='pointer'
           onClick={(data) => navigate(`/contributions/${data.id}`)}
