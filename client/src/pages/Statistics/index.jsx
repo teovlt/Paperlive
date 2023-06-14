@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-import { Caption, Heading2, SectionContainer } from '../../theme/appElements';
-import { Bar, BarChart, CartesianGrid, Cell, Label, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import { Heading1, Heading2, Heading3, SectionContainer } from '../../theme/appElements';
+import { Bar, BarChart, CartesianGrid, Label, Legend, Tooltip, XAxis, YAxis } from 'recharts';
 
 const Statistics = () => {
   const { auth } = useAuth();
@@ -98,6 +98,7 @@ const Statistics = () => {
   return (
     <SectionContainer>
       <Heading2>Statistics</Heading2>
+      <Heading3>Distribution of Approved Long Papers per Venue Rank and Team Roles</Heading3>
       <BarChart
         width={752}
         height={500}
@@ -121,6 +122,9 @@ const Statistics = () => {
         <Bar dataKey='coLeader' fill='#2ec4b6' />
         <Bar dataKey='guest' fill='#ff3366' />
       </BarChart>
+      <Heading3>
+        Production Time for Contributions: Longest Approval Time by Contribution and Duration
+      </Heading3>
 
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data2}>
         <CartesianGrid strokeDasharray='3 3' />
@@ -139,7 +143,9 @@ const Statistics = () => {
           onClick={(data) => navigate(`/contributions/${data.id}`)}
         />
       </BarChart>
-
+      <Heading3>
+        Production Cost for Contributions: Cost Analysis by Contribution and Expense Amount
+      </Heading3>
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data3}>
         <CartesianGrid strokeDasharray='3 3' />
         <Tooltip cursor={{ fill: 'transparent' }} />

@@ -191,12 +191,15 @@ const Submission = () => {
           )}
         </InfoContainer>
       </SectionContainer>
-      <SectionContainer>
-        <Heading2>{t('submission.abstract')}</Heading2>
-        <Value style={{ textAlign: 'justify ', whiteSpace: 'pre-wrap' }}>
-          {submission?.abstract || '-'}
-        </Value>
-      </SectionContainer>
+      {submission.abstract && (
+        <SectionContainer>
+          <Heading2>{t('submission.abstract')}</Heading2>
+          <Value style={{ textAlign: 'justify ', whiteSpace: 'pre-wrap' }}>
+            {submission.abstract}
+          </Value>
+        </SectionContainer>
+      )}
+
       {isOpenAuthor && (
         <BackModal onClick={() => setIsOpenAuthor(false)}>
           <Modal>
