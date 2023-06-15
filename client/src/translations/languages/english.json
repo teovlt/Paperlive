@@ -58,7 +58,7 @@
     "bottom": "By creating an account, you agree to the terms of service. For more information about PaperLive's privacy practices, see the privacy statement."
   },
   "authentication": {
-    "servorError": "The name of the team already exist",
+    "servorError": "Servor Error",
     "teamName": "Team name",
     "signIn": "Sign In",
     "signUp": "Sign Up"

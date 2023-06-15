@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-import { Heading1, Heading2, Heading3, SectionContainer } from '../../theme/appElements';
+import { Button, Heading1, Heading2, Heading3, SectionContainer } from '../../theme/appElements';
 import { Bar, BarChart, CartesianGrid, Label, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import RadioGroup from '../../components/RadioGroup';
 
 function getRandomColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -16,6 +17,33 @@ const Statistics = () => {
 
   const contributions = auth.contributions;
   const submissions = contributions.flatMap((c) => c.submissions);
+  const [typeFilter, setTypeFilter] = useState('conference');
+
+  const data7 = Object.entries(
+    submissions.reduce((acc, s) => {
+      const { type } = s.venue;
+      const year = new Date(s.submissionDate).getFullYear();
+
+      if (type === typeFilter) {
+        if (!acc[year]) {
+          acc[year] = { approved: 0, rejected: 0 };
+        }
+
+        switch (s.state) {
+          case 'approved':
+            acc[year].approved += 1;
+            break;
+          case 'rejected':
+            acc[year].rejected += 1;
+            break;
+          default:
+            break;
+        }
+      }
+
+      return acc;
+    }, {})
+  ).map(([year, counts]) => ({ year, ...counts }));
 
   const data = Object.entries(
     contributions
@@ -181,12 +209,56 @@ const Statistics = () => {
     .map(([type, data]) => ({ type, ...data }))
     .sort((a, b) => a.type - b.type);
 
-  const data7 = 'hh';
+  const data8 = 'hh';
 
   return (
     <SectionContainer>
       <Heading2>Statistics</Heading2>
+      <Heading3>Number of reject and acceptation per year and per type of venue</Heading3>
 
+      <RadioGroup
+        name='type'
+        label='type de venue'
+        template={{
+          radios: [
+            {
+              label: 'conference',
+              value: 'conference',
+              defaultChecked: typeFilter === 'conference',
+            },
+            {
+              label: 'journal',
+              value: 'journal',
+              defaultChecked: typeFilter === 'journal',
+            },
+          ],
+        }}
+        onChange={(e) => {
+          setTypeFilter(e.target.value);
+        }}
+      />
+      <BarChart
+        width={752}
+        height={500}
+        margin={{
+          top: 15,
+        }}
+        data={data7}>
+        <CartesianGrid strokeDasharray='3 3' />
+        <XAxis dataKey='year' tick={{ fontSize: 12 }} />
+        <YAxis interval={1} tick={{ fontSize: 12 }}>
+          <Label
+            value='Nombre de rejet/acceptation'
+            offset={20}
+            angle={-90}
+            fontSize={12}
+            textAnchor='middle'
+          />
+        </YAxis>
+        <Legend />
+        <Bar dataKey='approved' fill='#20a4f3' />
+        <Bar dataKey='rejected' fill='#ff3366' />
+      </BarChart>
       <Heading3>Distribution of Approved Long Papers per Venue Rank and Team Roles</Heading3>
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data}>
         <CartesianGrid strokeDasharray='3 3' />

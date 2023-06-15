@@ -58,7 +58,7 @@
     "bottom": "En créant un compte, vous acceptez les conditions d'utilisation. Pour plus d'informations sur les pratiques de confidentialité de PaperLive, consultez la déclaration de confidentialité."
   },
   "authentication": {
-    "servorError": "Le nom de l'équipe existe déja",
+    "servorError": "Erreur du serveur  ",
     "teamName": "Nom de l'équipe",
     "signIn": "Se connecter",
     "signUp": "S'enregistrer"
