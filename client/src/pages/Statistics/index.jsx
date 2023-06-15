@@ -321,9 +321,7 @@ const Statistics = () => {
         />
       </BarChart>
 
-      <Heading3>
-        Production Cost for Contributions: Cost Analysis by Contribution and Expense Amount
-      </Heading3>
+      <Heading3>{t('statistics.data3.title')}</Heading3>
 
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data3}>
         <CartesianGrid strokeDasharray='3 3' />
@@ -332,11 +330,19 @@ const Statistics = () => {
         <XAxis dataKey='title' tick={null} />
 
         <YAxis dataKey='cost' tick={{ fontSize: 12 }}>
-          <Label value='Coût (€)' offset={20} angle={-90} fontSize={12} textAnchor='middle' />
+          <Label
+            value={t('statistics.data3.label')}
+            offset={20}
+            angle={-90}
+            fontSize={12}
+            textAnchor='middle'
+          />
         </YAxis>
 
         <Bar
           dataKey='cost'
+          name={t('statistics.data3.bar')}
+          formatter={(value) => `${value} ${t('statistics.euros')}`}
           fill='var(--accent)'
           cursor='pointer'
           onClick={(data) => navigate(`/contributions/${data.id}`)}

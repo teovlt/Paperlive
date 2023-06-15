@@ -284,12 +284,18 @@
       "label": "Duration (months)",
       "bar": "Production time"
     },
+    "data3": {
+      "title": "Production Cost for Contributions: Cost Analysis by Contribution and Expense Amount",
+      "label": "Cost (€)",
+      "bar": "Cost"
+    },
     "data7": {
       "title": "Number of reject and acceptation per year and per type of venue",
       "label": "Number of reject/acceptation",
       "bar1": "Approved",
       "bar2": "Rejected"
     },
-    "months": "months"
+    "months": "months",
+    "euros": "euros"
   }
 }

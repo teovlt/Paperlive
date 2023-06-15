@@ -285,12 +285,18 @@
       "label": "Durée (mois)",
       "bar": "Temps de production"
     },
+    "data3": {
+      "title": "Coût de production des contributions : Analyse des coûts par contribution et montant des dépenses.",
+      "label": "Coût (€)",
+      "bar": "Coût"
+    },
     "data7": {
       "title": "Nombre de rejets et d'acceptations par année et par type de lieu",
       "label": "Nombre de rejet/acceptation",
       "bar1": "Acceptée",
       "bar2": "Rejetée"
     },
-    "months": "mois"
+    "months": "mois",
+    "euros": "euros"
   }
 }
