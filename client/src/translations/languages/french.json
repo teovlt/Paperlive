@@ -249,7 +249,8 @@
     "isMainAuthor": "Est auteur principal ?",
     "workTime": "Temps de travail",
     "workTimeMonth": "Temps de travail (en mois)",
-    "hourlyCost": "Coût par heure (€)"
+    "hourlyCost": "Coût par heure (€)",
+    "email": "Adresse mail"
   },
   "venue": {
     "name": "Nom",
