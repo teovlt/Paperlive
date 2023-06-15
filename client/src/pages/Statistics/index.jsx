@@ -268,8 +268,8 @@ const Statistics = () => {
           />
         </YAxis>
         <Legend />
-        <Bar dataKey='approved' fill='#20a4f3' name={t('statistics.data7.bar1')} />
-        <Bar dataKey='rejected' fill='#ff3366' name={t('statistics.data7.bar2')} />
+        <Bar dataKey='approved' fill='#20a4f3' name={t('statistics.approved')} />
+        <Bar dataKey='rejected' fill='#ff3366' name={t('statistics.rejected')} />
       </BarChart>
       <Heading3>{t('statistics.data.title')}</Heading3>
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data}>
@@ -349,7 +349,7 @@ const Statistics = () => {
         />
       </BarChart>
 
-      <Heading3>Distribution of Approved and Rejected Submissions by Rank</Heading3>
+      <Heading3>{t('statistics.data4.title')}</Heading3>
 
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data4}>
         <CartesianGrid strokeDasharray='3 3' />
@@ -357,13 +357,13 @@ const Statistics = () => {
         <XAxis dataKey='rank' />
         <YAxis interval={1} tick={{ fontSize: 12 }} />
 
-        <Bar dataKey='approved' fill='var(--positive)' />
-        <Bar dataKey='rejected' fill='var(--negative)' />
+        <Bar dataKey='approved' fill='var(--positive)' name={t('statistics.approved')} />
+        <Bar dataKey='rejected' fill='var(--negative)' name={t('statistics.rejected')} />
 
         <Legend />
       </BarChart>
 
-      <Heading3>Distribution of Approved and Rejected Submissions by Venue Type</Heading3>
+      <Heading3>{t('statistics.data6.title')}</Heading3>
 
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data6}>
         <CartesianGrid strokeDasharray='3 3' />
@@ -371,8 +371,8 @@ const Statistics = () => {
         <XAxis dataKey='type' />
         <YAxis interval={1} tick={{ fontSize: 12 }} />
 
-        <Bar dataKey='approved' fill='var(--positive)' />
-        <Bar dataKey='rejected' fill='var(--negative)' />
+        <Bar dataKey='approved' fill='var(--positive)' name={t('statistics.approved')} />
+        <Bar dataKey='rejected' fill='var(--negative)' name={t('statistics.rejected')} />
 
         <Legend />
       </BarChart>

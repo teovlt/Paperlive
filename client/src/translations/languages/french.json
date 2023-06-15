@@ -274,7 +274,7 @@
   "statistics": {
     "Statistics": "Statistiques",
     "data": {
-      "title": "Répartition des articles longs approuvés par rang de lieu et rôles d'équipe",
+      "title": "Répartition des articles longs approuvés par rang, revues et rôles d'équipe",
       "label": "Nombre de participations",
       "bar1": "Meneur",
       "bar2": "Co-meneur",
@@ -290,13 +290,19 @@
       "label": "Coût (€)",
       "bar": "Coût"
     },
+    "data4": {
+      "title": "Répartition des soumissions approuvées et rejetées par rang."
+    },
+    "data6": {
+      "title": "Répartition des soumissions approuvées et rejetées par type de revue."
+    },
     "data7": {
-      "title": "Nombre de rejets et d'acceptations par année et par type de lieu",
-      "label": "Nombre de rejet/acceptation",
-      "bar1": "Acceptée",
-      "bar2": "Rejetée"
+      "title": "Nombre de rejets et d'acceptations par année et par type de revue",
+      "label": "Nombre de rejet/acceptation"
     },
     "months": "mois",
-    "euros": "euros"
+    "euros": "euros",
+    "approved": "Approuvée",
+    "rejected": "Rejetée"
   }
 }
