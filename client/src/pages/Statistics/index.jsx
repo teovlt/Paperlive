@@ -342,7 +342,7 @@ const Statistics = () => {
         <Bar
           dataKey='cost'
           name={t('statistics.data3.bar')}
-          formatter={(value) => `${value} ${t('statistics.euros')}`}
+          formatter={(value) => `${Math.round(value)} ${t('statistics.euros')}`}
           fill='var(--accent)'
           cursor='pointer'
           onClick={(data) => navigate(`/contributions/${data.id}`)}

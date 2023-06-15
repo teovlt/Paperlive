@@ -301,7 +301,7 @@
     },
     "months": "months",
     "euros": "euros",
-    "bar1": "Approved",
-    "bar2": "Rejected"
+    "approved": "Approved",
+    "rejected": "Rejected"
   }
 }
