@@ -226,7 +226,7 @@ const Statistics = () => {
   return (
     <SectionContainer>
       <Heading2>Statistics</Heading2>
-      <Heading3>Number of reject and acceptation per year and per type of venue</Heading3>
+      <Heading3>{t('statistics.data7.title')}</Heading3>
 
       <RadioGroup
         name='type'
@@ -260,7 +260,7 @@ const Statistics = () => {
         <XAxis dataKey='year' tick={{ fontSize: 12 }} />
         <YAxis interval={1} tick={{ fontSize: 12 }}>
           <Label
-            value='Nombre de rejet/acceptation'
+            value={t('statistics.data7.label')}
             offset={20}
             angle={-90}
             fontSize={12}
@@ -268,17 +268,17 @@ const Statistics = () => {
           />
         </YAxis>
         <Legend />
-        <Bar dataKey='approved' fill='#20a4f3' />
-        <Bar dataKey='rejected' fill='#ff3366' />
+        <Bar dataKey='approved' fill='#20a4f3' name={t('statistics.data7.bar1')} />
+        <Bar dataKey='rejected' fill='#ff3366' name={t('statistics.data7.bar2')} />
       </BarChart>
-      <Heading3>Distribution of Approved Long Papers per Venue Rank and Team Roles</Heading3>
+      <Heading3>{t('statistics.data.title')}</Heading3>
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data}>
         <CartesianGrid strokeDasharray='3 3' />
 
         <XAxis dataKey='rank' tick={{ fontSize: 12 }} />
         <YAxis interval={1} tick={{ fontSize: 12 }}>
           <Label
-            value='Nombre de participations'
+            value={t('statistics.data.label')}
             offset={20}
             angle={-90}
             fontSize={12}
@@ -286,9 +286,9 @@ const Statistics = () => {
           />
         </YAxis>
 
-        <Bar dataKey='leader' fill='#20a4f3' />
-        <Bar dataKey='coLeader' fill='#2ec4b6' />
-        <Bar dataKey='guest' fill='#ff3366' />
+        <Bar dataKey='leader' fill='#20a4f3' name={t('statistics.data.bar1')} />
+        <Bar dataKey='coLeader' fill='#2ec4b6' name={t('statistics.data.bar2')} />
+        <Bar dataKey='guest' fill='#ff3366' name={t('statistics.data.bar3')} />
 
         <Legend />
       </BarChart>

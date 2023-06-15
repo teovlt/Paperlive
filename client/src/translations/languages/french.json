@@ -272,10 +272,24 @@
     "back": "Retour à PaperLive"
   },
   "statistics": {
+    "Statistics": "Statistiques",
+    "data": {
+      "title": "Répartition des articles longs approuvés par rang de lieu et rôles d'équipe",
+      "label": "Nombre de participations",
+      "bar1": "Meneur",
+      "bar2": "Co-meneur",
+      "bar3": "Invité"
+    },
     "data2": {
       "title": "Temps de production pour les contributions : Temps d'approbation le plus long par contribution et durée",
       "label": "Durée (mois)",
       "bar": "Temps de production"
+    },
+    "data7": {
+      "title": "Nombre de rejets et d'acceptations par année et par type de lieu",
+      "label": "Nombre de rejet/acceptation",
+      "bar1": "Acceptée",
+      "bar2": "Rejetée"
     },
     "months": "mois"
   }
