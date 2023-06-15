@@ -6,11 +6,16 @@ import { useNavigate } from 'react-router-dom';
 import { Heading1, Heading2, Heading3, SectionContainer } from '../../theme/appElements';
 import { Bar, BarChart, CartesianGrid, Label, Legend, Tooltip, XAxis, YAxis } from 'recharts';
 
+function getRandomColor() {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
+
 const Statistics = () => {
   const { auth } = useAuth();
   const navigate = useNavigate();
 
   const contributions = auth.contributions;
+  const submissions = contributions.flatMap((c) => c.submissions);
 
   const data = Object.entries(
     contributions
@@ -32,7 +37,20 @@ const Statistics = () => {
           });
         return acc;
       }, {})
-  ).map(([rank, grades]) => ({ rank, ...grades }));
+  )
+    .map(([rank, grades]) => ({ rank, ...grades }))
+    .sort((a, b) => {
+      const rankA = a.rank.replace('*', '');
+      const rankB = b.rank.replace('*', '');
+
+      if (rankA < rankB) return -1;
+      else if (rankA > rankB) return 1;
+      else {
+        if (a.rank.includes('*') && !b.rank.includes('*')) return -1;
+        else if (!a.rank.includes('*') && b.rank.includes('*')) return 1;
+        else return 0;
+      }
+    });
 
   const data2 = Object.entries(
     contributions
@@ -66,28 +84,15 @@ const Statistics = () => {
           const { _id: id, title } = c;
           const { materialCost, authors } = s;
 
-          if (acc[id]) {
-            acc[id] = {
-              ...acc[id],
-              cost:
-                acc[id].cost +
-                materialCost +
-                authors.reduce(
-                  (acc, curr) => (acc += curr.hourlyCost * curr.workTime * 21.67 * 7),
-                  0
-                ),
-            };
-          } else {
-            acc[id] = {
-              title,
-              cost:
-                materialCost +
-                authors.reduce(
-                  (acc, curr) => (acc += curr.hourlyCost * curr.workTime * 21.67 * 7),
-                  0
-                ),
-            };
-          }
+          acc[id] = {
+            title,
+            cost:
+              (acc[id]?.cost ?? 0) +
+              authors.reduce(
+                (acc, curr) => (acc += curr.hourlyCost * curr.workTime * 21.67 * 7),
+                0
+              ),
+          };
         });
         return acc;
       }, {})
@@ -95,18 +100,97 @@ const Statistics = () => {
     .map(([id, data]) => ({ id, ...data }))
     .sort((a, b) => b.cost - a.cost);
 
+  const data4 = Object.entries(
+    submissions
+      .filter((s) => s.type === 'longPaper')
+      .reduce((acc, s) => {
+        const { rank } = s.venue;
+
+        switch (s.state) {
+          case 'approved':
+            acc[rank] = { ...acc[rank], approved: (acc[rank]?.approved ?? 0) + 1 };
+            break;
+          case 'rejected':
+            acc[rank] = { ...acc[rank], rejected: (acc[rank]?.rejected ?? 0) + 1 };
+            break;
+        }
+
+        return acc;
+      }, {})
+  )
+    .map(([rank, data]) => ({ rank, ...data }))
+    .sort((a, b) => {
+      const rankA = a.rank.replace('*', '');
+      const rankB = b.rank.replace('*', '');
+
+      if (rankA < rankB) return -1;
+      else if (rankA > rankB) return 1;
+      else {
+        if (a.rank.includes('*') && !b.rank.includes('*')) return -1;
+        else if (!a.rank.includes('*') && b.rank.includes('*')) return 1;
+        else return 0;
+      }
+    });
+
+  const data5 = Object.entries(
+    submissions
+      .filter((s) => s.type === 'longPaper')
+      .reduce((acc, s) => {
+        const { rank } = s.venue;
+        const year = new Date(s.submissionDate).getFullYear();
+
+        switch (s.state) {
+          case 'approved':
+            acc[year] = {
+              ...acc[year],
+              [rank]: { ...acc[year]?.[rank], approved: (acc[year]?.[rank]?.approved ?? 0) + 1 },
+            };
+            break;
+          case 'rejected':
+            acc[year] = {
+              ...acc[year],
+              [rank]: { ...acc[year]?.[rank], rejected: (acc[year]?.[rank]?.rejected ?? 0) + 1 },
+            };
+            break;
+        }
+
+        return acc;
+      }, {})
+  )
+    .map(([year, data]) => ({ year, ...data }))
+    .sort((a, b) => a.year - b.year);
+
+  const data6 = Object.entries(
+    submissions
+      .filter((s) => s.type === 'longPaper')
+      .reduce((acc, s) => {
+        const { type } = s.venue;
+
+        switch (s.state) {
+          case 'approved':
+            acc[type] = { ...acc[type], approved: (acc[type]?.approved ?? 0) + 1 };
+            break;
+          case 'rejected':
+            acc[type] = { ...acc[type], rejected: (acc[type]?.rejected ?? 0) + 1 };
+            break;
+        }
+
+        return acc;
+      }, {})
+  )
+    .map(([type, data]) => ({ type, ...data }))
+    .sort((a, b) => a.type - b.type);
+
+  const data7 = 'hh';
+
   return (
     <SectionContainer>
       <Heading2>Statistics</Heading2>
+
       <Heading3>Distribution of Approved Long Papers per Venue Rank and Team Roles</Heading3>
-      <BarChart
-        width={752}
-        height={500}
-        margin={{
-          top: 15,
-        }}
-        data={data}>
+      <BarChart width={752} height={500} margin={{ top: 15 }} data={data}>
         <CartesianGrid strokeDasharray='3 3' />
+
         <XAxis dataKey='rank' tick={{ fontSize: 12 }} />
         <YAxis interval={1} tick={{ fontSize: 12 }}>
           <Label
@@ -117,11 +201,14 @@ const Statistics = () => {
             textAnchor='middle'
           />
         </YAxis>
-        <Legend />
+
         <Bar dataKey='leader' fill='#20a4f3' />
         <Bar dataKey='coLeader' fill='#2ec4b6' />
         <Bar dataKey='guest' fill='#ff3366' />
+
+        <Legend />
       </BarChart>
+
       <Heading3>
         Production Time for Contributions: Longest Approval Time by Contribution and Duration
       </Heading3>
@@ -143,9 +230,11 @@ const Statistics = () => {
           onClick={(data) => navigate(`/contributions/${data.id}`)}
         />
       </BarChart>
+
       <Heading3>
         Production Cost for Contributions: Cost Analysis by Contribution and Expense Amount
       </Heading3>
+
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data3}>
         <CartesianGrid strokeDasharray='3 3' />
         <Tooltip cursor={{ fill: 'transparent' }} />
@@ -162,6 +251,34 @@ const Statistics = () => {
           cursor='pointer'
           onClick={(data) => navigate(`/contributions/${data.id}`)}
         />
+      </BarChart>
+
+      <Heading3>Distribution of Approved and Rejected Submissions by Rank</Heading3>
+
+      <BarChart width={752} height={500} margin={{ top: 15 }} data={data4}>
+        <CartesianGrid strokeDasharray='3 3' />
+
+        <XAxis dataKey='rank' />
+        <YAxis interval={1} tick={{ fontSize: 12 }} />
+
+        <Bar dataKey='approved' fill='var(--positive)' />
+        <Bar dataKey='rejected' fill='var(--negative)' />
+
+        <Legend />
+      </BarChart>
+
+      <Heading3>Distribution of Approved and Rejected Submissions by Venue Type</Heading3>
+
+      <BarChart width={752} height={500} margin={{ top: 15 }} data={data6}>
+        <CartesianGrid strokeDasharray='3 3' />
+
+        <XAxis dataKey='type' />
+        <YAxis interval={1} tick={{ fontSize: 12 }} />
+
+        <Bar dataKey='approved' fill='var(--positive)' />
+        <Bar dataKey='rejected' fill='var(--negative)' />
+
+        <Legend />
       </BarChart>
     </SectionContainer>
   );
