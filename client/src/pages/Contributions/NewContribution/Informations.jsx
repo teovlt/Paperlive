@@ -15,8 +15,6 @@ const Informations = ({ data, setData }) => {
   const { auth } = useAuth();
   const navigate = useNavigate();
 
-  if (!scientificFields) return <Loading />;
-
   return (
     <SectionContainer>
       <Input
