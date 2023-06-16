@@ -67,30 +67,7 @@ const Statistics = () => {
       }
     });
 
-  const data2 = Object.entries(
-    contributions
-      .filter((c) => c.state === 'approved')
-      .reduce((acc, c) => {
-        c.submissions
-          .filter((s) => s.type === 'longPaper' && s.state === 'approved')
-          .sort((a, b) => new Date(a.submissionDate) - new Date(b.submissionDate))
-          .slice(0, 1)
-          .flatMap((s) => {
-            const { _id: id, title, startDate } = c;
-            const { submissionDate: endDate } = s;
-
-            const monthDiff =
-              (new Date(endDate).getFullYear() - new Date(startDate).getFullYear()) * 12 +
-              (new Date(endDate).getMonth() - new Date(startDate).getMonth());
-
-            acc[id] = { title, monthDiff };
-          });
-        return acc;
-      }, {})
-  )
-    .map(([id, data]) => ({ id, ...data }))
-    .sort((a, b) => b.monthDiff - a.monthDiff);
-
+  
   const data3 = Object.entries(
     contributions
       .filter((c) => c.state === 'approved')
@@ -362,31 +339,6 @@ const Statistics = () => {
     //       <Bar dataKey='guest' fill='#ff3366' />
 
     //       <Legend />
-    //     </BarChart>
-    //   </SectionContainer>
-
-    //   <Heading3>{t('statistics.data2.title')}</Heading3>
-    //   <SectionContainer>
-    //     <Heading3>
-    //       Production Time for Contributions: Longest Approval Time by Contribution and Duration
-    //     </Heading3>
-
-    //     <BarChart width={752} height={500} margin={{ top: 15 }} data={data2}>
-    //       <CartesianGrid strokeDasharray='3 3' />
-    //       <Tooltip cursor={{ fill: 'transparent' }} />
-
-    //       <XAxis dataKey='title' tick={null} />
-
-    //       <YAxis dataKey='monthDiff' tick={{ fontSize: 12 }}>
-    //         <Label value='Durée (mois)' offset={20} angle={-90} fontSize={12} textAnchor='middle' />
-    //       </YAxis>
-
-    //       <Bar
-    //         dataKey='monthDiff'
-    //         fill='var(--accent)'
-    //         cursor='pointer'
-    //         onClick={(data) => navigate(`/contributions/${data.id}`)}
-    //       />
     //     </BarChart>
     //   </SectionContainer>
 
