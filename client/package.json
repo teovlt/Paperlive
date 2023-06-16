@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@iconscout/react-unicons": "^2.0.2",
     "axios": "^1.3.6",
     "i18next": "^22.4.15",
     "i18next-browser-languagedetector": "^7.0.1",
