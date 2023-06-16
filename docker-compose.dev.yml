@@ -14,6 +14,8 @@ services:
       - /app/node_modules
     environment:
       - VITE_API_URI=http://localhost:3000
+    networks:
+      - paperlive
 
   api:
     build:
@@ -27,6 +29,8 @@ services:
     volumes:
       - ./server:/app
       - /app/node_modules
+    networks:
+      - paperlive
 
   database:
     image: mongo:latest
@@ -34,3 +38,8 @@ services:
       - '27017:27017'
     volumes:
       - ./server/data:/data/db
+    networks:
+      - paperlive
+
+networks:
+  paperlive:
