@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ProductionTime = ({ contributions }) => {
   const { t } = useTranslation();
-  const { navigate } = useNavigate();
+  const navigate = useNavigate();
 
   const data2 = Object.entries(
     contributions

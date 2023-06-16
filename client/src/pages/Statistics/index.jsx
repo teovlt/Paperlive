@@ -15,7 +15,7 @@ const Statistics = () => {
     <>
       <Heading2>{t('statistics.statistics')}</Heading2>
       <DistributionPerRank contributions={contributions} />
-      <ProductionTime contributions={contributions}></ProductionTime>;
+      <ProductionTime contributions={contributions}></ProductionTime>
     </>
   );
 };
