@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { LineWrapper } from '../contributionsElements';
 import { Button, SectionContainer } from '../../../theme/appElements';
 import Input from '../../../components/Input';
 import RadioGroup from '../../../components/RadioGroup';
 import Selector from '../../../components/Selector';
 import useAuth from '../../../hooks/useAuth';
-import FormSelector from '../../../components/FormSelector';
 import Loading from '../../../components/Loading';
 import InputSelector from '../../../components/InputSelector';
 
@@ -16,18 +14,6 @@ const Informations = ({ data, setData }) => {
   const { t } = useTranslation();
   const { auth } = useAuth();
   const navigate = useNavigate();
-  const axiosPrivate = useAxiosPrivate();
-
-  const [scientificFields, setScientificFields] = useState(null);
-
-  useEffect(() => {
-    async function fetchScientificFields() {
-      const response = await axiosPrivate.get('/scientificfields');
-      setScientificFields(response.data);
-    }
-
-    fetchScientificFields();
-  }, []);
 
   if (!scientificFields) return <Loading />;
 

@@ -11,11 +11,9 @@ import { useNavigate } from 'react-router-dom';
 
 import Input from '../../../components/Input';
 import RadioGroup from '../../../components/RadioGroup';
-import FileInput from '../../../components/FileInput';
 import Selector from '../../../components/Selector';
 import Chips from '../../../components/Chips';
 import Loading from '../../../components/Loading';
-import FormSelector from '../../../components/FormSelector';
 import TextArea from '../../../components/TextArea';
 import InputSelector from '../../../components/InputSelector';
 
@@ -108,19 +106,6 @@ const ContributionSettings = () => {
       setDeleteErrMsg(t('contribution.deleteContWrongName'));
     }
   };
-
-  const [scientificFields, setScientificFields] = useState(null);
-
-  useEffect(() => {
-    async function fetchScientificFields() {
-      const response = await axiosPrivate.get('/scientificfields');
-      setScientificFields(response.data);
-    }
-
-    fetchScientificFields();
-  }, []);
-
-  if (!scientificFields) return <Loading />;
 
   return (
     <>
