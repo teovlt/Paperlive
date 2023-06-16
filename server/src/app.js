@@ -35,7 +35,7 @@ const corsOptions = {
 app.use((req, res, next) => {
   console.log(
     `[${new Date().toLocaleTimeString()}] - Method: [${req.method}] - Url: [${req.url}] - IP: [${
-      req.socket.remoteAddress
+      req.headers['x-real-ip'] || req.socket.remoteAddress
     }]`
   );
   next();
