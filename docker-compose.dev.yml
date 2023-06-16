@@ -1,0 +1,36 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - api
+    ports:
+      - '5173:5173'
+    command: npm run dev
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URI=http://localhost:3000
+
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    depends_on:
+      - database
+    ports:
+      - '3000:3000'
+    command: npm run dev
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+
+  database:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./server/data:/data/db

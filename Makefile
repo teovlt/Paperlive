@@ -1,33 +1,23 @@
+dev:
+	docker compose -f docker-compose.dev.yml up -d
+
 build:
-	docker compose build
-up:
-	docker compose up -d
-start:
-	docker compose start	
-down:
-	docker compose down
+	docker compose -f docker-compose.dev.yml build
+
 stop:
-	docker compose stop
-restart:
-	docker compose down
-	docker compose up -d
-ps:
-	docker compose ps
-logs-app:
-	docker compose logs -f app
-logs-api:
-	docker compose logs -f api
-logs-db:
-	docker compose logs -f db
-test:
-	docker exec -it paperlive-api-1 npm run test -- --runInBand 
-coverage:
-	docker exec -it paperlive-api-1 npm run coverage -- --runInBand
-dropDatabase:
+	docker compose -f docker-compose.dev.yml stop
+
+clean:
 	rm -rf server/data
 	find server/uploads -type f ! -name 'team-picture-default.png' -exec rm {} +
-	make restart
-insertAdmin:
-	curl -s --location 'http://localhost:3000/api/auth/register' \
-		--header 'Content-Type: application/json' \
-		--data '{"name": "admin", "password": "admin"}'
+	docker compose -f docker-compose.dev.yml down
+	docker compose -f docker-compose.dev.yml up -d
+
+deploy:
+	docker compose -f docker-compose.prod.yml up --build -d
+
+test:
+	docker exex -it paperlive-api-1 npm run test -- --runInBand
+
+coverage:
+	docker exex -it paperlive-api-1 npm run coverage -- --runInBand

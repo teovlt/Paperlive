@@ -3,43 +3,29 @@ services:
   app:
     build:
       context: ./client
-      dockerfile: Dockerfile
-    depends_on:
-      - api
+      dockerfile: Dockerfile.prod
     ports:
-      - '5173:5173'
-    command: npm run dev
-    volumes:
-      - ./client:/app
-      - /app/node_modules
+      - '80:80'
     environment:
       - VITE_API_URI=http://localhost:3000
-    networks:
-      - paperlive-network
+    command: nginx -g "daemon off;"
 
   api:
     build:
       context: ./server
       dockerfile: Dockerfile
     depends_on:
-      - db
+      - database
     ports:
       - '3000:3000'
-    command: npm run dev
+    command: node index.js
     volumes:
       - ./server:/app
       - /app/node_modules
-    networks:
-      - paperlive-network
 
-  db:
+  database:
     image: mongo:latest
     ports:
       - '27017:27017'
     volumes:
       - ./server/data:/data/db
-    networks:
-      - paperlive-network
-
-networks:
-  paperlive-network:

@@ -9,7 +9,7 @@ const port = process.env.PORT || 3001;
 
 // Connect to MongoDB using Mongoose
 mongoose
-  .connect('mongodb://db:27017/paperlive', {
+  .connect('mongodb://database:27017/paperlive', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
