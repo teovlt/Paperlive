@@ -4,7 +4,18 @@ import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 import { Button, Heading1, Heading2, Heading3, SectionContainer } from '../../theme/appElements';
-import { Bar, BarChart, CartesianGrid, Label, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Label,
+  Legend,
+  Line,
+  LineChart,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
 import RadioGroup from '../../components/RadioGroup';
 
 function getRandomColor() {
@@ -17,33 +28,6 @@ const Statistics = () => {
 
   const contributions = auth.contributions;
   const submissions = contributions.flatMap((c) => c.submissions);
-  const [typeFilter, setTypeFilter] = useState('conference');
-
-  const data7 = Object.entries(
-    submissions.reduce((acc, s) => {
-      const { type } = s.venue;
-      const year = new Date(s.submissionDate).getFullYear();
-
-      if (type === typeFilter) {
-        if (!acc[year]) {
-          acc[year] = { approved: 0, rejected: 0 };
-        }
-
-        switch (s.state) {
-          case 'approved':
-            acc[year].approved += 1;
-            break;
-          case 'rejected':
-            acc[year].rejected += 1;
-            break;
-          default:
-            break;
-        }
-      }
-
-      return acc;
-    }, {})
-  ).map(([year, counts]) => ({ year, ...counts }));
 
   const data = Object.entries(
     contributions
@@ -209,150 +193,220 @@ const Statistics = () => {
     .map(([type, data]) => ({ type, ...data }))
     .sort((a, b) => a.type - b.type);
 
-  const data8 = 'hh';
+  const filter7 = { type: 'conference' };
+  const data7 = Object.entries(
+    submissions.reduce((acc, s) => {
+      const { type } = s.venue;
+      const year = new Date(s.submissionDate).getFullYear();
+
+      if (type === filter7.type) {
+        if (!acc[year]) {
+          acc[year] = { approved: 0, rejected: 0 };
+        }
+
+        switch (s.state) {
+          case 'approved':
+            acc[year].approved += 1;
+            break;
+          case 'rejected':
+            acc[year].rejected += 1;
+            break;
+          default:
+            break;
+        }
+      }
+
+      return acc;
+    }, {})
+  )
+    .map(([year, counts]) => ({ year, ...counts }))
+    .sort((a, b) => a.year - b.year);
+
+  console.log(data7);
+
+  const filter = {
+    rank: 'B',
+  };
+
+  const data8 = Object.entries(
+    submissions
+      .filter(
+        (s) => s.state === 'approved' && s.type === 'longPaper' && s.venue.rank === filter.rank
+      )
+      .reduce((acc, s) => {
+        const year = new Date(s.submissionDate).getFullYear();
+
+        s.authors.flatMap((author) => {
+          const { _id: id } = author;
+          acc[year] = { ...acc[year], [id]: (acc[year]?.[id] ?? 0) + 1 };
+        });
+
+        return acc;
+      }, {})
+  )
+    .map(([year, data]) => ({ year, ...data }))
+    .sort((a, b) => a.year - b.year);
 
   return (
-    <SectionContainer>
+    <>
       <Heading2>Statistics</Heading2>
-      <Heading3>Number of reject and acceptation per year and per type of venue</Heading3>
 
-      <RadioGroup
-        name='type'
-        label='type de venue'
-        template={{
-          radios: [
-            {
-              label: 'conference',
-              value: 'conference',
-              defaultChecked: typeFilter === 'conference',
-            },
-            {
-              label: 'journal',
-              value: 'journal',
-              defaultChecked: typeFilter === 'journal',
-            },
-          ],
-        }}
-        onChange={(e) => {
-          setTypeFilter(e.target.value);
-        }}
-      />
-      <BarChart
-        width={752}
-        height={500}
-        margin={{
-          top: 15,
-        }}
-        data={data7}>
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='year' tick={{ fontSize: 12 }} />
-        <YAxis interval={1} tick={{ fontSize: 12 }}>
-          <Label
-            value='Nombre de rejet/acceptation'
-            offset={20}
-            angle={-90}
-            fontSize={12}
-            textAnchor='middle'
+      <SectionContainer>
+        <BarChart width={752} height={500} data={data8} margin={{ top: 15 }}>
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis dataKey='year' tick={{ fontSize: 12 }} />
+          <YAxis interval={1} tick={{ fontSize: 12 }} />
+        </BarChart>
+      </SectionContainer>
+
+      {/* <SectionContainer>
+        <LineChart width={752} height={200} data={data8} margin={{ top: 15 }}>
+          <CartesianGrid strokeDasharray='3 3' />
+
+          <XAxis dataKey='year' />
+          <YAxis interval={3} />
+          {Object.entries(data8).map(([_, e]) =>
+            Object.entries(e).map(([key, _], index) => {
+              if (key !== 'year') {
+                return (
+                  <Line key={index} dataKey={key} stroke={getRandomColor()} activeDot={{ r: 8 }} />
+                );
+              }
+            })
+          )}
+        </LineChart>
+      </SectionContainer> */}
+
+      <SectionContainer>
+        <Heading3>Distribution of Approved Long Papers per Venue Rank and Team Roles</Heading3>
+        <BarChart width={752} height={500} margin={{ top: 15 }} data={data}>
+          <CartesianGrid strokeDasharray='3 3' />
+
+          <XAxis dataKey='rank' tick={{ fontSize: 12 }} />
+          <YAxis interval={1} tick={{ fontSize: 12 }}>
+            <Label
+              value='Nombre de participations'
+              offset={20}
+              angle={-90}
+              fontSize={12}
+              textAnchor='middle'
+            />
+          </YAxis>
+
+          <Bar dataKey='leader' fill='#20a4f3' />
+          <Bar dataKey='coLeader' fill='#2ec4b6' />
+          <Bar dataKey='guest' fill='#ff3366' />
+
+          <Legend />
+        </BarChart>
+      </SectionContainer>
+
+      <SectionContainer>
+        <Heading3>
+          Production Time for Contributions: Longest Approval Time by Contribution and Duration
+        </Heading3>
+
+        <BarChart width={752} height={500} margin={{ top: 15 }} data={data2}>
+          <CartesianGrid strokeDasharray='3 3' />
+          <Tooltip cursor={{ fill: 'transparent' }} />
+
+          <XAxis dataKey='title' tick={null} />
+
+          <YAxis dataKey='monthDiff' tick={{ fontSize: 12 }}>
+            <Label value='Durée (mois)' offset={20} angle={-90} fontSize={12} textAnchor='middle' />
+          </YAxis>
+
+          <Bar
+            dataKey='monthDiff'
+            fill='var(--accent)'
+            cursor='pointer'
+            onClick={(data) => navigate(`/contributions/${data.id}`)}
           />
-        </YAxis>
-        <Legend />
-        <Bar dataKey='approved' fill='#20a4f3' />
-        <Bar dataKey='rejected' fill='#ff3366' />
-      </BarChart>
-      <Heading3>Distribution of Approved Long Papers per Venue Rank and Team Roles</Heading3>
-      <BarChart width={752} height={500} margin={{ top: 15 }} data={data}>
-        <CartesianGrid strokeDasharray='3 3' />
+        </BarChart>
+      </SectionContainer>
 
-        <XAxis dataKey='rank' tick={{ fontSize: 12 }} />
-        <YAxis interval={1} tick={{ fontSize: 12 }}>
-          <Label
-            value='Nombre de participations'
-            offset={20}
-            angle={-90}
-            fontSize={12}
-            textAnchor='middle'
+      <SectionContainer>
+        <Heading3>
+          Production Cost for Contributions: Cost Analysis by Contribution and Expense Amount
+        </Heading3>
+
+        <BarChart width={752} height={500} margin={{ top: 15 }} data={data3}>
+          <CartesianGrid strokeDasharray='3 3' />
+          <Tooltip cursor={{ fill: 'transparent' }} />
+
+          <XAxis dataKey='title' tick={null} />
+
+          <YAxis dataKey='cost' tick={{ fontSize: 12 }}>
+            <Label value='Coût (€)' offset={20} angle={-90} fontSize={12} textAnchor='middle' />
+          </YAxis>
+
+          <Bar
+            dataKey='cost'
+            fill='var(--accent)'
+            cursor='pointer'
+            onClick={(data) => navigate(`/contributions/${data.id}`)}
           />
-        </YAxis>
+        </BarChart>
+      </SectionContainer>
 
-        <Bar dataKey='leader' fill='#20a4f3' />
-        <Bar dataKey='coLeader' fill='#2ec4b6' />
-        <Bar dataKey='guest' fill='#ff3366' />
+      <SectionContainer>
+        <Heading3>Distribution of Approved and Rejected Submissions by Rank</Heading3>
 
-        <Legend />
-      </BarChart>
+        <BarChart width={752} height={500} margin={{ top: 15 }} data={data4}>
+          <CartesianGrid strokeDasharray='3 3' />
 
-      <Heading3>
-        Production Time for Contributions: Longest Approval Time by Contribution and Duration
-      </Heading3>
+          <XAxis dataKey='rank' />
+          <YAxis interval={1} tick={{ fontSize: 12 }} />
 
-      <BarChart width={752} height={500} margin={{ top: 15 }} data={data2}>
-        <CartesianGrid strokeDasharray='3 3' />
-        <Tooltip cursor={{ fill: 'transparent' }} />
+          <Bar dataKey='approved' fill='var(--positive)' />
+          <Bar dataKey='rejected' fill='var(--negative)' />
 
-        <XAxis dataKey='title' tick={null} />
+          <Legend />
+        </BarChart>
+      </SectionContainer>
 
-        <YAxis dataKey='monthDiff' tick={{ fontSize: 12 }}>
-          <Label value='Durée (mois)' offset={20} angle={-90} fontSize={12} textAnchor='middle' />
-        </YAxis>
+      <SectionContainer>
+        <Heading3>Distribution of Approved and Rejected Submissions by Venue Type</Heading3>
 
-        <Bar
-          dataKey='monthDiff'
-          fill='var(--accent)'
-          cursor='pointer'
-          onClick={(data) => navigate(`/contributions/${data.id}`)}
-        />
-      </BarChart>
+        <BarChart width={752} height={500} margin={{ top: 15 }} data={data6}>
+          <CartesianGrid strokeDasharray='3 3' />
 
-      <Heading3>
-        Production Cost for Contributions: Cost Analysis by Contribution and Expense Amount
-      </Heading3>
+          <XAxis dataKey='type' />
+          <YAxis interval={1} tick={{ fontSize: 12 }} />
 
-      <BarChart width={752} height={500} margin={{ top: 15 }} data={data3}>
-        <CartesianGrid strokeDasharray='3 3' />
-        <Tooltip cursor={{ fill: 'transparent' }} />
+          <Bar dataKey='approved' fill='var(--positive)' />
+          <Bar dataKey='rejected' fill='var(--negative)' />
 
-        <XAxis dataKey='title' tick={null} />
+          <Legend />
+        </BarChart>
+      </SectionContainer>
 
-        <YAxis dataKey='cost' tick={{ fontSize: 12 }}>
-          <Label value='Coût (€)' offset={20} angle={-90} fontSize={12} textAnchor='middle' />
-        </YAxis>
-
-        <Bar
-          dataKey='cost'
-          fill='var(--accent)'
-          cursor='pointer'
-          onClick={(data) => navigate(`/contributions/${data.id}`)}
-        />
-      </BarChart>
-
-      <Heading3>Distribution of Approved and Rejected Submissions by Rank</Heading3>
-
-      <BarChart width={752} height={500} margin={{ top: 15 }} data={data4}>
-        <CartesianGrid strokeDasharray='3 3' />
-
-        <XAxis dataKey='rank' />
-        <YAxis interval={1} tick={{ fontSize: 12 }} />
-
-        <Bar dataKey='approved' fill='var(--positive)' />
-        <Bar dataKey='rejected' fill='var(--negative)' />
-
-        <Legend />
-      </BarChart>
-
-      <Heading3>Distribution of Approved and Rejected Submissions by Venue Type</Heading3>
-
-      <BarChart width={752} height={500} margin={{ top: 15 }} data={data6}>
-        <CartesianGrid strokeDasharray='3 3' />
-
-        <XAxis dataKey='type' />
-        <YAxis interval={1} tick={{ fontSize: 12 }} />
-
-        <Bar dataKey='approved' fill='var(--positive)' />
-        <Bar dataKey='rejected' fill='var(--negative)' />
-
-        <Legend />
-      </BarChart>
-    </SectionContainer>
+      <SectionContainer>
+        <Heading3>Number of reject and acceptation per year and per type of venue</Heading3>
+        <BarChart
+          width={752}
+          height={500}
+          margin={{
+            top: 15,
+          }}
+          data={data7}>
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis dataKey='year' tick={{ fontSize: 12 }} />
+          <YAxis interval={1} tick={{ fontSize: 12 }}>
+            <Label
+              value='Nombre de rejet/acceptation'
+              offset={20}
+              angle={-90}
+              fontSize={12}
+              textAnchor='middle'
+            />
+          </YAxis>
+          <Legend />
+          <Bar dataKey='approved' fill='#20a4f3' />
+          <Bar dataKey='rejected' fill='#ff3366' />
+        </BarChart>
+      </SectionContainer>
+    </>
   );
 };
 
