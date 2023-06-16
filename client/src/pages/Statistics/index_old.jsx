@@ -202,33 +202,36 @@ const Statistics = () => {
   const [yearDisplay2, setYearDisplay2] = useState(null);
 
   const data7 = Object.entries(
-    submissions
-      .filter(
-        (s) =>
-          yearDisplay <= new Date(s.submissionDate).getFullYear() &&
-          new Date(s.submissionDate).getFullYear() <= yearDisplay2
-      )
-      .reduce((acc, s) => {
-        const { type } = s.venue;
-        const year = new Date(s.submissionDate).getFullYear();
+    submissions.reduce((acc, s) => {
+      const { type } = s.venue;
+      const submissionYear = new Date(s.submissionDate).getFullYear();
 
-        if (!acc[year]) {
-          acc[year] = { approved: 0, rejected: 0 };
+      if (
+        yearDisplay !== null &&
+        yearDisplay2 !== null &&
+        submissionYear >= yearDisplay &&
+        submissionYear <= yearDisplay2
+      ) {
+        console.log(submissionYear);
+        //Changer en fonction des types
+        if (!acc[submissionYear]) {
+          acc[submissionYear] = { approved: 0, rejected: 0 };
         }
 
         switch (s.state) {
           case 'approved':
-            acc[year].approved += 1;
+            acc[submissionYear].approved += 1;
             break;
           case 'rejected':
-            acc[year].rejected += 1;
+            acc[submissionYear].rejected += 1;
             break;
           default:
             break;
         }
+      }
 
-        return acc;
-      }, {})
+      return acc;
+    }, {})
   )
     .map(([year, counts]) => ({ year, ...counts }))
     .sort((a, b) => a.year - b.year);
