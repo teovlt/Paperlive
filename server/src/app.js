@@ -32,6 +32,14 @@ const corsOptions = {
   methods: 'GET, POST, PUT, PATCH, DELETE',
   preflightContinue: true,
 };
+app.use((req, res, next) => {
+  console.log(
+    `[${new Date().toLocaleTimeString()}] - Method: [${req.method}] - Url: [${req.url}] - IP: [${
+      req.socket.remoteAddress
+    }]`
+  );
+  next();
+});
 
 app.use(cors(corsOptions));
 
