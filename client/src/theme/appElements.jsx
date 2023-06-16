@@ -94,6 +94,7 @@ export const Heading3 = styled.h3`
 
 export const Paragraph = styled.p`
   color: var(--black-secondary);
+  text-align: justify;
 `;
 
 export const Caption = styled.p`

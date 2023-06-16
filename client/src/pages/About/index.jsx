@@ -20,12 +20,12 @@ const About = () => {
             <Link to='mailto:alain.tchana@grenoble-inp.fr'>alain.tchana@grenoble-inp.fr</Link>
           </li>
           <li>
-            Téo VILLET :&nbsp;
-            <Link to='mailto:teo.villet2@gmail.com'>teo.villet2@gmail.com</Link>
-          </li>
-          <li>
             Gabriel HALUS :&nbsp;
             <Link to='mailto:gabrielhalus@gmail.com'>gabrielhalus@gmail.com</Link>
+          </li>
+          <li>
+            Téo VILLET :&nbsp;
+            <Link to='mailto:teo.villet2@gmail.com'>teo.villet2@gmail.com</Link>
           </li>
         </Ul>
       </Paragraph>
