@@ -1,29 +1,34 @@
-import { useTranslation } from 'react-i18next';
-import { Bar, BarChart, CartesianGrid, Legend, XAxis, YAxis } from 'recharts';
-import { Heading3, SectionContainer } from '../../../theme/appElements';
+import React from 'react';
 
+import { BarChart, Bar, CartesianGrid, Tooltip, XAxis, YAxis, Label, Legend } from 'recharts';
+import { Heading3, SectionContainer } from '../../../theme/appElements';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 const DistributionPerRank = ({ contributions }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
-  const data = Object.entries(
-    contributions
-      .filter((c) => c.state === 'approved')
-      .reduce((acc, c) => {
-        c.submissions
-          .filter((s) => s.type === 'longPaper' && s.state === 'approved')
-          .sort((a, b) => new Date(a.submissionDate) - new Date(b.submissionDate))
-          .slice(0, 1)
-          .flatMap((s) => {
-            if (s.venue) {
-              const { rank } = s.venue;
-              const { teamRole: role } = c;
-              acc[rank] = { ...acc[rank], [role]: (acc[rank]?.[role] ?? 0) + 1 };
-            }
-          });
+  const submissions = contributions.flatMap((c) => c.submissions);
+
+  const data4 = Object.entries(
+    submissions
+      .filter((s) => s.type === 'longPaper')
+      .reduce((acc, s) => {
+        const { rank } = s.venue;
+
+        switch (s.state) {
+          case 'approved':
+            acc[rank] = { ...acc[rank], approved: (acc[rank]?.approved ?? 0) + 1 };
+            break;
+          case 'rejected':
+            acc[rank] = { ...acc[rank], rejected: (acc[rank]?.rejected ?? 0) + 1 };
+            break;
+        }
+
         return acc;
       }, {})
   )
-    .map(([rank, grades]) => ({ rank, ...grades }))
+    .map(([rank, data]) => ({ rank, ...data }))
     .sort((a, b) => {
       const rankA = a.rank.replace('*', '');
       const rankB = b.rank.replace('*', '');
@@ -39,17 +44,16 @@ const DistributionPerRank = ({ contributions }) => {
 
   return (
     <SectionContainer>
-      <Heading3>{t('statistics.distributionPerRank.title')}</Heading3>
+      <Heading3>{t('statistics.data4.title')}</Heading3>
 
-      <BarChart width={752} height={500} data={data}>
+      <BarChart width={752} height={500} margin={{ top: 15 }} data={data4}>
         <CartesianGrid strokeDasharray='3 3' />
 
-        <XAxis dataKey='rank' tick={{ fontSize: 15 }} />
-        <YAxis tick={{ fontSize: 15 }} />
+        <XAxis dataKey='rank' />
+        <YAxis interval={1} tick={{ fontSize: 12 }} />
 
-        <Bar dataKey='leader' fill='#20a4f3' />
-        <Bar dataKey='coLeader' fill='#2ec4b6' />
-        <Bar dataKey='guest' fill='#ff3366' />
+        <Bar dataKey='approved' fill='var(--positive)' name={t('statistics.approved')} />
+        <Bar dataKey='rejected' fill='var(--negative)' name={t('statistics.rejected')} />
 
         <Legend />
       </BarChart>

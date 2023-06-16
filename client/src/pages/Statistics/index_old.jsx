@@ -32,66 +32,6 @@ const Statistics = () => {
   const contributions = auth.contributions;
   const submissions = contributions.flatMap((c) => c.submissions);
 
-  const data = Object.entries(
-    contributions
-      .filter((c) => c.state === 'approved')
-      .reduce((acc, c) => {
-        c.submissions
-          .filter((s) => s.type === 'longPaper' && s.state === 'approved')
-          .sort((a, b) => new Date(a.submissionDate) - new Date(b.submissionDate))
-          .slice(0, 1)
-          .flatMap((s) => {
-            if (s.venue) {
-              if (acc[s.venue.rank]) {
-                if (acc[s.venue.rank][c.teamRole]) acc[s.venue.rank][c.teamRole] += 1;
-                else acc[s.venue.rank] = { ...acc[s.venue.rank], [c.teamRole]: 1 };
-              } else {
-                acc[s.venue.rank] = { [c.teamRole]: 1 };
-              }
-            }
-          });
-        return acc;
-      }, {})
-  )
-    .map(([rank, grades]) => ({ rank, ...grades }))
-    .sort((a, b) => {
-      const rankA = a.rank.replace('*', '');
-      const rankB = b.rank.replace('*', '');
-
-      if (rankA < rankB) return -1;
-      else if (rankA > rankB) return 1;
-      else {
-        if (a.rank.includes('*') && !b.rank.includes('*')) return -1;
-        else if (!a.rank.includes('*') && b.rank.includes('*')) return 1;
-        else return 0;
-      }
-    });
-
-  
-  const data3 = Object.entries(
-    contributions
-      .filter((c) => c.state === 'approved')
-      .reduce((acc, c) => {
-        c.submissions.flatMap((s) => {
-          const { _id: id, title } = c;
-          const { materialCost, authors } = s;
-
-          acc[id] = {
-            title,
-            cost:
-              (acc[id]?.cost ?? 0) +
-              authors.reduce(
-                (acc, curr) => (acc += curr.hourlyCost * curr.workTime * 21.67 * 7),
-                0
-              ),
-          };
-        });
-        return acc;
-      }, {})
-  )
-    .map(([id, data]) => ({ id, ...data }))
-    .sort((a, b) => b.cost - a.cost);
-
   const data4 = Object.entries(
     submissions
       .filter((s) => s.type === 'longPaper')
@@ -238,29 +178,7 @@ const Statistics = () => {
 
   return (
     <>
-      <Heading2>Statistics</Heading2>
-
-      {/* <RadioGroup
-        name='type'
-        label='type de venue'
-        template={{
-          radios: [
-            {
-              label: 'conference',
-              value: 'conference',
-              defaultChecked: typeFilter === 'conference',
-            },
-            {
-              label: 'journal',
-              value: 'journal',
-              defaultChecked: typeFilter === 'journal',
-            },
-          ],
-        }}
-        onChange={(e) => {
-          setTypeFilter(e.target.value);
-        }}
-      /> */}
+     
 
       <Heading3>{t('statistics.data7.title')}</Heading3>
       <Input type='text' onChange={(e) => setYearDisplay(e.target.value)} label='année'></Input>
@@ -318,53 +236,6 @@ const Statistics = () => {
     //     </LineChart>
     //   </SectionContainer> */}
 
-    //   <SectionContainer>
-    //     <Heading3>Distribution of Approved Long Papers per Venue Rank and Team Roles</Heading3>
-    //     <BarChart width={752} height={500} margin={{ top: 15 }} data={data}>
-    //       <CartesianGrid strokeDasharray='3 3' />
-
-    //       <XAxis dataKey='rank' tick={{ fontSize: 12 }} />
-    //       <YAxis interval={1} tick={{ fontSize: 12 }}>
-    //         <Label
-    //           value='Nombre de participations'
-    //           offset={20}
-    //           angle={-90}
-    //           fontSize={12}
-    //           textAnchor='middle'
-    //         />
-    //       </YAxis>
-
-    //       <Bar dataKey='leader' fill='#20a4f3' />
-    //       <Bar dataKey='coLeader' fill='#2ec4b6' />
-    //       <Bar dataKey='guest' fill='#ff3366' />
-
-    //       <Legend />
-    //     </BarChart>
-    //   </SectionContainer>
-
-    //   <SectionContainer>
-    //     <Heading3>
-    //       Production Cost for Contributions: Cost Analysis by Contribution and Expense Amount
-    //     </Heading3>
-
-    //     <BarChart width={752} height={500} margin={{ top: 15 }} data={data3}>
-    //       <CartesianGrid strokeDasharray='3 3' />
-    //       <Tooltip cursor={{ fill: 'transparent' }} />
-
-    //       <XAxis dataKey='title' tick={null} />
-
-    //       <YAxis dataKey='cost' tick={{ fontSize: 12 }}>
-    //         <Label value='Coût (€)' offset={20} angle={-90} fontSize={12} textAnchor='middle' />
-    //       </YAxis>
-
-    //       <Bar
-    //         dataKey='cost'
-    //         fill='var(--accent)'
-    //         cursor='pointer'
-    //         onClick={(data) => navigate(`/contributions/${data.id}`)}
-    //       />
-    //     </BarChart>
-    //   </SectionContainer>
 
     //   <SectionContainer>
     //     <Heading3>Distribution of Approved and Rejected Submissions by Rank</Heading3>

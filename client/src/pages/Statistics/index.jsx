@@ -1,9 +1,10 @@
 import useAuth from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import { Heading2 } from '../../theme/appElements';
-import DistributionPerRank from './Charts/DistributionPerRank';
+import DistributionByRolePerRank from './Charts/DistributionByRolePerRank';
 import ProductionTime from './Charts/ProductionTime';
 import ProductionCost from './Charts/ProductionCost';
+import DistributionPerRank from './Charts/DistributionPerRank';
 
 const Statistics = () => {
   const { t } = useTranslation();
@@ -15,9 +16,10 @@ const Statistics = () => {
   return (
     <>
       <Heading2>{t('statistics.statistics')}</Heading2>
-      <DistributionPerRank contributions={contributions} />
+      <DistributionByRolePerRank contributions={contributions} />
       <ProductionTime contributions={contributions}></ProductionTime>
       <ProductionCost contributions={contributions}></ProductionCost>
+      <DistributionPerRank contributions={contributions} />
     </>
   );
 };
