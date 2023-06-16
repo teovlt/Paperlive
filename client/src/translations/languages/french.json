@@ -249,7 +249,8 @@
     "isMainAuthor": "Est auteur principal ?",
     "workTime": "Temps de travail",
     "workTimeMonth": "Temps de travail (en mois)",
-    "hourlyCost": "Coût par heure (€)"
+    "hourlyCost": "Coût par heure (€)",
+    "email": "Adresse mail"
   },
   "venue": {
     "name": "Nom",
@@ -270,5 +271,39 @@
     "notFound": "Page non trouvée",
     "error": "L'URL demandée n'a pas été trouvée sur ce serveur.",
     "back": "Retour à PaperLive"
+  },
+  "statistics": {
+    "Statistics": "Statistiques",
+    "data": {
+      "title": "Répartition des articles longs approuvés par rang, revues et rôles d'équipe",
+      "label": "Nombre de participations",
+      "bar1": "Meneur",
+      "bar2": "Co-meneur",
+      "bar3": "Invité"
+    },
+    "data2": {
+      "title": "Temps de production pour les contributions : Temps d'approbation le plus long par contribution et durée",
+      "label": "Durée (mois)",
+      "bar": "Temps de production"
+    },
+    "data3": {
+      "title": "Coût de production des contributions : Analyse des coûts par contribution et montant des dépenses.",
+      "label": "Coût (€)",
+      "bar": "Coût"
+    },
+    "data4": {
+      "title": "Répartition des soumissions approuvées et rejetées par rang."
+    },
+    "data6": {
+      "title": "Répartition des soumissions approuvées et rejetées par type de revue."
+    },
+    "data7": {
+      "title": "Nombre de rejets et d'acceptations par année et par type de revue",
+      "label": "Nombre de rejet/acceptation"
+    },
+    "months": "mois",
+    "euros": "euros",
+    "approved": "Approuvée",
+    "rejected": "Rejetée"
   }
 }

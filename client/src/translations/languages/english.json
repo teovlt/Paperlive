@@ -248,7 +248,8 @@
     "isMainAuthor": "Is main author?",
     "workTime": "Work time",
     "workTimeMonth": "Work time (in months)",
-    "hourlyCost": "Hourly cost (€)"
+    "hourlyCost": "Hourly cost (€)",
+    "email" : "Mail adress"
   },
   "venue": {
     "name": "Name",
@@ -269,5 +270,39 @@
     "notFound": "Page not found",
     "error": "The requested url was not found on this server.",
     "back": "Back to PaperLive"
+  },
+  "statistics": {
+    "Statistics": "Statistics",
+    "data": {
+      "title": "Distribution of Approved Long Papers per Venue Rank and Team Roles",
+      "label": "Number of participation",
+      "bar1": "Leader",
+      "bar2": "Co-leader",
+      "bar3": "Guest"
+    },
+    "data2": {
+      "title": " Production Time for Contributions: Longest Approval Time by Contribution and Duration",
+      "label": "Duration (months)",
+      "bar": "Production time"
+    },
+    "data3": {
+      "title": "Production Cost for Contributions: Cost Analysis by Contribution and Expense Amount",
+      "label": "Cost (€)",
+      "bar": "Cost"
+    },
+    "data4": {
+      "title": "Distribution of Approved and Rejected Submissions by Rank"
+    },
+    "data6": {
+      "title": "Distribution of Approved and Rejected Submissions by Venue Type"
+    },
+    "data7": {
+      "title": "Number of reject and acceptation per year and per type of venue",
+      "label": "Number of reject/acceptation"
+    },
+    "months": "months",
+    "euros": "euros",
+    "approved": "Approved",
+    "rejected": "Rejected"
   }
 }
