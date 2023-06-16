@@ -100,6 +100,7 @@ const SidebarProfile = () => {
       ) : (
         <>
           <Avatar />
+          <Heading1>{auth.name?.toUpperCase()}</Heading1>
           <RadioGroup
             name='visibility'
             label={t('sideBar.visibility')}

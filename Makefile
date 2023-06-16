@@ -16,8 +16,14 @@ clean:
 deploy:
 	docker compose -f docker-compose.prod.yml up --build -d
 
+down:
+	docker compose -f docker-compose.prod.yml down
+
 test:
-	docker exex -it paperlive-api-1 npm run test -- --runInBand
+	docker exec -it paperlive-api-1 npm run test -- --runInBand
 
 coverage:
-	docker exex -it paperlive-api-1 npm run coverage -- --runInBand
+	docker exec -it paperlive-api-1 npm run coverage -- --runInBand
+
+logs:
+	docker-compose -f docker-compose.dev.yml logs -f api
