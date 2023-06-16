@@ -32,37 +32,6 @@ const Statistics = () => {
   const contributions = auth.contributions;
   const submissions = contributions.flatMap((c) => c.submissions);
 
-  const data4 = Object.entries(
-    submissions
-      .filter((s) => s.type === 'longPaper')
-      .reduce((acc, s) => {
-        const { rank } = s.venue;
-
-        switch (s.state) {
-          case 'approved':
-            acc[rank] = { ...acc[rank], approved: (acc[rank]?.approved ?? 0) + 1 };
-            break;
-          case 'rejected':
-            acc[rank] = { ...acc[rank], rejected: (acc[rank]?.rejected ?? 0) + 1 };
-            break;
-        }
-
-        return acc;
-      }, {})
-  )
-    .map(([rank, data]) => ({ rank, ...data }))
-    .sort((a, b) => {
-      const rankA = a.rank.replace('*', '');
-      const rankB = b.rank.replace('*', '');
-
-      if (rankA < rankB) return -1;
-      else if (rankA > rankB) return 1;
-      else {
-        if (a.rank.includes('*') && !b.rank.includes('*')) return -1;
-        else if (!a.rank.includes('*') && b.rank.includes('*')) return 1;
-        else return 0;
-      }
-    });
 
   const data5 = Object.entries(
     submissions
@@ -92,26 +61,6 @@ const Statistics = () => {
     .map(([year, data]) => ({ year, ...data }))
     .sort((a, b) => a.year - b.year);
 
-  const data6 = Object.entries(
-    submissions
-      .filter((s) => s.type === 'longPaper')
-      .reduce((acc, s) => {
-        const { type } = s.venue;
-
-        switch (s.state) {
-          case 'approved':
-            acc[type] = { ...acc[type], approved: (acc[type]?.approved ?? 0) + 1 };
-            break;
-          case 'rejected':
-            acc[type] = { ...acc[type], rejected: (acc[type]?.rejected ?? 0) + 1 };
-            break;
-        }
-
-        return acc;
-      }, {})
-  )
-    .map(([type, data]) => ({ type, ...data }))
-    .sort((a, b) => a.type - b.type);
 
   const filter7 = { type: 'conference' };
 
@@ -237,37 +186,7 @@ const Statistics = () => {
     //   </SectionContainer> */}
 
 
-    //   <SectionContainer>
-    //     <Heading3>Distribution of Approved and Rejected Submissions by Rank</Heading3>
 
-    //     <BarChart width={752} height={500} margin={{ top: 15 }} data={data4}>
-    //       <CartesianGrid strokeDasharray='3 3' />
-
-    //       <XAxis dataKey='rank' />
-    //       <YAxis interval={1} tick={{ fontSize: 12 }} />
-
-    //       <Bar dataKey='approved' fill='var(--positive)' />
-    //       <Bar dataKey='rejected' fill='var(--negative)' />
-
-    //       <Legend />
-    //     </BarChart>
-    //   </SectionContainer>
-
-    //   <SectionContainer>
-    //     <Heading3>Distribution of Approved and Rejected Submissions by Venue Type</Heading3>
-
-    //     <BarChart width={752} height={500} margin={{ top: 15 }} data={data6}>
-    //       <CartesianGrid strokeDasharray='3 3' />
-
-    //       <XAxis dataKey='type' />
-    //       <YAxis interval={1} tick={{ fontSize: 12 }} />
-
-    //       <Bar dataKey='approved' fill='var(--positive)' />
-    //       <Bar dataKey='rejected' fill='var(--negative)' />
-
-    //       <Legend />
-    //     </BarChart>
-    //   </SectionContainer>
 
     //   <SectionContainer>
     //     <Heading3>Number of reject and acceptation per year and per type of venue</Heading3>
