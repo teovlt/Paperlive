@@ -61,7 +61,6 @@ const Routes = () => {
                         title: t('global.contribution'),
                         links: [
                           { label: t('contribution.overview'), to: '' },
-                          { label: t('contribution.statistics'), to: 'statistics' },
                           { label: t('contribution.settings'), to: 'settings' },
                         ],
                       },
