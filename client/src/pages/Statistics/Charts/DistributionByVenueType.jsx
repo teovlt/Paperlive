@@ -10,7 +10,7 @@ const DIstributionByVenueType = ({ contributions }) => {
 
   const submissions = contributions.flatMap((c) => c.submissions);
 
-  const data6 = Object.entries(
+  const data = Object.entries(
     submissions
       .filter((s) => s.type === 'longPaper')
       .reduce((acc, s) => {
@@ -34,7 +34,7 @@ const DIstributionByVenueType = ({ contributions }) => {
     <SectionContainer>
       <Heading3>{t('statistics.data6.title')}</Heading3>
 
-      <BarChart width={752} height={500} margin={{ top: 15 }} data={data6}>
+      <BarChart width={752} height={500} margin={{ top: 15 }} data={data}>
         <CartesianGrid strokeDasharray='3 3' />
 
         <XAxis dataKey='type' />
