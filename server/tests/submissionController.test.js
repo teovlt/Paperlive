@@ -40,7 +40,7 @@ describe('GET /api/submissions/', () => {
       title: 'ContributionTest',
       startDate: '2023-01-01',
       teamRole: 'leader',
-      abstract: { name: 'contribution-abstract-id.pdf', size: 10 },
+      abstract: 'abstract.pdf',
       scientificField: scientificField,
     });
 
@@ -117,7 +117,7 @@ describe('GET /api/submissions/:submissionId', () => {
       title: 'ContributionTest',
       startDate: '2023-01-01',
       teamRole: 'leader',
-      abstract: { name: 'contribution-abstract-id.pdf', size: 10 },
+      abstract: 'abstract.pdf',
       scientificField: scientificField,
     });
 
@@ -204,7 +204,7 @@ describe('DELETE /api/submissions/delete/:submissionId', () => {
       title: 'ContributionTest',
       startDate: '2023-01-01',
       teamRole: 'leader',
-      abstract: { name: 'contribution-abstract-id.pdf', size: 10 },
+      abstract: 'abstract.pdf',
       scientificField: scientificField,
     });
 
@@ -293,7 +293,7 @@ describe('POST /api/submissions/new', () => {
       title: 'ContributionTest',
       startDate: '2023-01-01',
       teamRole: 'leader',
-      abstract: { name: 'contribution-abstract-id.pdf', size: 10 },
+      abstract: 'abstract.pdf',
       scientificField: scientificField,
     });
 
@@ -365,7 +365,7 @@ describe('PUT /api/submissions/update/:submissionId', () => {
       title: 'ContributionTest',
       startDate: '2023-01-01',
       teamRole: 'leader',
-      abstract: { name: 'contribution-abstract-id.pdf', size: 10 },
+      abstract: 'abstract.pdf',
       scientificField: scientificField,
     });
 
