@@ -27,11 +27,12 @@ app.use(cookieParser());
 
 // Set the CORS header
 const corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: ['http://localhost:5173', 'http://127.0.0.1'],
   credentials: true,
   methods: 'GET, POST, PUT, PATCH, DELETE',
   preflightContinue: true,
 };
+
 app.use((req, res, next) => {
   console.log(
     `[${new Date().toLocaleTimeString()}] - Method: [${req.method}] - Url: [${req.url}] - IP: [${
