@@ -287,15 +287,15 @@
       "bar": "Temps de production"
     },
     "data3": {
-      "title": "Coût de production des contributions : Analyse des coûts par contribution et montant des dépenses.",
+      "title": "Coût de production des contributions : Analyse des coûts par contribution et montant des dépenses",
       "label": "Coût (€)",
       "bar": "Coût"
     },
     "data4": {
-      "title": "Répartition des soumissions approuvées et rejetées par rang."
+      "title": "Répartition des soumissions approuvées et rejetées par rang"
     },
     "data6": {
-      "title": "Répartition des soumissions approuvées et rejetées par type de revue."
+      "title": "Répartition des soumissions approuvées et rejetées par type de revue"
     },
     "data7": {
       "title": "Nombre de rejets et d'acceptations par année et par type de revue",
