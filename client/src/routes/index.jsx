@@ -110,7 +110,6 @@ const Routes = () => {
                         title: t('global.submission'),
                         links: [
                           { label: t('contribution.overview'), to: '' },
-                          { label: t('contribution.statistics'), to: 'statistics' },
                           { label: t('contribution.settings'), to: 'settings' },
                         ],
                       },
