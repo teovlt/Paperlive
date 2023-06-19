@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Heading2 } from '../../theme/appElements';
 import DistributionPerRank from './Charts/DistributionPerRank';
 import ProductionTime from './Charts/ProductionTime';
+import MultiRangeSlider from '../../components/MultiRangeSlider';
 
 const Statistics = () => {
   const { t } = useTranslation();
@@ -13,9 +14,10 @@ const Statistics = () => {
 
   return (
     <>
+      <MultiRangeSlider min={0} max={25} onChange={() => console.log('change')} />
       <Heading2>{t('statistics.statistics')}</Heading2>
       <DistributionPerRank contributions={contributions} />
-      <ProductionTime contributions={contributions}></ProductionTime>;
+      <ProductionTime contributions={contributions}></ProductionTime>
     </>
   );
 };
