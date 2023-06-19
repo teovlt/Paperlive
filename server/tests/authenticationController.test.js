@@ -8,7 +8,7 @@ const Team = require('../src/models/teamModel');
 const { refreshToken } = require('../src/controllers/authenticationController');
 
 beforeAll(async () => {
-  await mongoose.connect('mongodb://db:27017/paperlive_test', {
+  await mongoose.connect('mongodb://database:27017/paperlive_test', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
@@ -167,5 +167,4 @@ describe('GET /api/auth/refresh-token', () => {
       httpOnly: true,
     });
   });
-  
 });

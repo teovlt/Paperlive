@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 beforeAll(async () => {
-  await mongoose.connect('mongodb://db:27017/paperlive_test', {
+  await mongoose.connect('mongodb://database:27017/paperlive_test', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });

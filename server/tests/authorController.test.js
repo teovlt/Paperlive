@@ -6,7 +6,7 @@ const app = require('../src/app');
 const { generateAccessToken } = require('../src/controllers/authenticationController');
 
 beforeAll(async () => {
-  await mongoose.connect('mongodb://db:27017/paperlive_test', {
+  await mongoose.connect('mongodb://database:27017/paperlive_test', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });

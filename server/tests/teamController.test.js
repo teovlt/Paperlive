@@ -9,7 +9,7 @@ const Team = require('../src/models/teamModel');
 const { generateAccessToken } = require('../src/controllers/authenticationController');
 
 beforeAll(async () => {
-  await mongoose.connect('mongodb://db:27017/paperlive_test', {
+  await mongoose.connect('mongodb://database:27017/paperlive_test', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
@@ -298,7 +298,7 @@ describe('DELETE /api/teams/delete', () => {
     expect(res.body).toEqual({ message: 'Successfully deleted' });
   });
 
-   it('should delete a team and return 400 error if wrong credentials', async () => {
+  it('should delete a team and return 400 error if wrong credentials', async () => {
     const res = await request(app)
       .post(`/api/teams/delete`)
       .send({ name: team.name, password: 'wrongPassword' })
