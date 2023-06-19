@@ -50,7 +50,7 @@ describe('POST /api/authors/', () => {
   it('should create an author', async () => {
     const res = await request(app)
       .post('/api/authors/')
-      .send({ name: 'jean', grade: 'student', country: 'france' })
+      .send({ name: 'jean', grade: 'student', country: 'france', email : 'jeanemail' })
       .set('Authorization', `Bearer ${generateAccessToken(team._id)}`);
 
     expect(res.status).toBe(201);
@@ -63,7 +63,7 @@ describe('PUT /api/authors/:authorId', () => {
 
   beforeEach(async () => {
     team = await new Team({ name: 'TestTeam', password: 'password' });
-    author = await new Author({ name: 'jean', grade: 'student', country: 'france' });
+    author = await new Author({ name: 'jean', grade: 'student', country: 'france', email : 'jeanemail'  });
   });
 
   afterEach(async () => {
