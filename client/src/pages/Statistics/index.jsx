@@ -6,6 +6,7 @@ import ProductionTime from './Charts/ProductionTime';
 import ProductionCost from './Charts/ProductionCost';
 import DistributionPerRank from './Charts/DistributionPerRank';
 import DIstributionByVenueType from './Charts/DIstributionByVenueType';
+import MultiRangeSlider from '../../components/MultiRangeSlider';
 
 const Statistics = () => {
   const { t } = useTranslation();
@@ -16,12 +17,14 @@ const Statistics = () => {
 
   return (
     <>
+      <MultiRangeSlider min={0} max={25} onChange={() => console.log('change')} />
       <Heading2>{t('statistics.statistics')}</Heading2>
       <DistributionByRolePerRank contributions={contributions} />
       <ProductionTime contributions={contributions}></ProductionTime>
       <ProductionCost contributions={contributions}></ProductionCost>
       <DistributionPerRank contributions={contributions} />
       <DIstributionByVenueType contributions={contributions} />
+      <ProductionTime contributions={contributions} />
     </>
   );
 };
