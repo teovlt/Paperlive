@@ -69,7 +69,6 @@ describe('GET /api/contributions/:contributionId', () => {
   let team;
   let contribution;
   let scientificField;
-  let abstract;
 
   beforeEach(async () => {
     // Create a team for testing*
@@ -82,7 +81,7 @@ describe('GET /api/contributions/:contributionId', () => {
       title: 'Test Contribution',
       startDate: '2023-05-16',
       relatedContribution: '',
-      abstract: { name: 'abstract.pdf', size: 10 },
+      abstract: 'abstract.pdf',
       teamRole: 'leader',
       scientificField: scientificField,
     });
@@ -147,7 +146,6 @@ describe('GET /api/contributions/:contributionId', () => {
 describe('DELETE /api/contributions/delete/:contributionId', () => {
   let team;
   let contribution;
-
   let scientificField;
 
   beforeEach(async () => {
@@ -161,7 +159,7 @@ describe('DELETE /api/contributions/delete/:contributionId', () => {
       title: 'Test Contribution',
       startDate: '2023-05-16',
       relatedContribution: '',
-      abstract: { name: 'abstract.pdf', size: 10 },
+      abstract: 'abstract.pdf',
       teamRole: 'leader',
       scientificField: scientificField,
     });
@@ -251,7 +249,7 @@ describe('POST /api/contributions/new', () => {
         title: 'Test Contribution',
         startDate: '2023-05-16',
         relatedContribution: '',
-        abstract: { name: 'abstract.pdf', size: 10 },
+        abstract: 'abstract.pdf',
         teamRole: 'leader',
         scientificField: scientificField,
       })
@@ -270,7 +268,7 @@ describe('POST /api/contributions/new', () => {
         title: 'Test Contribution',
         startDate: '2023-05-16',
         relatedContribution: '',
-        abstract: { name: 'abstract.pdf', size: 10 },
+        abstract: 'abstract.pdf',
         teamRole: 'leader',
         scientificField: scientificField,
       })
@@ -291,7 +289,7 @@ describe('POST /api/contributions/new', () => {
         title: 'Test Contribution',
         startDate: '2023-05-16',
         relatedContribution: '',
-        abstract: { name: 'abstract.pdf', size: 10 },
+        abstract: 'abstract.pdf',
         teamRole: 'leader',
         scientificField: scientificField,
       })
@@ -316,7 +314,7 @@ describe('PUT /api/contributions/update/:contributionId', () => {
       title: 'Test Contribution',
       startDate: '2023-05-16',
       relatedContribution: '',
-      abstract: { name: 'abstract.pdf', size: 10 },
+      abstract: 'abstract.pdf',
       teamRole: 'leader',
       scientificField: scientificField,
     });
