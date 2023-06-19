@@ -18,6 +18,11 @@ const Statistics = () => {
   return (
     <>
       <MultiRangeSlider min={0} max={25} onChange={() => console.log('change')} />
+      <select>
+        {new Array(2030 - 1970).map((_, i) => (
+          <option value={i}>{i}</option>
+        ))}
+      </select>
       <Heading2>{t('statistics.statistics')}</Heading2>
       <DistributionByRolePerRank contributions={contributions} />
       <ProductionTime contributions={contributions} />

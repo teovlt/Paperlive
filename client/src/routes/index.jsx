@@ -12,12 +12,11 @@ import Login from '../pages/Authentication/Login';
 import Register from '../pages/Authentication/Register';
 import Home from '../pages/Home';
 import Contributions from '../pages/Contributions';
-import NewContribution from '../pages/Contributions/NewContribution';
 import Statistics from '../pages/Statistics';
 import NotFound from '../pages/NotFound';
 import Contribution from '../pages/Contributions/Contribution';
-import ContributionStatistics from '../pages/Contributions/Contribution/Statistics';
 import ContributionSettings from '../pages/Contributions/Contribution/Settings';
+import NewContribution from '../pages/Contributions/NewContribution';
 import AccountSettings from '../pages/Settings/Account';
 import AppearanceSettings from '../pages/Settings/Appearance';
 import SecuritySettings from '../pages/Settings/Security';
@@ -71,7 +70,6 @@ const Routes = () => {
               />
             }>
             <Route path='' element={<Contribution />} />
-            <Route path='statistics' element={<ContributionStatistics />} />
             <Route path='settings' element={<ContributionSettings />} />
           </Route>
 
@@ -120,7 +118,6 @@ const Routes = () => {
               />
             }>
             <Route path='' element={<Submission />} />
-            <Route path='statistics' element={<ContributionStatistics />} />
             <Route path='settings' element={<SubmissionSettings />} />
           </Route>
 
