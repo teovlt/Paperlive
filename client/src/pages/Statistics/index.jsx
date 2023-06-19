@@ -20,11 +20,10 @@ const Statistics = () => {
       <MultiRangeSlider min={0} max={25} onChange={() => console.log('change')} />
       <Heading2>{t('statistics.statistics')}</Heading2>
       <DistributionByRolePerRank contributions={contributions} />
-      <ProductionTime contributions={contributions}></ProductionTime>
-      <ProductionCost contributions={contributions}></ProductionCost>
+      <ProductionTime contributions={contributions} />
+      <ProductionCost contributions={contributions} />
       <DistributionPerRank contributions={contributions} />
       <DIstributionByVenueType contributions={contributions} />
-      <ProductionTime contributions={contributions} />
     </>
   );
 };
