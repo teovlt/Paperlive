@@ -5,30 +5,23 @@ import DistributionByRolePerRank from './Charts/DistributionByRolePerRank';
 import ProductionTime from './Charts/ProductionTime';
 import ProductionCost from './Charts/ProductionCost';
 import DistributionPerRank from './Charts/DistributionPerRank';
-import DIstributionByVenueType from './Charts/DIstributionByVenueType';
-import MultiRangeSlider from '../../components/MultiRangeSlider';
+import AcceptationRejectionChart from './Charts/AcceptationRejectionChart';
 
 const Statistics = () => {
   const { t } = useTranslation();
   const { auth } = useAuth();
 
   const contributions = auth.contributions;
-  const submissions = contributions.flatMap((c) => c.submissions);
 
   return (
     <>
-      <MultiRangeSlider min={0} max={25} onChange={() => console.log('change')} />
-      <select>
-        {new Array(2030 - 1970).map((_, i) => (
-          <option value={i}>{i}</option>
-        ))}
-      </select>
       <Heading2>{t('statistics.statistics')}</Heading2>
-      <DistributionByRolePerRank contributions={contributions} />
-      <ProductionTime contributions={contributions} />
-      <ProductionCost contributions={contributions} />
-      <DistributionPerRank contributions={contributions} />
-      <DIstributionByVenueType contributions={contributions} />
+      <AcceptationRejectionChart contributions={contributions} />
+
+      {/* <DistributionByRolePerRank contributions={contributions} /> */}
+      {/* <ProductionTime contributions={contributions} /> */}
+      {/* <ProductionCost contributions={contributions} /> */}
+      {/* <DistributionPerRank contributions={contributions} /> */}
     </>
   );
 };

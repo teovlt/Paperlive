@@ -155,16 +155,6 @@ export const IconLink = styled(NavLink)`
   }
 `;
 
-export const Select = styled.select`
-  flex: 1;
-  height: 100%;
-
-  padding: 1.2rem;
-  border: 1px solid var(--black-quaternary);
-  border-radius: 0.2rem;
-
-  font-size: 1.5rem;
-`;
 export const DivTop = styled.div`
   border-bottom: 1px solid var(--black-quaternary);
   position: absolute;
@@ -183,4 +173,10 @@ export const VerticalDivider = styled.span`
   height: 100%;
   width: 1px;
   background: var(--black-quaternary);
+`;
+
+export const InlineGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
 `;

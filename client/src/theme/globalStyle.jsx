@@ -8,11 +8,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 62.5%;
 
     /* Variables */
-   
-
-
-  //  @media (prefers-color-scheme: light) {
-       --accent: ${(props) => `rgb(${props.theme.accentColor})`};
+    --accent: ${(props) => `rgb(${props.theme.accentColor})`};
     --accent-vibrant: ${(props) => `rgba(${props.theme.accentColor}, 0.15)`};
     --positive: #42b983;
     --positive-vibrant: #42b98333;
@@ -28,24 +24,6 @@ const GlobalStyle = createGlobalStyle`
     
     --white: #ffffff;
     --white-50: #ffffff80;
-  //  }
-
-    /* @media (prefers-color-scheme: dark) {
-      --accent: ${(props) => `rgb(${props.theme.accentColor})`};
-    --accent-vibrant: ${(props) => `rgba(${props.theme.accentColor}, 0.15)`};
-    --positive: #1e6c23;
-    --positive-vibrant: #1e6c2333;
-    --notice: #e66700;
-    --notice-vibrant: #e6670033;
-    --negative: #bdbeb9;
-    --negative-vibrant: #bdbeb933;
-    --black: #ffffff;
-    --black-secondary: rgba(255, 255, 255, 0.75);
-    --black-tertiary: #ffffff7f;
-    --black-quaternary: #ffffff1e;
-    --white: #222222;
-    --white-50: #22222280;
-  } */
   }
 
   *, ::before, ::after {
