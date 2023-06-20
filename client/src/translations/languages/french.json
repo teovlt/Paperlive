@@ -313,12 +313,12 @@
       "end": "Fin",
       "begin": "Début",
       "venueType": "Type de revue",
-      "groupBy": "Groupé par",
+      "groupBy": "Grouper par",
       "type": "Type",
       "year": "Année",
       "conference": "Conférence",
       "journal": "Journal",
-      "venueRank" : "Rang"
+      "venueRank": "Rang"
     }
   }
 }
