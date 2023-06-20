@@ -281,8 +281,8 @@
       "coLeader": "Co-leader",
       "guest": "Guest"
     },
-    "data2": {
-      "title": "Temps de production pour les contributions : Temps d'approbation le plus long par contribution et durée",
+    "productionTime": {
+      "title": "Temps de production pour les contributions",
       "label": "Durée (mois)",
       "bar": "Temps de production"
     },

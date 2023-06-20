@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Heading2 } from '../../theme/appElements';
 import AcceptationRejectionChartByType from './Charts/AcceptationRejectionChartByType';
 import TeamRoleDistributionChart from './Charts/TeamRoleDistributionChart';
+import ProductionTimeChart from './Charts/ProductionTimeChart';
 
-import ProductionTime from './Charts/ProductionTime';
 import ProductionCost from './Charts/ProductionCost';
 import DistributionPerRank from './Charts/DistributionPerRank';
 
@@ -19,8 +19,8 @@ const Statistics = () => {
       <Heading2>{t('statistics.statistics')}</Heading2>
       <AcceptationRejectionChartByType contributions={contributions} />
       <TeamRoleDistributionChart contributions={contributions} />
+      <ProductionTimeChart contributions={contributions} />
 
-      {/* <ProductionTime contributions={contributions} /> */}
       {/* <ProductionCost contributions={contributions} /> */}
       {/* <DistributionPerRank contributions={contributions} /> */}
     </>

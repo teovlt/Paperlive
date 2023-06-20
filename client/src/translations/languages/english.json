@@ -280,8 +280,8 @@
       "coLeader": "Co-leader",
       "guest": "Guest"
     },
-    "data2": {
-      "title": " Production Time for Contributions: Longest Approval Time by Contribution and Duration",
+    "productionTime": {
+      "title": " Production Time for Contributions",
       "label": "Duration (months)",
       "bar": "Production time"
     },

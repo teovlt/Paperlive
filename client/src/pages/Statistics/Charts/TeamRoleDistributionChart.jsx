@@ -9,7 +9,7 @@ const TeamRoleDistributionChart = ({ contributions }) => {
 
   const [filter, setFilter] = useState(null);
 
-  const data = Object.entries(
+  const stats = Object.entries(
     contributions
       .filter(
         (c) =>
@@ -19,14 +19,10 @@ const TeamRoleDistributionChart = ({ contributions }) => {
       )
       .reduce((acc, c) => {
         c.submissions
-          .filter(
-            (s) =>
-              s.type === 'longPaper' &&
-              s.state === 'approved' &&
-              (!filter?.type || filter.type === s.venue.type)
-          )
+          .filter((s) => s.type === 'longPaper' && s.state === 'approved')
           .sort((a, b) => new Date(a.submissionDate) - new Date(b.submissionDate))
           .slice(0, 1)
+          .filter((s) => !filter?.type || filter.type === s.venue.type)
           .flatMap((s) => {
             const { rank } = s.venue;
             const { teamRole: role } = c;
@@ -48,8 +44,6 @@ const TeamRoleDistributionChart = ({ contributions }) => {
         else return 0;
       }
     });
-
-  console.log(data);
 
   const contributionsMinYear = contributions.reduce((min, c, i) => {
     const year = new Date(c.startDate).getFullYear();
@@ -109,7 +103,7 @@ const TeamRoleDistributionChart = ({ contributions }) => {
         </Select>
       </InlineGroup>
 
-      <BarChart width={752} height={500} data={data}>
+      <BarChart width={752} height={500} data={stats}>
         <CartesianGrid strokeDasharray='3 3' />
 
         <XAxis dataKey='rank' tick={{ fontSize: 15 }} />
