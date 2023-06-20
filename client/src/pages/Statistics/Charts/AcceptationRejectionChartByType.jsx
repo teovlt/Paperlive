@@ -4,7 +4,7 @@ import { Heading3, InlineGroup, SectionContainer } from '../../../theme/appEleme
 import Select from '../../../components/Select';
 import { useTranslation } from 'react-i18next';
 
-const AcceptationRejectionChart = ({ contributions }) => {
+const AcceptationRejectionChartByType = ({ contributions }) => {
   const { t } = useTranslation();
 
   const submissions = contributions.flatMap((c) => c.submissions);
@@ -172,4 +172,4 @@ const AcceptationRejectionChart = ({ contributions }) => {
   );
 };
 
-export default AcceptationRejectionChart;
+export default AcceptationRejectionChartByType;

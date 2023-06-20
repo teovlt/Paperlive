@@ -5,7 +5,7 @@ import DistributionByRolePerRank from './Charts/DistributionByRolePerRank';
 import ProductionTime from './Charts/ProductionTime';
 import ProductionCost from './Charts/ProductionCost';
 import DistributionPerRank from './Charts/DistributionPerRank';
-import AcceptationRejectionChart from './Charts/AcceptationRejectionChart';
+import AcceptationRejectionChartByType from './Charts/AcceptationRejectionChartByType';
 
 const Statistics = () => {
   const { t } = useTranslation();
@@ -16,7 +16,7 @@ const Statistics = () => {
   return (
     <>
       <Heading2>{t('statistics.statistics')}</Heading2>
-      <AcceptationRejectionChart contributions={contributions} />
+      <AcceptationRejectionChartByType contributions={contributions} />
 
       {/* <DistributionByRolePerRank contributions={contributions} /> */}
       {/* <ProductionTime contributions={contributions} /> */}
