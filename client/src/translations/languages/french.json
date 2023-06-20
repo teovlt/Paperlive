@@ -294,8 +294,12 @@
     "data4": {
       "title": "Répartition des soumissions approuvées et rejetées par rang"
     },
-    "data6": {
-      "title": "Répartition des soumissions approuvées et rejetées par type de revue"
+    "acceptationRejectionChartByType": {
+      "title": "Répartition des soumissions approuvées et rejetées par type de revue",
+      "journalAcceptances": "Approbation des journaux",
+      "journalRejections": "Rejet des journaux",
+      "conferenceAcceptances": "Approbations des conférences",
+      "conferenceRejections": "Rejet des conférences"
     },
     "data7": {
       "title": "Nombre de rejets et d'acceptations par année et par type de revue",
@@ -304,6 +308,16 @@
     "months": "mois",
     "euros": "euros",
     "approved": "Approuvée",
-    "rejected": "Rejetée"
+    "rejected": "Rejetée",
+    "parameters": {
+      "end": "Fin",
+      "begin": "Début",
+      "venueType": "Type de revue",
+      "groupBy": "Trié par",
+      "type": "Type",
+      "year": "Année",
+      "conference": "Conférence",
+      "journal": "Journal"
+    }
   }
 }

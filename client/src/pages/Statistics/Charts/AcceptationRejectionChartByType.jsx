@@ -94,26 +94,26 @@ const AcceptationRejectionChartByType = ({ contributions }) => {
 
   return (
     <SectionContainer>
-      <Heading3>{t('statistics.data6.title')}</Heading3>
+      <Heading3>{t('statistics.acceptationRejectionChartByType.title')}</Heading3>
 
       <InlineGroup>
         <Select
-          label='Group by'
+          label={t('statistics.parameters.groupBy')}
           onChange={(e) => setFilter((filter) => ({ ...filter, groupBy: e.target.value }))}>
-          <option value='type'>Type</option>
-          <option value='year'>Year</option>
+          <option value={t('statistics.parameters.type')}>Type</option>
+          <option value={t('statistics.parameters.year')}>Year</option>
         </Select>
 
         <Select
-          label='Venue Type'
+          label={t('statistics.parameters.venueType')}
           onChange={(e) => setFilter((filter) => ({ ...filter, type: e.target.value }))}>
           <option value=''>-</option>
-          <option value='conference'>Conference</option>
-          <option value='journal'>Journal</option>
+          <option value={t('statistics.parameters.conference')}>Conference</option>
+          <option value={t('statistics.parameters.journal')}>Journal</option>
         </Select>
 
         <Select
-          label='Begin'
+          label={t('statistics.parameters.begin')}
           onChange={(e) => setFilter((filter) => ({ ...filter, start: e.target.value }))}>
           <option value=''>-</option>
           {Array.from({ length: submissionsMaxYear - submissionsMinYear + 1 }, (_, i) => (
@@ -127,7 +127,7 @@ const AcceptationRejectionChartByType = ({ contributions }) => {
         </Select>
 
         <Select
-          label='End'
+          label={t('statistics.parameters.end')}
           onChange={(e) => setFilter((filter) => ({ ...filter, end: e.target.value }))}>
           <option value=''>-</option>
           {Array.from({ length: submissionsMaxYear - submissionsMinYear + 1 }, (_, i) => (
@@ -148,10 +148,30 @@ const AcceptationRejectionChartByType = ({ contributions }) => {
           <XAxis dataKey='year' />
           <YAxis interval={1} tick={{ fontSize: 12 }} />
 
-          <Bar dataKey='journalAcceptances' stackId='journalStack' fill='var(--positive)' />
-          <Bar dataKey='journalRejections' stackId='journalStack' fill='var(--negative)' />
-          <Bar dataKey='conferenceAcceptances' stackId='conferenceStack' fill='#00BFFF' />
-          <Bar dataKey='conferenceRejections' stackId='conferenceStack' fill='#DC143C' />
+          <Bar
+            dataKey='journalAcceptances'
+            stackId='journalStack'
+            fill='var(--positive)'
+            name={t('statistics.acceptationRejectionChartByType.journalAcceptances')}
+          />
+          <Bar
+            dataKey='journalRejections'
+            stackId='journalStack'
+            fill='var(--negative)'
+            name={t('statistics.acceptationRejectionChartByType.journalRejections')}
+          />
+          <Bar
+            dataKey='conferenceAcceptances'
+            stackId='conferenceStack'
+            fill='#00BFFF'
+            name={t('statistics.acceptationRejectionChartByType.conferenceAcceptances')}
+          />
+          <Bar
+            dataKey='conferenceRejections'
+            stackId='conferenceStack'
+            fill='#DC143C'
+            name={t('statistics.acceptationRejectionChartByType.conferenceRejections')}
+          />
 
           <Legend />
         </BarChart>

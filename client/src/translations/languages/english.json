@@ -293,8 +293,12 @@
     "data4": {
       "title": "Distribution of Approved and Rejected Submissions by Rank"
     },
-    "data6": {
-      "title": "Distribution of Approved and Rejected Submissions by Venue Type"
+    "acceptationRejectionChartByType": {
+      "title": "Distribution of Approved and Rejected Submissions by Venue Type",
+      "journalAcceptances": "Journal approvals",
+      "journalRejections": "Journal rejections",
+      "conferenceAcceptances": "Conference approvals",
+      "conferenceRejections": "Conference rejections"
     },
     "data7": {
       "title": "Number of reject and acceptation per year and per type of venue",
@@ -303,6 +307,16 @@
     "months": "months",
     "euros": "euros",
     "approved": "Approved",
-    "rejected": "Rejected"
+    "rejected": "Rejected",
+    "parameters": {
+      "end": "End",
+      "begin": "Begin",
+      "venueType": "Venue type",
+      "groupBy": "Group by",
+      "type": "Type",
+      "year": "Year",
+      "conference": "Conference",
+      "journal": "Journal"
+    }
   }
 }
