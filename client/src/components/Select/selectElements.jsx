@@ -24,6 +24,7 @@ export const Container = styled.div`
 `;
 
 export const SelectInput = styled.select`
+  min-width: 120px;
   padding: 0.8rem 1.2rem;
   font-size: 1.5rem;
   color: var(--black);
