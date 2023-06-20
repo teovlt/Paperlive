@@ -100,16 +100,16 @@ const AcceptationRejectionChartByType = ({ contributions }) => {
         <Select
           label={t('statistics.parameters.groupBy')}
           onChange={(e) => setFilter((filter) => ({ ...filter, groupBy: e.target.value }))}>
-          <option value={t('statistics.parameters.type')}>Type</option>
-          <option value={t('statistics.parameters.year')}>Year</option>
+          <option value='type'>{t('statistics.parameters.type')}</option>
+          <option value='year'>{t('statistics.parameters.year')}</option>
         </Select>
 
         <Select
           label={t('statistics.parameters.venueType')}
           onChange={(e) => setFilter((filter) => ({ ...filter, type: e.target.value }))}>
           <option value=''>-</option>
-          <option value={t('statistics.parameters.conference')}>Conference</option>
-          <option value={t('statistics.parameters.journal')}>Journal</option>
+          <option value='conference'>{t('statistics.parameters.conference')}</option>
+          <option value='journal'>{t('statistics.parameters.journal')}</option>
         </Select>
 
         <Select
