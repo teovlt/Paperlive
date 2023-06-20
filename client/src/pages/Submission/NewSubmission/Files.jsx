@@ -13,6 +13,21 @@ const Files = ({ data, setData }) => {
   return (
     <>
       <SectionContainer>
+        <Heading2>{t('submission.abstract')}</Heading2>
+        <TextArea
+          id='abstract'
+          label={t('submission.abstract')}
+          autoComplete='off'
+          small
+          value={data.abstract}
+          onChange={(e) => {
+            const newProfilData = { ...data, abstract: e.target.value };
+            setData(newProfilData);
+          }}
+        />
+      </SectionContainer>
+
+      <SectionContainer>
         <Heading2>{t('submission.files')}</Heading2>
         <FileInput
           name='zipFolder'
@@ -49,20 +64,6 @@ const Files = ({ data, setData }) => {
           callback={(file) =>
             setData((prev) => ({ ...prev, commentPDF: { name: file.name, size: file.size } }))
           }
-        />
-      </SectionContainer>
-      <SectionContainer>
-        <Heading2>{t('submission.abstract')}</Heading2>
-        <TextArea
-          id='abstract'
-          label={t('submission.abstract')}
-          autoComplete='off'
-          small
-          value={data.abstract}
-          onChange={(e) => {
-            const newProfilData = { ...data, abstract: e.target.value };
-            setData(newProfilData);
-          }}
         />
       </SectionContainer>
 
