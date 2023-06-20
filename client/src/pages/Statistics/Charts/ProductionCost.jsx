@@ -8,7 +8,7 @@ const ProductionCost = ({ contributions }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const data3 = Object.entries(
+  const data = Object.entries(
     contributions
       .filter((c) => c.state === 'approved')
       .reduce((acc, c) => {
@@ -37,7 +37,7 @@ const ProductionCost = ({ contributions }) => {
     <SectionContainer>
       <Heading3>{t('statistics.data3.title')}</Heading3>
 
-      <BarChart width={752} height={500} margin={{ top: 15 }} data={data3}>
+      <BarChart width={752} height={500} margin={{ top: 15 }} data={data}>
         <CartesianGrid strokeDasharray='3 3' />
         <Tooltip cursor={{ fill: 'transparent' }} />
 

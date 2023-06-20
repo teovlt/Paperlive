@@ -10,7 +10,7 @@ const DistributionPerRank = ({ contributions }) => {
 
   const submissions = contributions.flatMap((c) => c.submissions);
 
-  const data4 = Object.entries(
+  const data = Object.entries(
     submissions
       .filter((s) => s.type === 'longPaper')
       .reduce((acc, s) => {
@@ -46,7 +46,7 @@ const DistributionPerRank = ({ contributions }) => {
     <SectionContainer>
       <Heading3>{t('statistics.data4.title')}</Heading3>
 
-      <BarChart width={752} height={500} margin={{ top: 15 }} data={data4}>
+      <BarChart width={752} height={500} margin={{ top: 15 }} data={data}>
         <CartesianGrid strokeDasharray='3 3' />
 
         <XAxis dataKey='rank' />
