@@ -316,7 +316,9 @@
       "type": "Type",
       "year": "Year",
       "conference": "Conference",
-      "journal": "Journal"
+      "journal": "Journal",
+      "venueRank" : "Rank"
+
     }
   }
 }
