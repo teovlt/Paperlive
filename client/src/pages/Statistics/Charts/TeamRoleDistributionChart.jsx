@@ -73,15 +73,15 @@ const TeamRoleDistributionChart = ({ contributions }) => {
 
       <InlineGroup>
         <Select
-          label='Venue Type'
+          label={t('statistics.parameters.venueType')}
           onChange={(e) => setFilter((filter) => ({ ...filter, type: e.target.value }))}>
           <option value=''>-</option>
-          <option value='conference'>Conference</option>
-          <option value='journal'>Journal</option>
+          <option value='conference'>{t('statistics.parameters.conference')}</option>
+          <option value='journal'>{t('statistics.parameters.journal')}</option>
         </Select>
 
         <Select
-          label='Begin'
+          label={t('statistics.parameters.begin')}
           onChange={(e) => setFilter((filter) => ({ ...filter, start: e.target.value }))}>
           <option value=''>-</option>
           {Array.from({ length: contributionsMaxYear - contributionsMinYear + 1 }, (_, i) => (
@@ -95,7 +95,7 @@ const TeamRoleDistributionChart = ({ contributions }) => {
         </Select>
 
         <Select
-          label='End'
+          label={t('statistics.parameters.end')}
           onChange={(e) => setFilter((filter) => ({ ...filter, end: e.target.value }))}>
           <option value=''>-</option>
           {Array.from({ length: contributionsMaxYear - contributionsMinYear + 1 }, (_, i) => (
@@ -115,9 +115,24 @@ const TeamRoleDistributionChart = ({ contributions }) => {
         <XAxis dataKey='rank' tick={{ fontSize: 15 }} />
         <YAxis tick={{ fontSize: 15 }} />
 
-        <Bar dataKey='leader' stackId='roleStack' fill='#20a4f3' />
-        <Bar dataKey='coLeader' stackId='roleStack' fill='#2ec4b6' />
-        <Bar dataKey='guest' stackId='roleStack' fill='#ff3366' />
+        <Bar
+          dataKey='leader'
+          stackId='roleStack'
+          fill='#20a4f3'
+          name={t('statistics.distributionPerRank.leader')}
+        />
+        <Bar
+          dataKey='coLeader'
+          stackId='roleStack'
+          fill='#2ec4b6'
+          name={t('statistics.distributionPerRank.coLeader')}
+        />
+        <Bar
+          dataKey='guest'
+          stackId='roleStack'
+          fill='#ff3366'
+          name={t('statistics.distributionPerRank.guest')}
+        />
 
         <Legend />
       </BarChart>

@@ -276,9 +276,9 @@
     "distributionPerRank": {
       "title": "Distribution of Approved Long Papers per Venue Rank and Team Roles",
       "label": "Number of participation",
-      "bar1": "Leader",
-      "bar2": "Co-leader",
-      "bar3": "Guest"
+      "leader": "Leader",
+      "coLeader": "Co-leader",
+      "guest": "Guest"
     },
     "data2": {
       "title": " Production Time for Contributions: Longest Approval Time by Contribution and Duration",
