@@ -40,22 +40,7 @@ const AuthorParticipationCharts = ({ contributions }) => {
 
   return (
     <SectionContainer>
-      <LineChart width={752} height={500} margin={{ top: 15 }} data={stats}>
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='year' type='number' />
-        <YAxis>
-          <Label value='Nombre de participations' angle={-90} position='insideLeft' />
-        </YAxis>
-        <Tooltip /> <Legend />
-        {Object.keys(stats[0]).map((key, index) => {
-          if (key !== 'year') {
-            return (
-              <Line key={index} dataKey={key} stroke={getRandomColor()} />
-            );
-          }
-          return null;
-        })}
-      </LineChart>
+      
     </SectionContainer>
   );
 };

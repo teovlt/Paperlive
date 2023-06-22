@@ -13,7 +13,12 @@ const ProductionTimeChart = ({ contributions }) => {
 
   const stats = Object.entries(
     contributions
-      .filter((c) => c.state === 'approved')
+      .filter(
+        (c) =>
+          c.state === 'approved' &&
+          (!filter?.start || filter.start <= new Date(c.startDate).getFullYear()) &&
+          (!filter?.end || filter.end >= new Date(c.startDate).getFullYear())
+      )
       .reduce((acc, c) => {
         c.submissions
           .filter((s) => s.type === 'longPaper' && s.state === 'approved')
@@ -49,6 +54,22 @@ const ProductionTimeChart = ({ contributions }) => {
       return acc;
     }, []);
 
+  const contributionsMinYear = contributions.reduce((min, c, i) => {
+    const year = new Date(c.startDate).getFullYear();
+    if (i === 0) min = year;
+    else if (min > year) min = year;
+
+    return min;
+  }, -1);
+
+  const contributionsMaxYear = contributions.reduce((max, c, i) => {
+    const year = new Date(c.startDate).getFullYear();
+    if (i === 0) max = year;
+    else if (max < year) max = year;
+
+    return max;
+  }, -1);
+
   return (
     <SectionContainer>
       <Heading3>{t('statistics.productionTime.title')}</Heading3>
@@ -70,8 +91,35 @@ const ProductionTimeChart = ({ contributions }) => {
             <option value={rank}>{rank}</option>
           ))}
         </Select>
-      </InlineGroup>
 
+        <Select
+          label={t('statistics.parameters.begin')}
+          onChange={(e) => setFilter((filter) => ({ ...filter, start: e.target.value }))}>
+          <option value=''>-</option>
+          {Array.from({ length: contributionsMaxYear - contributionsMinYear + 1 }, (_, i) => (
+            <option
+              key={contributionsMinYear + i}
+              value={contributionsMinYear + i}
+              disabled={filter?.end && contributionsMinYear + i >= filter?.end}>
+              {contributionsMinYear + i}
+            </option>
+          ))}
+        </Select>
+
+        <Select
+          label={t('statistics.parameters.end')}
+          onChange={(e) => setFilter((filter) => ({ ...filter, end: e.target.value }))}>
+          <option value=''>-</option>
+          {Array.from({ length: contributionsMaxYear - contributionsMinYear + 1 }, (_, i) => (
+            <option
+              key={contributionsMinYear + i}
+              value={contributionsMinYear + i}
+              disabled={filter?.start && contributionsMinYear + i <= filter?.start}>
+              {contributionsMinYear + i}
+            </option>
+          ))}
+        </Select>
+      </InlineGroup>
       <BarChart width={752} height={500} margin={{ top: 15 }} data={stats}>
         <CartesianGrid strokeDasharray='3 3' />
         <Tooltip cursor={{ fill: 'transparent' }} />
