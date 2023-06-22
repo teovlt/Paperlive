@@ -18,11 +18,12 @@ services:
     depends_on:
       - database
     ports:
-      - '3000:3000'
+      - '5000:5000'
     restart: always
     command: node index.js
     volumes:
       - ./server:/app
+      - /var/backups/lig-paperlive-uploads:/app/uploads:rw
       - /app/node_modules
     networks:
       - paperlive
@@ -33,7 +34,7 @@ services:
       - '27017:27017'
     restart: always
     volumes:
-      - ./server/data:/data/db
+      - /var/backups/lig-paperlive-db:/data:rw
     networks:
       - paperlive
 

@@ -1,8 +1,11 @@
 const multer = require('multer');
+const fs = require('fs');
 
 module.exports.teamPictureStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/team/picture/');
+    const folderPath = 'uploads/team/picture';
+    if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath, { recursive: true });
+    cb(null, folderPath);
   },
   filename: function (req, file, cb) {
     cb(null, 'team-picture-' + req.teamId + '.png');
@@ -11,7 +14,9 @@ module.exports.teamPictureStorage = multer.diskStorage({
 
 module.exports.submissionZipfolderStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/submission/zipfolder/');
+    const folderPath = 'uploads/submission/zipfolder';
+    if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath, { recursive: true });
+    cb(null, folderPath);
   },
   filename: function (req, file, cb) {
     cb(null, 'temp-submission-zipfolder-' + req.teamId + '.zip');
@@ -20,7 +25,9 @@ module.exports.submissionZipfolderStorage = multer.diskStorage({
 
 module.exports.submissionCompiledPDFStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/submission/compiledpdf/');
+    const folderPath = 'uploads/submission/compiledpdf';
+    if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath, { recursive: true });
+    cb(null, folderPath);
   },
   filename: function (req, file, cb) {
     cb(null, 'temp-submission-compiledpdf-' + req.teamId + '.pdf');
@@ -29,7 +36,9 @@ module.exports.submissionCompiledPDFStorage = multer.diskStorage({
 
 module.exports.submissionDiffPDFStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/submission/diffpdf/');
+    const folderPath = 'uploads/submission/diffpdf';
+    if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath, { recursive: true });
+    cb(null, folderPath);
   },
   filename: function (req, file, cb) {
     cb(null, 'temp-submission-diffpdf-' + req.teamId + '.pdf');
@@ -38,7 +47,9 @@ module.exports.submissionDiffPDFStorage = multer.diskStorage({
 
 module.exports.submissionCommentPDFStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/submission/commentpdf/');
+    const folderPath = 'uploads/submission/commentpdf';
+    if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath, { recursive: true });
+    cb(null, folderPath);
   },
   filename: function (req, file, cb) {
     cb(null, 'temp-submission-commentpdf-' + req.teamId + '.pdf');

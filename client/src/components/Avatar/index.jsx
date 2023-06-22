@@ -11,7 +11,7 @@ const Avatar = () => {
   const axiosPrivate = useAxiosPrivate();
 
   const [picture, setPicture] = useState({
-    url: `${import.meta.env.VITE_API_URI}/api/files/${auth.picture}`,
+    url: auth.picture && `${import.meta.env.VITE_API_URI}/api/files/${auth.picture}`,
     _v: 0,
   });
 
@@ -56,13 +56,15 @@ const Avatar = () => {
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const res = await axiosPrivate.get(picture.url, { responseType: 'blob' });
-        const url = URL.createObjectURL(res.data);
-        setPicture((prev) => ({ ...prev, imgSrc: url }));
+        if (picture.url) {
+          const res = await axiosPrivate.get(picture.url, { responseType: 'blob' });
+          const url = URL.createObjectURL(res.data);
+          setPicture((prev) => ({ ...prev, imgSrc: url }));
+        } else setPicture((prev) => ({ ...prev, imgSrc: '/images/team-picture-default.png' }));
       } catch (error) {
         setPicture((prev) => ({
-          url: `${import.meta.env.VITE_API_URI}/api/files/team-picture-default.png`,
-          _v: prev._v + 1,
+          ...prev,
+          imgSrc: `images/team-picture-default.png`,
         }));
       }
     };
@@ -72,7 +74,6 @@ const Avatar = () => {
 
   return (
     <>
-      {' '}
       <UploadForm onChange={handleSubmit}>
         <UploadAvatarLabel label={t('avatar.hover')} onDrop={handleSubmit}>
           <Picture src={picture.imgSrc} alt='avatar' />

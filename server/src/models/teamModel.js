@@ -22,7 +22,7 @@ const teamSchema = new mongoose.Schema({
   },
   picture: {
     type: String,
-    default: 'team-picture-default.png',
+    default: '',
   },
   location: {
     type: String,
