@@ -23,7 +23,7 @@ services:
     command: node index.js
     volumes:
       - ./server:/app
-      - /var/backups/lig-paperlive-uploads:/app/uploads:rw
+      - /var/backups/uploads:/app/uploads
       - /app/node_modules
     networks:
       - paperlive
@@ -34,7 +34,7 @@ services:
       - '27017:27017'
     restart: always
     volumes:
-      - /var/backups/lig-paperlive-db:/data:rw
+      - /var/backups/data:/data/db
     networks:
       - paperlive
 
