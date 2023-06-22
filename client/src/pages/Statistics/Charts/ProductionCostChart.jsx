@@ -13,28 +13,63 @@ const ProductionCostChart = ({ contributions }) => {
 
   const stats = Object.entries(
     contributions
-      .filter((c) => c.state === 'approved')
+      .filter(
+        (c) =>
+          c.state === 'approved' &&
+          (!filter?.start || filter.start <= new Date(c.startDate).getFullYear()) &&
+          (!filter?.end || filter.end >= new Date(c.startDate).getFullYear())
+      )
       .reduce((acc, c) => {
-        c.submissions.flatMap((s) => {
-          const { _id: id, title } = c;
-          const { materialCost, authors } = s;
+        c.submissions
+          .filter(
+            (s) =>
+              (!filter?.type || filter.type === s.venue.type) &&
+              (!filter?.rank || filter.rank === s.venue.rank)
+          )
+          .flatMap((s) => {
+            const { _id: id, title } = c;
+            const { materialCost, authors } = s;
 
-          acc[id] = {
-            title,
-            cost:
-              (acc[id]?.cost ?? 0) +
-              authors.reduce(
-                (acc, curr) => (acc += curr.hourlyCost * curr.workTime * 21.67 * 7),
-                0
-              ),
-          };
-        });
+            acc[id] = {
+              title,
+              cost:
+                (acc[id]?.cost ?? 0) +
+                authors.reduce(
+                  (acc, curr) => (acc += curr.hourlyCost * curr.workTime * 21.67 * 7),
+                  0
+                ),
+            };
+          });
         return acc;
       }, {})
   )
     .map(([id, data]) => ({ id, ...data }))
     .sort((a, b) => b.cost - a.cost)
     .filter((c) => c.cost !== 0);
+
+  const submissionsVenuesRank = contributions
+    .flatMap((c) => c.submissions)
+    .reduce((acc, s) => {
+      const { rank } = s.venue;
+      if (!acc.includes(rank)) acc.push(rank);
+      return acc;
+    }, []);
+
+  const contributionsMinYear = contributions.reduce((min, c, i) => {
+    const year = new Date(c.startDate).getFullYear();
+    if (i === 0) min = year;
+    else if (min > year) min = year;
+
+    return min;
+  }, -1);
+
+  const contributionsMaxYear = contributions.reduce((max, c, i) => {
+    const year = new Date(c.startDate).getFullYear();
+    if (i === 0) max = year;
+    else if (max < year) max = year;
+
+    return max;
+  }, -1);
 
   return (
     <SectionContainer>
@@ -47,6 +82,43 @@ const ProductionCostChart = ({ contributions }) => {
           <option value=''>-</option>
           <option value='conference'>{t('statistics.parameters.conference')}</option>
           <option value='journal'>{t('statistics.parameters.journal')}</option>
+        </Select>
+
+        <Select
+          label={t('statistics.parameters.venueRank')}
+          onChange={(e) => setFilter((filter) => ({ ...filter, rank: e.target.value }))}>
+          <option value=''>-</option>
+          {submissionsVenuesRank.map((rank) => (
+            <option value={rank}>{rank}</option>
+          ))}
+        </Select>
+
+        <Select
+          label={t('statistics.parameters.begin')}
+          onChange={(e) => setFilter((filter) => ({ ...filter, start: e.target.value }))}>
+          <option value=''>-</option>
+          {Array.from({ length: contributionsMaxYear - contributionsMinYear + 1 }, (_, i) => (
+            <option
+              key={contributionsMinYear + i}
+              value={contributionsMinYear + i}
+              disabled={filter?.end && contributionsMinYear + i >= filter?.end}>
+              {contributionsMinYear + i}
+            </option>
+          ))}
+        </Select>
+
+        <Select
+          label={t('statistics.parameters.end')}
+          onChange={(e) => setFilter((filter) => ({ ...filter, end: e.target.value }))}>
+          <option value=''>-</option>
+          {Array.from({ length: contributionsMaxYear - contributionsMinYear + 1 }, (_, i) => (
+            <option
+              key={contributionsMinYear + i}
+              value={contributionsMinYear + i}
+              disabled={filter?.start && contributionsMinYear + i <= filter?.start}>
+              {contributionsMinYear + i}
+            </option>
+          ))}
         </Select>
       </InlineGroup>
 

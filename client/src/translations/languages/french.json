@@ -277,9 +277,9 @@
     "distributionPerRank": {
       "title": "Répartition des articles longs approuvés par rang, revues et rôles d'équipe",
       "label": "Nombre de participations",
-      "leader": "Leader",
-      "coLeader": "Co-leader",
-      "guest": "Guest"
+      "leader": "Meneur",
+      "coLeader": "Co-meneur",
+      "guest": "Invité"
     },
     "productionTime": {
       "title": "Temps de production pour les contributions",
