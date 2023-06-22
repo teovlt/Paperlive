@@ -11,7 +11,7 @@ import Chips from '../../components/Chips';
 import { HiGlobeAlt } from 'react-icons/hi2';
 import i18n from '../../translations/i18n';
 const REGISTER_URL = '/auth/register';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const { t } = useTranslation();
@@ -146,7 +146,7 @@ const Register = () => {
           />
           {errMsg && <Chips type='negative'>{errMsg}</Chips>}
           <Button type='submit'>{t('authentication.signUp')}</Button>
-          <Caption>
+          <Caption style={{ whiteSpace: 'nowrap' }}>
             {t('register.textSignIn')}
             <Link to='/login'>{t('authentication.signIn')}</Link>
           </Caption>

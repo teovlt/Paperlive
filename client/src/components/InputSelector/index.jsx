@@ -35,6 +35,12 @@ const InputSelector = ({ label, selected, callback }) => {
       }
     }
 
+    function handleClickOutside(e) {
+      if (selectorRef.current && !selectorRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    }
+
     async function handleInputKeyDown(e) {
       if (e.key === 'Enter') {
         if (e.target.value !== '') {
@@ -44,23 +50,14 @@ const InputSelector = ({ label, selected, callback }) => {
       }
     }
 
-    function handleInputBlur() {
-      setIsOpen(false);
-    }
-
-    function handleClickOutside(e) {
-      if (selectorRef.current && !selectorRef.current.contains(e.target)) {
-        setIsOpen(false);
-      }
-    }
-
     if (isOpen) {
       document.addEventListener('click', handleClickOutside);
       document.addEventListener('keydown', handleKeyDown);
 
+      console.log(isOpen);
+
       inputRef.current?.focus();
       inputRef.current?.addEventListener('keydown', handleInputKeyDown);
-      inputRef.current?.addEventListener('blur', handleInputBlur);
     }
 
     return () => {
@@ -80,7 +77,10 @@ const InputSelector = ({ label, selected, callback }) => {
             <Pill key={index}>
               <PillLabel>{item}</PillLabel>
               <PillButton
-                onClick={() => setSelectedItems((prev) => prev.filter((_, i) => i !== index))}>
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedItems((prev) => prev.filter((_, i) => i !== index));
+                }}>
                 <HiXMark />
               </PillButton>
             </Pill>
@@ -88,7 +88,11 @@ const InputSelector = ({ label, selected, callback }) => {
         </PillContainer>
         <Wrapper>
           <Counter>{selected.length}</Counter>
-          <ButtonCircle>
+          <ButtonCircle
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedItems([]);
+            }}>
             <HiXMark />
           </ButtonCircle>
         </Wrapper>
