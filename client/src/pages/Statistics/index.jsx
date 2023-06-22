@@ -18,11 +18,11 @@ const Statistics = () => {
   return (
     <>
       <Heading2>{t('statistics.statistics')}</Heading2>
-      <AcceptationRejectionChartByType contributions={contributions} />
+      {/* <AcceptationRejectionChartByType contributions={contributions} />
       <TeamRoleDistributionChart contributions={contributions} />
       <ProductionTimeChart contributions={contributions} />
       <ProductionCostChart contributions={contributions} />
-      <DistributionPerRank contributions={contributions} />
+      <DistributionPerRank contributions={contributions} /> */}
       <AuthorParticipationCharts contributions={contributions} />
     </>
   );
