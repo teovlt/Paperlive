@@ -7,6 +7,7 @@ import ProductionTimeChart from './Charts/ProductionTimeChart';
 import ProductionCostChart from './Charts/ProductionCostChart';
 
 import DistributionPerRank from './Charts/DistributionChartPerRank';
+import AuthorParticipationCharts from './Charts/AuthorParticipationCharts';
 
 const Statistics = () => {
   const { t } = useTranslation();
@@ -22,6 +23,7 @@ const Statistics = () => {
       <ProductionTimeChart contributions={contributions} />
       <ProductionCostChart contributions={contributions} />
       <DistributionPerRank contributions={contributions} />
+      <AuthorParticipationCharts contributions={contributions} />
     </>
   );
 };

@@ -143,17 +143,8 @@ const Submission = () => {
           </Value>
         </InfoContainer>
       </SectionContainer>
-
       <SectionContainer>
         <Heading2>{t('submission.files')}</Heading2>
-        <InfoContainer>
-          <Label>{t('submission.abstract')}</Label>
-          {submission.abstract ? (
-            <Link onClick={() => handleDownload('abstract')}>Download</Link>
-          ) : (
-            <Value>-</Value>
-          )}
-        </InfoContainer>
 
         <InfoContainer>
           <Label>{t('submission.zipFolder')}</Label>
