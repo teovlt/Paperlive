@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BarChart, Bar, CartesianGrid, Tooltip, XAxis, YAxis, Label } from 'recharts';
-import { Heading3, SectionContainer } from '../../../theme/appElements';
+import { Heading3, InlineGroup, SectionContainer } from '../../../theme/appElements';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import Select from '../../../components/Select';
 
-const ProductionCost = ({ contributions }) => {
+const ProductionCostChart = ({ contributions }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const data = Object.entries(
+  const [filter, setFilter] = useState(null);
+
+  const stats = Object.entries(
     contributions
       .filter((c) => c.state === 'approved')
       .reduce((acc, c) => {
@@ -37,7 +40,17 @@ const ProductionCost = ({ contributions }) => {
     <SectionContainer>
       <Heading3>{t('statistics.data3.title')}</Heading3>
 
-      <BarChart width={752} height={500} margin={{ top: 15 }} data={data}>
+      <InlineGroup>
+        <Select
+          label=''
+          onChange={(e) => setFilter((filter) => ({ ...filter, type: e.target.value }))}>
+          <option value=''>-</option>
+          <option value='conference'>{t('statistics.parameters.conference')}</option>
+          <option value='journal'>{t('statistics.parameters.journal')}</option>
+        </Select>
+      </InlineGroup>
+
+      <BarChart width={752} height={500} margin={{ top: 15 }} data={stats}>
         <CartesianGrid strokeDasharray='3 3' />
         <Tooltip cursor={{ fill: 'transparent' }} />
 
@@ -57,7 +70,7 @@ const ProductionCost = ({ contributions }) => {
           dataKey='cost'
           name={t('statistics.data3.bar')}
           formatter={(value) => `${Math.round(value)} ${t('statistics.euros')}`}
-          fill='var(--accent)'
+          fill='var(--data-visualisation-positive)'
           cursor='pointer'
           onClick={(data) => navigate(`/contributions/${data.id}`)}
         />
@@ -66,4 +79,4 @@ const ProductionCost = ({ contributions }) => {
   );
 };
 
-export default ProductionCost;
+export default ProductionCostChart;

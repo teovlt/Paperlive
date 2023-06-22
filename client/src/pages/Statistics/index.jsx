@@ -4,8 +4,8 @@ import { Heading2 } from '../../theme/appElements';
 import AcceptationRejectionChartByType from './Charts/AcceptationRejectionChartByType';
 import TeamRoleDistributionChart from './Charts/TeamRoleDistributionChart';
 import ProductionTimeChart from './Charts/ProductionTimeChart';
+import ProductionCostChart from './Charts/ProductionCostChart';
 
-import ProductionCost from './Charts/ProductionCost';
 import DistributionPerRank from './Charts/DistributionPerRank';
 
 const Statistics = () => {
@@ -20,8 +20,8 @@ const Statistics = () => {
       <AcceptationRejectionChartByType contributions={contributions} />
       <TeamRoleDistributionChart contributions={contributions} />
       <ProductionTimeChart contributions={contributions} />
+      <ProductionCostChart contributions={contributions} />
 
-      {/* <ProductionCost contributions={contributions} /> */}
       {/* <DistributionPerRank contributions={contributions} /> */}
     </>
   );

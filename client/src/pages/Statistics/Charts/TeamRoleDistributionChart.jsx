@@ -107,24 +107,24 @@ const TeamRoleDistributionChart = ({ contributions }) => {
         <CartesianGrid strokeDasharray='3 3' />
 
         <XAxis dataKey='rank' tick={{ fontSize: 15 }} />
-        <YAxis tick={{ fontSize: 15 }} />
+        <YAxis tick={{ fontSize: 15 }} interval={1} />
 
         <Bar
           dataKey='leader'
           stackId='roleStack'
-          fill='#20a4f3'
+          fill='var(--data-visualisation-positive)'
           name={t('statistics.distributionPerRank.leader')}
         />
         <Bar
           dataKey='coLeader'
           stackId='roleStack'
-          fill='#2ec4b6'
+          fill='var(--data-visualisation-negative)'
           name={t('statistics.distributionPerRank.coLeader')}
         />
         <Bar
           dataKey='guest'
           stackId='roleStack'
-          fill='#ff3366'
+          fill='var(--data-visualisation-neutral)'
           name={t('statistics.distributionPerRank.guest')}
         />
 

@@ -27,6 +27,7 @@ const Input = forwardRef((props, ref) => {
         {...props}
         ref={inputRef}
         placeholder=' '
+        autoComplete='off'
         type={props.type === 'password' ? (pwdVisible ? 'text' : 'password') : props.type}
         defaultType={props.type}
       />

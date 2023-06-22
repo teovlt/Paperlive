@@ -24,6 +24,12 @@ const GlobalStyle = createGlobalStyle`
     
     --white: #ffffff;
     --white-50: #ffffff80;
+
+    --data-visualisation-positive: #048ba8;
+    --data-visualisation-positive-variant: #0db39e;
+    --data-visualisation-negative: #edb21d;
+    --data-visualisation-negative-variant: #e47a11;
+    --data-visualisation-neutral: #e64c61;
   }
 
   *, ::before, ::after {

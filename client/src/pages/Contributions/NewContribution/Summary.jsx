@@ -96,7 +96,7 @@ const Summary = ({ data }) => {
                   { inProgress: 'notice', dropped: 'negative', approved: 'positive' }[data.state]
                 })`,
               }}>
-              {data.state}
+              {data.state ? t(`contribution.${data.state}`) : '-'}
             </Value>
           </InfoContainer>
           <InfoContainer>

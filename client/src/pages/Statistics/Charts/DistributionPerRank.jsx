@@ -52,8 +52,16 @@ const DistributionPerRank = ({ contributions }) => {
         <XAxis dataKey='rank' />
         <YAxis interval={1} tick={{ fontSize: 12 }} />
 
-        <Bar dataKey='approved' fill='var(--positive)' name={t('statistics.approved')} />
-        <Bar dataKey='rejected' fill='var(--negative)' name={t('statistics.rejected')} />
+        <Bar
+          dataKey='approved'
+          fill='var(--data-visualisation-positive)'
+          name={t('statistics.approved')}
+        />
+        <Bar
+          dataKey='rejected'
+          fill='var(--data-visualisation-negative)'
+          name={t('statistics.rejected')}
+        />
 
         <Legend />
       </BarChart>

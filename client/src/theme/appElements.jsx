@@ -102,7 +102,7 @@ export const Caption = styled.p`
   font-size: 1.5rem;
   line-height: 1.8rem;
 
-  //white-space: nowrap;
+  white-space: nowrap;
 
   color: var(--black);
 `;

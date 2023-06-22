@@ -151,25 +151,25 @@ const AcceptationRejectionChartByType = ({ contributions }) => {
           <Bar
             dataKey='journalAcceptances'
             stackId='journalStack'
-            fill='var(--positive)'
+            fill='var(--data-visualisation-positive)'
             name={t('statistics.acceptationRejectionChartByType.journalAcceptances')}
           />
           <Bar
             dataKey='journalRejections'
             stackId='journalStack'
-            fill='var(--negative)'
+            fill='var(--data-visualisation-negative)'
             name={t('statistics.acceptationRejectionChartByType.journalRejections')}
           />
           <Bar
             dataKey='conferenceAcceptances'
             stackId='conferenceStack'
-            fill='#00BFFF'
+            fill='var(--data-visualisation-positive-variant)'
             name={t('statistics.acceptationRejectionChartByType.conferenceAcceptances')}
           />
           <Bar
             dataKey='conferenceRejections'
             stackId='conferenceStack'
-            fill='#DC143C'
+            fill='var(--data-visualisation-negative-variant)'
             name={t('statistics.acceptationRejectionChartByType.conferenceRejections')}
           />
 
@@ -182,8 +182,16 @@ const AcceptationRejectionChartByType = ({ contributions }) => {
           <XAxis dataKey='type' />
           <YAxis interval={1} tick={{ fontSize: 12 }} />
 
-          <Bar dataKey='approved' fill='var(--positive)' name={t('statistics.approved')} />
-          <Bar dataKey='rejected' fill='var(--negative)' name={t('statistics.rejected')} />
+          <Bar
+            dataKey='approved'
+            fill='var(--data-visualisation-positive)'
+            name={t('statistics.approved')}
+          />
+          <Bar
+            dataKey='rejected'
+            fill='var(--data-visualisation-negative)'
+            name={t('statistics.rejected')}
+          />
 
           <Legend />
         </BarChart>

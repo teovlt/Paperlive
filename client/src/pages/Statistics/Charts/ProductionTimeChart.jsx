@@ -91,7 +91,7 @@ const ProductionTimeChart = ({ contributions }) => {
           dataKey='monthDiff'
           name={t('statistics.productionTime.bar')}
           formatter={(value) => `${value} ${t('statistics.months')}`}
-          fill='var(--accent)'
+          fill='var(--data-visualisation-positive)'
           cursor='pointer'
           onClick={(data) => navigate(`/contributions/${data.id}`)}
         />
