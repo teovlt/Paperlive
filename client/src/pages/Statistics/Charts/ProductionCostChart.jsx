@@ -42,7 +42,7 @@ const ProductionCostChart = ({ contributions }) => {
 
       <InlineGroup>
         <Select
-          label=''
+          label={t('statistics.parameters.venueType')}
           onChange={(e) => setFilter((filter) => ({ ...filter, type: e.target.value }))}>
           <option value=''>-</option>
           <option value='conference'>{t('statistics.parameters.conference')}</option>
