@@ -7,6 +7,7 @@ import {
   Container,
   Counter,
   DisplayedListContainer,
+  NoResults,
   Pill,
   PillButton,
   PillContainer,
@@ -28,8 +29,6 @@ const InputSelector = ({
   displayedAttribute,
   label,
   modelName,
-  schema,
-  unique = false,
 }) => {
   const { t } = useTranslation();
   const search = useSearch();
@@ -64,10 +63,9 @@ const InputSelector = ({
             }
           } else {
             const res = await axiosPrivate.post(`/${modelName}`, {
-              [displayedAttribute]: queryRef.current,
+              [displayedAttribute]: queryRef.current.trim(),
             });
             listRef.current = [...listRef.current, res.data];
-            setItems((prev) => [...prev, res.data]);
             setSelectedItems((prev) => [...prev, res.data]);
           }
         }
@@ -87,6 +85,7 @@ const InputSelector = ({
   }, [selectedItems]);
 
   useEffect(() => {
+    setItems(listRef.current);
     setList(listRef.current);
   }, [listRef.current]);
 
@@ -148,14 +147,14 @@ const InputSelector = ({
           {items.filter(
             (item) =>
               !selectedItemsRef.current.includes(item) &&
-              search(query, listRef.current, displayedAttribute).includes(item)
-          ).length > 0 && (
+              search(query, items, displayedAttribute).includes(item)
+          ).length > 0 ? (
             <DisplayedListContainer>
               {items
                 .filter(
                   (item) =>
                     !selectedItemsRef.current.includes(item) &&
-                    search(query, listRef.current, displayedAttribute).includes(item)
+                    search(query, items, displayedAttribute).includes(item)
                 )
                 .slice(0, 8)
                 .map((item, index) => (
@@ -165,6 +164,10 @@ const InputSelector = ({
                     onClick={() => setSelectedItems((prev) => [...prev, item])}
                   />
                 ))}
+            </DisplayedListContainer>
+          ) : (
+            <DisplayedListContainer>
+              <NoResults>{t('contribution.pressEnter')}</NoResults>
             </DisplayedListContainer>
           )}
         </>

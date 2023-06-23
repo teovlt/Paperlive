@@ -11,7 +11,11 @@ const Avatar = () => {
   const axiosPrivate = useAxiosPrivate();
 
   const [picture, setPicture] = useState({
-    url: auth.picture && `${import.meta.env.VITE_API_URI ?? ''}/api/files/${auth.picture}`,
+    url:
+      auth.picture &&
+      `${import.meta.env.VITE_API_URI ? import.meta.env.VITE_API_URI + '/api' : ''}/files/${
+        auth.picture
+      }`,
     _v: 0,
   });
 
@@ -44,7 +48,9 @@ const Avatar = () => {
         picture: res.data.filename,
       }));
       setPicture((prev) => ({
-        url: `${import.meta.env.VITE_API_URI ?? ''}/api/files/${res.data.filename}`,
+        url: `${import.meta.env.VITE_API_URI ? import.meta.env.VITE_API_URI + '/api' : ''}/files/${
+          res.data.filename
+        }`,
         _v: prev._v + 1,
       }));
       notify();
