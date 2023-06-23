@@ -84,7 +84,7 @@ const ProductionCostChart = ({ contributions }) => {
 
   return (
     <SectionContainer>
-      <Heading3>{t('statistics.data3.title')}</Heading3>
+      <Heading3>{t('statistics.productionCost.title')}</Heading3>
 
       <InlineGroup>
         <Select
@@ -147,7 +147,7 @@ const ProductionCostChart = ({ contributions }) => {
         <YAxis dataKey='cost' tick={{ fontSize: 12 }}>
           <Label
             position='insideLeft'
-            value={t('statistics.data3.label')}
+            value={t('statistics.productionCost.label')}
             angle={-90}
             fontSize={12}
           />
@@ -155,7 +155,7 @@ const ProductionCostChart = ({ contributions }) => {
 
         <Bar
           dataKey='cost'
-          name={t('statistics.data3.bar')}
+          name={t('statistics.productionCost.bar')}
           formatter={(value) => `${Math.round(value)} ${t('statistics.euros')}`}
           fill='var(--data-visualisation-positive)'
           cursor='pointer'

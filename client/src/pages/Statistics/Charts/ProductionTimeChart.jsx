@@ -23,7 +23,7 @@ const ProductionTimeChart = ({ contributions }) => {
         c.submissions
           .filter((s) => s.type !== 'poster' && s.state === 'approved')
           .sort((a, b) => new Date(a.submissionDate) - new Date(b.submissionDate))
-          .slice(c.submissions.length - 1, 1)
+          .slice(c.submissions.length - 1, 1) 
           .filter(
             (s) =>
               (!filter?.type || filter.type === s.venue?.type) &&

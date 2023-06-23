@@ -82,7 +82,7 @@ const DistributionPerRank = ({ contributions }) => {
 
   return (
     <SectionContainer>
-      <Heading3>{t('statistics.data4.title')}</Heading3>
+      <Heading3>{t('statistics..title')}</Heading3>
 
       <InlineGroup>
         <Select

@@ -287,13 +287,10 @@
       "label": "Durée (mois)",
       "bar": "Temps de production"
     },
-    "data3": {
-      "title": "Coût de production des contributions : Analyse des coûts par contribution et montant des dépenses",
+    "productionCost": {
+      "title": "Coût de production des contributions",
       "label": "Coût (€)",
       "bar": "Coût"
-    },
-    "data4": {
-      "title": "Répartition des soumissions approuvées et rejetées par rang"
     },
     "acceptationRejectionChartByType": {
       "title": "Répartition des soumissions approuvées et rejetées par type de revue",
@@ -301,10 +298,6 @@
       "journalRejections": "Rejet des journaux",
       "conferenceAcceptances": "Approbations des conférences",
       "conferenceRejections": "Rejet des conférences"
-    },
-    "data7": {
-      "title": "Nombre de rejets et d'acceptations par année et par type de revue",
-      "label": "Nombre de rejet/acceptation"
     },
     "authorParticipation": {
       "title": "Nombre de participation par auteur chaque année"
