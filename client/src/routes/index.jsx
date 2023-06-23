@@ -122,7 +122,7 @@ const Routes = () => {
           </Route>
 
           <Route
-            path='/submissions/new'
+            path='/submissions/new/:contributionId'
             element={
               <Layout
                 sidebar={

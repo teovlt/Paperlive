@@ -30,19 +30,13 @@ const Summary = ({ data }) => {
   };
 
   const handleSave = async () => {
-    if (data.contribution && data.title) {
-      const submission = {
-        contributionId: data.contribution._id,
-        commentPdf: data.commentPdf?.name,
-        ...data,
-      };
-      delete submission.contribution;
+    if (data.title) {
       try {
-        await axiosPrivate.post('/submissions/new', submission);
+        await axiosPrivate.post('/submissions/new', data);
         const contributions = await axiosPrivate.get('/contributions');
         setAuth((prev) => ({ ...prev, contributions: [...contributions.data] }));
         notify();
-        navigate(`/contributions/${data.contribution._id}`);
+        navigate(`/contributions/${data.contributionId}`);
       } catch (error) {}
     } else
       setErrMsg(
@@ -63,10 +57,6 @@ const Summary = ({ data }) => {
     <>
       <SectionContainer>
         <Heading2>{t('submission.recap')}</Heading2>
-        <InfoContainer>
-          <Label>{t('submission.contribution')}</Label>
-          <Value>{data.contribution?.title || '-'}</Value>
-        </InfoContainer>
         <InfoContainer>
           <Label>{t('submission.title')}</Label>
           <Value>{data.title || '-'}</Value>

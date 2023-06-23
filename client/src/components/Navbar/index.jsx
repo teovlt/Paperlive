@@ -102,50 +102,11 @@ const NavBar = () => {
     ],
   };
 
-  const actionDropdownTemplate = {
-    toggle: <HiPlus />,
-    groups: [
-      {
-        actions: [
-          {
-            label: t('dropDown.newContribution'),
-            onClick: () => navigate('/contributions/new'),
-          },
-          {
-            label: t('dropDown.newSubmission'),
-            onClick: () => navigate('/submissions/new'),
-          },
-        ],
-      },
-    ],
-  };
-
-  // const themeDropdownTemplate = {
-  //   toggle: <HiMoon />,
-  //   groups: [
-  //     {
-  //       label: 'Theme actuel : ',
-  //       value: theme,
-  //     },
-  //     {
-  //       actions: Object.keys(themes).map((theme) => ({
-  //         label: `${themes[theme].icon}${themes[theme].name} `,
-  //         onClick: () => setTheme(theme),
-  //       })),
-  //     },
-  //   ],
-  // };
-
   return (
     <>
       <NavContainer>
         <Logo to='/'>PaperLive</Logo>
-        {/* <Recherche>
-          <HiOutlineMagnifyingGlass />
-          <Input placeholder='Search PaperLive'></Input>
-        </Recherche> */}
         <Actions>
-          <DropdownMenu template={actionDropdownTemplate} />
           <DropdownMenu template={languagesDropdownTemplate} />
           <DropdownMenu template={profileDropdownTemplate} />
         </Actions>

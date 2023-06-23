@@ -18,7 +18,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useSearch from '../../hooks/useSearch';
 
-const Table = ({ name, list, fields, defaultSort, searchAttr }) => {
+const Table = ({ name, list, fields, defaultSort, searchAttr, urlParams }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const search = useSearch();
@@ -51,7 +51,7 @@ const Table = ({ name, list, fields, defaultSort, searchAttr }) => {
           placeholder={t('table.search')}
           value={searchTerms}
           onInput={(e) => setSearchTerms(e.target.value)}></Search>
-        <Button onClick={() => navigate(`/${name}/new`)}>
+        <Button onClick={() => navigate(`/${name}/new/${urlParams ?? ''}`)}>
           {t('table.new')} {t(`global.${name.slice(0, -1)}`).toLowerCase()}
         </Button>
       </THeader>
@@ -94,7 +94,7 @@ const Table = ({ name, list, fields, defaultSort, searchAttr }) => {
           ))
         ) : (
           <DataRow>
-            <BodyButton onClick={() => navigate(`/${name}/new`)}>
+            <BodyButton onClick={() => navigate(`/${name}/new/${urlParams ?? ''}`)}>
               {t('table.new')} {t(`global.${name.slice(0, -1)}`).toLowerCase()}
             </BodyButton>
           </DataRow>

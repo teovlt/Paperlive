@@ -107,6 +107,7 @@ const Contribution = () => {
         <Table
           name='submissions'
           list={contribution.submissions}
+          urlParams={contribution._id}
           searchAttr='title'
           defaultSort={{ attr: 'submissionDate', direction: 'desc' }}
           fields={[

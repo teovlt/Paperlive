@@ -8,10 +8,10 @@ import Files from './Files';
 import Summary from './Summary';
 
 const NewSubmission = () => {
-  const { step } = useParams();
+  const { contributionId, step } = useParams();
 
   const [data, setData] = useState({
-    contribution: '',
+    contributionId,
     title: '',
     submissionDate: '',
     state: 'draft',
