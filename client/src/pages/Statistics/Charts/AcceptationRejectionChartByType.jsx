@@ -160,8 +160,8 @@ const AcceptationRejectionChartByType = ({ contributions }) => {
         <BarChart width={752} height={500} margin={{ top: 15 }} data={statsByYear}>
           <CartesianGrid strokeDasharray='3 3' />
 
-          <XAxis dataKey='year' />
-          <YAxis interval={1} tick={{ fontSize: 12 }} />
+          <XAxis dataKey='year' tick={{ fontSize: 15 }} />
+          <YAxis tick={{ fontSize: 15 }} />
 
           <Bar
             dataKey='journalAcceptances'

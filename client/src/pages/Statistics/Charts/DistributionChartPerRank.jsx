@@ -128,8 +128,8 @@ const DistributionPerRank = ({ contributions }) => {
       <BarChart width={752} height={500} margin={{ top: 15 }} data={data}>
         <CartesianGrid strokeDasharray='3 3' />
 
-        <XAxis dataKey='rank' />
-        <YAxis interval={1} tick={{ fontSize: 12 }} />
+        <XAxis dataKey='rank' tick={{ fontSize: 15 }} />
+        <YAxis interval={1} tick={{ fontSize: 15 }} />
 
         <Bar
           dataKey='approved'

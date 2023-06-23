@@ -21,9 +21,9 @@ const ProductionTimeChart = ({ contributions }) => {
       )
       .reduce((acc, c) => {
         c.submissions
-          .filter((s) => s.type !== 'poster' && s.state === 'approved')
+          .filter((s) => s.type !== 'poster' && s.state === 'approved' && s.submissionDate)
           .sort((a, b) => new Date(a.submissionDate) - new Date(b.submissionDate))
-          .slice(c.submissions.length - 1, 1) 
+          .slice(0, 1)
           .filter(
             (s) =>
               (!filter?.type || filter.type === s.venue?.type) &&
@@ -139,13 +139,20 @@ const ProductionTimeChart = ({ contributions }) => {
         <CartesianGrid strokeDasharray='3 3' />
         <Tooltip cursor={{ fill: 'transparent' }} />
 
-        <XAxis dataKey='title' tick={null} />
+        <XAxis
+          dataKey='title'
+          tick={{ fontSize: 15 }}
+          tickFormatter={(value) => {
+            return value.substring(0, 3);
+          }}
+        />
 
-        <YAxis dataKey='monthDiff' tick={{ fontSize: 12 }}>
+        <YAxis dataKey='monthDiff' tick={{ fontSize: 15 }}>
           <Label
             value={t('statistics.productionTime.label')}
+            position='insideLeft'
             angle={-90}
-            fontSize={12}
+            fontSize={15}
             textAnchor='middle'
           />
         </YAxis>

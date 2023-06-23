@@ -142,14 +142,20 @@ const ProductionCostChart = ({ contributions }) => {
         <CartesianGrid strokeDasharray='3 3' />
         <Tooltip cursor={{ fill: 'transparent' }} />
 
-        <XAxis dataKey='title' tick={null} />
+        <XAxis
+          dataKey='title'
+          tick={{ fontSize: 15 }}
+          tickFormatter={(value) => {
+            return value.substring(0, 3);
+          }}
+        />
 
-        <YAxis dataKey='cost' tick={{ fontSize: 12 }}>
+        <YAxis dataKey='cost' tick={{ fontSize: 15 }}>
           <Label
             position='insideLeft'
             value={t('statistics.productionCost.label')}
             angle={-90}
-            fontSize={12}
+            fontSize={15}
           />
         </YAxis>
 
