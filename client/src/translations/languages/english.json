@@ -305,6 +305,9 @@
       "title": "Number of reject and acceptation per year and per type of venue",
       "label": "Number of reject/acceptation"
     },
+    "authorParticipation": {
+      "title": "Number of participation per author every year"
+    },
     "months": "months",
     "euros": "euros",
     "approved": "Approved",
