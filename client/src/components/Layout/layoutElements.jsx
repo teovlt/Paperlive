@@ -8,19 +8,6 @@ export const Container = styled(AppContainer)`
   grid-template-rows: 56px 1fr;
 
   padding-block: 40px 0;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 96px;
-    left: 0;
-
-    width: 100vw;
-    height: 1px;
-    border-radius: 2px 2px 0 0;
-
-    background: var(--black-quaternary);
-  }
 `;
 
 export const MainSection = styled.div`
@@ -36,12 +23,6 @@ export const MainSection = styled.div`
 
   overflow-x: hidden;
   overflow-y: auto;
-
-  scrollbar-width: none; /* Firefox */
-
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, IE and Edge */
-  }
 `;
 
 export const Navigation = styled.nav`

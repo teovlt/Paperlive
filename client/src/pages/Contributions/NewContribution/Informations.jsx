@@ -85,33 +85,6 @@ const Informations = ({ data, setData }) => {
           setData(updatedData);
         }}
       />
-      <RadioGroup
-        name='state'
-        label={t('contribution.state')}
-        template={{
-          radios: [
-            {
-              label: t('contribution.inProgress'),
-              value: 'inProgress',
-              defaultChecked: data.state === 'inProgress',
-            },
-            {
-              label: t('contribution.approved'),
-              value: 'approved',
-              defaultChecked: data.state === 'approved',
-            },
-            {
-              label: t('contribution.dropped'),
-              value: 'dropped',
-              defaultChecked: data.state === 'dropped',
-            },
-          ],
-        }}
-        onChange={(e) => {
-          const updatedData = { ...data, state: e.target.value };
-          setData(updatedData);
-        }}
-      />
       <Selector
         list={auth.contributions}
         selected={data.relatedContributions}

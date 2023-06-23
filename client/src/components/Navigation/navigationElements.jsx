@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   grid-area: 1 / 2 / 2 / 3;
   position: fixed;
-  z-index: 99;
+  z-index: 50;
 
   background: var(--white);
   margin-inline: 296px 0;
@@ -13,6 +13,19 @@ export const Container = styled.div`
   display: flex;
   padding-inline: 32px;
   gap: 32px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -550px;
+
+    width: 100vw;
+    height: 1px;
+    border-radius: 2px 2px 0 0;
+
+    background: var(--black-quaternary);
+  }
 `;
 
 export const LinkContainer = styled.div`

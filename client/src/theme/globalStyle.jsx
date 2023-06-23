@@ -49,6 +49,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Poppins', 'Helvetica', 'Arial';
     font-size: 1.6rem;
     font-smooth: auto;
+
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, IE and Edge */
+    }
   }
 
   svg {

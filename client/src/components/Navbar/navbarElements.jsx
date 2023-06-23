@@ -6,7 +6,7 @@ export const NavContainer = styled.div`
   padding: 5px 32px;
 
   position: fixed;
-  z-index: 99;
+  z-index: 50;
 
   display: flex;
   align-items: center;
