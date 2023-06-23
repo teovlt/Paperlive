@@ -305,6 +305,9 @@
       "title": "Nombre de rejets et d'acceptations par année et par type de revue",
       "label": "Nombre de rejet/acceptation"
     },
+    "authorParticipation": {
+      "title": "Nombre de participation par auteur chaque année"
+    },
     "months": "mois",
     "euros": "euros",
     "approved": "Approuvée",

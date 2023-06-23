@@ -22,7 +22,6 @@ const AuthorParticipationCharts = ({ contributions }) => {
       s.authors?.forEach((author) => {
         const { _id: id, name } = author;
         const existingData = acc.find((item) => item.year === year && item.id === id);
-
         if (existingData) existingData.count += 1;
         else acc.push({ year, id, name, count: 1 });
       });
@@ -33,6 +32,7 @@ const AuthorParticipationCharts = ({ contributions }) => {
 
   return (
     <SectionContainer>
+      <Heading3>{t('statistics.authorParticipation.title')}</Heading3>
       <InlineGroup>
         <Select
           label={t('statistics.parameters.venueType')}
@@ -44,7 +44,27 @@ const AuthorParticipationCharts = ({ contributions }) => {
       </InlineGroup>
       <LineChart width={752} height={500} margin={{ top: 15 }} data={stats}>
         <CartesianGrid strokeDasharray='3 3' />
-        <Tooltip />
+        <Tooltip
+          content={({ active, payload, label }) => {
+            if (active && payload && payload.length) {
+              const year = label;
+              const authors = [];
+
+              stats.forEach((element) => {
+                if (element.year === year) {
+                  authors.push(element.name);
+                }
+              });
+
+              return (
+                <div>
+                  <div>{`Year: ${year}`}</div>
+                  <div>{`Authors: ${authors}`}</div>
+                </div>
+              );
+            }
+          }}
+        />
 
         <XAxis
           dataKey='year'
@@ -57,6 +77,7 @@ const AuthorParticipationCharts = ({ contributions }) => {
             Math.max(...stats.map((item) => item.year)) -
             Math.min(...stats.map((item) => item.year))
           }
+          interval={1}
         />
 
         <YAxis
