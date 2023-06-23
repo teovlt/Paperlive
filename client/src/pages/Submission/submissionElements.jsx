@@ -63,7 +63,7 @@ export const LinkModal = styled(Value)`
 `;
 
 export const Modal = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -74,7 +74,7 @@ export const Modal = styled.div`
 
 export const BackModal = styled.div`
   z-index: 9;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
