@@ -24,7 +24,7 @@ const Statistics = () => {
       <ProductionTimeChart contributions={contributions} />
       <ProductionCostChart contributions={contributions} />
       <DistributionPerRank contributions={contributions} />
-      {/* <AuthorParticipationCharts contributions={contributions} /> */}
+      <AuthorParticipationCharts contributions={contributions} />
     </>
   );
 };
