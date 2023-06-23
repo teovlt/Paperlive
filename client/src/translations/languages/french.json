@@ -292,6 +292,9 @@
       "label": "Coût (€)",
       "bar": "Coût"
     },
+    "distributionSubmissionPerRank": {
+      "title": "Distribution des soumissions par rang"
+    },
     "acceptationRejectionChartByType": {
       "title": "Répartition des soumissions approuvées et rejetées par type de revue",
       "journalAcceptances": "Approbation des journaux",

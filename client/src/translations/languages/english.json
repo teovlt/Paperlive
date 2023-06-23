@@ -291,6 +291,9 @@
       "label": "Cost (€)",
       "bar": "Cost"
     },
+    "distributionSubmissionPerRank": {
+      "title": "Distribution of Approved and Rejected Submissions by Rank"
+    },
     "acceptationRejectionChartByType": {
       "title": "Distribution of Approved and Rejected Submissions by Venue Type",
       "journalAcceptances": "Journal approvals",
@@ -298,6 +301,7 @@
       "conferenceAcceptances": "Conference approvals",
       "conferenceRejections": "Conference rejections"
     },
+
     "authorParticipation": {
       "title": "Number of participation per author every year"
     },
