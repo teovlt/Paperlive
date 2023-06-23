@@ -30,6 +30,16 @@ const AuthorParticipationCharts = ({ contributions }) => {
     }, [])
     .sort((a, b) => a.year - b.year);
 
+  const submissionsVenuesTypes = contributions
+    .flatMap((c) => c.submissions)
+    .reduce((acc, s) => {
+      const type = s.venue?.type;
+      if (!type) return acc;
+
+      if (!acc.includes(type)) acc.push(type);
+      return acc;
+    }, []);
+
   return (
     <SectionContainer>
       <Heading3>{t('statistics.authorParticipation.title')}</Heading3>
@@ -38,8 +48,11 @@ const AuthorParticipationCharts = ({ contributions }) => {
           label={t('statistics.parameters.venueType')}
           onChange={(e) => setFilter((filter) => ({ ...filter, type: e.target.value }))}>
           <option value=''>-</option>
-          <option value='conference'>{t('statistics.parameters.conference')}</option>
-          <option value='journal'>{t('statistics.parameters.journal')}</option>
+          {submissionsVenuesTypes.map((type, index) => (
+            <option key={index} value={type}>
+              {t(`statistics.parameters.${type}`)}
+            </option>
+          ))}
         </Select>
       </InlineGroup>
       <LineChart width={752} height={500} margin={{ top: 15 }} data={stats}>
@@ -94,7 +107,7 @@ const AuthorParticipationCharts = ({ contributions }) => {
             )}
             name={authorData.name}
             dataKey='count'
-            stroke={getRandomColor()}
+            stroke='var( --data-visualisation-positive)'
             activeDot={{ r: 8 }}
           />
         ))}
