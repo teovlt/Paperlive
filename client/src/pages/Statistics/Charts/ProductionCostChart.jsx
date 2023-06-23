@@ -130,11 +130,11 @@ const ProductionCostChart = ({ contributions }) => {
 
         <YAxis dataKey='cost' tick={{ fontSize: 12 }}>
           <Label
+            position='insideLeft'
             value={t('statistics.data3.label')}
-            offset={20}
             angle={-90}
             fontSize={12}
-            textAnchor='middle'
+            // textAnchor='middle'
           />
         </YAxis>
 
