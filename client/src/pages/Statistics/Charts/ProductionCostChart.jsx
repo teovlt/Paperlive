@@ -15,7 +15,6 @@ const ProductionCostChart = ({ contributions }) => {
     contributions
       .filter(
         (c) =>
-          c.state === 'approved' &&
           (!filter?.start || filter.start <= new Date(c.startDate).getFullYear()) &&
           (!filter?.end || filter.end >= new Date(c.startDate).getFullYear())
       )
@@ -23,8 +22,8 @@ const ProductionCostChart = ({ contributions }) => {
         c.submissions
           .filter(
             (s) =>
-              (!filter?.type || filter.type === s.venue.type) &&
-              (!filter?.rank || filter.rank === s.venue.rank)
+              (!filter?.type || filter.type === s.venue?.type) &&
+              (!filter?.rank || filter.rank === s.venue?.rank)
           )
           .flatMap((s) => {
             const { _id: id, title } = c;
@@ -33,7 +32,7 @@ const ProductionCostChart = ({ contributions }) => {
             acc[id] = {
               title,
               cost:
-                (acc[id]?.cost ?? 0) +
+                (acc[id]?.cost || (materialCost ?? 0)) +
                 authors.reduce(
                   (acc, curr) => (acc += curr.hourlyCost * curr.workTime * 21.67 * 7),
                   0
@@ -47,10 +46,22 @@ const ProductionCostChart = ({ contributions }) => {
     .sort((a, b) => b.cost - a.cost)
     .filter((c) => c.cost !== 0);
 
+  const submissionsVenuesTypes = contributions
+    .flatMap((c) => c.submissions)
+    .reduce((acc, s) => {
+      const type = s.venue?.type;
+      if (!type) return acc;
+
+      if (!acc.includes(type)) acc.push(type);
+      return acc;
+    }, []);
+
   const submissionsVenuesRank = contributions
     .flatMap((c) => c.submissions)
     .reduce((acc, s) => {
-      const { rank } = s.venue;
+      const rank = s.venue?.rank;
+      if (!rank) return acc;
+
       if (!acc.includes(rank)) acc.push(rank);
       return acc;
     }, []);
@@ -80,16 +91,21 @@ const ProductionCostChart = ({ contributions }) => {
           label={t('statistics.parameters.venueType')}
           onChange={(e) => setFilter((filter) => ({ ...filter, type: e.target.value }))}>
           <option value=''>-</option>
-          <option value='conference'>{t('statistics.parameters.conference')}</option>
-          <option value='journal'>{t('statistics.parameters.journal')}</option>
+          {submissionsVenuesTypes.map((type, index) => (
+            <option key={index} value={type}>
+              {t(`statistics.parameters.${type}`)}
+            </option>
+          ))}
         </Select>
 
         <Select
           label={t('statistics.parameters.venueRank')}
           onChange={(e) => setFilter((filter) => ({ ...filter, rank: e.target.value }))}>
           <option value=''>-</option>
-          {submissionsVenuesRank.map((rank) => (
-            <option value={rank}>{rank}</option>
+          {submissionsVenuesRank.map((rank, index) => (
+            <option key={index} value={rank}>
+              {rank}
+            </option>
           ))}
         </Select>
 
@@ -134,7 +150,6 @@ const ProductionCostChart = ({ contributions }) => {
             value={t('statistics.data3.label')}
             angle={-90}
             fontSize={12}
-            // textAnchor='middle'
           />
         </YAxis>
 

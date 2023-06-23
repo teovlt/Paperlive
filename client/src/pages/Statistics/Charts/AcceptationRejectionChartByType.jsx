@@ -21,10 +21,8 @@ const AcceptationRejectionChartByType = ({ contributions }) => {
           (!filter?.end || filter.end >= new Date(s.submissionDate).getFullYear())
       )
       .reduce((acc, s) => {
-        if (s.venue === undefined) {
-          return null;
-        }
-        const { type } = s.venue;
+        const type = s.venue?.type;
+        if (!type) return acc;
 
         switch (s.state) {
           case 'approved':
@@ -51,8 +49,9 @@ const AcceptationRejectionChartByType = ({ contributions }) => {
           (!filter?.end || filter.end >= new Date(s.submissionDate).getFullYear())
       )
       .reduce((acc, s) => {
-        const { type } = s.venue;
+        const type = s.venue?.type;
         const year = new Date(s.submissionDate).getFullYear();
+        if (!type) return acc;
 
         switch (s.state) {
           case 'approved':
@@ -74,6 +73,16 @@ const AcceptationRejectionChartByType = ({ contributions }) => {
   )
     .map(([year, data]) => ({ year, ...data }))
     .sort((a, b) => a.year - b.year);
+
+  const submissionsVenuesTypes = contributions
+    .flatMap((c) => c.submissions)
+    .reduce((acc, s) => {
+      const type = s.venue?.type;
+      if (!type) return acc;
+
+      if (!acc.includes(type)) acc.push(type);
+      return acc;
+    }, []);
 
   const submissionsMinYear = contributions
     .flatMap((c) => c.submissions)
@@ -111,8 +120,11 @@ const AcceptationRejectionChartByType = ({ contributions }) => {
           label={t('statistics.parameters.venueType')}
           onChange={(e) => setFilter((filter) => ({ ...filter, type: e.target.value }))}>
           <option value=''>-</option>
-          <option value='conference'>{t('statistics.parameters.conference')}</option>
-          <option value='journal'>{t('statistics.parameters.journal')}</option>
+          {submissionsVenuesTypes.map((type, index) => (
+            <option key={index} value={type}>
+              {t(`statistics.parameters.${type}`)}
+            </option>
+          ))}
         </Select>
 
         <Select

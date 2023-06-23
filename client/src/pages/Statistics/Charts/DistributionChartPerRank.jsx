@@ -15,13 +15,14 @@ const DistributionPerRank = ({ contributions }) => {
     submissions
       .filter(
         (s) =>
-        s.type !== 'poster' &&
-        (!filter?.type || filter.type === s.venue?.type) &&
+          s.type !== 'poster' &&
+          (!filter?.type || filter.type === s.venue?.type) &&
           (!filter?.start || filter.start <= new Date(s.submissionDate).getFullYear()) &&
           (!filter?.end || filter.end >= new Date(s.submissionDate).getFullYear())
       )
       .reduce((acc, s) => {
-        const { rank } = s.venue;
+        const rank = s.venue?.rank;
+        if (!rank) return acc;
 
         switch (s.state) {
           case 'approved':
@@ -48,6 +49,16 @@ const DistributionPerRank = ({ contributions }) => {
         else return 0;
       }
     });
+
+  const submissionsVenuesTypes = contributions
+    .flatMap((c) => c.submissions)
+    .reduce((acc, s) => {
+      const type = s.venue?.type;
+      if (!type) return acc;
+
+      if (!acc.includes(type)) acc.push(type);
+      return acc;
+    }, []);
 
   const submissionsMinYear = contributions
     .flatMap((c) => c.submissions)
@@ -78,8 +89,11 @@ const DistributionPerRank = ({ contributions }) => {
           label={t('statistics.parameters.venueType')}
           onChange={(e) => setFilter((filter) => ({ ...filter, type: e.target.value }))}>
           <option value=''>-</option>
-          <option value='conference'>{t('statistics.parameters.conference')}</option>
-          <option value='journal'>{t('statistics.parameters.journal')}</option>
+          {submissionsVenuesTypes.map((type, index) => (
+            <option key={index} value={type}>
+              {t(`statistics.parameters.${type}`)}
+            </option>
+          ))}
         </Select>
 
         <Select
