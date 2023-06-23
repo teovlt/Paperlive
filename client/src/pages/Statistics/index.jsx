@@ -1,11 +1,10 @@
 import useAuth from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
-import { Heading2 } from '../../theme/appElements';
+import { Heading2, SectionContainer } from '../../theme/appElements';
 import AcceptationRejectionChartByType from './Charts/AcceptationRejectionChartByType';
 import TeamRoleDistributionChart from './Charts/TeamRoleDistributionChart';
 import ProductionTimeChart from './Charts/ProductionTimeChart';
 import ProductionCostChart from './Charts/ProductionCostChart';
-
 import DistributionPerRank from './Charts/DistributionChartPerRank';
 import AuthorParticipationCharts from './Charts/AuthorParticipationCharts';
 
@@ -17,8 +16,10 @@ const Statistics = () => {
 
   return (
     <>
-      <Heading2>{t('statistics.statistics')}</Heading2>
-      <AcceptationRejectionChartByType contributions={contributions} />
+      <SectionContainer>
+        <Heading2>{t('statistics.statistics')}</Heading2>
+        <AcceptationRejectionChartByType contributions={contributions} />
+      </SectionContainer>
       <TeamRoleDistributionChart contributions={contributions} />
       <ProductionTimeChart contributions={contributions} />
       <ProductionCostChart contributions={contributions} />
