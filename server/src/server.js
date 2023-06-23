@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const app = require('./app');
 
 // Set the port to listen on
-const port = process.env.PORT || 3001;
+const port = process.env.PORT;
 
 // Connect to MongoDB using Mongoose
 mongoose

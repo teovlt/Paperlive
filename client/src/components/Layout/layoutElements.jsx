@@ -7,8 +7,7 @@ export const Container = styled(AppContainer)`
   grid-template-columns: 296px 1fr;
   grid-template-rows: 56px 1fr;
 
-  height: calc(100vh - 40px);
-  overflow-y: hidden;
+  padding-block: 40px 0;
 
   &::after {
     content: '';

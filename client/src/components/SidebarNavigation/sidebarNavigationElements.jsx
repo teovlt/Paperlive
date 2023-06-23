@@ -3,9 +3,12 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   grid-area: 2 / 1 / 3 / 2;
+  position: fixed;
+  width: 296px;
+
   display: flex;
   flex-direction: column;
-  padding-block: 32px;
+  padding-block: calc(56px + 32px);
   gap: 24px;
 
   user-select: none;

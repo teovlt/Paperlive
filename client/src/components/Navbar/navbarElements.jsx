@@ -2,8 +2,11 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const NavContainer = styled.div`
-  width: 100%;
+  width: 100vw;
   padding: 5px 32px;
+
+  position: fixed;
+  z-index: 99;
 
   display: flex;
   align-items: center;

@@ -18,7 +18,7 @@ services:
     depends_on:
       - database
     ports:
-      - '5000:5000'
+      - '3300:3300'
     restart: always
     command: node index.js
     volumes:

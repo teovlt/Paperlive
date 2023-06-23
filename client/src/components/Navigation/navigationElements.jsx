@@ -3,6 +3,12 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   grid-area: 1 / 2 / 2 / 3;
+  position: fixed;
+  z-index: 99;
+
+  background: var(--white);
+  margin-inline: 296px 0;
+  width: 824px;
 
   display: flex;
   padding-inline: 32px;
@@ -10,6 +16,8 @@ export const Container = styled.div`
 `;
 
 export const LinkContainer = styled.div`
+  height: 56px;
+
   display: flex;
   align-items: center;
 
