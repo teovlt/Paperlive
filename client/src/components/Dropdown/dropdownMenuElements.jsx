@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const DropdownContainer = styled.div`
   position: relative;
-  z-index: 99;
 `;
 
 export const DropdownToggle = styled.button`
@@ -32,6 +31,7 @@ export const Dropdown = styled.div`
   min-width: 200px;
 
   position: absolute;
+  z-index: 9;
   top: ${(props) => `${props.gap}px`};
 
   transform: translateX(-50%);

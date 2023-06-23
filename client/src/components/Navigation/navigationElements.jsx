@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   grid-area: 1 / 2 / 2 / 3;
   position: fixed;
-  z-index: 50;
+  z-index: 8;
 
   background: var(--white);
   margin-inline: 296px 0;
