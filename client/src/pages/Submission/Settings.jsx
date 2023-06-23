@@ -76,18 +76,8 @@ const SubmissionSettings = () => {
   const handleSaveChanges = async () => {
     await axiosPrivate.put(`/submissions/${id}`, submissionData);
 
-    const updatedContributions = [
-      ...auth.contributions.filter((c) => c._id !== contribution._id),
-      {
-        ...contribution,
-        submissions: [
-          ...contribution.submissions?.filter((s) => s._id !== submission._id),
-          submissionData,
-        ],
-      },
-    ];
-
-    setAuth((prev) => ({ ...prev, contributions: updatedContributions }));
+    const contributions = await axiosPrivate.get('/contributions');
+    setAuth((prev) => ({ ...prev, contributions: contributions.data }));
     notifySave();
     navigate(`/submissions/${id}`);
   };

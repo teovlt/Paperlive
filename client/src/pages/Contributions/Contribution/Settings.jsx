@@ -20,7 +20,7 @@ import InputSelector from '../../../components/InputSelector';
 const ContributionSettings = () => {
   const { id } = useParams();
   const { auth, setAuth } = useAuth();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
 
@@ -32,6 +32,17 @@ const ContributionSettings = () => {
   const [deleteErrMsg, setDeleteErrMsg] = useState('');
 
   const [contributionName, setContributionName] = useState('');
+
+  const [keywords, setKeywords] = useState(null);
+
+  useEffect(() => {
+    async function fetchKeywords() {
+      const response = await axiosPrivate.get('/keywords');
+      setKeywords(response.data);
+    }
+
+    fetchKeywords();
+  }, []);
 
   useEffect(() => {
     setDeleteErrMsg('');
@@ -107,6 +118,8 @@ const ContributionSettings = () => {
     }
   };
 
+  if (!keywords) return <Loading />;
+
   return (
     <>
       <SectionContainer>
@@ -123,11 +136,22 @@ const ContributionSettings = () => {
           }}
         />
         <InputSelector
-          label={`${t('contribution.keywords')}*`}
+          list={keywords}
+          setList={(list) => setKeywords(list)}
           selected={contributionData.keywords}
-          callback={(list) => {
-            const updatedData = { ...contributionData, keywords: list };
-            setContributionData(updatedData);
+          setSelected={(selected) =>
+            setContributionData((data) => ({ ...data, keywords: selected }))
+          }
+          displayedAttribute={'value'}
+          label={t('contribution.keywords')}
+          modelName={'keywords'}
+          schema={{
+            value: {
+              label: t('keyword.value'),
+              type: 'text',
+              default: '',
+              required: true,
+            },
           }}
         />
         <Input

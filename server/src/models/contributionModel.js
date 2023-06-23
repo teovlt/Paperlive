@@ -13,8 +13,12 @@ const contributionSchema = new mongoose.Schema({
     required: true,
   },
   keywords: {
-    type: [String],
-    default: [],
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Keyword',
+      },
+    ],
   },
   relatedContributions: {
     type: [
