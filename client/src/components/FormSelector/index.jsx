@@ -64,6 +64,14 @@ const FormSelector = ({
 
   useEffect(() => {
     setErrMsg('');
+
+    if (modal.isOpen) {
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, [modal.isOpen]);
 
   const handleSave = async (item) => {

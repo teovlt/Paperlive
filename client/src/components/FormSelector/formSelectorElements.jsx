@@ -190,7 +190,7 @@ export const PillButton = styled.button`
 `;
 
 export const ModalBackdrop = styled.div`
-  position: absolute;
+  position: fixed;
   display: block;
 
   top: 0;
@@ -205,7 +205,7 @@ export const ModalBackdrop = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
   display: block;
 
   top: 50%;
