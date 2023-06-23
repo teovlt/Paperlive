@@ -17,7 +17,7 @@ const contributionRoutes = require('./routes/contributionRoutes');
 const submissionRoutes = require('./routes/submissionRoutes');
 const authorRoutes = require('./routes/authorRoutes');
 const venueRoutes = require('./routes/venueRoutes');
-const scitificFieldRoutes = require('./routes/scientificFieldRoutes');
+const keywordRoutes = require('./routes/keywordRoutes');
 const fileRoutes = require('./routes/fileRoutes');
 
 // Set up middleware to parse JSON, URL-encoded bodies and cookies
@@ -103,12 +103,12 @@ app.use('/api/authors', authorRoutes);
  */
 app.use('/api/venues', venueRoutes);
 /**
- * Handle the requests to /api/scientific-fields
- * @route /api/scientific-fields
- * @desc Route to handle scientific fields related requests
+ * Handle the requests to /api/keywords
+ * @route /api/keywords
+ * @desc Route to handle keywords related requests
  * @access Public
  */
-app.use('/api/scientificfields', scitificFieldRoutes);
+app.use('/api/keywords', keywordRoutes);
 
 /**
  * Handle the requests to /api/files

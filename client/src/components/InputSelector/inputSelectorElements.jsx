@@ -88,13 +88,13 @@ export const ButtonCircle = styled.button`
   }
 `;
 
-export const Input = styled.input`
+export const Search = styled.input`
   color: var(--black);
   padding: 1.2rem 1.6rem;
   font-size: 1.5rem;
 
-  border: 0.1rem solid var(--black-quaternary);
-  border-top: 0.05rem solid var(--black-quaternary);
+  border-block: 0.05rem solid var(--black-quaternary);
+  border-inline: 0.1rem solid var(--black-quaternary);
 
   &::placeholder {
     user-select: none;
@@ -102,18 +102,30 @@ export const Input = styled.input`
   }
 `;
 
-export const Button = styled.button`
-  user-select: none;
+export const SelectedItemsContainer = styled.div`
+  border-block: 0.05rem solid var(--black-quaternary);
+  border-inline: 0.1rem solid var(--black-quaternary);
 
-  text-align: left;
-  font-size: 1.5rem;
-  color: var(--black-tertiary);
-  padding: 0.625rem 1.6rem;
-
-  &:hover {
-    cursor: pointer;
-    background: var(--black-quaternary);
+  &:last-child {
+    border-bottom-width: 0.1rem;
+    border-radius: 0 0 0.2rem 0.2rem;
   }
+
+  display: flex;
+  flex-direction: column;
+`;
+
+export const DisplayedListContainer = styled.div`
+  border-block: 0.05rem solid var(--black-quaternary);
+  border-inline: 0.1rem solid var(--black-quaternary);
+
+  &:last-child {
+    border-bottom-width: 0.1rem;
+    border-radius: 0 0 0.2rem 0.2rem;
+  }
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export const PillContainer = styled.div`
@@ -161,4 +173,12 @@ export const PillButton = styled.button`
     background: var(--black-quaternary);
     border-radius: 100px;
   }
+`;
+
+export const NoResults = styled.div`
+  user-select: none;
+
+  font-size: 1.5rem;
+  color: var(--black-tertiary);
+  padding: 0.625rem 1.6rem;
 `;

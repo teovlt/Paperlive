@@ -7,13 +7,29 @@ import Input from '../../../components/Input';
 import RadioGroup from '../../../components/RadioGroup';
 import Selector from '../../../components/Selector';
 import useAuth from '../../../hooks/useAuth';
-import Loading from '../../../components/Loading';
 import InputSelector from '../../../components/InputSelector';
+import FormSelector from '../../../components/FormSelector';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
+import Loading from '../../../components/Loading';
 
 const Informations = ({ data, setData }) => {
   const { t } = useTranslation();
   const { auth } = useAuth();
   const navigate = useNavigate();
+  const axiosPrivate = useAxiosPrivate();
+
+  const [keywords, setKeywords] = useState(null);
+
+  useEffect(() => {
+    async function fetchKeywords() {
+      const response = await axiosPrivate.get('/keywords');
+      setKeywords(response.data);
+    }
+
+    fetchKeywords();
+  }, []);
+
+  if (!keywords) return <Loading />;
 
   return (
     <SectionContainer>
@@ -29,11 +45,20 @@ const Informations = ({ data, setData }) => {
         }}
       />
       <InputSelector
-        label={`${t('contribution.keywords')}*`}
+        list={keywords}
+        setList={(list) => setKeywords(list)}
         selected={data.keywords}
-        callback={(list) => {
-          const updatedData = { ...data, keywords: list };
-          setData(updatedData);
+        setSelected={(selected) => setData((data) => ({ ...data, keywords: selected }))}
+        displayedAttribute={'value'}
+        label={t('contribution.keywords')}
+        modelName={'keywords'}
+        schema={{
+          value: {
+            label: t('keyword.value'),
+            type: 'text',
+            default: '',
+            required: true,
+          },
         }}
       />
       <Input

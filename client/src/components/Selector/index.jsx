@@ -33,6 +33,7 @@ const Selector = ({ list, selected, displayedAttribute, label, onChange, unique 
   );
 
   const selectorRef = useRef(null);
+  const inputRef = useRef(null);
 
   const handleChanges = (checked, item) => {
     if (checked) {
@@ -64,6 +65,8 @@ const Selector = ({ list, selected, displayedAttribute, label, onChange, unique 
     if (isOpen === true) {
       document.addEventListener('click', handleClickOutside);
       document.addEventListener('keydown', handleKeyDown);
+
+      inputRef.current?.focus();
     }
 
     return () => {
@@ -132,6 +135,7 @@ const Selector = ({ list, selected, displayedAttribute, label, onChange, unique 
       {isOpen && (
         <>
           <Search
+            ref={inputRef}
             placeholder={t('global.search') + '...'}
             value={searchQuery}
             onInput={(e) => setSearchQuery(e.target.value)}

@@ -39,10 +39,9 @@ const FormSelector = ({
   schema,
   unique = false,
 }) => {
+  const { t } = useTranslation();
   const search = useSearch();
   const axiosPrivate = useAxiosPrivate();
-
-  const { t, i18n } = useTranslation();
 
   const defaultItem = Object.keys(schema).reduce((acc, key) => {
     acc[key] = schema[key].default;
@@ -51,13 +50,17 @@ const FormSelector = ({
 
   const [isOpen, setIsOpen] = useState(false);
   const [modal, setModal] = useState({ isOpen: false, item: defaultItem });
+
   const [searchQuery, setSearchQuery] = useState('');
+  const [errMsg, setErrMsg] = useState(null);
 
   const [selectedItems, setSelectedItems] = useState(selected);
-  const [displayedList, setDisplayedList] = useState(null);
+  const [displayedList, setDisplayedList] = useState(
+    list.filter((item) => !selectedItems.includes(item))
+  );
 
   const selectorRef = useRef(null);
-  const [errMsg, setErrMsg] = useState(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     setErrMsg('');
@@ -109,6 +112,8 @@ const FormSelector = ({
     if (isOpen && !modal.isOpen) {
       document.addEventListener('click', handleClickOutside);
       document.addEventListener('keydown', handleKeyDown);
+
+      inputRef.current?.focus();
     }
 
     return () => {
@@ -270,6 +275,7 @@ const FormSelector = ({
         {isOpen && (
           <>
             <Search
+              ref={inputRef}
               value={searchQuery}
               placeholder={t('global.search') + '...'}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -287,7 +293,7 @@ const FormSelector = ({
               </SelectedItemsContainer>
             )}
             <DisplayedListContainer>
-              {displayedList.map((item, index) => (
+              {displayedList.slice(0, 8).map((item, index) => (
                 <Checkbox
                   key={item._id || index}
                   label={item[displayedAttribute]}
