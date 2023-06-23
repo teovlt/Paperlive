@@ -194,8 +194,8 @@ const AcceptationRejectionChartByType = ({ contributions }) => {
         <BarChart width={752} height={500} margin={{ top: 15 }} data={statsByType}>
           <CartesianGrid strokeDasharray='3 3' />
 
-          <XAxis dataKey='type' />
-          <YAxis interval={1} tick={{ fontSize: 12 }} />
+          <XAxis dataKey='type' tick={{ fontSize: 15 }} />
+          <YAxis interval={1} tick={{ fontSize: 15 }} />
 
           <Bar
             dataKey='approved'
