@@ -73,6 +73,7 @@ export const Modal = styled.div`
 `;
 
 export const BackModal = styled.div`
+  z-index: 9;
   position: absolute;
   top: 50%;
   left: 50%;
