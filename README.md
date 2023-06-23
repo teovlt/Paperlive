@@ -18,7 +18,7 @@
 
 - Open your terminal or command prompt.
 - Navigate to the root directory of the project where the Makefile is located.
-- Execute the command make deploy.
+- Execute the command `make deploy`.
 - This command will initiate the deployment process, which may take some time.
 - Once the deployment is complete, the PaperLive application should be accessible on your server.
 
