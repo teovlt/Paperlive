@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { Group, InfoContainer, Value, Label, Link, LineWrapper } from './contributionElements';
+import { Group, LineWrapper } from './contributionElements';
 import { Button, Heading2, SectionContainer, Caption } from '../../../theme/appElements';
 
 import { useParams } from 'react-router-dom';
