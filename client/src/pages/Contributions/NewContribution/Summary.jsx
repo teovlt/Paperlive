@@ -87,23 +87,10 @@ const Summary = ({ data }) => {
             ? data.relatedContributions.map((contribution) => <Link>{contribution.title}</Link>)
             : '-'}
         </InfoContainer>
-        <LineWrapper>
-          <InfoContainer>
-            <Label>{t('contribution.state')}</Label>
-            <Value
-              style={{
-                color: `var(--${
-                  { inProgress: 'notice', dropped: 'negative', approved: 'positive' }[data.state]
-                })`,
-              }}>
-              {data.state ? t(`contribution.${data.state}`) : '-'}
-            </Value>
-          </InfoContainer>
-          <InfoContainer>
-            <Label>{t('contribution.teamRole')}</Label>
-            <Value>{data.teamRole ? t(`contribution.${data.teamRole}`) : '-'}</Value>
-          </InfoContainer>
-        </LineWrapper>
+        <InfoContainer>
+          <Label>{t('contribution.teamRole')}</Label>
+          <Value>{data.teamRole ? t(`contribution.${data.teamRole}`) : '-'}</Value>
+        </InfoContainer>
         <LineWrapper>
           <InfoContainer>
             <Label>{`${t('contribution.link')}*`}</Label>
