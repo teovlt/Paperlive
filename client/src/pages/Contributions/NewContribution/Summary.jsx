@@ -79,7 +79,11 @@ const Summary = ({ data }) => {
         </InfoContainer>
         <InfoContainer>
           <Label>{`${t('contribution.keywords')}*`}</Label>
-          <Value>{data.keywords.length > 0 ? data.keywords.join(', ') : '-'}</Value>
+          <Value>
+            {data.keywords.length > 0
+              ? data.keywords.map((keyword) => keyword.value).join(', ')
+              : '-'}
+          </Value>
         </InfoContainer>
         <InfoContainer>
           <Label>{`${t('contribution.related')}*`}</Label>

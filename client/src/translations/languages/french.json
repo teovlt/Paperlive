@@ -130,7 +130,8 @@
     "deleteContError": "Erreur : suppresion echouée",
     "contributionName": "Nom de la contribution",
     "update": "Mettre à jour la contribution",
-    "link": "Lien"
+    "link": "Lien",
+    "pressEnter": "Appuyez sur \"Entrer\" pour ajouter"
   },
   "submission": {
     "newSubmission": "Nouvelle soumission",

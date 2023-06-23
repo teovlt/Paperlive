@@ -130,7 +130,8 @@
     "deleteContError": "Error: deletion failed",
     "contributionName": "Name of the contribution",
     "update": "Update the contribution",
-    "link": "Link"
+    "link": "Link",
+    "pressEnter": "Press \"Enter\" to add"
   },
   "submission": {
     "newSubmission": "New submission",

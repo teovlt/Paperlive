@@ -18,7 +18,7 @@ const Checkbox = ({ defaultChecked = false, ...props }) => {
   };
 
   return (
-    <Label className={`${checked && 'checked'}`}>
+    <Label className={`${checked && 'checked'}`} onClick={(e) => e.stopPropagation()}>
       <Input type='checkbox' checked={checked} onChange={handleChanges} />
       <span>{props.label}</span>
     </Label>

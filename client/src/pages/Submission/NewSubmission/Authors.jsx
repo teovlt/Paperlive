@@ -32,10 +32,7 @@ const Authors = ({ data, setData }) => {
         list={authors}
         setList={setAuthors}
         selected={data.authors || []}
-        setSelected={(selected) => {
-          const updatedData = { ...data, authors: selected };
-          setData(updatedData);
-        }}
+        setSelected={(selected) => setData((data) => ({ ...data, auhors: selected }))}
         displayedAttribute='name'
         label={t('submission.authors')}
         modelName='authors'
