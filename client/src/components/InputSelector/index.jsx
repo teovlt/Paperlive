@@ -47,7 +47,7 @@ const InputSelector = ({
   // Values ref
   const queryRef = useRef('');
   const listRef = useRef(list);
-  const selectedItemsRef = useRef(selectedItems);
+  const selectedItemsRef = useRef(selected);
 
   useEffect(() => {
     async function handleInput(e) {
@@ -151,11 +151,13 @@ const InputSelector = ({
           ).length > 0 ? (
             <DisplayedListContainer>
               {items
-                .filter(
-                  (item) =>
-                    !selectedItemsRef.current.includes(item) &&
-                    search(query, items, displayedAttribute).includes(item)
-                )
+                .filter((item) => {
+                  return (
+                    item.value,
+                    !selectedItemsRef.current.map((item) => item._id).includes(item._id) &&
+                      search(query, items, displayedAttribute).includes(item)
+                  );
+                })
                 .slice(0, 8)
                 .map((item, index) => (
                   <Checkbox
