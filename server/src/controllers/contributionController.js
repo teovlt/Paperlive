@@ -17,7 +17,7 @@ module.exports.listContributions = async (req, res) => {
     const team = await Team.findOne({ _id: req.teamId }).populate({
       path: 'contributions',
       populate: {
-        path: 'submissions relatedContributions',
+        path: 'submissions relatedContributions keywords',
       },
     });
     if (!team) return res.status(404).json({ error: 'Team not found' });
@@ -97,7 +97,6 @@ module.exports.updateContribution = async (req, res) => {
 
     const team = await Team.findOne({ _id: req.teamId, contributions: { $in: [contributionId] } });
     if (!team) return res.status(404).json({ error: 'Contribution not found' });
-
 
     const result = await Contribution.updateOne({ _id: contributionId }, { $set: req.body });
     if (result.matchedCount > 0) {

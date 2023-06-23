@@ -38,7 +38,11 @@ const Contribution = () => {
         </InfoContainer>
         <InfoContainer>
           <Label>{t('contribution.keywords')}</Label>
-          <Value>{contribution.keywords.length > 0 ? contribution.keywords.join(', ') : '-'}</Value>
+          <Value>
+            {contribution.keywords.length > 0
+              ? contribution.keywords.map((keyword) => keyword.value).join(', ')
+              : '-'}
+          </Value>
         </InfoContainer>
         <InfoContainer>
           <Label>{t('contribution.related')}</Label>

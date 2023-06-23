@@ -87,7 +87,6 @@ module.exports.createSubmission = async (req, res) => {
     const team = await Team.findOne({ _id: req.teamId, contributions: { $in: [contributionId] } });
     if (!team) return res.status(404).json({ error: 'Team not found' });
 
-
     if (
       fs.existsSync(
         `${__dirname}/../../uploads/submission/zipfolder/temp-submission-zipfolder-${req.teamId}.zip`
@@ -138,10 +137,18 @@ module.exports.createSubmission = async (req, res) => {
     });
     await submission.save();
 
-    const result = await Contribution.updateOne(
-      { _id: contributionId },
-      { $push: { submissions: submission._id } }
-    );
+    const contribution = await Contribution.findOne({ _id: contributionId });
+    const existing = contribution.state;
+
+    const result = await contribution.updateOne({
+      $push: { submissions: submission._id },
+      $set: {
+        state:
+          submissionData.type === 'longPaper' && submissionData.state === 'approved'
+            ? 'approved'
+            : existing,
+      },
+    });
 
     if (result.matchedCount > 0) {
       return res.status(201).json({ message: 'Successfully created' });
@@ -216,16 +223,22 @@ module.exports.updateSubmission = async (req, res) => {
       );
     }
 
-    const result = await Submission.updateOne(
-      { _id: submissionId },
-      {
-        $set: {
-          ...submissionData,
-        },
-      }
-    );
+    const submission = await Submission.findOne({ _id: submissionId });
 
-    if (result.matchedCount > 0) {
+    const result_1 = await submission.updateOne({ $set: { ...submissionData } });
+
+    const existing = contribution.state;
+
+    const result_2 = await contribution.updateOne({
+      $set: {
+        state:
+          submissionData.type === 'longPaper' && submissionData.state === 'approved'
+            ? 'approved'
+            : existing,
+      },
+    });
+
+    if (result_1.matchedCount > 0 && result_2.matchedCount > 0) {
       return res.status(201).json({ message: 'Successfully updated' });
     }
 

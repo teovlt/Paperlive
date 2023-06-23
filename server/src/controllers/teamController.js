@@ -40,7 +40,7 @@ module.exports.me = async (req, res) => {
       .select('-password')
       .populate({
         path: 'contributions',
-        populate: [{ path: 'relatedContributions' }, { path: 'submissions' }],
+        populate: [{ path: 'relatedContributions' }, { path: 'submissions' }, { path: 'keywords' }],
       });
     if (!team) return res.status(404).json({ error: 'Team not found' });
 
