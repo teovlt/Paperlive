@@ -15,12 +15,15 @@ const AcceptationRejectionChartByType = ({ contributions }) => {
     submissions
       .filter(
         (s) =>
-          s.type === 'longPaper' &&
+          s.type !== 'poster' &&
           (!filter?.type || filter.type === s.venue?.type) &&
           (!filter?.start || filter.start <= new Date(s.submissionDate).getFullYear()) &&
           (!filter?.end || filter.end >= new Date(s.submissionDate).getFullYear())
       )
       .reduce((acc, s) => {
+        if (s.venue === undefined) {
+          return null;
+        }
         const { type } = s.venue;
 
         switch (s.state) {
@@ -42,7 +45,7 @@ const AcceptationRejectionChartByType = ({ contributions }) => {
     submissions
       .filter(
         (s) =>
-          s.type === 'longPaper' &&
+          s.type !== 'poster' &&
           (!filter?.type || filter.type === s.venue?.type) &&
           (!filter?.start || filter.start <= new Date(s.submissionDate).getFullYear()) &&
           (!filter?.end || filter.end >= new Date(s.submissionDate).getFullYear())

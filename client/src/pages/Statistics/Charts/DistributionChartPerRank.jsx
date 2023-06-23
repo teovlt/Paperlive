@@ -15,8 +15,8 @@ const DistributionPerRank = ({ contributions }) => {
     submissions
       .filter(
         (s) =>
-          s.type === 'longPaper' &&
-          (!filter?.type || filter.type === s.venue?.type) &&
+        s.type !== 'poster' &&
+        (!filter?.type || filter.type === s.venue?.type) &&
           (!filter?.start || filter.start <= new Date(s.submissionDate).getFullYear()) &&
           (!filter?.end || filter.end >= new Date(s.submissionDate).getFullYear())
       )

@@ -19,7 +19,7 @@ const TeamRoleDistributionChart = ({ contributions }) => {
       )
       .reduce((acc, c) => {
         c.submissions
-          .filter((s) => s.type === 'longPaper' && s.state === 'approved')
+          .filter((s) => s.type !== 'poster' && s.state === 'approved')
           .sort((a, b) => new Date(a.submissionDate) - new Date(b.submissionDate))
           .slice(0, 1)
           .filter((s) => !filter?.type || filter.type === s.venue.type)
