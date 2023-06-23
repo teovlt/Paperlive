@@ -73,10 +73,31 @@ const InputSelector = ({
       }
     }
 
-    if (isOpen === true) {
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      }
+    }
+
+    function handleClickOutside(e) {
+      if (selectorRef.current && !selectorRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('click', handleClickOutside);
+      document.addEventListener('keydown', handleKeyDown);
+
       inputRef.current?.focus();
       inputRef.current?.addEventListener('keydown', handleInput);
     }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+      inputRef.current?.removeEventListener('keydown', handleInput);
+    };
   }, [isOpen]);
 
   useEffect(() => {
