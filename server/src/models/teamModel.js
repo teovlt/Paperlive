@@ -111,11 +111,11 @@ teamSchema.methods.changePassword = async function (oldPassword, newPassword) {
   }
 };
 
-teamSchema.methods.validCredentials = async function (name = '', password = '') {
+teamSchema.methods.validCredentials = async function (name, password) {
   try {
     const isPasswordCorrect = await bcrypt.compare(password, this.password);
 
-    return name === this.name && isPasswordCorrect;
+    return name.toLowerCase() === this.name && isPasswordCorrect;
   } catch (error) {
     // Error handling
     throw new Error(`Error verfifying credentials: ${error.message}`);
