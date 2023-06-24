@@ -256,7 +256,7 @@ const FormSelector = ({
           className={`${isOpen && 'open'} ${selectedItems.length > 0 && 'filled'}`}>
           <Placeholder>{label}</Placeholder>
           <PillContainer>
-            {selectedItems.map((item, index) => (
+            {selectedItems.slice(0, 4).map((item, index) => (
               <Pill key={item._id || index}>
                 <PillLabel>{item[displayedAttribute]}</PillLabel>
                 <PillButton
@@ -268,6 +268,7 @@ const FormSelector = ({
                 </PillButton>
               </Pill>
             ))}
+            {selectedItems.length > 4 && '...'}
           </PillContainer>
           <Wrapper>
             {!unique && <Counter>{selectedItems.length}</Counter>}
