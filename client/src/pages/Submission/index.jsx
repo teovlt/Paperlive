@@ -200,6 +200,10 @@ const Submission = () => {
                 <Value>{authorDisplay.name}</Value>
               </InfoContainer>
               <InfoContainer>
+                <Label>{t('author.email')}</Label>
+                <Value>{authorDisplay.email}</Value>
+              </InfoContainer>
+              <InfoContainer>
                 <Label>{t('author.grade')}</Label>
                 <Value>{authorDisplay.grade}</Value>
               </InfoContainer>

@@ -46,6 +46,9 @@ const submissionSchema = new mongoose.Schema({
       name: {
         type: String,
       },
+      email: {
+        type: String,
+      },
       grade: {
         type: String,
       },
