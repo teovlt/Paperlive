@@ -82,9 +82,8 @@
   },
   "home": {
     "desc": "About us",
-    "activity": "Recent activity",
     "noDesc": "You don't have a description yet, edit your profile to add one. This will allow other teams to better know what you do and what field you are in.",
-    "noActivity": "Nothing here for the moment"
+    "appDemo": "Application demonstration"
   },
   "contribution": {
     "overview": "Overview",

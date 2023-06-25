@@ -82,9 +82,8 @@
   },
   "home": {
     "desc": "À propos de nous",
-    "activity": "Activité récente",
     "noDesc": "Vous ne possédez pas encore de description, modifiez votre profil pour en rajouter une. Cela permettra aux autres équipes de mieux savoir ce que vous faites et dans quel domaine vous êtes.",
-    "noActivity": "Rien ici pour l'instant"
+    "appDemo": "Démonstration de l'application"
   },
   "contribution": {
     "overview": "Vue d'ensemble",
