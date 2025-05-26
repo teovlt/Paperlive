@@ -34,3 +34,5 @@ server/coverage
 
 # Include specific files within the uploads directory
 !/server/uploads/team/picture/team-picture-default.png
+
+.env
