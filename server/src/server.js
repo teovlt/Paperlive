@@ -1,6 +1,7 @@
 // Import required modules
 const http = require('http');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const app = require('./app');
 
@@ -9,7 +10,7 @@ const port = process.env.PORT;
 
 // Connect to MongoDB using Mongoose
 mongoose
-  .connect('mongodb://database:27017/paperlive', {
+  .connect('mongodb://localhost:27017/paperlive', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
