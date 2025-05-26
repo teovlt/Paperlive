@@ -1,6 +1,6 @@
 const Team = require('../src/models/teamModel');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 beforeAll(async () => {
   await mongoose.connect('mongodb://database:27017/paperlive_test', {
