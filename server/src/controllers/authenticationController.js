@@ -35,6 +35,8 @@ module.exports.signUp = async (req, res) => {
     res.cookie('__refresh__token', refreshToken, {
       maxAge: 30 * 24 * 60 * 60 * 1000,
       httpOnly: true,
+      secure: true,
+      sameSite: 'None',
     });
     return res.status(200).json({ accessToken });
   } catch (error) {
@@ -62,6 +64,8 @@ module.exports.signIn = async (req, res) => {
     res.cookie('__refresh__token', refreshToken, {
       maxAge: 30 * 24 * 60 * 60 * 1000,
       httpOnly: true,
+      secure: true,
+      sameSite: 'None',
     });
     return res.status(200).json({ accessToken });
   } catch (error) {
@@ -100,6 +104,8 @@ module.exports.refreshToken = async (req, res) => {
     res.cookie('__refresh__token', req.refreshToken, {
       maxAge: 30 * 24 * 60 * 60 * 1000,
       httpOnly: true,
+      secure: true,
+      sameSite: 'None',
     });
     return res.status(200).json({ accessToken });
   } catch (error) {
