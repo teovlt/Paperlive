@@ -1,8 +1,0 @@
-FROM node:19.4
-
-WORKDIR /app
-
-ENV VITE_API_URI=http://localhost:3300
-
-COPY package*.json ./
-RUN npm install
