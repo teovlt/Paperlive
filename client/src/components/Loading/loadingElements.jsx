@@ -1,8 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 
 export const LoadingContainer = styled.div`
+  padding-top: 8rem;
   display: flex;
-  height: 100vh;
   align-items: center;
   justify-content: center;
 `;

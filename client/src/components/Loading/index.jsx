@@ -45,15 +45,10 @@ const Title = styled.h1`
   font-weight: bold;
 `;
 
-const Fact = styled.p`
-  font-size: 0.75rem;
-  animation: pulse 2s infinite;
-`;
-
 const Footer = styled.div`
   position: absolute;
   bottom: 1rem;
-  font-size: 0.75rem;
+  font-size: 2rem;
 
   a {
     text-decoration: underline;
@@ -98,8 +93,6 @@ const Loading = () => {
       <LoadingContainer>
         <Spinner />
       </LoadingContainer>
-
-      <Fact>Fun fact: you just made our server wake up from a nap 💤</Fact>
 
       <Footer>
         Built with ❤️ by{' '}
