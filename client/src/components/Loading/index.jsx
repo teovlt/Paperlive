@@ -28,7 +28,7 @@ const Path = styled.path`
   stroke: ${({ theme }) => theme.colors.primary || '#3b82f6'};
 `;
 
-export const Loading = () => {
+const Loading = () => {
   return (
     <LoadingWrapper>
       <Spinner
@@ -49,3 +49,5 @@ export const Loading = () => {
     </LoadingWrapper>
   );
 };
+
+export default Loading;
