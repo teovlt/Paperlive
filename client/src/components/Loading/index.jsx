@@ -21,11 +21,11 @@ const Spinner = styled.svg`
 `;
 
 const Circle = styled.circle`
-  stroke: ${({ theme }) => theme.colors.bgForeground || '#e5e7eb'};
+  stroke: #e5e7eb;
 `;
 
 const Path = styled.path`
-  stroke: ${({ theme }) => theme.colors.primary || '#3b82f6'};
+  stroke: #3b82f6;
 `;
 
 const Loading = () => {
