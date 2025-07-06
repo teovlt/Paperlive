@@ -1,111 +1,51 @@
-import styled from 'styled-components';
-import { LoadingContainer, Spinner } from './loadingElements';
-import { FaGithub } from 'react-icons/fa';
+import styled, { keyframes } from 'styled-components';
 
-const Wrapper = styled.div`
+const spin = keyframes`
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const LoadingWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   gap: 2rem;
-  text-align: center;
-  padding: 0 1rem;
-  position: relative;
 `;
 
-const Content = styled.div`
-  display: flex;
-
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  max-width: 48rem;
+const Spinner = styled.svg`
+  width: 2rem;
+  animation: ${spin} 1s linear infinite;
 `;
 
-const GithubLink = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  color: inherit;
-  font-weight: 500;
-  transition: all 0.2s;
-
-  &:hover {
-    background: #000;
-    color: #fff;
-  }
+const Circle = styled.circle`
+  stroke: ${({ theme }) => theme.colors.bgForeground || '#e5e7eb'};
 `;
 
-const Title = styled.h1`
-  font-size: 1.875rem;
-  font-weight: bold;
+const Path = styled.path`
+  stroke: ${({ theme }) => theme.colors.primary || '#3b82f6'};
 `;
 
-const Footer = styled.div`
-  position: absolute;
-  bottom: 1rem;
-  font-size: 2rem;
-
-  a {
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    transition: color 0.2s;
-  }
-`;
-
-const Loading = () => {
+export const Loading = () => {
   return (
-    <Wrapper>
-      <Content>
-        <Title>⏳ Hold tight, deploying some coolness...</Title>
-        <span>
-          This app runs on a free plan — it might nap a bit before waking up. Meanwhile, you can
-          flex your support by starring our stuff:
-        </span>
-
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            gap: '1rem',
-            width: '100%',
-            justifyContent: 'center',
-          }}>
-          <GithubLink href='https://github.com/teovlt' target='_blank' rel='noopener noreferrer'>
-            <FaGithub size={20} />
-            Star Téo on GitHub
-          </GithubLink>
-
-          <GithubLink
-            href='https://github.com/gabrielhalus'
-            target='_blank'
-            rel='noopener noreferrer'>
-            <FaGithub size={20} />
-            Star Gabriel on GitHub
-          </GithubLink>
-        </div>
-      </Content>
-
-      <LoadingContainer>
-        <Spinner />
-      </LoadingContainer>
-
-      <Footer>
-        Built with ❤️ by{' '}
-        <a href='https://teovillet.fr' target='_blank' rel='noopener noreferrer'>
-          Téo Villet
-        </a>{' '}
-        &{' '}
-        <a href='https://github.com/gabrielhalus' target='_blank' rel='noopener noreferrer'>
-          Gabriel Halus
-        </a>
-      </Footer>
-    </Wrapper>
+    <LoadingWrapper>
+      <Spinner
+        viewBox='0 0 24 24'
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'
+        aria-live='polite'
+        aria-busy='true'
+        aria-labelledby='title-05a desc-05a'>
+        <title id='title-05a'>Loading...</title>
+        <desc id='desc-05a'>Animated loading spinner</desc>
+        <Circle cx='12' cy='12' r='10' strokeWidth='4' />
+        <Path
+          d='M12 22C14.6522 22 17.1957 20.9464 19.0711 19.0711C20.9464 17.1957 22 14.6522 22 12C22 9.34784 20.9464 6.8043 19.0711 4.92893C17.1957 3.05357 14.6522 2 12 2'
+          strokeWidth='4'
+        />
+      </Spinner>
+    </LoadingWrapper>
   );
 };
-
-export default Loading;

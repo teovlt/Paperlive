@@ -33,6 +33,15 @@ const corsOptions = {
   preflightContinue: true,
 };
 
+setInterval(async () => {
+  try {
+    const res = await fetch(process.env.SELF_URL + '/api/ping');
+    console.log(`Self-ping status: ${res.status}`);
+  } catch (err) {
+    console.error('Self-ping failed:', err);
+  }
+}, 14 * 60 * 1000);
+
 app.use((req, res, next) => {
   console.log(
     `[${new Date().toLocaleTimeString()}] - Method: [${req.method}] - Url: [${req.url}] - IP: [${
