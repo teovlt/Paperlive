@@ -1,6 +1,5 @@
 const server = require('./src/server');
-
-import fs from 'fs';
+const fs = require('fs');
 
 const uploadsPath = './uploads';
 if (!fs.existsSync(uploadsPath)) {
